@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		61475F221F51C91B00B68DAA /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61475F211F51C91B00B68DAA /* Wall.swift */; };
+		61475F251F51C98E00B68DAA /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61475F241F51C98E00B68DAA /* Player.swift */; };
+		61475F271F51C99C00B68DAA /* Mob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61475F261F51C99C00B68DAA /* Mob.swift */; };
+		61475F291F51C9A800B68DAA /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61475F281F51C9A800B68DAA /* Block.swift */; };
+		61475F2B1F51C9CA00B68DAA /* Floor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61475F2A1F51C9CA00B68DAA /* Floor.swift */; };
+		61475F2D1F51C9EA00B68DAA /* Bomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61475F2C1F51C9EA00B68DAA /* Bomb.swift */; };
+		61475F2F1F51CA2F00B68DAA /* Upgrade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61475F2E1F51CA2F00B68DAA /* Upgrade.swift */; };
+		61475F311F51CA4900B68DAA /* Explosion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61475F301F51CA4900B68DAA /* Explosion.swift */; };
 		A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FC5191F502C7500E1F926 /* AppDelegate.swift */; };
 		A95FC51C1F502C7500E1F926 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FC51B1F502C7500E1F926 /* ViewController.swift */; };
 		A95FC51F1F502C7500E1F926 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95FC51D1F502C7500E1F926 /* Main.storyboard */; };
@@ -27,6 +35,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		61475F211F51C91B00B68DAA /* Wall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
+		61475F241F51C98E00B68DAA /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		61475F261F51C99C00B68DAA /* Mob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mob.swift; sourceTree = "<group>"; };
+		61475F281F51C9A800B68DAA /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
+		61475F2A1F51C9CA00B68DAA /* Floor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Floor.swift; sourceTree = "<group>"; };
+		61475F2C1F51C9EA00B68DAA /* Bomb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bomb.swift; sourceTree = "<group>"; };
+		61475F2E1F51CA2F00B68DAA /* Upgrade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Upgrade.swift; sourceTree = "<group>"; };
+		61475F301F51CA4900B68DAA /* Explosion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Explosion.swift; sourceTree = "<group>"; };
 		A95FC5161F502C7500E1F926 /* BomberMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BomberMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95FC5191F502C7500E1F926 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A95FC51B1F502C7500E1F926 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +74,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		61475F231F51C92500B68DAA /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				61475F211F51C91B00B68DAA /* Wall.swift */,
+				61475F241F51C98E00B68DAA /* Player.swift */,
+				61475F261F51C99C00B68DAA /* Mob.swift */,
+				61475F281F51C9A800B68DAA /* Block.swift */,
+				61475F2A1F51C9CA00B68DAA /* Floor.swift */,
+				61475F2C1F51C9EA00B68DAA /* Bomb.swift */,
+				61475F2E1F51CA2F00B68DAA /* Upgrade.swift */,
+				61475F301F51CA4900B68DAA /* Explosion.swift */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		616E603A1F5038CE000B4A01 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A95FC5191F502C7500E1F926 /* AppDelegate.swift */,
+				A95FC5231F502C7500E1F926 /* Assets.xcassets */,
+				A95FC5251F502C7500E1F926 /* LaunchScreen.storyboard */,
+				A95FC5281F502C7500E1F926 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		A95FC50D1F502C7500E1F926 = {
 			isa = PBXGroup;
 			children = (
@@ -79,13 +121,11 @@
 		A95FC5181F502C7500E1F926 /* BomberMan */ = {
 			isa = PBXGroup;
 			children = (
-				A95FC5191F502C7500E1F926 /* AppDelegate.swift */,
+				616E603A1F5038CE000B4A01 /* Supporting Files */,
 				A95FC51B1F502C7500E1F926 /* ViewController.swift */,
 				A95FC51D1F502C7500E1F926 /* Main.storyboard */,
-				A95FC5231F502C7500E1F926 /* Assets.xcassets */,
-				A95FC5251F502C7500E1F926 /* LaunchScreen.storyboard */,
-				A95FC5281F502C7500E1F926 /* Info.plist */,
 				A95FC5201F502C7500E1F926 /* BomberMan.xcdatamodeld */,
+				61475F231F51C92500B68DAA /* Entities */,
 			);
 			path = BomberMan;
 			sourceTree = "<group>";
@@ -202,8 +242,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61475F2B1F51C9CA00B68DAA /* Floor.swift in Sources */,
+				61475F271F51C99C00B68DAA /* Mob.swift in Sources */,
+				61475F291F51C9A800B68DAA /* Block.swift in Sources */,
 				A95FC51C1F502C7500E1F926 /* ViewController.swift in Sources */,
+				61475F2F1F51CA2F00B68DAA /* Upgrade.swift in Sources */,
+				61475F221F51C91B00B68DAA /* Wall.swift in Sources */,
+				61475F311F51CA4900B68DAA /* Explosion.swift in Sources */,
+				61475F2D1F51C9EA00B68DAA /* Bomb.swift in Sources */,
 				A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */,
+				61475F251F51C98E00B68DAA /* Player.swift in Sources */,
 				A95FC5221F502C7500E1F926 /* BomberMan.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,6 +460,7 @@
 				A95FC5381F502C7500E1F926 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A95FC5391F502C7500E1F926 /* Build configuration list for PBXNativeTarget "BomberManTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +469,7 @@
 				A95FC53B1F502C7500E1F926 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

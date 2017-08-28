@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,40 +22,76 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uvk-eg-AKq">
-                                <rect key="frame" x="167" y="448" width="41" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Game"/>
-                                <connections>
-                                    <segue destination="ez9-aJ-wBp" kind="show" id="b1P-Mz-P98"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ou3-rV-RSk">
-                                <rect key="frame" x="159" y="532" width="57" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Settings"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hkg-U3-yQs" userLabel="GamesButtons">
+                                <rect key="frame" x="16" y="611" width="343" height="48"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SH7-SH-thq">
+                                        <rect key="frame" x="175.5" y="0.0" width="167.5" height="48"/>
+                                        <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
+                                        <state key="normal" title="SinglePlayer">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="ez9-aJ-wBp" kind="show" id="o1Z-Ud-SA9"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uvk-eg-AKq">
+                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="48"/>
+                                        <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
+                                        <state key="normal" title="Multiplayer">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="ez9-aJ-wBp" kind="show" id="b1P-Mz-P98"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Uvk-eg-AKq" firstAttribute="top" secondItem="hkg-U3-yQs" secondAttribute="top" id="Lza-dc-ZVg"/>
+                                    <constraint firstAttribute="bottom" secondItem="SH7-SH-thq" secondAttribute="bottom" id="Mor-YY-7hN"/>
+                                    <constraint firstItem="SH7-SH-thq" firstAttribute="width" secondItem="Uvk-eg-AKq" secondAttribute="width" id="ONS-ay-EXQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="Uvk-eg-AKq" secondAttribute="bottom" id="TPP-UU-Z32"/>
+                                    <constraint firstAttribute="trailing" secondItem="SH7-SH-thq" secondAttribute="trailing" id="WgT-51-Kbw"/>
+                                    <constraint firstItem="Uvk-eg-AKq" firstAttribute="leading" secondItem="hkg-U3-yQs" secondAttribute="leading" id="biv-5J-euX"/>
+                                    <constraint firstItem="SH7-SH-thq" firstAttribute="top" secondItem="hkg-U3-yQs" secondAttribute="top" id="f3z-zd-4cd"/>
+                                    <constraint firstItem="SH7-SH-thq" firstAttribute="leading" secondItem="Uvk-eg-AKq" secondAttribute="trailing" constant="8" symbolic="YES" id="ggR-0Z-1Cs"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ou3-rV-RSk" userLabel="Settings">
+                                <rect key="frame" x="315" y="28" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="75S-mB-4wk"/>
+                                    <constraint firstAttribute="height" constant="40" id="LC4-4y-75G"/>
+                                </constraints>
+                                <state key="normal" image="settings"/>
                                 <connections>
                                     <segue destination="M9H-Cs-Toc" kind="show" id="clT-qi-YOI"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTn-Pv-y9L">
-                                <rect key="frame" x="199" y="583" width="71" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Rating"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTn-Pv-y9L" userLabel="Rating">
+                                <rect key="frame" x="267" y="28" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="9Q1-6k-bL8"/>
+                                    <constraint firstAttribute="height" constant="40" id="aGY-Gc-jpP"/>
+                                </constraints>
+                                <state key="normal" image="trophy "/>
                                 <connections>
                                     <segue destination="9aH-kW-XS3" kind="show" id="utQ-zz-WPt"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SH7-SH-thq">
-                                <rect key="frame" x="159" y="400" width="41" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Game"/>
-                                <connections>
-                                    <segue destination="ez9-aJ-wBp" kind="show" id="o1Z-Ud-SA9"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hkg-U3-yQs" firstAttribute="trailing" secondItem="jCm-EY-IFe" secondAttribute="trailingMargin" id="9Oc-oM-Vp8"/>
+                            <constraint firstItem="yTn-Pv-y9L" firstAttribute="top" secondItem="vpG-Ya-wAj" secondAttribute="bottom" constant="8" symbolic="YES" id="HRM-Nu-mLX"/>
+                            <constraint firstItem="ou3-rV-RSk" firstAttribute="leading" secondItem="yTn-Pv-y9L" secondAttribute="trailing" constant="8" id="KYg-Xm-OFY"/>
+                            <constraint firstItem="hkg-U3-yQs" firstAttribute="leading" secondItem="jCm-EY-IFe" secondAttribute="leadingMargin" id="Mzl-Va-kxV"/>
+                            <constraint firstItem="ou3-rV-RSk" firstAttribute="top" secondItem="vpG-Ya-wAj" secondAttribute="bottom" constant="8" symbolic="YES" id="PMN-jK-SSn"/>
+                            <constraint firstItem="IuD-hd-Urw" firstAttribute="top" secondItem="hkg-U3-yQs" secondAttribute="bottom" constant="8" symbolic="YES" id="Q69-Mh-6Rj"/>
+                            <constraint firstAttribute="trailing" secondItem="ou3-rV-RSk" secondAttribute="trailing" constant="20" symbolic="YES" id="x7z-Lh-7xO"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R9c-dd-sZg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -161,6 +198,10 @@
             <point key="canvasLocation" x="-463" y="159"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="settings" width="128" height="128"/>
+        <image name="trophy " width="128" height="128"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="o1Z-Ud-SA9"/>
     </inferredMetricsTieBreakers>

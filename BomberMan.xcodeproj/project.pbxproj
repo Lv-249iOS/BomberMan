@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1590B4D41F540C0E004DCAF8 /* ConnectionServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1590B4D31F540C0E004DCAF8 /* ConnectionServiceManager.swift */; };
+		1590B4D81F541D40004DCAF8 /* TransitionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1590B4D71F541D40004DCAF8 /* TransitionData.swift */; };
 		61475F221F51C91B00B68DAA /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61475F211F51C91B00B68DAA /* Wall.swift */; };
 		61475F251F51C98E00B68DAA /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61475F241F51C98E00B68DAA /* Player.swift */; };
 		61475F271F51C99C00B68DAA /* Mob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61475F261F51C99C00B68DAA /* Mob.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1590B4D31F540C0E004DCAF8 /* ConnectionServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionServiceManager.swift; sourceTree = "<group>"; };
+		1590B4D71F541D40004DCAF8 /* TransitionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionData.swift; sourceTree = "<group>"; };
 		61475F211F51C91B00B68DAA /* Wall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
 		61475F241F51C98E00B68DAA /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		61475F261F51C99C00B68DAA /* Mob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mob.swift; sourceTree = "<group>"; };
@@ -74,6 +78,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1590B4D21F540B30004DCAF8 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				1590B4D31F540C0E004DCAF8 /* ConnectionServiceManager.swift */,
+				1590B4D71F541D40004DCAF8 /* TransitionData.swift */,
+			);
+			name = Connection;
+			sourceTree = "<group>";
+		};
 		61475F231F51C92500B68DAA /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +134,7 @@
 		A95FC5181F502C7500E1F926 /* BomberMan */ = {
 			isa = PBXGroup;
 			children = (
+				1590B4D21F540B30004DCAF8 /* Connection */,
 				616E603A1F5038CE000B4A01 /* Supporting Files */,
 				A95FC51B1F502C7500E1F926 /* ViewController.swift */,
 				A95FC51D1F502C7500E1F926 /* Main.storyboard */,
@@ -243,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61475F2B1F51C9CA00B68DAA /* Floor.swift in Sources */,
+				1590B4D41F540C0E004DCAF8 /* ConnectionServiceManager.swift in Sources */,
 				61475F271F51C99C00B68DAA /* Mob.swift in Sources */,
 				61475F291F51C9A800B68DAA /* Block.swift in Sources */,
 				A95FC51C1F502C7500E1F926 /* ViewController.swift in Sources */,
@@ -250,6 +265,7 @@
 				61475F221F51C91B00B68DAA /* Wall.swift in Sources */,
 				61475F311F51CA4900B68DAA /* Explosion.swift in Sources */,
 				61475F2D1F51C9EA00B68DAA /* Bomb.swift in Sources */,
+				1590B4D81F541D40004DCAF8 /* TransitionData.swift in Sources */,
 				A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */,
 				61475F251F51C98E00B68DAA /* Player.swift in Sources */,
 				A95FC5221F502C7500E1F926 /* BomberMan.xcdatamodeld in Sources */,

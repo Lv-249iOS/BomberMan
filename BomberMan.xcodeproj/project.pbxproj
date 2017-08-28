@@ -25,6 +25,7 @@
 		A95BCE7E1F5427E20021B1E7 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95BCE7D1F5427E20021B1E7 /* Settings.storyboard */; };
 		A95BCE831F5428AF0021B1E7 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95BCE821F5428AF0021B1E7 /* SettingsController.swift */; };
 		A95BCE861F5428F40021B1E7 /* RatingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95BCE851F5428F40021B1E7 /* RatingController.swift */; };
+		A95BCE891F544D6B0021B1E7 /* GameLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95BCE881F544D6B0021B1E7 /* GameLayoutController.swift */; };
 		A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FC5191F502C7500E1F926 /* AppDelegate.swift */; };
 		A95FC51C1F502C7500E1F926 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FC51B1F502C7500E1F926 /* MenuController.swift */; };
 		A95FC51F1F502C7500E1F926 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95FC51D1F502C7500E1F926 /* Main.storyboard */; };
@@ -63,6 +64,7 @@
 		A95BCE7D1F5427E20021B1E7 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		A95BCE821F5428AF0021B1E7 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		A95BCE851F5428F40021B1E7 /* RatingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingController.swift; sourceTree = "<group>"; };
+		A95BCE881F544D6B0021B1E7 /* GameLayoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLayoutController.swift; sourceTree = "<group>"; };
 		A95FC5161F502C7500E1F926 /* BomberMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BomberMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95FC5191F502C7500E1F926 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A95FC51B1F502C7500E1F926 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				A95BCE711F5423DE0021B1E7 /* ControlPanelController.swift */,
 				A95BCE731F5423FA0021B1E7 /* GameMapController.swift */,
 				A95BCE751F5424D00021B1E7 /* DetailsController.swift */,
+				A95BCE881F544D6B0021B1E7 /* GameLayoutController.swift */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				61475F2F1F51CA2F00B68DAA /* Upgrade.swift in Sources */,
 				61475F221F51C91B00B68DAA /* Wall.swift in Sources */,
 				A95BCE721F5423DE0021B1E7 /* ControlPanelController.swift in Sources */,
+				A95BCE891F544D6B0021B1E7 /* GameLayoutController.swift in Sources */,
 				61475F311F51CA4900B68DAA /* Explosion.swift in Sources */,
 				A95BCE741F5423FA0021B1E7 /* GameMapController.swift in Sources */,
 				61475F2D1F51C9EA00B68DAA /* Bomb.swift in Sources */,

@@ -12,10 +12,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Game Layout Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="GameLayoutController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -264,17 +264,11 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y5m-o1-dob">
                                 <rect key="frame" x="337" y="8" width="30" height="30"/>
-                                <color key="backgroundColor" red="0.341147780418396" green="0.34127223491668701" blue="0.3370479941368103" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Y5m-o1-dob" secondAttribute="height" multiplier="1:1" id="3bN-WS-3nN"/>
                                     <constraint firstAttribute="width" constant="30" id="FvV-oY-flm"/>
                                 </constraints>
-                                <state key="normal" image="home"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
+                                <state key="normal" image="icon_005700_256"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A28-Vw-dWg">
                                 <rect key="frame" x="299" y="8" width="30" height="30"/>
@@ -303,7 +297,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="home" width="128" height="128"/>
+        <image name="icon_005700_256" width="128" height="128"/>
         <image name="pause" width="512" height="512"/>
     </resources>
 </document>

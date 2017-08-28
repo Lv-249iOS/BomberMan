@@ -2,13 +2,13 @@
 //  ViewController.swift
 //  BomberMan
 //
-//  Created by Alejandro Del Rio Albrechet on 8/25/17.
+//  Created by Kristina Del Rio Albrechet on 8/25/17.
 //  Copyright © 2017 Lv-249 iOS. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class MenuController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

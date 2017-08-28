@@ -138,12 +138,10 @@
 		A95FC5181F502C7500E1F926 /* BomberMan */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
+
 				1590B4D21F540B30004DCAF8 /* Connection */,
-=======
 				A95BCE661F5420060021B1E7 /* BoxView.swift */,
 				A95BCE641F541FD30021B1E7 /* WallView.swift */,
->>>>>>> origin/master
 				616E603A1F5038CE000B4A01 /* Supporting Files */,
 				A95FC51B1F502C7500E1F926 /* ViewController.swift */,
 				A95FC51D1F502C7500E1F926 /* Main.storyboard */,

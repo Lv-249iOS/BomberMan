@@ -18,11 +18,14 @@ class GameMapController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        map = "WWWWWWWWW  P   WW      WW      WW      WW B B BWW      WWWWWWWWW"
+        map = "WWWWWWWWWWW  P     WW        WW        WW  B BBB WW  B B   WW  BBBBB WW    B B WW  BBB B WWWWWWWWWWW"
         
         var ii = 0
         var jj = 0
         let sideTilesCount = sqrt(Double(map.characters.count))
+        
+        mapScroll.contentSize = CGSize(width: 50 * sideTilesCount, height: 50 * sideTilesCount)
+        mapScroll.bounces = false
         
         for i in map.characters {
             
@@ -30,22 +33,22 @@ class GameMapController: UIViewController {
                 
                 let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
                 let wall = WallView(frame: rect)
-                wall.backgroundColor = UIColor.orange
-                view.addSubview(wall)
+                wall.backgroundColor = UIColor.gray
+                mapScroll.addSubview(wall)
                 
             } else if i == "B" {
                 
                 let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
                 let box = BoxView(frame: rect)
                 box.backgroundColor = UIColor.brown
-                view.addSubview(box)
+                mapScroll.addSubview(box)
                 
             } else if i == "P" {
                 
                 let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
                 orc = UIImageView(frame: rect)
                 orc.image = UIImage(named: "orc1")
-                view.addSubview(orc)
+                mapScroll.addSubview(orc)
                 
             }
             
@@ -56,7 +59,6 @@ class GameMapController: UIViewController {
                 ii += 50
             }
         }
-        
         
     }
     

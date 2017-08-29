@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2023B3B41F55D99500B6F993 /* UserScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023B3B31F55D99500B6F993 /* UserScore.swift */; };
+		2023B3B71F55E26F00B6F993 /* ScoresManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023B3B61F55E26F00B6F993 /* ScoresManager.swift */; };
 		20AE55AA1F55A2A900043A07 /* TopTenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AE55A91F55A2A900043A07 /* TopTenController.swift */; };
 		20AE55AC1F55A2C800043A07 /* TopTenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AE55AB1F55A2C800043A07 /* TopTenCell.swift */; };
 		20AE55AE1F55A88300043A07 /* InputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AE55AD1F55A88300043A07 /* InputController.swift */; };
@@ -44,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2023B3B31F55D99500B6F993 /* UserScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserScore.swift; sourceTree = "<group>"; };
+		2023B3B61F55E26F00B6F993 /* ScoresManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresManager.swift; sourceTree = "<group>"; };
 		20AE55A91F55A2A900043A07 /* TopTenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopTenController.swift; sourceTree = "<group>"; };
 		20AE55AB1F55A2C800043A07 /* TopTenCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopTenCell.swift; sourceTree = "<group>"; };
 		20AE55AD1F55A88300043A07 /* InputController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputController.swift; sourceTree = "<group>"; };
@@ -92,6 +96,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2023B3B21F55D96C00B6F993 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2023B3B31F55D99500B6F993 /* UserScore.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		2023B3B51F55E25000B6F993 /* ScoresManager */ = {
+			isa = PBXGroup;
+			children = (
+				2023B3B61F55E26F00B6F993 /* ScoresManager.swift */,
+			);
+			name = ScoresManager;
+			sourceTree = "<group>";
+		};
 		61475F231F51C92500B68DAA /* Brain */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +177,8 @@
 		A95BCE841F5428DB0021B1E7 /* Rating */ = {
 			isa = PBXGroup;
 			children = (
+				2023B3B51F55E25000B6F993 /* ScoresManager */,
+				2023B3B21F55D96C00B6F993 /* Model */,
 				A95BCE7A1F5427CE0021B1E7 /* Rating.storyboard */,
 				20AE55AD1F55A88300043A07 /* InputController.swift */,
 				A95BCE851F5428F40021B1E7 /* RatingController.swift */,
@@ -321,6 +343,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A95BCE651F541FD30021B1E7 /* WallView.swift in Sources */,
+				2023B3B41F55D99500B6F993 /* UserScore.swift in Sources */,
+				2023B3B71F55E26F00B6F993 /* ScoresManager.swift in Sources */,
 				A95BCE671F5420060021B1E7 /* BoxView.swift in Sources */,
 				A95BCE861F5428F40021B1E7 /* RatingController.swift in Sources */,
 				A95BCE831F5428AF0021B1E7 /* SettingsController.swift in Sources */,

@@ -9,9 +9,9 @@
 import UIKit
 
 class InputController: UIViewController {
-    let userDefaults: UserDefaults = UserDefaults.standard
     
     @IBOutlet weak var input: UITextField!
     @IBAction func Ok(_ sender: Any) {
+     
     }
 }

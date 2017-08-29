@@ -10,12 +10,21 @@ import UIKit
 
 class TopTenController: UITableViewController {
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    var input = InputController()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.rowHeight = 80
+    }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TopTenCell", for: indexPath)
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "topTenCell", for: indexPath) as? TopTenCell else { return UITableViewCell()}
+        
         return cell
     }
+    
 }

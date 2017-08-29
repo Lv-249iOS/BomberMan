@@ -158,10 +158,10 @@
 			isa = PBXGroup;
 			children = (
 				A95BCE7A1F5427CE0021B1E7 /* Rating.storyboard */,
+				20AE55AD1F55A88300043A07 /* InputController.swift */,
 				A95BCE851F5428F40021B1E7 /* RatingController.swift */,
 				20AE55A91F55A2A900043A07 /* TopTenController.swift */,
 				20AE55AB1F55A2C800043A07 /* TopTenCell.swift */,
-				20AE55AD1F55A88300043A07 /* InputController.swift */,
 			);
 			name = Rating;
 			sourceTree = "<group>";

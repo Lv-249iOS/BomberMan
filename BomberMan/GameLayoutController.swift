@@ -9,27 +9,47 @@
 import UIKit
 
 class GameLayoutController: UIViewController {
-
+    var detailsController: DetailsController!
+    var gameMapController: GameMapController!
+    var controlPanelController: ControlPanelController!
+    
+    var pause: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
+        pause = UIButton(frame: view.frame)
+        pause.imageView?.contentMode = .scaleAspectFit
+        pause.tintColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.5)
+        
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        let tintedImage = #imageLiteral(resourceName: "pause").withRenderingMode(.alwaysTemplate)
+
+        pause.setImage(tintedImage, for: .normal)
+        pause.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.9)
+        pause.addTarget(self, action: #selector(pauseOff), for: .touchUpInside)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func pauseOff() {
+        pause.removeFromSuperview()
     }
-    */
-
+    
+    func turnOnPause() {
+        view.addSubview(pause)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetailsControllerSegue", let controller = segue.destination as? DetailsController {
+            detailsController = controller
+            
+            detailsController.onPauseTap = turnOnPause
+            
+        } else if segue.identifier == "GameMapControllerSegue", let controller = segue.destination as? GameMapController {
+            gameMapController = controller
+            
+        } else if segue.identifier == "ControlPanelController", let controller = segue.destination as? ControlPanelController {
+            controlPanelController = controller
+        }
+        
+    }
 }

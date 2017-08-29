@@ -11,7 +11,12 @@ import UIKit
 @IBDesignable
 class BoxView: UIView {
     
+    @IBInspectable var lineWidth: CGFloat = 3.0
+    @IBInspectable var strokeColor: UIColor = UIColor.black
+    
     override func draw(_ rect: CGRect) {
+        strokeColor.setStroke()
+        
         drawCircles(with: generateCirclePoints(in: rect), radius: getRadius(in: rect))
         drawLines(with: generateLinesPoints(in: rect), in: rect)
     }
@@ -25,7 +30,7 @@ class BoxView: UIView {
             path.addLine(to: line.p2)
         }
         
-        path.lineWidth = 3
+        path.lineWidth = lineWidth
         path.stroke()
     }
     
@@ -64,11 +69,8 @@ class BoxView: UIView {
     func generateLinesPoints(in rect: CGRect) -> [(p1: CGPoint, p2: CGPoint)] {
         let const = (width: rect.width / 5, height: rect.height / 5)
         
-        let big1 = (p1: CGPoint(x: const.width, y: 0),
-                    p2: CGPoint(x: const.width, y: rect.height))
-        
-        let big2 = (p1: CGPoint(x: 4 * const.width, y: 0),
-                    p2: CGPoint(x: 4 * const.width, y: rect.height))
+        let big1 = (p1: CGPoint(x: const.width, y: 0), p2: CGPoint(x: const.width, y: rect.height))
+        let big2 = (p1: CGPoint(x: 4 * const.width, y: 0), p2: CGPoint(x: 4 * const.width, y: rect.height))
         
         let smallH1 = (p1: CGPoint(x: const.width, y: const.height),
                        p2: CGPoint(x: 4 * const.width, y: const.height))
@@ -92,8 +94,10 @@ class BoxView: UIView {
         
         let topLeftPoint = CGPoint(x: rect.minX + distance.width, y: rect.minY + distance.height)
         let topRightPoint = CGPoint(x: rect.minX + rect.width - distance.width, y: rect.minY + distance.height)
+        
         let bottomLeftPoint = CGPoint(x: rect.minX + distance.width, y: rect.minY + rect.height - distance.height)
-        let bottomRightPoint = CGPoint(x: rect.minX + rect.width - distance.width, y: rect.minY + rect.height - distance.height)
+        let bottomRightPoint = CGPoint(x: rect.minX + rect.width - distance.width,
+                                       y: rect.minY + rect.height - distance.height)
         
         return [topLeftPoint, topRightPoint, bottomLeftPoint, bottomRightPoint]
     }

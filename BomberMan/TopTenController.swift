@@ -10,7 +10,7 @@ import UIKit
 
 class TopTenController: UITableViewController {
     
-    let scores: [UserScore] = ScoresManager.shared.userScores
+    let scores: [UserScore] = ScoresManager.shared.topTen()
     
     override func viewDidLoad() {
         super.viewDidLoad()

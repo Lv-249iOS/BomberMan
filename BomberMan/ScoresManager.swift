@@ -38,4 +38,10 @@ class ScoresManager {
             self.userScores = ourData
         }
     }
+    
+    public func topTen() -> [UserScore]{
+        return userScores.sorted(by: { (current, next) -> Bool in
+            return current.score > next.score
+        })
+    }
 }

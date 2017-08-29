@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Rating Controller-->
+        <!--Input Controller-->
         <scene sceneID="aBI-n2-9O6">
             <objects>
-                <viewController id="kgW-bG-Z6u" customClass="RatingController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="kgW-bG-Z6u" customClass="InputController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kXg-o4-OCT"/>
                         <viewControllerLayoutGuide type="bottom" id="hOR-rO-DS6"/>

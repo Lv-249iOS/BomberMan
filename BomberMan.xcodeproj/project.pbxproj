@@ -160,8 +160,8 @@
 		A95BCE871F5429B60021B1E7 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				A95FC51D1F502C7500E1F926 /* Main.storyboard */,
 				A95FC51B1F502C7500E1F926 /* MenuController.swift */,
+				A95FC51D1F502C7500E1F926 /* Main.storyboard */,
 			);
 			name = Menu;
 			sourceTree = "<group>";

@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,46 +23,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boom" translatesAutoresizingMaskIntoConstraints="NO" id="odE-KJ-0oN">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="odE-KJ-0oN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.92250951780000001" green="0.92250951780000001" blue="0.92250951780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hkg-U3-yQs" userLabel="GamesButtons">
-                                <rect key="frame" x="16" y="611" width="343" height="48"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SH7-SH-thq">
-                                        <rect key="frame" x="175.5" y="0.0" width="167.5" height="48"/>
-                                        <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
-                                        <state key="normal" title="SinglePlayer">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="ez9-aJ-wBp" kind="show" id="o1Z-Ud-SA9"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uvk-eg-AKq">
-                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="48"/>
-                                        <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
-                                        <state key="normal" title="Multiplayer">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="ez9-aJ-wBp" kind="show" id="b1P-Mz-P98"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="Uvk-eg-AKq" firstAttribute="top" secondItem="hkg-U3-yQs" secondAttribute="top" id="Lza-dc-ZVg"/>
-                                    <constraint firstAttribute="bottom" secondItem="SH7-SH-thq" secondAttribute="bottom" id="Mor-YY-7hN"/>
-                                    <constraint firstItem="SH7-SH-thq" firstAttribute="width" secondItem="Uvk-eg-AKq" secondAttribute="width" id="ONS-ay-EXQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="Uvk-eg-AKq" secondAttribute="bottom" id="TPP-UU-Z32"/>
-                                    <constraint firstAttribute="trailing" secondItem="SH7-SH-thq" secondAttribute="trailing" id="WgT-51-Kbw"/>
-                                    <constraint firstItem="Uvk-eg-AKq" firstAttribute="leading" secondItem="hkg-U3-yQs" secondAttribute="leading" id="biv-5J-euX"/>
-                                    <constraint firstItem="SH7-SH-thq" firstAttribute="top" secondItem="hkg-U3-yQs" secondAttribute="top" id="f3z-zd-4cd"/>
-                                    <constraint firstItem="SH7-SH-thq" firstAttribute="leading" secondItem="Uvk-eg-AKq" secondAttribute="trailing" constant="8" symbolic="YES" id="ggR-0Z-1Cs"/>
-                                </constraints>
-                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SH7-SH-thq">
+                                <rect key="frame" x="16" y="544" width="343" height="53.5"/>
+                                <color key="backgroundColor" red="0.40357422828674316" green="0.36506193876266479" blue="0.64706593751907349" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
+                                <state key="normal" title="Single player">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ez9-aJ-wBp" kind="show" id="o1Z-Ud-SA9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uvk-eg-AKq">
+                                <rect key="frame" x="16" y="605.5" width="343" height="53.5"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
+                                <state key="normal" title="Multi player">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ez9-aJ-wBp" kind="show" id="b1P-Mz-P98"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ou3-rV-RSk" userLabel="Settings">
                                 <rect key="frame" x="315" y="28" width="40" height="40"/>
                                 <constraints>
@@ -85,25 +72,30 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.046965241432189941" green="0.051140166819095612" blue="0.04283449798822403" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.71581137180328369" green="0.78075325489044189" blue="0.77692019939422607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Uvk-eg-AKq" firstAttribute="trailing" secondItem="jCm-EY-IFe" secondAttribute="trailingMargin" id="3Qp-ox-fwj"/>
                             <constraint firstItem="odE-KJ-0oN" firstAttribute="leading" secondItem="jCm-EY-IFe" secondAttribute="leading" id="4Kb-GV-tmc"/>
-                            <constraint firstItem="hkg-U3-yQs" firstAttribute="trailing" secondItem="jCm-EY-IFe" secondAttribute="trailingMargin" id="9Oc-oM-Vp8"/>
+                            <constraint firstItem="IuD-hd-Urw" firstAttribute="top" secondItem="Uvk-eg-AKq" secondAttribute="bottom" constant="8" symbolic="YES" id="6rM-MV-x5B"/>
                             <constraint firstItem="odE-KJ-0oN" firstAttribute="top" secondItem="jCm-EY-IFe" secondAttribute="top" id="De5-dk-8Lq"/>
+                            <constraint firstItem="SH7-SH-thq" firstAttribute="height" secondItem="jCm-EY-IFe" secondAttribute="height" multiplier="0.08" id="GBI-tG-rRo"/>
+                            <constraint firstItem="Uvk-eg-AKq" firstAttribute="leading" secondItem="jCm-EY-IFe" secondAttribute="leadingMargin" id="GEs-fL-sfO"/>
                             <constraint firstItem="yTn-Pv-y9L" firstAttribute="top" secondItem="vpG-Ya-wAj" secondAttribute="bottom" constant="8" symbolic="YES" id="HRM-Nu-mLX"/>
                             <constraint firstItem="ou3-rV-RSk" firstAttribute="leading" secondItem="yTn-Pv-y9L" secondAttribute="trailing" id="KYg-Xm-OFY"/>
-                            <constraint firstItem="hkg-U3-yQs" firstAttribute="leading" secondItem="jCm-EY-IFe" secondAttribute="leadingMargin" id="Mzl-Va-kxV"/>
                             <constraint firstItem="ou3-rV-RSk" firstAttribute="top" secondItem="vpG-Ya-wAj" secondAttribute="bottom" constant="8" symbolic="YES" id="PMN-jK-SSn"/>
-                            <constraint firstItem="IuD-hd-Urw" firstAttribute="top" secondItem="hkg-U3-yQs" secondAttribute="bottom" constant="8" symbolic="YES" id="Q69-Mh-6Rj"/>
-                            <constraint firstItem="hkg-U3-yQs" firstAttribute="top" secondItem="odE-KJ-0oN" secondAttribute="bottom" constant="8" symbolic="YES" id="hJt-9m-MVB"/>
+                            <constraint firstItem="SH7-SH-thq" firstAttribute="trailing" secondItem="jCm-EY-IFe" secondAttribute="trailingMargin" id="RiZ-Mr-uYr"/>
+                            <constraint firstItem="IuD-hd-Urw" firstAttribute="top" secondItem="odE-KJ-0oN" secondAttribute="bottom" id="WC6-6s-orb"/>
+                            <constraint firstItem="Uvk-eg-AKq" firstAttribute="height" secondItem="SH7-SH-thq" secondAttribute="height" id="c9R-Gf-ohd"/>
+                            <constraint firstItem="SH7-SH-thq" firstAttribute="leading" secondItem="jCm-EY-IFe" secondAttribute="leadingMargin" id="f7d-uN-Gzw"/>
                             <constraint firstAttribute="trailing" secondItem="odE-KJ-0oN" secondAttribute="trailing" id="my8-X4-Ifa"/>
+                            <constraint firstItem="Uvk-eg-AKq" firstAttribute="top" secondItem="SH7-SH-thq" secondAttribute="bottom" constant="8" symbolic="YES" id="uHG-SO-hja"/>
                             <constraint firstAttribute="trailing" secondItem="ou3-rV-RSk" secondAttribute="trailing" constant="20" symbolic="YES" id="x7z-Lh-7xO"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R9c-dd-sZg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1120.2898550724638" y="149.18478260869566"/>
+            <point key="canvasLocation" x="-1120.8" y="148.87556221889056"/>
         </scene>
         <!--Game-->
         <scene sceneID="14K-bf-UBl">
@@ -111,7 +103,7 @@
                 <viewControllerPlaceholder storyboardName="Game" id="ez9-aJ-wBp" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jQv-Yq-VZK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-476" y="62"/>
+            <point key="canvasLocation" x="-428" y="20"/>
         </scene>
         <!--Rating-->
         <scene sceneID="0c2-qE-W1Q">
@@ -127,15 +119,14 @@
                 <viewControllerPlaceholder storyboardName="Settings" id="M9H-Cs-Toc" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qCt-fx-807" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-463" y="159"/>
+            <point key="canvasLocation" x="-396" y="175"/>
         </scene>
     </scenes>
     <resources>
-        <image name="boom" width="523" height="768"/>
         <image name="settings" width="128" height="128"/>
         <image name="trophy " width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="b1P-Mz-P98"/>
+        <segue reference="o1Z-Ud-SA9"/>
     </inferredMetricsTieBreakers>
 </document>

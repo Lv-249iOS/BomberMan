@@ -10,6 +10,14 @@ import UIKit
 
 class InputController: UIViewController {
 
+    @IBOutlet weak var input: UITextField!
+    @IBOutlet weak var output: UILabel!
+    
+    // Here I set current input to label
+    @IBAction func ok(_ sender: Any) {
+         
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

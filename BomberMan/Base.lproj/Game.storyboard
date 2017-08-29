@@ -285,6 +285,9 @@
                                     <constraint firstAttribute="width" constant="30" id="FvV-oY-flm"/>
                                 </constraints>
                                 <state key="normal" image="home"/>
+                                <connections>
+                                    <action selector="homeTap:" destination="bPZ-UK-hog" eventType="touchUpInside" id="BtQ-0v-j6I"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A28-Vw-dWg">
                                 <rect key="frame" x="334" y="8" width="30" height="30"/>
@@ -309,6 +312,10 @@
                             <constraint firstItem="8ym-WM-SHQ" firstAttribute="leading" secondItem="DLi-4z-5KT" secondAttribute="leadingMargin" id="vRJ-t0-Gf2"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="scoreLabel" destination="AHT-XF-oYW" id="WDj-WE-mdg"/>
+                        <outlet property="timeLabel" destination="xSz-rS-yjm" id="R7i-d8-0AL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yP4-5v-bPV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

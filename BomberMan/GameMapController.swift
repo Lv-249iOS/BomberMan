@@ -22,29 +22,25 @@ class GameMapController: UIViewController {
         
         var ii = 0
         var jj = 0
+        
         let sideTilesCount = sqrt(Double(map.characters.count))
         
         mapScroll.contentSize = CGSize(width: 50 * sideTilesCount, height: 50 * sideTilesCount)
-        mapScroll.bounces = false
         
         for i in map.characters {
-            
             if i == "W" {
-                
                 let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
                 let wall = WallView(frame: rect)
                 wall.backgroundColor = UIColor.gray
                 mapScroll.addSubview(wall)
                 
             } else if i == "B" {
-                
                 let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
                 let box = BoxView(frame: rect)
                 box.backgroundColor = UIColor.brown
                 mapScroll.addSubview(box)
                 
             } else if i == "P" {
-                
                 let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
                 orc = UIImageView(frame: rect)
                 orc.image = UIImage(named: "orc1")
@@ -59,23 +55,5 @@ class GameMapController: UIViewController {
                 ii += 50
             }
         }
-        
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
-}
+ }

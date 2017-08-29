@@ -9,6 +9,7 @@
 import UIKit
 
 class GameLayoutController: UIViewController {
+    
     var detailsController: DetailsController!
     var gameMapController: GameMapController!
     var controlPanelController: ControlPanelController!
@@ -17,20 +18,13 @@ class GameLayoutController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        pause = UIButton(frame: view.frame)
-        pause.imageView?.contentMode = .scaleAspectFit
-        pause.tintColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.5)
         
-
-        let tintedImage = #imageLiteral(resourceName: "pause").withRenderingMode(.alwaysTemplate)
-
-        pause.setImage(tintedImage, for: .normal)
-        pause.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.9)
-        pause.addTarget(self, action: #selector(pauseOff), for: .touchUpInside)
+        pause = UIButton(frame: view.frame)
+        pause.pauseStyle()
+        pause.addTarget(self, action: #selector(turnOffpause), for: .touchUpInside)
     }
     
-    func pauseOff() {
+    func turnOffpause() {
         pause.removeFromSuperview()
     }
     
@@ -38,18 +32,41 @@ class GameLayoutController: UIViewController {
         view.addSubview(pause)
     }
     
+    // Returns to menu page
+    func turnToHome() {
+        dismiss(animated: true, completion: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailsControllerSegue", let controller = segue.destination as? DetailsController {
+        if segue.identifier == "DetailsControllerSegue",
+            let controller = segue.destination as? DetailsController {
+            
             detailsController = controller
             
             detailsController.onPauseTap = turnOnPause
+            detailsController.onHomeTap = turnToHome
             
-        } else if segue.identifier == "GameMapControllerSegue", let controller = segue.destination as? GameMapController {
+        } else if segue.identifier == "GameMapControllerSegue",
+            let controller = segue.destination as? GameMapController {
+            
             gameMapController = controller
             
-        } else if segue.identifier == "ControlPanelController", let controller = segue.destination as? ControlPanelController {
+        } else if segue.identifier == "ControlPanelController",
+            let controller = segue.destination as? ControlPanelController {
+            
             controlPanelController = controller
         }
         
+    }
+}
+
+extension UIButton {
+    
+    func pauseStyle() {
+        backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.9)
+        
+        imageView?.contentMode = .scaleAspectFit
+        tintColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.5)
+        setImage(#imageLiteral(resourceName: "pause").withRenderingMode(.alwaysTemplate), for: .normal)
     }
 }

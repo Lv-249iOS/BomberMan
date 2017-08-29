@@ -9,7 +9,12 @@
 import UIKit
 
 class DetailsController: UIViewController {
-
+    var onPauseTap: (()->())?
+    
+    @IBAction func pauseTap(_ sender: UIButton) {
+        onPauseTap?()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

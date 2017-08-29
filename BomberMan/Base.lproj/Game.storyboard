@@ -28,21 +28,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="110.33333333333333"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="bPZ-UK-hog" kind="embed" id="5hB-aY-F9A"/>
+                                    <segue destination="bPZ-UK-hog" kind="embed" identifier="DetailsControllerSegue" id="5hB-aY-F9A"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9n-yH-NtM">
                                 <rect key="frame" x="0.0" y="552" width="414" height="184"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="ERx-rV-w8n" kind="embed" id="jKg-Nv-fbM"/>
+                                    <segue destination="ERx-rV-w8n" kind="embed" identifier="ControlPanelControllerSegue" id="jKg-Nv-fbM"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1o5-IG-azI">
                                 <rect key="frame" x="0.0" y="110.33333333333334" width="414" height="441.66666666666663"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="qzH-iy-0LW" kind="embed" id="eRt-Sz-ew8"/>
+                                    <segue destination="qzH-iy-0LW" kind="embed" identifier="GameMapControllerSegue" id="eRt-Sz-ew8"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -222,7 +222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8X5-tv-m33" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1006" y="137"/>
+            <point key="canvasLocation" x="1005.7971014492755" y="136.95652173913044"/>
         </scene>
         <!--Details Controller-->
         <scene sceneID="0GN-Vh-8kT">
@@ -293,6 +293,9 @@
                                     <constraint firstAttribute="width" secondItem="A28-Vw-dWg" secondAttribute="height" multiplier="1:1" id="kaU-mD-vzV"/>
                                 </constraints>
                                 <state key="normal" image="pause"/>
+                                <connections>
+                                    <action selector="pauseTap:" destination="bPZ-UK-hog" eventType="touchUpInside" id="IAa-oh-bNN"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

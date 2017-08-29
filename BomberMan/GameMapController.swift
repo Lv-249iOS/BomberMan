@@ -18,7 +18,8 @@ class GameMapController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        map = "WWWWWWWWW  P   WW      WW      WW      WW B B BWW      WWWWWWWWW"
+        map =
+        "WWWWWWWWWW  P    WW       WW       WW       WW       WW B B B WW       WWWWWWWWWW"
         
         var ii = 0
         var jj = 0
@@ -30,22 +31,22 @@ class GameMapController: UIViewController {
                 
                 let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
                 let wall = WallView(frame: rect)
-                wall.backgroundColor = UIColor.orange
-                view.addSubview(wall)
+                wall.backgroundColor = UIColor.darkGray
+                mapScroll.addSubview(wall)
                 
             } else if i == "B" {
                 
                 let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
                 let box = BoxView(frame: rect)
                 box.backgroundColor = UIColor.brown
-                view.addSubview(box)
+                mapScroll.addSubview(box)
                 
             } else if i == "P" {
                 
                 let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
                 orc = UIImageView(frame: rect)
                 orc.image = UIImage(named: "orc1")
-                view.addSubview(orc)
+                mapScroll.addSubview(orc)
                 
             }
             
@@ -57,14 +58,14 @@ class GameMapController: UIViewController {
             }
         }
         
-        
+        mapScroll.contentSize.width = 450
+        mapScroll.contentSize.height = 450
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     /*
      // MARK: - Navigation

@@ -33,6 +33,7 @@
 		A95FC5241F502C7500E1F926 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A95FC5231F502C7500E1F926 /* Assets.xcassets */; };
 		A95FC5271F502C7500E1F926 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95FC5251F502C7500E1F926 /* LaunchScreen.storyboard */; };
 		A95FC5321F502C7500E1F926 /* BomberManTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FC5311F502C7500E1F926 /* BomberManTests.swift */; };
+		A9C38B411F55484000BE66E0 /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C38B401F55484000BE66E0 /* BlockView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		A95FC52D1F502C7500E1F926 /* BomberManTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BomberManTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95FC5311F502C7500E1F926 /* BomberManTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BomberManTests.swift; sourceTree = "<group>"; };
 		A95FC5331F502C7500E1F926 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9C38B401F55484000BE66E0 /* BlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 			children = (
 				A95BCE661F5420060021B1E7 /* BoxView.swift */,
 				A95BCE641F541FD30021B1E7 /* WallView.swift */,
+				A9C38B401F55484000BE66E0 /* BlockView.swift */,
 			);
 			name = CustomTiles;
 			sourceTree = "<group>";
@@ -146,10 +149,10 @@
 			isa = PBXGroup;
 			children = (
 				A95BCE771F5427570021B1E7 /* Game.storyboard */,
+				A95BCE881F544D6B0021B1E7 /* GameLayoutController.swift */,
 				A95BCE711F5423DE0021B1E7 /* ControlPanelController.swift */,
 				A95BCE731F5423FA0021B1E7 /* GameMapController.swift */,
 				A95BCE751F5424D00021B1E7 /* DetailsController.swift */,
-				A95BCE881F544D6B0021B1E7 /* GameLayoutController.swift */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				A95BCE741F5423FA0021B1E7 /* GameMapController.swift in Sources */,
 				61475F2D1F51C9EA00B68DAA /* Bomb.swift in Sources */,
 				A95BCE761F5424D00021B1E7 /* DetailsController.swift in Sources */,
+				A9C38B411F55484000BE66E0 /* BlockView.swift in Sources */,
 				A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */,
 				61475F251F51C98E00B68DAA /* Player.swift in Sources */,
 				A95FC5221F502C7500E1F926 /* BomberMan.xcdatamodeld in Sources */,

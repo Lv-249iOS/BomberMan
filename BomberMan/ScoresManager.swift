@@ -25,14 +25,14 @@ class ScoresManager {
         return (url!.appendingPathComponent("Data").path)
     }
     
-    private func saveData(score: UserScore) {
+    public func saveData(score: UserScore) {
         self.userScores.append(score)
         //4 - NSKeyedArchiver is going to look in every shopping list class and look for encode function and is going to encode our data and save it to our file path.  This does everything for encoding and decoding.
         //5 - archive root object saves our array of shopping items (our data) to our filepath url
         NSKeyedArchiver.archiveRootObject(self.userScores, toFile: filePath)
     }
     
-    private func loadData() {
+    public func loadData() {
         //6 - if we can get back our data from our archives (load our data), get our data along our file path and cast it as an array of ShoppingItems
         if let ourData = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [UserScore] {
             self.userScores = ourData

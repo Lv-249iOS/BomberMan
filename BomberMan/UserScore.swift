@@ -38,9 +38,7 @@ class UserScore: NSObject, NSCoding {
         if let username = aDecoder.decodeObject(forKey: Key.username) as? String {
             self.username = username
         }
-        if let score = aDecoder.decodeObject(forKey: Key.score) as? Int {
-            self.score = score
-        }
+        self.score = aDecoder.decodeInteger(forKey: Key.score)
         if let date = aDecoder.decodeObject(forKey: Key.date) as? Date {
             self.date = date
         }

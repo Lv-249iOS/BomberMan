@@ -82,7 +82,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dyS-a3-ifj">
                                 <rect key="frame" x="49.999999999999986" y="0.0" width="170.66666666666663" height="184"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHS-ge-coG">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHS-ge-coG">
                                         <rect key="frame" x="62" y="8" width="48" height="48"/>
                                         <color key="backgroundColor" red="0.21437641978263855" green="0.25443854928016663" blue="0.28780937194824219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -97,8 +97,11 @@
                                                 <integer key="value" value="24"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="arrowTap:" destination="ERx-rV-w8n" eventType="touchUpInside" id="FFU-lr-GcB"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zx1-9A-voK">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zx1-9A-voK">
                                         <rect key="frame" x="0.0" y="68" width="48" height="48"/>
                                         <color key="backgroundColor" red="0.21437641978263855" green="0.25443854928016663" blue="0.28780937194824219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -113,8 +116,11 @@
                                                 <integer key="value" value="24"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="arrowTap:" destination="ERx-rV-w8n" eventType="touchUpInside" id="35E-Pb-xnl"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CR4-m2-N0k">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CR4-m2-N0k">
                                         <rect key="frame" x="122.66666666666666" y="68" width="48" height="48"/>
                                         <color key="backgroundColor" red="0.21437641978263855" green="0.25443854928016663" blue="0.28780937194824219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -129,8 +135,11 @@
                                                 <integer key="value" value="24"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="arrowTap:" destination="ERx-rV-w8n" eventType="touchUpInside" id="8Iu-rr-4FD"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7g-Bx-mTn">
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7g-Bx-mTn">
                                         <rect key="frame" x="62" y="128" width="48" height="48"/>
                                         <color key="backgroundColor" red="0.21437641978263855" green="0.25443854928016663" blue="0.28780937194824219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -145,6 +154,9 @@
                                                 <integer key="value" value="24"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="arrowTap:" destination="ERx-rV-w8n" eventType="touchUpInside" id="lGz-q1-grj"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

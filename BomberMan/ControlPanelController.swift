@@ -8,28 +8,26 @@
 
 import UIKit
 
-class ControlPanelController: UIViewController {
+enum ArrowDirection: Int {
+    case up = 1
+    case left = 2
+    case right = 3
+    case down = 4
+}
 
+class ControlPanelController: UIViewController {
+    var onArrowTap: ((ArrowDirection)->())?
+    
+    // Send Arrow direction
+    @IBAction func arrowTap(_ sender: UIButton) {
+        if let arrowTag = ArrowDirection(rawValue: sender.tag) {
+            onArrowTap?(arrowTag)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

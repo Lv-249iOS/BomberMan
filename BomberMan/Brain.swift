@@ -9,7 +9,20 @@
 import Foundation
 
 class Brain {
+    static let shared = Brain()
     var sceneData: String = ""
+    var sceneWidth = 0
+
+    func move(to direction: Direction, player: Player) {
+        switch direction {
+        case .bottom: break
+        case .left: break
+        case .right: break
+        case .top: break
+        }
+    }
     
-    
+    func plantBomb() {
+        
+    }
 }

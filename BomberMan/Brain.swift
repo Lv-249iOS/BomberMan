@@ -1,5 +1,5 @@
 //
-//  Wall.swift
+//  Explosion.swift
 //  BomberMan
 //
 //  Created by Yaroslav Luchyt on 8/26/17.
@@ -8,6 +8,8 @@
 
 import Foundation
 
-class Wall {
+class Brain {
+    var sceneData: String = ""
+    
     
 }

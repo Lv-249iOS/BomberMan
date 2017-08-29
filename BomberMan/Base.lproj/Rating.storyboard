@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2jd-XE-wBg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kgW-bG-Z6u">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Rating Controller-->
+        <!--Input Controller-->
         <scene sceneID="aBI-n2-9O6">
             <objects>
-                <viewController id="kgW-bG-Z6u" customClass="RatingController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="kgW-bG-Z6u" customClass="InputController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kXg-o4-OCT"/>
                         <viewControllerLayoutGuide type="bottom" id="hOR-rO-DS6"/>
@@ -28,6 +28,10 @@
                                     <constraint firstAttribute="height" constant="30" id="tHV-FH-ria"/>
                                 </constraints>
                                 <state key="normal" title="OK"/>
+                                <connections>
+                                    <action selector="ok:" destination="kgW-bG-Z6u" eventType="touchUpInside" id="EN6-5x-RX2"/>
+                                    <segue destination="2jd-XE-wBg" kind="show" id="pyK-9N-ek8"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your name is..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LrU-4G-pX4">
                                 <rect key="frame" x="104" y="326" width="112" height="21"/>
@@ -62,6 +66,10 @@
                             <constraint firstItem="mdm-rB-6Op" firstAttribute="leading" secondItem="i7F-77-5ZK" secondAttribute="leadingMargin" constant="129" id="z0e-XX-9kl"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="input" destination="5V3-hN-MaB" id="kyP-Ke-yDX"/>
+                        <outlet property="output" destination="LrU-4G-pX4" id="gGC-Ou-lVF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4B-3w-CoJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -92,7 +100,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="trophy" translatesAutoresizingMaskIntoConstraints="NO" id="oPg-Sx-1gI">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="trophy " translatesAutoresizingMaskIntoConstraints="NO" id="oPg-Sx-1gI">
                                 <rect key="frame" x="191" y="7" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -119,51 +127,56 @@
             </objects>
             <point key="canvasLocation" x="-414.375" y="992.95774647887322"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Top Ten Controller-->
         <scene sceneID="Xjo-vn-yFz">
             <objects>
-                <tableViewController id="WtY-4M-6SD" sceneMemberID="viewController">
+                <tableViewController id="WtY-4M-6SD" customClass="TopTenController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="y68-bW-hnz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="9qo-o0-em0">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TopTenCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopTenCell" id="9qo-o0-em0" customClass="TopTenCell" customModule="BomberMan" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9qo-o0-em0" id="heZ-ak-12b">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HMs-f9-xHA">
-                                            <rect key="frame" x="222" y="11" width="45" height="21.5"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="trophy " translatesAutoresizingMaskIntoConstraints="NO" id="ejk-h3-GED">
+                                            <rect key="frame" x="266" y="7" width="40" height="29"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUc-6E-NoB">
+                                            <rect key="frame" x="8" y="11" width="82" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="trophy" translatesAutoresizingMaskIntoConstraints="NO" id="ejk-h3-GED">
-                                            <rect key="frame" x="275" y="6" width="37" height="31.5"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User's Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUc-6E-NoB">
-                                            <rect key="frame" x="8" y="11" width="98" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HMs-f9-xHA">
+                                            <rect key="frame" x="196" y="11" width="44.5" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="ejk-h3-GED" secondAttribute="bottom" constant="6" id="1zQ-TM-uIm"/>
-                                        <constraint firstAttribute="trailing" secondItem="ejk-h3-GED" secondAttribute="trailing" constant="8" id="64N-g0-SQx"/>
-                                        <constraint firstItem="ejk-h3-GED" firstAttribute="leading" secondItem="HMs-f9-xHA" secondAttribute="trailing" constant="8" id="7ot-jA-f6S"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="HMs-f9-xHA" secondAttribute="bottom" constant="3" id="Edr-Es-HsC"/>
+                                        <constraint firstAttribute="trailing" secondItem="ejk-h3-GED" secondAttribute="trailing" constant="14" id="2Th-G4-PcK"/>
+                                        <constraint firstAttribute="bottom" secondItem="ejk-h3-GED" secondAttribute="bottom" constant="7" id="495-xs-JXR"/>
+                                        <constraint firstItem="ejk-h3-GED" firstAttribute="top" secondItem="heZ-ak-12b" secondAttribute="top" constant="7" id="4qe-g9-vOB"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="HMs-f9-xHA" secondAttribute="bottom" constant="2" id="Edr-Es-HsC"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="oUc-6E-NoB" secondAttribute="bottom" constant="3" id="Lng-gL-Ow6"/>
+                                        <constraint firstItem="ejk-h3-GED" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HMs-f9-xHA" secondAttribute="trailing" constant="25.5" id="NHd-M3-gEq"/>
                                         <constraint firstItem="HMs-f9-xHA" firstAttribute="top" secondItem="heZ-ak-12b" secondAttribute="topMargin" constant="3" id="h9F-Tc-v67"/>
                                         <constraint firstItem="oUc-6E-NoB" firstAttribute="leading" secondItem="heZ-ak-12b" secondAttribute="leadingMargin" id="sTA-mf-sLf"/>
                                         <constraint firstItem="oUc-6E-NoB" firstAttribute="top" secondItem="heZ-ak-12b" secondAttribute="topMargin" constant="3" id="toG-CH-GMN"/>
-                                        <constraint firstItem="ejk-h3-GED" firstAttribute="top" secondItem="heZ-ak-12b" secondAttribute="top" constant="6" id="wI4-cG-Yxq"/>
-                                        <constraint firstItem="HMs-f9-xHA" firstAttribute="leading" secondItem="oUc-6E-NoB" secondAttribute="trailing" constant="116" id="yxM-q0-3ni"/>
+                                        <constraint firstItem="HMs-f9-xHA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oUc-6E-NoB" secondAttribute="trailing" constant="106" id="yxM-q0-3ni"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cellImage" destination="ejk-h3-GED" id="3xA-bB-i2C"/>
+                                    <outlet property="raitingScore" destination="HMs-f9-xHA" id="9jK-Si-3Ak"/>
+                                    <outlet property="userName" destination="oUc-6E-NoB" id="V1l-vk-Y2s"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -178,6 +191,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="trophy" width="128" height="128"/>
+        <image name="trophy " width="128" height="128"/>
     </resources>
 </document>

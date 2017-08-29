@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20AE55AA1F55A2A900043A07 /* TopTenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AE55A91F55A2A900043A07 /* TopTenController.swift */; };
+		20AE55AC1F55A2C800043A07 /* TopTenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AE55AB1F55A2C800043A07 /* TopTenCell.swift */; };
+		20AE55AE1F55A88300043A07 /* InputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AE55AD1F55A88300043A07 /* InputController.swift */; };
 		61475F2F1F51CA2F00B68DAA /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61475F2E1F51CA2F00B68DAA /* Structs.swift */; };
 		61475F311F51CA4900B68DAA /* Brain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61475F301F51CA4900B68DAA /* Brain.swift */; };
 		A95BCE651F541FD30021B1E7 /* WallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95BCE641F541FD30021B1E7 /* WallView.swift */; };
@@ -41,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20AE55A91F55A2A900043A07 /* TopTenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopTenController.swift; sourceTree = "<group>"; };
+		20AE55AB1F55A2C800043A07 /* TopTenCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopTenCell.swift; sourceTree = "<group>"; };
+		20AE55AD1F55A88300043A07 /* InputController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputController.swift; sourceTree = "<group>"; };
 		61475F2E1F51CA2F00B68DAA /* Structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		61475F301F51CA4900B68DAA /* Brain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brain.swift; sourceTree = "<group>"; };
 		A95BCE641F541FD30021B1E7 /* WallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallView.swift; sourceTree = "<group>"; };
@@ -153,6 +159,9 @@
 			children = (
 				A95BCE7A1F5427CE0021B1E7 /* Rating.storyboard */,
 				A95BCE851F5428F40021B1E7 /* RatingController.swift */,
+				20AE55A91F55A2A900043A07 /* TopTenController.swift */,
+				20AE55AB1F55A2C800043A07 /* TopTenCell.swift */,
+				20AE55AD1F55A88300043A07 /* InputController.swift */,
 			);
 			name = Rating;
 			sourceTree = "<group>";
@@ -160,8 +169,8 @@
 		A95BCE871F5429B60021B1E7 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				A95FC51D1F502C7500E1F926 /* Main.storyboard */,
 				A95FC51B1F502C7500E1F926 /* MenuController.swift */,
+				A95FC51D1F502C7500E1F926 /* Main.storyboard */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -316,13 +325,16 @@
 				A95BCE861F5428F40021B1E7 /* RatingController.swift in Sources */,
 				A95BCE831F5428AF0021B1E7 /* SettingsController.swift in Sources */,
 				A95FC51C1F502C7500E1F926 /* MenuController.swift in Sources */,
+				20AE55AC1F55A2C800043A07 /* TopTenCell.swift in Sources */,
 				61475F2F1F51CA2F00B68DAA /* Structs.swift in Sources */,
 				A95BCE721F5423DE0021B1E7 /* ControlPanelController.swift in Sources */,
 				A95BCE891F544D6B0021B1E7 /* GameLayoutController.swift in Sources */,
 				61475F311F51CA4900B68DAA /* Brain.swift in Sources */,
+				20AE55AE1F55A88300043A07 /* InputController.swift in Sources */,
 				A95BCE741F5423FA0021B1E7 /* GameMapController.swift in Sources */,
 				A95BCE761F5424D00021B1E7 /* DetailsController.swift in Sources */,
 				A9C38B411F55484000BE66E0 /* BlockView.swift in Sources */,
+				20AE55AA1F55A2A900043A07 /* TopTenController.swift in Sources */,
 				A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */,
 				A95FC5221F502C7500E1F926 /* BomberMan.xcdatamodeld in Sources */,
 			);

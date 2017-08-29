@@ -9,9 +9,11 @@
 import UIKit
 
 class InputController: UIViewController {
-    let userDefaults: UserDefaults = UserDefaults.standard
     
     @IBOutlet weak var input: UITextField!
+    
     @IBAction func Ok(_ sender: Any) {
+        let score = UserScore(username: input.text ?? "User", score: 456)
+        ScoresManager.shared.saveData(score: score)
     }
 }

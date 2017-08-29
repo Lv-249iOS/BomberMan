@@ -25,6 +25,10 @@ class ControlPanelController: UIViewController {
         }
     }
     
+    @IBAction func setBomb(_ sender: UIButton) {
+    
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -29,19 +29,10 @@
                                 </constraints>
                                 <state key="normal" title="OK"/>
                                 <connections>
-                                    <action selector="ok:" destination="kgW-bG-Z6u" eventType="touchUpInside" id="EN6-5x-RX2"/>
-                                    <segue destination="2jd-XE-wBg" kind="show" id="pyK-9N-ek8"/>
+                                    <action selector="Ok:" destination="kgW-bG-Z6u" eventType="touchUpInside" id="qKx-XV-JNG"/>
+                                    <segue destination="2jd-XE-wBg" kind="show" id="ZJL-h5-1fB"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your name is..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LrU-4G-pX4">
-                                <rect key="frame" x="104" y="326" width="112" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="SKM-4C-Heo"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5V3-hN-MaB">
                                 <rect key="frame" x="78" y="211" width="164" height="30"/>
                                 <constraints>
@@ -54,13 +45,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="hOR-rO-DS6" firstAttribute="top" secondItem="mdm-rB-6Op" secondAttribute="bottom" constant="261" id="D2b-yT-245"/>
                             <constraint firstItem="5V3-hN-MaB" firstAttribute="top" secondItem="kXg-o4-OCT" secondAttribute="bottom" constant="191" id="DKS-e6-d83"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5V3-hN-MaB" secondAttribute="trailing" constant="62" id="DjS-Pj-6bR"/>
                             <constraint firstItem="5V3-hN-MaB" firstAttribute="leading" secondItem="i7F-77-5ZK" secondAttribute="leadingMargin" constant="62" id="EC9-RT-llI"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="LrU-4G-pX4" secondAttribute="trailing" constant="88" id="HzD-mk-S9i"/>
-                            <constraint firstItem="LrU-4G-pX4" firstAttribute="top" secondItem="mdm-rB-6Op" secondAttribute="bottom" constant="19" id="VOY-rs-HRh"/>
-                            <constraint firstItem="LrU-4G-pX4" firstAttribute="leading" secondItem="i7F-77-5ZK" secondAttribute="leadingMargin" constant="88" id="XUP-Fz-ner"/>
-                            <constraint firstItem="hOR-rO-DS6" firstAttribute="top" secondItem="LrU-4G-pX4" secondAttribute="bottom" constant="221" id="YOL-oM-nlB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mdm-rB-6Op" secondAttribute="trailing" constant="129" id="d4C-k9-Lsf"/>
                             <constraint firstItem="mdm-rB-6Op" firstAttribute="top" secondItem="5V3-hN-MaB" secondAttribute="bottom" constant="36" id="oxc-HE-7lz"/>
                             <constraint firstItem="mdm-rB-6Op" firstAttribute="leading" secondItem="i7F-77-5ZK" secondAttribute="leadingMargin" constant="129" id="z0e-XX-9kl"/>
@@ -68,7 +56,6 @@
                     </view>
                     <connections>
                         <outlet property="input" destination="5V3-hN-MaB" id="kyP-Ke-yDX"/>
-                        <outlet property="output" destination="LrU-4G-pX4" id="gGC-Ou-lVF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4B-3w-CoJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -100,7 +87,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="trophy " translatesAutoresizingMaskIntoConstraints="NO" id="oPg-Sx-1gI">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="trophy" translatesAutoresizingMaskIntoConstraints="NO" id="oPg-Sx-1gI">
                                 <rect key="frame" x="191" y="7" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -136,14 +123,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TopTenCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopTenCell" id="9qo-o0-em0" customClass="TopTenCell" customModule="BomberMan" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TopTenCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="topTenCell" id="9qo-o0-em0" customClass="TopTenCell" customModule="BomberMan" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9qo-o0-em0" id="heZ-ak-12b">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="trophy " translatesAutoresizingMaskIntoConstraints="NO" id="ejk-h3-GED">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="trophy" translatesAutoresizingMaskIntoConstraints="NO" id="ejk-h3-GED">
                                             <rect key="frame" x="266" y="7" width="40" height="29"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUc-6E-NoB">
@@ -191,6 +178,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="trophy " width="128" height="128"/>
+        <image name="trophy" width="128" height="128"/>
     </resources>
 </document>

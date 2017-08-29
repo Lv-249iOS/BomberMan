@@ -29,6 +29,7 @@
                                 </constraints>
                                 <state key="normal" title="OK"/>
                                 <connections>
+                                    <action selector="ok:" destination="kgW-bG-Z6u" eventType="touchUpInside" id="EN6-5x-RX2"/>
                                     <segue destination="2jd-XE-wBg" kind="show" id="pyK-9N-ek8"/>
                                 </connections>
                             </button>
@@ -65,6 +66,10 @@
                             <constraint firstItem="mdm-rB-6Op" firstAttribute="leading" secondItem="i7F-77-5ZK" secondAttribute="leadingMargin" constant="129" id="z0e-XX-9kl"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="input" destination="5V3-hN-MaB" id="kyP-Ke-yDX"/>
+                        <outlet property="output" destination="LrU-4G-pX4" id="gGC-Ou-lVF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4B-3w-CoJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -139,16 +144,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HMs-f9-xHA">
-                                            <rect key="frame" x="222" y="11" width="45" height="21.5"/>
+                                            <rect key="frame" x="206" y="11" width="45" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="trophy " translatesAutoresizingMaskIntoConstraints="NO" id="ejk-h3-GED">
-                                            <rect key="frame" x="275" y="6" width="37" height="31.5"/>
+                                            <rect key="frame" x="259" y="6" width="53" height="31.5"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User's Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUc-6E-NoB">
-                                            <rect key="frame" x="8" y="11" width="98" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUc-6E-NoB">
+                                            <rect key="frame" x="8" y="11" width="82" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -167,6 +172,11 @@
                                         <constraint firstItem="HMs-f9-xHA" firstAttribute="leading" secondItem="oUc-6E-NoB" secondAttribute="trailing" constant="116" id="yxM-q0-3ni"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cellImage" destination="ejk-h3-GED" id="3xA-bB-i2C"/>
+                                    <outlet property="raitingScore" destination="HMs-f9-xHA" id="9jK-Si-3Ak"/>
+                                    <outlet property="userName" destination="oUc-6E-NoB" id="V1l-vk-Y2s"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum ArrowDirection: Int {
+enum HeroMoves: Int {
     case up = 1
     case left = 2
     case right = 3
@@ -16,11 +16,11 @@ enum ArrowDirection: Int {
 }
 
 class ControlPanelController: UIViewController {
-    var onArrowTap: ((ArrowDirection)->())?
+    var onArrowTap: ((HeroMoves)->())?
     
     // Send Arrow direction
     @IBAction func arrowTap(_ sender: UIButton) {
-        if let arrowTag = ArrowDirection(rawValue: sender.tag) {
+        if let arrowTag = HeroMoves(rawValue: sender.tag) {
             onArrowTap?(arrowTag)
         }
     }

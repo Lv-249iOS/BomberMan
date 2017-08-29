@@ -9,7 +9,6 @@
 import UIKit
 
 class TopTenCell: UITableViewCell {
-
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var raitingScore: UILabel!
     @IBOutlet weak var cellImage: UIImageView!

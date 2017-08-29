@@ -15,29 +15,13 @@ class InputController: UIViewController {
     
     // Here I set current input to label
     @IBAction func ok(_ sender: Any) {
-         
+        output.text = input.text
+         UserDefaults.standard.set(input.text, forKey: "UserName")
+        input.text = ""
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    override func viewDidAppear(_ animated: Bool) {
+        if let x = UserDefaults.standard.object(forKey: "UserName") as? String {
+            return output.text = x
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

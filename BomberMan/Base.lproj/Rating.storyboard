@@ -95,7 +95,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UYY-PW-eML">
                                 <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <connections>
-                                    <segue destination="WtY-4M-6SD" kind="embed" id="z7y-Ni-w8t"/>
+                                    <segue destination="WtY-4M-6SD" kind="embed" identifier="TopTenSegue" id="z7y-Ni-w8t"/>
                                 </connections>
                             </containerView>
                         </subviews>

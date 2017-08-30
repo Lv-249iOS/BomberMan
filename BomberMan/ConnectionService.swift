@@ -38,7 +38,7 @@ class ConnectionServiceManager: NSObject {
 //        
         self.serviceAdvertiser.delegate = self
 //        self.serviceAdvertiser.startAdvertisingPeer()
-/       self.serviceBrowser.delegate = self
+//       self.serviceBrowser.delegate = self
 //        self.serviceBrowser.startBrowsingForPeers()
     }
     

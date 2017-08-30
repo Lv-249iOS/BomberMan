@@ -9,9 +9,9 @@
 import UIKit
 
 class ControlPanelController: UIViewController {
-    static let shared = ControlPanelController()
+ 
     var onArrowTap: ((Direction)->())?
-    
+    var onBombTap: (()->())?
     // Send Arrow direction
     @IBAction func arrowTap(_ sender: UIButton) {
         if let arrowTag = Direction(rawValue: sender.tag) {
@@ -23,12 +23,12 @@ class ControlPanelController: UIViewController {
     }
     
     @IBAction func setBomb(_ sender: UIButton) {
-    
+        onBombTap?()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
 }

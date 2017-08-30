@@ -15,6 +15,7 @@
 		20AE55AE1F55A88300043A07 /* InputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AE55AD1F55A88300043A07 /* InputController.swift */; };
 		61475F2F1F51CA2F00B68DAA /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61475F2E1F51CA2F00B68DAA /* Structs.swift */; };
 		61475F311F51CA4900B68DAA /* Brain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61475F301F51CA4900B68DAA /* Brain.swift */; };
+		A908D0901F56B1A40097CF51 /* CreationGame.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A908D08E1F56B1A40097CF51 /* CreationGame.storyboard */; };
 		A95BCE651F541FD30021B1E7 /* WallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95BCE641F541FD30021B1E7 /* WallView.swift */; };
 		A95BCE671F5420060021B1E7 /* BoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95BCE661F5420060021B1E7 /* BoxView.swift */; };
 		A95BCE721F5423DE0021B1E7 /* ControlPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95BCE711F5423DE0021B1E7 /* ControlPanelController.swift */; };
@@ -54,6 +55,7 @@
 		20AE55AD1F55A88300043A07 /* InputController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputController.swift; sourceTree = "<group>"; };
 		61475F2E1F51CA2F00B68DAA /* Structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		61475F301F51CA4900B68DAA /* Brain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brain.swift; sourceTree = "<group>"; };
+		A908D08F1F56B1A40097CF51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CreationGame.storyboard; sourceTree = "<group>"; };
 		A95BCE641F541FD30021B1E7 /* WallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallView.swift; sourceTree = "<group>"; };
 		A95BCE661F5420060021B1E7 /* BoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxView.swift; sourceTree = "<group>"; };
 		A95BCE711F5423DE0021B1E7 /* ControlPanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlPanelController.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 			children = (
 				A95FC51B1F502C7500E1F926 /* MenuController.swift */,
 				A95FC51D1F502C7500E1F926 /* Main.storyboard */,
+				A908D08E1F56B1A40097CF51 /* CreationGame.storyboard */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				A95BCE791F5427570021B1E7 /* Game.storyboard in Resources */,
 				A95FC5271F502C7500E1F926 /* LaunchScreen.storyboard in Resources */,
 				A95FC5241F502C7500E1F926 /* Assets.xcassets in Resources */,
+				A908D0901F56B1A40097CF51 /* CreationGame.storyboard in Resources */,
 				A95BCE7E1F5427E20021B1E7 /* Settings.storyboard in Resources */,
 				A95FC51F1F502C7500E1F926 /* Main.storyboard in Resources */,
 				A95BCE7C1F5427CE0021B1E7 /* Rating.storyboard in Resources */,
@@ -399,6 +403,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		A908D08E1F56B1A40097CF51 /* CreationGame.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A908D08F1F56B1A40097CF51 /* Base */,
+			);
+			name = CreationGame.storyboard;
+			sourceTree = "<group>";
+		};
 		A95BCE771F5427570021B1E7 /* Game.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

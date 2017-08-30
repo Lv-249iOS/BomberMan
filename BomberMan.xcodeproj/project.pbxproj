@@ -31,6 +31,7 @@
 		A95FC5241F502C7500E1F926 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A95FC5231F502C7500E1F926 /* Assets.xcassets */; };
 		A95FC5271F502C7500E1F926 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95FC5251F502C7500E1F926 /* LaunchScreen.storyboard */; };
 		A95FC5321F502C7500E1F926 /* BomberManTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FC5311F502C7500E1F926 /* BomberManTests.swift */; };
+		A987D1981F56DA2C00CCF677 /* FireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A987D1971F56DA2C00CCF677 /* FireView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		A95FC52D1F502C7500E1F926 /* BomberManTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BomberManTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95FC5311F502C7500E1F926 /* BomberManTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BomberManTests.swift; sourceTree = "<group>"; };
 		A95FC5331F502C7500E1F926 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A987D1971F56DA2C00CCF677 /* FireView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 			children = (
 				A95BCE661F5420060021B1E7 /* BoxView.swift */,
 				A95BCE641F541FD30021B1E7 /* WallView.swift */,
+				A987D1971F56DA2C00CCF677 /* FireView.swift */,
 			);
 			name = CustomTiles;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A987D1981F56DA2C00CCF677 /* FireView.swift in Sources */,
 				2023B3BB1F55ED0600B6F993 /* Date+SinceDate.swift in Sources */,
 				A95BCE651F541FD30021B1E7 /* WallView.swift in Sources */,
 				2023B3B41F55D99500B6F993 /* UserScore.swift in Sources */,

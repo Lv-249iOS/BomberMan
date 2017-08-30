@@ -11,7 +11,6 @@ import UIKit
 class GameMapController: UIViewController {
     
     @IBOutlet weak var mapScroll: UIScrollView!
-    static let shared = GameMapController()
     
     var map: String!
     var orc: UIImageView!

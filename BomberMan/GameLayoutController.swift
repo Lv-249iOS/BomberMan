@@ -10,26 +10,35 @@ import UIKit
 
 class GameLayoutController: UIViewController {
     
+    @IBOutlet weak var gameContainer: UIView!
+    
     var detailsController: DetailsController!
     var gameMapController: GameMapController!
     var controlPanelController: ControlPanelController!
     
-    var pause: UIButton!
+    var pause = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        pause = UIButton(frame: view.frame)
+        pause = UIButton()
         pause.pauseStyle()
         pause.addTarget(self, action: #selector(turnOffpause), for: .touchUpInside)
     }
     
     func turnOffpause() {
+        detailsController.isPause = false
         pause.removeFromSuperview()
     }
     
-    func turnOnPause() {
-        view.addSubview(pause)
+    func turnOnPause(state: Bool) {
+        if state {
+            pause.frame = gameMapController.mapScroll.frame
+            gameContainer.addSubview(pause)
+            
+        } else {
+            pause.removeFromSuperview()
+        }
     }
     
     // Returns to menu page
@@ -43,8 +52,13 @@ class GameLayoutController: UIViewController {
             
             detailsController = controller
             
-            detailsController.onPauseTap = turnOnPause
-            detailsController.onHomeTap = turnToHome
+            detailsController.onPauseTap = { [weak self] state in
+                self?.turnOnPause(state: state)
+            }
+            
+            detailsController.onHomeTap = { [weak self] in
+                self?.turnToHome()
+            }
             
         } else if segue.identifier == "GameMapControllerSegue",
             let controller = segue.destination as? GameMapController {
@@ -56,7 +70,6 @@ class GameLayoutController: UIViewController {
             
             controlPanelController = controller
         }
-        
     }
 }
 

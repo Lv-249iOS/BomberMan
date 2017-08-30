@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+//let notificationToMove = "PresentNotification"
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

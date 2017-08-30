@@ -8,20 +8,17 @@
 
 import UIKit
 
-enum HeroMoves: Int {
-    case up = 1
-    case left = 2
-    case right = 3
-    case down = 4
-}
-
 class ControlPanelController: UIViewController {
-    var onArrowTap: ((HeroMoves)->())?
+    static let shared = ControlPanelController()
+    var onArrowTap: ((Direction)->())?
     
     // Send Arrow direction
     @IBAction func arrowTap(_ sender: UIButton) {
-        if let arrowTag = HeroMoves(rawValue: sender.tag) {
+        if let arrowTag = Direction(rawValue: sender.tag) {
             onArrowTap?(arrowTag)
+            print(arrowTag)
+            Brain.shared.move(to: arrowTag, player: Player())
+            //NotificationCenter.default.post(name: NSNotification.Name(rawValue: notificationToMove), object: nil)
         }
     }
     

@@ -10,11 +10,13 @@ import UIKit
 
 class DetailsController: UIViewController {
     
-    var onPauseTap: (()->())?
+    var onPauseTap: ((Bool)->())?
     var onHomeTap: (()->())?
     
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    
+    var isPause: Bool = false
     
     // Shows current time usage in label
     func present(time: String) { // Change to Timer
@@ -28,7 +30,8 @@ class DetailsController: UIViewController {
     
     // Sends event that pause taped
     @IBAction func pauseTap(_ sender: UIButton) {
-        onPauseTap?()
+        isPause = isPause == false ? true : false
+        onPauseTap?(isPause)
     }
     
     // Sends event that home taped

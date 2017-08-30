@@ -42,7 +42,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="ez9-aJ-wBp" kind="show" id="b1P-Mz-P98"/>
+                                    <segue destination="zUi-LQ-dM0" kind="show" id="QQ4-Bw-U4Z"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ou3-rV-RSk" userLabel="Settings">
@@ -111,7 +111,7 @@
                 <viewControllerPlaceholder storyboardName="Game" id="ez9-aJ-wBp" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jQv-Yq-VZK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-428" y="20"/>
+            <point key="canvasLocation" x="-443" y="-24"/>
         </scene>
         <!--Rating-->
         <scene sceneID="0c2-qE-W1Q">
@@ -119,7 +119,7 @@
                 <viewControllerPlaceholder storyboardName="Rating" id="9aH-kW-XS3" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MpE-4T-CWX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-464" y="247"/>
+            <point key="canvasLocation" x="-439" y="65"/>
         </scene>
         <!--Settings-->
         <scene sceneID="ssS-0c-oZl">
@@ -127,7 +127,15 @@
                 <viewControllerPlaceholder storyboardName="Settings" id="M9H-Cs-Toc" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qCt-fx-807" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-396" y="175"/>
+            <point key="canvasLocation" x="-431" y="17"/>
+        </scene>
+        <!--CreationGame-->
+        <scene sceneID="xOZ-rV-fwr">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CreationGame" id="zUi-LQ-dM0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="59F-g8-TJR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-405" y="107"/>
         </scene>
     </scenes>
     <resources>
@@ -136,7 +144,4 @@
         <image name="settings" width="128" height="128"/>
         <image name="trophy" width="128" height="128"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="o1Z-Ud-SA9"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -49,15 +49,9 @@ class GameLayoutController: UIViewController {
     }
     
     // Controls arrow's events
-    func move(in direction: Direction) {
-        if Brain.shared.move(to: direction, player: Player()) {
-            switch direction {
-            case .bottom: gameMapController.moveDown()
-            case .left: gameMapController.moveLeft()
-            case .right: gameMapController.moveRight()
-            case .top: gameMapController.moveUp()
-            }
-        }
+    func move(direction: Direction) {
+        gameMapController.move(in: direction)
+       
     }
 
     // Controls bomb setting
@@ -91,8 +85,8 @@ class GameLayoutController: UIViewController {
     func prepareControlPanelController(controller: ControlPanelController) {
         controlPanelController = controller
         
-        controlPanelController.onArrowTap = { [weak self]  direction in
-            self?.move(in: direction)
+        controlPanelController.onArrowTap = { [weak self]  path in
+            self?.move(direction: path)
         }
         
         controlPanelController.onBombTap = { [weak self] in

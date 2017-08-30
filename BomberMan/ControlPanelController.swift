@@ -18,7 +18,6 @@ class ControlPanelController: UIViewController {
         if let arrowTag = Direction(rawValue: sender.tag) {
             onArrowTap?(arrowTag)
             print(arrowTag)
-        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: notificationToMove), object: nil)
         }
     }
     

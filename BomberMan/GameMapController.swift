@@ -57,18 +57,14 @@ class GameMapController: UIViewController {
         }
     }
     
-    func moveUp() {
-    orc.transform = (self.orc.transform.translatedBy(x: 0, y: -50))
+    func move(in direction: Direction) {
+        if Brain.shared.move(to: direction, player: Player()) {
+            switch direction {
+            case .bottom:  orc.transform = (self.orc.transform.translatedBy(x: 0, y: 50))
+            case .left: orc.transform = (self.orc.transform.translatedBy(x: -50, y: 0))
+            case .right: orc.transform = (self.orc.transform.translatedBy(x: 50, y: 0))
+            case .top:  orc.transform = (self.orc.transform.translatedBy(x: 0, y: -50))
+            }
+        }
     }
-    func moveDown() {
-        orc.transform = (self.orc.transform.translatedBy(x: 0, y: 50))
-    }
-    func moveRight() {
-        orc.transform = (self.orc.transform.translatedBy(x: 50, y: 0))
-    }
-    func moveLeft() {
-        orc.transform = (self.orc.transform.translatedBy(x: -50, y: 0))
-    }
-    
-    
  }

@@ -31,4 +31,7 @@ class TopTenController: UITableViewController {
         
         return cell
     }
+    func clearScores() {
+    
+    }
 }

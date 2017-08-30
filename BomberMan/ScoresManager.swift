@@ -39,9 +39,19 @@ class ScoresManager {
         }
     }
     
-    public func topTen() -> [UserScore]{
+    public func topTen() -> [UserScore] {
         return userScores.sorted(by: { (current, next) -> Bool in
             return current.score > next.score
         })
     }
+    
+    func removeFromArchive() {
+        let manager = FileManager.default
+        let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
+        let objectPath = url?.appendingPathComponent("Data")
+        userScores = []
+        try? FileManager.default.removeItem(atPath: (objectPath?.path)!)
+    }
 }
+
+

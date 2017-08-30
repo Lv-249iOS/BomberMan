@@ -10,7 +10,8 @@ import UIKit
 
 class RatingController: UIViewController {
     
-    var topTenController: TopTenController!
+    var topTenController: TopTenController?
+    var scoresManager = ScoresManager.shared
     
     @IBAction func dismissButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -29,7 +30,8 @@ class RatingController: UIViewController {
     func createScoreAlert(title: String, messege: String) {
         let alert = UIAlertController(title: title, message: messege, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { [weak self] (action) in
-        self?.topTenController.clearScores()
+        self?.topTenController?.clearScores()
+        self?.scoresManager.removeFromArchive()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)

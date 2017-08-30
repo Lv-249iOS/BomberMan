@@ -50,7 +50,14 @@ class GameLayoutController: UIViewController {
     
     // Controls arrow's events
     func move(in direction: Direction) {
-        
+        if Brain.shared.move(to: direction, player: Player()) {
+            switch direction {
+            case .bottom: gameMapController.moveDown()
+            case .left: gameMapController.moveLeft()
+            case .right: gameMapController.moveRight()
+            case .top: gameMapController.moveUp()
+            }
+        }
     }
 
     // Controls bomb setting

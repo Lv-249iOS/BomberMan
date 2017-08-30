@@ -12,13 +12,13 @@ class ControlPanelController: UIViewController {
  
     var onArrowTap: ((Direction)->())?
     var onBombTap: (()->())?
+    
     // Send Arrow direction
     @IBAction func arrowTap(_ sender: UIButton) {
         if let arrowTag = Direction(rawValue: sender.tag) {
             onArrowTap?(arrowTag)
             print(arrowTag)
-            Brain.shared.move(to: arrowTag, player: Player())
-            //NotificationCenter.default.post(name: NSNotification.Name(rawValue: notificationToMove), object: nil)
+        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: notificationToMove), object: nil)
         }
     }
     

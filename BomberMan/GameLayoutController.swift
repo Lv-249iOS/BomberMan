@@ -53,25 +53,10 @@ class GameLayoutController: UIViewController {
         
     }
     
-    // -------------------------
-    var o = true
-    var fireView = FireView()
-    
     // Controls bomb setting
     func setBomb() {
-        if o {
-            let rect = CGRect(x: 100, y: 100, width: 50, height: 50)
-            fireView.frame = rect
-            fireView.createFire()
-            gameMapController.mapScroll.addSubview(fireView)
-            o = false
-        } else {
-            fireView.removeFromSuperview()
-            o = true
-        }
+
     }
-    
-    // --------------------------
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailsControllerSegue",

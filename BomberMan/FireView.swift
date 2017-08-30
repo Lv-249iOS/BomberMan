@@ -2,7 +2,7 @@
 //  FireView.swift
 //  BomberMan
 //
-//  Created by Alejandro Del Rio Albrechet on 8/30/17.
+//  Created by Kristina Del Rio Albrechet on 8/30/17.
 //  Copyright © 2017 Lv-249 iOS. All rights reserved.
 //
 

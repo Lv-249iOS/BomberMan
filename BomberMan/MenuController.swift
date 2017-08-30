@@ -18,6 +18,17 @@ class MenuController: UIViewController {
         setSoundIfNeeded()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if UserDefaults.standard.value(forKey: "soundState") as? Bool == nil {
+            UserDefaults.standard.set(false, forKey: "soundState")
+        }
+        
+        initMelody()
+        setSoundIfNeeded()
+    }
+    
     func setSoundIfNeeded() {
         if let soundState = UserDefaults.standard.value(forKey: "soundState") as? Bool {
             if soundState != true {
@@ -33,20 +44,15 @@ class MenuController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if UserDefaults.standard.value(forKey: "soundState") as? Bool == nil {
-            UserDefaults.standard.set(false, forKey: "soundState")
-        }
-        
+    func initMelody() {
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "opening", ofType: "mp3")!))
+            if let musicFile = Bundle.main.path(forResource: "opening", ofType: "mp3") {
+                audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: musicFile))
+            }
+            
         } catch {
             print(error)
         }
-        
-        setSoundIfNeeded()
     }
 }
 

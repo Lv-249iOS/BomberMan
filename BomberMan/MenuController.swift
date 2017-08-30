@@ -7,16 +7,28 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MenuController: UIViewController {
     
     @IBOutlet weak var soundButton: UIButton!
+    var audioPlayer = AVAudioPlayer()
     
     @IBAction func onSoundTap(_ sender: UIButton) {
+        setSoundIfNeeded()
+    }
+    
+    func setSoundIfNeeded() {
         if let soundState = UserDefaults.standard.value(forKey: "soundState") as? Bool {
-            let img = soundState != true ? #imageLiteral(resourceName: "soundOn") : #imageLiteral(resourceName: "soundOff")
+            if soundState != true {
+                soundButton.setImage(#imageLiteral(resourceName: "soundOn"), for: .normal)
+                audioPlayer.play()
+                
+            } else {
+                soundButton.setImage(#imageLiteral(resourceName: "soundOff"), for: .normal)
+                audioPlayer.stop()
+            }
             
-            soundButton.setImage(img, for: .normal)
             UserDefaults.standard.set(!soundState, forKey: "soundState")
         }
     }
@@ -27,6 +39,14 @@ class MenuController: UIViewController {
         if UserDefaults.standard.value(forKey: "soundState") as? Bool == nil {
             UserDefaults.standard.set(false, forKey: "soundState")
         }
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "opening", ofType: "mp3")!))
+        } catch {
+            print(error)
+        }
+        
+        setSoundIfNeeded()
     }
 }
 

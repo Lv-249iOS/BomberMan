@@ -31,5 +31,4 @@ class TopTenController: UITableViewController {
         
         return cell
     }
-    
 }

@@ -51,6 +51,7 @@ class GameLayoutController: UIViewController {
     // Controls arrow's events
     func move(direction: Direction) {
         gameMapController.move(in: direction)
+        
        
     }
 

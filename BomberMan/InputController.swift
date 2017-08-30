@@ -11,9 +11,8 @@ import UIKit
 class InputController: UIViewController {
     
     @IBOutlet weak var input: UITextField!
-    
     @IBAction func Ok(_ sender: Any) {
-        let score = UserScore(username: input.text ?? "User", score: 456)
+        let score = UserScore(username: input.text ?? "User", score: 45600)
         ScoresManager.shared.saveData(score: score)
     }
 }

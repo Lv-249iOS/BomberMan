@@ -26,3 +26,10 @@ struct Enemy {
     var speed = 1
     var canFly = false
 }
+
+enum Direction: String {
+    case top
+    case bottom
+    case left
+    case right
+}

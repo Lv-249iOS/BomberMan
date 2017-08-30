@@ -9,17 +9,24 @@
 import UIKit
 
 class MenuController: UIViewController {
-
+    
+    @IBOutlet weak var soundButton: UIButton!
+    
+    @IBAction func onSoundTap(_ sender: UIButton) {
+        if let soundState = UserDefaults.standard.value(forKey: "soundState") as? Bool {
+            let img = soundState != true ? #imageLiteral(resourceName: "soundOn") : #imageLiteral(resourceName: "soundOff")
+            
+            soundButton.setImage(img, for: .normal)
+            UserDefaults.standard.set(!soundState, forKey: "soundState")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        if UserDefaults.standard.value(forKey: "soundState") as? Bool == nil {
+            UserDefaults.standard.set(false, forKey: "soundState")
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 

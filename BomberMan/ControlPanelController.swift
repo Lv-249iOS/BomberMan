@@ -17,16 +17,18 @@ enum ArrowDirection: Int {
 
 class ControlPanelController: UIViewController {
     var onArrowTap: ((ArrowDirection)->())?
+    var onBombTap: (()->())?
     
-    // Send Arrow direction
+    // Sends arrow direction
     @IBAction func arrowTap(_ sender: UIButton) {
         if let arrowTag = ArrowDirection(rawValue: sender.tag) {
             onArrowTap?(arrowTag)
         }
     }
     
+    // Sends event that bomb is ready to be set
     @IBAction func setBomb(_ sender: UIButton) {
-    
+        onBombTap?()
     }
     
     override func viewDidLoad() {

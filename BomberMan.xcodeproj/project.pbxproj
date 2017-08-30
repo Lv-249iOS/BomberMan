@@ -27,8 +27,6 @@
 		A95BCE761F5424D00021B1E7 /* DetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95BCE751F5424D00021B1E7 /* DetailsController.swift */; };
 		A95BCE791F5427570021B1E7 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95BCE771F5427570021B1E7 /* Game.storyboard */; };
 		A95BCE7C1F5427CE0021B1E7 /* Rating.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95BCE7A1F5427CE0021B1E7 /* Rating.storyboard */; };
-		A95BCE7E1F5427E20021B1E7 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95BCE7D1F5427E20021B1E7 /* Settings.storyboard */; };
-		A95BCE831F5428AF0021B1E7 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95BCE821F5428AF0021B1E7 /* SettingsController.swift */; };
 		A95BCE861F5428F40021B1E7 /* RatingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95BCE851F5428F40021B1E7 /* RatingController.swift */; };
 		A95BCE891F544D6B0021B1E7 /* GameLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95BCE881F544D6B0021B1E7 /* GameLayoutController.swift */; };
 		A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FC5191F502C7500E1F926 /* AppDelegate.swift */; };
@@ -37,6 +35,7 @@
 		A95FC5241F502C7500E1F926 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A95FC5231F502C7500E1F926 /* Assets.xcassets */; };
 		A95FC5271F502C7500E1F926 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95FC5251F502C7500E1F926 /* LaunchScreen.storyboard */; };
 		A95FC5321F502C7500E1F926 /* BomberManTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FC5311F502C7500E1F926 /* BomberManTests.swift */; };
+		A987D1981F56DA2C00CCF677 /* FireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A987D1971F56DA2C00CCF677 /* FireView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,8 +69,6 @@
 		A95BCE751F5424D00021B1E7 /* DetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsController.swift; sourceTree = "<group>"; };
 		A95BCE781F5427570021B1E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Game.storyboard; sourceTree = "<group>"; };
 		A95BCE7B1F5427CE0021B1E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Rating.storyboard; sourceTree = "<group>"; };
-		A95BCE7D1F5427E20021B1E7 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
-		A95BCE821F5428AF0021B1E7 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		A95BCE851F5428F40021B1E7 /* RatingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingController.swift; sourceTree = "<group>"; };
 		A95BCE881F544D6B0021B1E7 /* GameLayoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLayoutController.swift; sourceTree = "<group>"; };
 		A95FC5161F502C7500E1F926 /* BomberMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BomberMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +81,7 @@
 		A95FC52D1F502C7500E1F926 /* BomberManTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BomberManTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95FC5311F502C7500E1F926 /* BomberManTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BomberManTests.swift; sourceTree = "<group>"; };
 		A95FC5331F502C7500E1F926 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A987D1971F56DA2C00CCF677 /* FireView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +178,7 @@
 			children = (
 				A95BCE661F5420060021B1E7 /* BoxView.swift */,
 				A95BCE641F541FD30021B1E7 /* WallView.swift */,
+				A987D1971F56DA2C00CCF677 /* FireView.swift */,
 			);
 			name = CustomTiles;
 			sourceTree = "<group>";
@@ -189,7 +188,6 @@
 			children = (
 				154658411F56C98400DB0184 /* Connection */,
 				A95BCE841F5428DB0021B1E7 /* Rating */,
-				A95BCE811F5428980021B1E7 /* Settings */,
 				A95BCE801F54280E0021B1E7 /* Game */,
 				1546583C1F56C49400DB0184 /* MultiPlayer */,
 				A95BCE871F5429B60021B1E7 /* Menu */,
@@ -207,15 +205,6 @@
 				A95BCE751F5424D00021B1E7 /* DetailsController.swift */,
 			);
 			name = Game;
-			sourceTree = "<group>";
-		};
-		A95BCE811F5428980021B1E7 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				A95BCE7D1F5427E20021B1E7 /* Settings.storyboard */,
-				A95BCE821F5428AF0021B1E7 /* SettingsController.swift */,
-			);
-			name = Settings;
 			sourceTree = "<group>";
 		};
 		A95BCE841F5428DB0021B1E7 /* Rating */ = {
@@ -367,7 +356,6 @@
 				A95FC5271F502C7500E1F926 /* LaunchScreen.storyboard in Resources */,
 				A95FC5241F502C7500E1F926 /* Assets.xcassets in Resources */,
 				A908D0901F56B1A40097CF51 /* CreationGame.storyboard in Resources */,
-				A95BCE7E1F5427E20021B1E7 /* Settings.storyboard in Resources */,
 				A95FC51F1F502C7500E1F926 /* Main.storyboard in Resources */,
 				A95BCE7C1F5427CE0021B1E7 /* Rating.storyboard in Resources */,
 			);
@@ -387,6 +375,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A987D1981F56DA2C00CCF677 /* FireView.swift in Sources */,
 				2023B3BB1F55ED0600B6F993 /* Date+SinceDate.swift in Sources */,
 				A95BCE651F541FD30021B1E7 /* WallView.swift in Sources */,
 				2023B3B41F55D99500B6F993 /* UserScore.swift in Sources */,
@@ -395,7 +384,6 @@
 				154658431F56C99400DB0184 /* ConnectionService.swift in Sources */,
 				154658451F56D84A00DB0184 /* ConnectionGuide.swift in Sources */,
 				A95BCE861F5428F40021B1E7 /* RatingController.swift in Sources */,
-				A95BCE831F5428AF0021B1E7 /* SettingsController.swift in Sources */,
 				A95FC51C1F502C7500E1F926 /* MenuController.swift in Sources */,
 				20AE55AC1F55A2C800043A07 /* TopTenCell.swift in Sources */,
 				61475F2F1F51CA2F00B68DAA /* Structs.swift in Sources */,

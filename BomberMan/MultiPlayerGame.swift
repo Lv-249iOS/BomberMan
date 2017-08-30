@@ -7,29 +7,37 @@
 //
 
 import UIKit
+import MultipeerConnectivity
 
-class MultiPlayerGame: UIViewController {
-
+class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, MCAdvertiserAssistantDelegate {
+    
+    private let manager = ConnectionServiceManager()
+    @IBOutlet weak var joinButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func createNewGame(_ sender: UIButton) {
+        manager.setBrowser()
+        manager.serviceBrowser.delegate = self
+        self.present(manager.serviceBrowser, animated: true, completion: nil)
     }
-    */
-
+    
+    @IBAction func joinToNewGame(_ sender: UIButton) {
+        manager.advertiseSelf(true)
+    }
+    
+    func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
+        manager.serviceBrowser.dismiss(animated: true, completion: nil)
+    }
+    
+    func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
+        manager.serviceBrowser.dismiss(animated: true, completion: nil)
+    }
+    //Check how this method exactly working
+    func advertiserAssistantWillPresentInvitation(_ advertiserAssistant: MCAdvertiserAssistant) {
+        print("Hello")
+        advertiserAssistant.stop()
+    }
 }

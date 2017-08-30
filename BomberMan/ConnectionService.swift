@@ -19,28 +19,37 @@ class ConnectionServiceManager: NSObject {
     // and can contain only ASCII lowercase letters, numbers and hyphens.
     private let playerServiceType = "multi-player"
     private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
-    let serviceAdvertiser : MCNearbyServiceAdvertiser
-    let serviceBrowser : MCNearbyServiceBrowser
+    var serviceAdvertiser : MCAdvertiserAssistant? = nil
+    var serviceBrowser : MCBrowserViewController!
     var delegate: ConnectionServiceManagerDelegate?
     
     lazy var session: MCSession = {
-        let session = MCSession(peer: self.myPeerId,
-                                securityIdentity: nil,
-                                encryptionPreference: .required)
+        let session = MCSession(
+            peer: self.myPeerId,
+            securityIdentity: nil,
+            encryptionPreference: .required
+        )
         session.delegate = self
         return session
     } ()
     
-    override init() {
-        self.serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: playerServiceType)
-        self.serviceBrowser = MCNearbyServiceBrowser(peer: myPeerId, serviceType: playerServiceType)
-       super.init()
-//        
-        self.serviceAdvertiser.delegate = self
-//        self.serviceAdvertiser.startAdvertisingPeer()
-//       self.serviceBrowser.delegate = self
-//        self.serviceBrowser.startBrowsingForPeers()
+    
+    func setBrowser() {
+        serviceBrowser = MCBrowserViewController(serviceType: playerServiceType, session: session)
+        serviceBrowser.maximumNumberOfPeers = 2
     }
+    
+    
+    func advertiseSelf(_ advertise:Bool){
+        if advertise{
+            serviceAdvertiser = MCAdvertiserAssistant(serviceType: playerServiceType, discoveryInfo: nil, session: session)
+            serviceAdvertiser!.start()
+        } else{
+            serviceAdvertiser?.stop()
+            serviceAdvertiser = nil
+        }
+    }
+    
     
     func sendData(playerData: String) {
         NSLog("%@", "sendPlayer: \(playerData) to \(session.connectedPeers.count) peers")
@@ -55,42 +64,11 @@ class ConnectionServiceManager: NSObject {
         }
     }
     
-    deinit {
-        self.serviceAdvertiser.stopAdvertisingPeer()
-        self.serviceBrowser.stopBrowsingForPeers()
-    }
+    //    deinit {
+    //       // self.serviceAdvertiser?.stopAdvertisingPeer()
+    //    }
 }
 
-///MCNearbyServiceAdvertiserDelegate
-extension ConnectionServiceManager : MCNearbyServiceAdvertiserDelegate {
-    
-    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
-        NSLog("%@", "didNotStartAdvertisingPeer: \(error)")
-    }
-    
-    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        NSLog("%@", "didReceiveInvitationFromPeer \(peerID)")
-        invitationHandler(true, self.session)
-    }
-}
-
-/// MCNearbyServiceBrowserDelegate
-extension ConnectionServiceManager : MCNearbyServiceBrowserDelegate {
-    
-    func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
-        NSLog("%@", "didNotStartBrowsingForPeers: \(error)")
-    }
-    
-    func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        NSLog("%@", "foundPeer: \(peerID)")
-        NSLog("%@", "invitePeer: \(peerID)")
-        browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 10)
-    }
-    
-    func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        NSLog("%@", "lostPeer: \(peerID)")
-    }
-}
 
 ///MCSessionDelegate
 extension ConnectionServiceManager : MCSessionDelegate {

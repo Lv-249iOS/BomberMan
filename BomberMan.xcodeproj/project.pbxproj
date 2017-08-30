@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		152666671F57282000104602 /* MultiPlayerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152666661F57282000104602 /* MultiPlayerGame.swift */; };
 		154658431F56C99400DB0184 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154658421F56C99400DB0184 /* ConnectionService.swift */; };
-		154658451F56D84A00DB0184 /* ConnectionGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154658441F56D84A00DB0184 /* ConnectionGuide.swift */; };
-		154658471F56E1DB00DB0184 /* FoundPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154658461F56E1DB00DB0184 /* FoundPlayers.swift */; };
-		154658491F56E21000DB0184 /* NewMultiGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154658481F56E21000DB0184 /* NewMultiGame.swift */; };
 		2023B3B41F55D99500B6F993 /* UserScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023B3B31F55D99500B6F993 /* UserScore.swift */; };
 		2023B3B71F55E26F00B6F993 /* ScoresManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023B3B61F55E26F00B6F993 /* ScoresManager.swift */; };
 		2023B3BB1F55ED0600B6F993 /* Date+SinceDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023B3BA1F55ED0600B6F993 /* Date+SinceDate.swift */; };
@@ -50,10 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		152666661F57282000104602 /* MultiPlayerGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPlayerGame.swift; sourceTree = "<group>"; };
 		154658421F56C99400DB0184 /* ConnectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionService.swift; sourceTree = "<group>"; };
-		154658441F56D84A00DB0184 /* ConnectionGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionGuide.swift; sourceTree = "<group>"; };
-		154658461F56E1DB00DB0184 /* FoundPlayers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoundPlayers.swift; sourceTree = "<group>"; };
-		154658481F56E21000DB0184 /* NewMultiGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMultiGame.swift; sourceTree = "<group>"; };
 		2023B3B31F55D99500B6F993 /* UserScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserScore.swift; sourceTree = "<group>"; };
 		2023B3B61F55E26F00B6F993 /* ScoresManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresManager.swift; sourceTree = "<group>"; };
 		2023B3BA1F55ED0600B6F993 /* Date+SinceDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+SinceDate.swift"; sourceTree = "<group>"; };
@@ -108,8 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				A908D08E1F56B1A40097CF51 /* CreationGame.storyboard */,
-				154658461F56E1DB00DB0184 /* FoundPlayers.swift */,
-				154658481F56E21000DB0184 /* NewMultiGame.swift */,
+				152666661F57282000104602 /* MultiPlayerGame.swift */,
 			);
 			name = MultiPlayer;
 			sourceTree = "<group>";
@@ -118,7 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				154658421F56C99400DB0184 /* ConnectionService.swift */,
-				154658441F56D84A00DB0184 /* ConnectionGuide.swift */,
 			);
 			name = Connection;
 			sourceTree = "<group>";
@@ -330,6 +324,7 @@
 				TargetAttributes = {
 					A95FC5151F502C7500E1F926 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 2U8WSM4T5B;
 						ProvisioningStyle = Automatic;
 					};
 					A95FC52C1F502C7500E1F926 = {
@@ -389,12 +384,12 @@
 			files = (
 				A987D1981F56DA2C00CCF677 /* FireView.swift in Sources */,
 				2023B3BB1F55ED0600B6F993 /* Date+SinceDate.swift in Sources */,
+				152666671F57282000104602 /* MultiPlayerGame.swift in Sources */,
 				A95BCE651F541FD30021B1E7 /* WallView.swift in Sources */,
 				2023B3B41F55D99500B6F993 /* UserScore.swift in Sources */,
 				2023B3B71F55E26F00B6F993 /* ScoresManager.swift in Sources */,
 				A95BCE671F5420060021B1E7 /* BoxView.swift in Sources */,
 				154658431F56C99400DB0184 /* ConnectionService.swift in Sources */,
-				154658451F56D84A00DB0184 /* ConnectionGuide.swift in Sources */,
 				A95BCE861F5428F40021B1E7 /* RatingController.swift in Sources */,
 				A95FC51C1F502C7500E1F926 /* MenuController.swift in Sources */,
 				20AE55AC1F55A2C800043A07 /* TopTenCell.swift in Sources */,
@@ -405,9 +400,7 @@
 				20AE55AE1F55A88300043A07 /* InputController.swift in Sources */,
 				A95BCE741F5423FA0021B1E7 /* GameMapController.swift in Sources */,
 				A95BCE761F5424D00021B1E7 /* DetailsController.swift in Sources */,
-				154658491F56E21000DB0184 /* NewMultiGame.swift in Sources */,
 				20AE55AA1F55A2A900043A07 /* TopTenController.swift in Sources */,
-				154658471F56E1DB00DB0184 /* FoundPlayers.swift in Sources */,
 				A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -573,6 +566,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2U8WSM4T5B;
 				INFOPLIST_FILE = BomberMan/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -587,6 +581,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2U8WSM4T5B;
 				INFOPLIST_FILE = BomberMan/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

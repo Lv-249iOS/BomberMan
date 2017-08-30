@@ -9,7 +9,39 @@
 import Foundation
 
 class Brain {
-    var sceneData: String = ""
+    static let shared = Brain()
+    private var sceneData: String = ""
+    private var sceneWidth = 0
     
+    func appendScene(with width: Int, scene: String) {
+        sceneData = scene
+        sceneWidth = width
+    }
+
+    func move(to direction: Direction, player: Player) {
+        if let playerPosition = sceneData.characters.index(of: "0") {
+            switch direction {
+            case .bottom:
+                if sceneData[sceneData.characters.index(playerPosition, offsetBy: sceneWidth)] == " " {
+                    
+                }
+            case .left:
+                if sceneData[sceneData.characters.index(before: playerPosition)] == " " {
+                    
+                }
+            case .right:
+                if sceneData[sceneData.characters.index(after: playerPosition)] == " " {
+                    
+                }
+            case .top:
+                if sceneData[sceneData.characters.index(playerPosition, offsetBy: -sceneWidth)] == " " {
+                    //SceneController.shared.move(to: Direction.bottom)
+                }
+            }
+        }
+    }
     
+//    func plantBomb() {
+//        
+//    }
 }

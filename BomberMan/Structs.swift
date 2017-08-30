@@ -16,6 +16,7 @@ struct Block {
 
 struct Player {
 //    var health = 1
+    var markForScene: Character = "0"
     var canFly = false
     var minesCount = 1
     var explosionPower = 1
@@ -27,9 +28,9 @@ struct Enemy {
     var canFly = false
 }
 
-enum Direction: String {
-    case top
-    case bottom
-    case left
-    case right
+enum Direction: Int {
+    case top = 1
+    case bottom = 4
+    case left  = 2
+    case right = 3
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 
+//let notificationToMove = "PresentNotification"
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

@@ -49,10 +49,10 @@ class GameLayoutController: UIViewController {
     }
     
     // Controls arrow's events
-    func move(in direction: ArrowDirection) {
+    func move(in direction: Direction) {
         
     }
-    
+
     // Controls bomb setting
     func setBomb() {
 

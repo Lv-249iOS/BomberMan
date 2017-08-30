@@ -23,19 +23,19 @@ class Brain {
             switch direction {
             case .bottom:
                 if sceneData[sceneData.characters.index(playerPosition, offsetBy: sceneWidth)] == " " {
-                    
+                    GameMapController.shared.moveDown()
                 }
             case .left:
                 if sceneData[sceneData.characters.index(before: playerPosition)] == " " {
-                    
+                    GameMapController.shared.moveLeft()
                 }
             case .right:
                 if sceneData[sceneData.characters.index(after: playerPosition)] == " " {
-                    
+                    GameMapController.shared.moveRight()
                 }
             case .top:
                 if sceneData[sceneData.characters.index(playerPosition, offsetBy: -sceneWidth)] == " " {
-                    //SceneController.shared.move(to: Direction.bottom)
+                    GameMapController.shared.moveUp()
                 }
             }
         }

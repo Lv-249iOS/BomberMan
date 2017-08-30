@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		154658431F56C99400DB0184 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154658421F56C99400DB0184 /* ConnectionService.swift */; };
+		154658451F56D84A00DB0184 /* ConnectionGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154658441F56D84A00DB0184 /* ConnectionGuide.swift */; };
+		154658471F56E1DB00DB0184 /* FoundPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154658461F56E1DB00DB0184 /* FoundPlayers.swift */; };
+		154658491F56E21000DB0184 /* NewMultiGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154658481F56E21000DB0184 /* NewMultiGame.swift */; };
 		2023B3B41F55D99500B6F993 /* UserScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023B3B31F55D99500B6F993 /* UserScore.swift */; };
 		2023B3B71F55E26F00B6F993 /* ScoresManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023B3B61F55E26F00B6F993 /* ScoresManager.swift */; };
 		2023B3BB1F55ED0600B6F993 /* Date+SinceDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023B3BA1F55ED0600B6F993 /* Date+SinceDate.swift */; };
@@ -30,7 +34,6 @@
 		A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FC5191F502C7500E1F926 /* AppDelegate.swift */; };
 		A95FC51C1F502C7500E1F926 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FC51B1F502C7500E1F926 /* MenuController.swift */; };
 		A95FC51F1F502C7500E1F926 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95FC51D1F502C7500E1F926 /* Main.storyboard */; };
-		A95FC5221F502C7500E1F926 /* BomberMan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A95FC5201F502C7500E1F926 /* BomberMan.xcdatamodeld */; };
 		A95FC5241F502C7500E1F926 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A95FC5231F502C7500E1F926 /* Assets.xcassets */; };
 		A95FC5271F502C7500E1F926 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95FC5251F502C7500E1F926 /* LaunchScreen.storyboard */; };
 		A95FC5321F502C7500E1F926 /* BomberManTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FC5311F502C7500E1F926 /* BomberManTests.swift */; };
@@ -47,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		154658421F56C99400DB0184 /* ConnectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionService.swift; sourceTree = "<group>"; };
+		154658441F56D84A00DB0184 /* ConnectionGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionGuide.swift; sourceTree = "<group>"; };
+		154658461F56E1DB00DB0184 /* FoundPlayers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoundPlayers.swift; sourceTree = "<group>"; };
+		154658481F56E21000DB0184 /* NewMultiGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMultiGame.swift; sourceTree = "<group>"; };
 		2023B3B31F55D99500B6F993 /* UserScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserScore.swift; sourceTree = "<group>"; };
 		2023B3B61F55E26F00B6F993 /* ScoresManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresManager.swift; sourceTree = "<group>"; };
 		2023B3BA1F55ED0600B6F993 /* Date+SinceDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+SinceDate.swift"; sourceTree = "<group>"; };
@@ -71,7 +78,6 @@
 		A95FC5191F502C7500E1F926 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A95FC51B1F502C7500E1F926 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		A95FC51E1F502C7500E1F926 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A95FC5211F502C7500E1F926 /* BomberMan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BomberMan.xcdatamodel; sourceTree = "<group>"; };
 		A95FC5231F502C7500E1F926 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A95FC5261F502C7500E1F926 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A95FC5281F502C7500E1F926 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,6 +104,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1546583C1F56C49400DB0184 /* MultiPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				A908D08E1F56B1A40097CF51 /* CreationGame.storyboard */,
+				154658461F56E1DB00DB0184 /* FoundPlayers.swift */,
+				154658481F56E21000DB0184 /* NewMultiGame.swift */,
+			);
+			name = MultiPlayer;
+			sourceTree = "<group>";
+		};
+		154658411F56C98400DB0184 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				154658421F56C99400DB0184 /* ConnectionService.swift */,
+				154658441F56D84A00DB0184 /* ConnectionGuide.swift */,
+			);
+			name = Connection;
+			sourceTree = "<group>";
+		};
 		2023B3B21F55D96C00B6F993 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,9 +187,11 @@
 		A95BCE7F1F5427FC0021B1E7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				154658411F56C98400DB0184 /* Connection */,
 				A95BCE841F5428DB0021B1E7 /* Rating */,
 				A95BCE811F5428980021B1E7 /* Settings */,
 				A95BCE801F54280E0021B1E7 /* Game */,
+				1546583C1F56C49400DB0184 /* MultiPlayer */,
 				A95BCE871F5429B60021B1E7 /* Menu */,
 			);
 			name = Classes;
@@ -210,7 +237,6 @@
 			children = (
 				A95FC51B1F502C7500E1F926 /* MenuController.swift */,
 				A95FC51D1F502C7500E1F926 /* Main.storyboard */,
-				A908D08E1F56B1A40097CF51 /* CreationGame.storyboard */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -240,7 +266,6 @@
 				616E603A1F5038CE000B4A01 /* Supporting Files */,
 				A95BCE701F5421BD0021B1E7 /* CustomTiles */,
 				A95BCE7F1F5427FC0021B1E7 /* Classes */,
-				A95FC5201F502C7500E1F926 /* BomberMan.xcdatamodeld */,
 				61475F231F51C92500B68DAA /* Brain */,
 			);
 			path = BomberMan;
@@ -367,6 +392,8 @@
 				2023B3B41F55D99500B6F993 /* UserScore.swift in Sources */,
 				2023B3B71F55E26F00B6F993 /* ScoresManager.swift in Sources */,
 				A95BCE671F5420060021B1E7 /* BoxView.swift in Sources */,
+				154658431F56C99400DB0184 /* ConnectionService.swift in Sources */,
+				154658451F56D84A00DB0184 /* ConnectionGuide.swift in Sources */,
 				A95BCE861F5428F40021B1E7 /* RatingController.swift in Sources */,
 				A95BCE831F5428AF0021B1E7 /* SettingsController.swift in Sources */,
 				A95FC51C1F502C7500E1F926 /* MenuController.swift in Sources */,
@@ -378,9 +405,10 @@
 				20AE55AE1F55A88300043A07 /* InputController.swift in Sources */,
 				A95BCE741F5423FA0021B1E7 /* GameMapController.swift in Sources */,
 				A95BCE761F5424D00021B1E7 /* DetailsController.swift in Sources */,
+				154658491F56E21000DB0184 /* NewMultiGame.swift in Sources */,
 				20AE55AA1F55A2A900043A07 /* TopTenController.swift in Sources */,
+				154658471F56E1DB00DB0184 /* FoundPlayers.swift in Sources */,
 				A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */,
-				A95FC5221F502C7500E1F926 /* BomberMan.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,19 +658,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		A95FC5201F502C7500E1F926 /* BomberMan.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				A95FC5211F502C7500E1F926 /* BomberMan.xcdatamodel */,
-			);
-			currentVersion = A95FC5211F502C7500E1F926 /* BomberMan.xcdatamodel */;
-			path = BomberMan.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = A95FC50E1F502C7500E1F926 /* Project object */;
 }

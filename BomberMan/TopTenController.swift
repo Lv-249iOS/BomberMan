@@ -10,7 +10,7 @@ import UIKit
 
 class TopTenController: UITableViewController {
     
-    let scores: [UserScore] = ScoresManager.shared.topTen()
+    var scores: [UserScore] = ScoresManager.shared.topTen()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,5 +30,10 @@ class TopTenController: UITableViewController {
         cell.configure(with: score)
         
         return cell
+    }
+    public func clearScores() {
+        scores.removeAll()
+        tableView.reloadData()
+        
     }
 }

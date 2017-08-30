@@ -51,9 +51,9 @@
                                     <constraint firstAttribute="width" constant="40" id="75S-mB-4wk"/>
                                     <constraint firstAttribute="height" constant="40" id="LC4-4y-75G"/>
                                 </constraints>
-                                <state key="normal" image="settings"/>
+                                <state key="normal" image="soundOn"/>
                                 <connections>
-                                    <segue destination="M9H-Cs-Toc" kind="show" id="clT-qi-YOI"/>
+                                    <action selector="onSoundTap:" destination="Yqm-Zj-Hxm" eventType="touchUpInside" id="gej-RS-E4w"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boom" translatesAutoresizingMaskIntoConstraints="NO" id="zN1-nO-HYu">
@@ -100,6 +100,9 @@
                             <constraint firstAttribute="trailing" secondItem="ou3-rV-RSk" secondAttribute="trailing" constant="20" symbolic="YES" id="x7z-Lh-7xO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="soundButton" destination="ou3-rV-RSk" id="hFY-Zg-dng"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R9c-dd-sZg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -119,15 +122,7 @@
                 <viewControllerPlaceholder storyboardName="Rating" id="9aH-kW-XS3" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MpE-4T-CWX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-439" y="65"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="ssS-0c-oZl">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Settings" id="M9H-Cs-Toc" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qCt-fx-807" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-431" y="17"/>
+            <point key="canvasLocation" x="-439" y="22"/>
         </scene>
         <!--CreationGame-->
         <scene sceneID="xOZ-rV-fwr">
@@ -135,13 +130,13 @@
                 <viewControllerPlaceholder storyboardName="CreationGame" id="zUi-LQ-dM0" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="59F-g8-TJR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-405" y="107"/>
+            <point key="canvasLocation" x="-405" y="73"/>
         </scene>
     </scenes>
     <resources>
         <image name="bombermanK" width="600" height="600"/>
         <image name="boom" width="1024" height="512"/>
-        <image name="settings" width="128" height="128"/>
+        <image name="soundOn" width="256" height="256"/>
         <image name="trophy" width="128" height="128"/>
     </resources>
 </document>

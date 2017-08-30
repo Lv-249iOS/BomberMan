@@ -43,5 +43,4 @@ extension Date {
             return "just now"
         }
     }
-    
 }

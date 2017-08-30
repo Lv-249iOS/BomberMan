@@ -11,6 +11,7 @@ import UIKit
 class GameMapController: UIViewController {
     
     @IBOutlet weak var mapScroll: UIScrollView!
+    static let shared = GameMapController()
     
     var map: String!
     var orc: UIImageView!
@@ -56,4 +57,19 @@ class GameMapController: UIViewController {
             }
         }
     }
+    
+    func moveUp() {
+    orc.transform = (self.orc.transform.translatedBy(x: 0, y: -50))
+    }
+    func moveDown() {
+        orc.transform = (self.orc.transform.translatedBy(x: 0, y: 50))
+    }
+    func moveRight() {
+        orc.transform = (self.orc.transform.translatedBy(x: 50, y: 0))
+    }
+    func moveLeft() {
+        orc.transform = (self.orc.transform.translatedBy(x: -50, y: 0))
+    }
+    
+    
  }

@@ -21,7 +21,7 @@ class GameMapController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        map = brain.sceneData
+        map = brain.shareScene()
         
         var ii = 0
         var jj = 0

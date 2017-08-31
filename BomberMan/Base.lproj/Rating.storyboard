@@ -22,9 +22,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bomb_back" translatesAutoresizingMaskIntoConstraints="NO" id="8Uo-bo-aAv">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="0.5" colorSpace="calibratedRGB"/>
+                            </imageView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giO-Nd-oog">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <color key="backgroundColor" red="0.96231621503829956" green="0.95964020490646362" blue="0.95902103185653687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Scores" id="ZI8-fx-uLz">
                                         <barButtonItem key="leftBarButtonItem" systemItem="trash" id="Qmr-ai-KWs">
@@ -42,9 +46,9 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UYY-PW-eML">
+                            <containerView opaque="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="UYY-PW-eML">
                                 <rect key="frame" x="0.0" y="44" width="320" height="524"/>
-                                <color key="backgroundColor" red="0.96231621503829956" green="0.95964020490646362" blue="0.95902103185653687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="WtY-4M-6SD" kind="embed" identifier="TopTenSegue" id="z7y-Ni-w8t"/>
                                 </connections>
@@ -53,10 +57,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="UYY-PW-eML" secondAttribute="trailing" id="DWQ-Ne-A9W"/>
+                            <constraint firstAttribute="trailing" secondItem="8Uo-bo-aAv" secondAttribute="trailing" id="KUa-UC-rpb"/>
+                            <constraint firstItem="oOU-ph-5NN" firstAttribute="top" secondItem="8Uo-bo-aAv" secondAttribute="bottom" id="OH8-Xc-648"/>
                             <constraint firstItem="giO-Nd-oog" firstAttribute="top" secondItem="gvi-w2-Alp" secondAttribute="top" id="PGy-ej-je7"/>
                             <constraint firstItem="oOU-ph-5NN" firstAttribute="top" secondItem="UYY-PW-eML" secondAttribute="bottom" id="PJU-6x-0q6"/>
+                            <constraint firstItem="8Uo-bo-aAv" firstAttribute="top" secondItem="gvi-w2-Alp" secondAttribute="top" id="WdL-iz-2St"/>
                             <constraint firstItem="giO-Nd-oog" firstAttribute="leading" secondItem="gvi-w2-Alp" secondAttribute="leading" id="WhW-AO-CC1"/>
                             <constraint firstItem="UYY-PW-eML" firstAttribute="leading" secondItem="gvi-w2-Alp" secondAttribute="leading" id="Y91-Nf-E6w"/>
+                            <constraint firstItem="8Uo-bo-aAv" firstAttribute="leading" secondItem="gvi-w2-Alp" secondAttribute="leading" id="aae-T8-5Kh"/>
                             <constraint firstItem="UYY-PW-eML" firstAttribute="top" secondItem="giO-Nd-oog" secondAttribute="bottom" id="mYc-rY-4AQ"/>
                             <constraint firstAttribute="trailing" secondItem="giO-Nd-oog" secondAttribute="trailing" id="oAd-9n-Nt8"/>
                         </constraints>
@@ -108,7 +116,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="30 mins ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UF0-Ar-QhT">
                                             <rect key="frame" x="8" y="42" width="59.5" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="0.70258989726027399" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -129,6 +137,7 @@
                                         <constraint firstItem="HMs-f9-xHA" firstAttribute="leading" relation="lessThanOrEqual" secondItem="oUc-6E-NoB" secondAttribute="trailing" constant="8" symbolic="YES" id="uwA-zq-hOl"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="cellImage" destination="ejk-h3-GED" id="3xA-bB-i2C"/>
                                     <outlet property="dateLabel" destination="UF0-Ar-QhT" id="fd2-6l-kKs"/>
@@ -149,6 +158,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bomb_back" width="316" height="374"/>
         <image name="trophy" width="128" height="128"/>
     </resources>
 </document>

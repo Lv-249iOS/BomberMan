@@ -106,8 +106,9 @@ class Brain {
     }
     
     func startTimer(at position: String.Index, power: Int) {
-        gameTimer = Timer.init(timeInterval: 2, repeats: false, block: { [weak self] gameTimer in
+        gameTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { [weak self] _ in
             self?.explode(at: position, power: power)
+            self?.gameTimer.invalidate()
         })
     }
     

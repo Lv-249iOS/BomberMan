@@ -131,6 +131,15 @@ class GameMapController: UIViewController {
     
     func explode(ranges: Explosion, center: String.Index) {
         
+        let intValue = map.distance(from: map.startIndex, to: center)
+        let x = intValue%10
+        let y = intValue/10
+        
+        let rect = CGRect(x: x*50, y: y*50, width: 50, height: 50)
+        let bomb = UIImageView(frame: rect)
+        bomb.image = #imageLiteral(resourceName: "fire")
+        mapScroll.addSubview(bomb)
+        
     }
     
     func animate(images:[UIImage]) {

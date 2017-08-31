@@ -79,14 +79,14 @@ class GameMapController: UIViewController {
             orc.transform = (self.orc.transform.translatedBy(x: -50, y: 0))
            
             case .right:
-            let loadingImages = (1...5).map { UIImage(named: "right\($0)")! }
+            let loadingImages = (1...5).map { UIImage(named: "right\($0)") ?? #imageLiteral(resourceName: "noimage") }
             self.orc.animationImages = loadingImages
             self.orc.animationDuration = 0.5
             self.orc.startAnimating()
             orc.transform = (self.orc.transform.translatedBy(x: 50, y: 0))
                 
             case .top:
-            let loadingImages = (1...5).map { UIImage(named: "up\($0)")! }
+            let loadingImages = (1...5).map { UIImage(named: "up\($0)") ?? #imageLiteral(resourceName: "noimage") }
             self.orc.animationImages = loadingImages
             self.orc.animationDuration = 0.5
             self.orc.startAnimating()

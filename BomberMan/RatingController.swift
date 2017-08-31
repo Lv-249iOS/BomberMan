@@ -21,6 +21,9 @@ class RatingController: UIViewController {
         createScoreAlert(title: "Do you really want clean scores?" , messege: "Your records will be empty")
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        askUserAboutName()
+    }
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -30,8 +33,8 @@ class RatingController: UIViewController {
     func createScoreAlert(title: String, messege: String) {
         let alert = UIAlertController(title: title, message: messege, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { [weak self] (action) in
-        self?.topTenController?.clearScores()
-        self?.scoresManager.removeFromArchive()
+            self?.topTenController?.clearScores()
+            self?.scoresManager.removeFromArchive()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
@@ -48,4 +51,14 @@ class RatingController: UIViewController {
             
         }
     }
+    
+    // Alert to save yser's nickname
+    func askUserAboutName() {
+        let alert = UIAlertController(title: "Save your score", message: "Input your name here", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { [weak self] (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion:  nil)
+    }
 }
+

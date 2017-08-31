@@ -58,6 +58,10 @@ class GameMapController: UIViewController {
                 ii += 50
             }
         }
+        
+        brain.showFire = { [weak self] explosion, center in
+            self?.explode(ranges: explosion, center: center)
+        }
     }
     
     func move(in direction: Direction) {
@@ -123,6 +127,10 @@ class GameMapController: UIViewController {
                     }
                 }
         })
+    }
+    
+    func explode(ranges: Explosion, center: String.Index) {
+        
     }
     
     func animate(images:[UIImage]) {

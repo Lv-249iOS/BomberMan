@@ -23,7 +23,7 @@ struct Player {
 //    var speed = 1
 }
 
-struct Exploplosion {
+struct Explosion {
     var top = 0
     var bottom = 0
     var left = 0

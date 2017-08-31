@@ -14,7 +14,8 @@ class Brain {
     private var sceneWidth = 10
     private var player = Player.init(markForScene: "P", canFly: false, minesCount: 1, explosionPower: 1)
     var gameTimer: Timer!
-    
+    var showFire: ((Explosion, String.Index)->())?
+
     func appendScene(with width: Int, scene: String) {
         sceneData = scene
         sceneWidth = width
@@ -111,7 +112,7 @@ class Brain {
     }
     
     func explode(at position: String.Index, power: Int) {
-        var explosion = Exploplosion.init()
+        var explosion = Explosion.init()
         sceneData.characters.remove(at: position)
         sceneData.characters.insert("F", at: position)
         for i in 1...power + 1 {
@@ -154,6 +155,7 @@ class Brain {
                 break
             }
         }
+        showFire?(explosion, position)
         //call method from map send explosion + position
     }
 }

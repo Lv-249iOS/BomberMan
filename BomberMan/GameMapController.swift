@@ -74,10 +74,7 @@ class GameMapController: UIViewController {
                     orc.animationDuration = 0.5
                     orc.startAnimating()
                     
-                    let layer = orc.layer.presentation()! as CALayer
-                    let frame = layer.frame
                     orc.layer.removeAllAnimations()
-                    orc.frame = frame
                 }
                 count += 1
                 animateImages(images: downImageArray, x: 0, y: 50)
@@ -93,10 +90,7 @@ class GameMapController: UIViewController {
                     orc.animationDuration = 0.5
                     orc.startAnimating()
                     
-                    let layer = orc.layer.presentation()! as CALayer
-                    let frame = layer.frame
                     orc.layer.removeAllAnimations()
-                    orc.frame = frame
                 }
                 count += 1
                 animateImages(images: leftImageArray, x: -50, y: 0)
@@ -113,11 +107,7 @@ class GameMapController: UIViewController {
                     orc.animationDuration = 0.5
                     orc.startAnimating()
                     
-                    self.orc.layer.removeAllAnimations()
-                    let layer = orc.layer.presentation()! as CALayer
-                    let frame = layer.frame
                     orc.layer.removeAllAnimations()
-                    orc.frame = frame
                 }
             count += 1
                 animateImages(images: rightImageArray, x: 50, y: 0)
@@ -133,10 +123,7 @@ class GameMapController: UIViewController {
                     orc.animationDuration = 0.5
                     orc.startAnimating()
                     
-                    let layer = orc.layer.presentation()! as CALayer
-                    let frame = layer.frame
                     orc.layer.removeAllAnimations()
-                    orc.frame = frame
                 }
                 count += 1
                 animateImages(images: upImageArray, x: 0, y: -50)

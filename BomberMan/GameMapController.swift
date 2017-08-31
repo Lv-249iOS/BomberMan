@@ -60,34 +60,40 @@ class GameMapController: UIViewController {
     
     func move(in direction: Direction) {
         if Brain.shared.move(to: direction, player: Player()) {
-            orc.animationRepeatCount = 1
+            self.orc.animationRepeatCount = 1
+            
             switch direction {
             case .bottom:
-                let downImageArray = (1...5).map { UIImage(named: "down\($0)")! }
-                animateImages(images: downImageArray, x: 0, y: 50)
+            let loadingImages = (1...5).map { UIImage(named: "down\($0)")! }
+            self.orc.animationImages = loadingImages
+            self.orc.animationDuration = 0.5
+            
+            self.orc.startAnimating()
+            orc.transform = (self.orc.transform.translatedBy(x: 0, y: 50))
+                
             case .left:
-                let leftImageArray = (1...5).map { UIImage(named: "left\($0)")! }
-                animateImages(images: leftImageArray, x: -50, y: 0)
+            let loadingImages = (1...5).map { UIImage(named: "left\($0)")! }
+            self.orc.animationImages = loadingImages
+            self.orc.animationDuration = 0.5
+            self.orc.startAnimating()
+            orc.transform = (self.orc.transform.translatedBy(x: -50, y: 0))
+           
             case .right:
-                let rightImageArray = (1...5).map { UIImage(named: "right\($0)")! }
-                animateImages(images: rightImageArray, x: 50, y: 0)
+            let loadingImages = (1...5).map { UIImage(named: "right\($0)")! }
+            self.orc.animationImages = loadingImages
+            self.orc.animationDuration = 0.5
+            self.orc.startAnimating()
+            orc.transform = (self.orc.transform.translatedBy(x: 50, y: 0))
+                
             case .top:
-                let upImageArray = (1...5).map { UIImage(named: "up\($0)")! }
-                animateImages(images: upImageArray, x: 0, y: -50)
+            let loadingImages = (1...5).map { UIImage(named: "up\($0)")! }
+            self.orc.animationImages = loadingImages
+            self.orc.animationDuration = 0.5
+            self.orc.startAnimating()
+            orc.transform = (self.orc.transform.translatedBy(x: 0, y: -50))
             }
         }
-    }
-    
-    func animateImages(images:[UIImage],x:CGFloat,y:CGFloat){
-        let op  = UIViewAnimationOptions.beginFromCurrentState
-        UIView.animate(withDuration: 0.5,delay:0,options: op,animations: {[weak self] in
-            self?.orc.animationImages = images
-            self?.orc.animationDuration = 0.5
-            self?.orc.transform = (self?.orc.transform.translatedBy(x: x, y: y))!
-            self?.orc.startAnimating()
-            }
-            
-        )
+        
     }
     
 }

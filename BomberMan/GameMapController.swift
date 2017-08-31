@@ -95,6 +95,9 @@ class GameMapController: UIViewController {
                 animateImagesforMove(images: upImageArray, x: 0, y: -50)
             }
             clickСount += 1
+            let frame = CGRect(x: hero.frame.origin.x-100, y: hero.frame.origin.y-100, width: hero.frame.width*5, height: hero.frame.height*5)
+            
+            mapScroll.scrollRectToVisible(frame, animated: true)
         }
     }
     
@@ -142,5 +145,7 @@ class GameMapController: UIViewController {
             mapScroll.addSubview(hero)
         }
     }
+    
+    
     
 }

@@ -14,7 +14,8 @@ class GameMapController: UIViewController {
     
     var map: String!
     var orc: UIImageView!
-    
+    var count = 0
+    var countAnimation = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,78 +61,84 @@ class GameMapController: UIViewController {
     
     func move(in direction: Direction) {
         if Brain.shared.move(to: direction, player: Player()) {
-            //orc.animationRepeatCount = 1
             switch direction {
             case .bottom:
+                
                 let downImageArray = (1...5).map { UIImage(named: "down\($0)") ?? #imageLiteral(resourceName: "noImage")  }
                 
-                if orc.animationImages?.first == UIImage(named: "up1") {
+                if orc.animationImages?.first != UIImage(named: "down1") && orc.animationImages?.first != nil {
+                    count = 0
                     orc.stopAnimating()
                     orc.animationImages = downImageArray
                     orc.animationDuration = 0.5
                     orc.startAnimating()
                     
-                    self.mapScroll.layer.removeAllAnimations()
-                    self.mapScroll.layoutIfNeeded()
-                    self.view.layer.removeAllAnimations()
-                    self.view.layoutIfNeeded()
+                    let layer = orc.layer.presentation()! as CALayer
+                    let frame = layer.frame
+                    orc.layer.removeAllAnimations()
+                    orc.frame = frame
                 }
-                
+                count += 1
                 animateImages(images: downImageArray, x: 0, y: 50)
-                orc.image = UIImage(named: "down1")
                 
             case .left:
+                
                 let leftImageArray = (1...5).map { UIImage(named: "left\($0)") ?? #imageLiteral(resourceName: "noImage") }
                 
-                if orc.animationImages?.first == UIImage(named: "right1") {
+                if orc.animationImages?.first != UIImage(named: "left1") && orc.animationImages?.first != nil {
+                    count = 0
                     orc.stopAnimating()
                     orc.animationImages = leftImageArray
                     orc.animationDuration = 0.5
                     orc.startAnimating()
                     
-                    self.mapScroll.layer.removeAllAnimations()
-                    self.mapScroll.layoutIfNeeded()
-                    self.view.layer.removeAllAnimations()
-                    self.view.layoutIfNeeded()
+                    let layer = orc.layer.presentation()! as CALayer
+                    let frame = layer.frame
+                    orc.layer.removeAllAnimations()
+                    orc.frame = frame
                 }
-                
+                count += 1
                 animateImages(images: leftImageArray, x: -50, y: 0)
-                orc.image = UIImage(named: "left1")
                 
             case .right:
+                
+                
                 let rightImageArray = (1...5).map { UIImage(named: "right\($0)") ?? #imageLiteral(resourceName: "noImage") }
                 
-                if orc.animationImages?.first == UIImage(named: "left1") {
+                if orc.animationImages?.first != UIImage(named: "right1") && orc.animationImages?.first != nil{
+                    count = 0
                     orc.stopAnimating()
                     orc.animationImages = rightImageArray
                     orc.animationDuration = 0.5
                     orc.startAnimating()
                     
-                    self.mapScroll.layer.removeAllAnimations()
-                    self.mapScroll.layoutIfNeeded()
-                    self.view.layer.removeAllAnimations()
-                    self.view.layoutIfNeeded()
+                    self.orc.layer.removeAllAnimations()
+                    let layer = orc.layer.presentation()! as CALayer
+                    let frame = layer.frame
+                    orc.layer.removeAllAnimations()
+                    orc.frame = frame
                 }
-                
+            count += 1
                 animateImages(images: rightImageArray, x: 50, y: 0)
-                orc.image = UIImage(named: "right1")
+                
             case .top:
+                
                 let upImageArray = (1...5).map { UIImage(named: "up\($0)") ?? #imageLiteral(resourceName: "noImage") }
                 
-                if orc.animationImages?.first == UIImage(named: "down1") {
+                if orc.animationImages?.first != UIImage(named: "up1") && orc.animationImages?.first != nil {
+                    count = 0
                     orc.stopAnimating()
                     orc.animationImages = upImageArray
                     orc.animationDuration = 0.5
                     orc.startAnimating()
                     
-                    self.mapScroll.layer.removeAllAnimations()
-                    self.mapScroll.layoutIfNeeded()
-                    self.view.layer.removeAllAnimations()
-                    self.view.layoutIfNeeded()
+                    let layer = orc.layer.presentation()! as CALayer
+                    let frame = layer.frame
+                    orc.layer.removeAllAnimations()
+                    orc.frame = frame
                 }
-                
+                count += 1
                 animateImages(images: upImageArray, x: 0, y: -50)
-                orc.image = UIImage(named: "up1")
             }
         }
     }
@@ -146,13 +153,24 @@ class GameMapController: UIViewController {
                 self?.orc.animationImages = images
                 self?.orc.animationDuration = 0.5
                 self?.orc.startAnimating()
+            
             }
             
             self?.orc.transform = (self?.orc.transform.translatedBy(x: x, y: y))!
             }, completion: { [weak self] finished in
-                
+
                 if finished {
+
+                    self?.countAnimation += 1
+                    
+                    if self?.count == self?.countAnimation {
+                        
                     self?.orc.stopAnimating()
+                    self?.countAnimation = 0
+                    self?.count = 0
+                        
+                    }
+                    
                 }
         })
     }

@@ -133,14 +133,14 @@ class GameMapController: UIViewController {
     }
     
     func addBomb() {
-    
-        let rect = CGRect(x: hero.frame.origin.x, y: hero.frame.origin.y, width: 50, height: 50)
-        let bomb = UIImageView(frame: rect)
-        bomb.image = #imageLiteral(resourceName: "bomb")
-        view.addSubview(bomb)
-        view.willRemoveSubview(hero)
-        view.addSubview(hero)
-    
+        if brain.plantBomb() {
+            let rect = CGRect(x: hero.frame.origin.x, y: hero.frame.origin.y, width: 50, height: 50)
+            let bomb = UIImageView(frame: rect)
+            bomb.image = #imageLiteral(resourceName: "bomb")
+            mapScroll.addSubview(bomb)
+            mapScroll.willRemoveSubview(hero)
+            mapScroll.addSubview(hero)
+        }
     }
     
 }

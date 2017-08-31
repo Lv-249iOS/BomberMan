@@ -57,7 +57,7 @@ class GameLayoutController: UIViewController {
 
     // Controls bomb setting
     func setBomb() {
-
+        gameMapController.addBomb()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

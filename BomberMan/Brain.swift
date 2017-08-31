@@ -10,7 +10,7 @@ import Foundation
 
 class Brain {
     static let shared = Brain()
-    private var sceneData: String = "WWWWWWWWWWW  P     WW        WW        WW  B BBB WW  B B   WW  BBBBB WW    B B WW  BBB B WWWWWWWWWWW"
+    var sceneData: String = "WWWWWWWWWWW  P     WW        WW        WW  B BBB WW  B B   WW  BBBBB WW    B B WW  BBB B WWWWWWWWWWW"
     private var sceneWidth = 10
     
     func appendScene(with width: Int, scene: String) {

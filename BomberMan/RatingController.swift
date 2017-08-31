@@ -72,6 +72,7 @@ class RatingController: UIViewController {
             nicknameField.keyboardType = .default
             nicknameField.keyboardAppearance = .dark
             
+            alert.view.tintColor = UIColor.purple
             alert.addAction(confirmAction)
             alert.addAction(cancelAction)
             

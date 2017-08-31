@@ -52,13 +52,28 @@ class RatingController: UIViewController {
         }
     }
     
+    
     // Alert to save yser's nickname
     func askUserAboutName() {
+        
         let alert = UIAlertController(title: "Save your score", message: "Input your name here", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { [weak self] (action) in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion:  nil)
+        let confirmAction = UIAlertAction(title: "Done", style: .default, handler: { (action) -> Void in
+            
+        let nicknameField = alert.textFields![0] })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { (action) -> Void in })
+        
+        alert.addTextField { (nicknameField: UITextField) in
+            nicknameField.placeholder = "your name is..."
+            nicknameField.clearButtonMode = .whileEditing
+            nicknameField.keyboardType = .default
+            nicknameField.keyboardAppearance = .dark
+            
+            alert.addAction(confirmAction)
+            alert.addAction(cancelAction)
+            
+            self.present(alert, animated: true, completion:  nil)
+        }
     }
 }
 

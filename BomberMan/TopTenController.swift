@@ -31,9 +31,10 @@ class TopTenController: UITableViewController {
         
         return cell
     }
+
+    
     public func clearScores() {
         scores.removeAll()
         tableView.reloadData()
-        
     }
 }

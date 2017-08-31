@@ -9,9 +9,10 @@
 import UIKit
 import MultipeerConnectivity
 
-class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, MCAdvertiserAssistantDelegate {
+class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, InvitationFromUserDelegate {
     
     private let manager = ConnectionServiceManager()
+    
     @IBOutlet weak var joinButton: UIButton!
     
     override func viewDidLoad() {
@@ -19,7 +20,7 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, MCAdve
     }
     
     @IBAction func createNewGame(_ sender: UIButton) {
-        manager.setBrowser()
+        manager.startBrowser()
         manager.serviceBrowser.delegate = self
         self.present(manager.serviceBrowser, animated: true, completion: nil)
     }
@@ -29,15 +30,16 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, MCAdve
     }
     
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
-        manager.serviceBrowser.dismiss(animated: true, completion: nil)
+        manager.stopBrowser()
+        //Check if someone connected and if it true create game
     }
     
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
-        manager.serviceBrowser.dismiss(animated: true, completion: nil)
+        manager.stopBrowser()
     }
-    //Check how this method exactly working
-    func advertiserAssistantWillPresentInvitation(_ advertiserAssistant: MCAdvertiserAssistant) {
-        print("Hello")
-        advertiserAssistant.stop()
+    
+    func invitationWasReceived(fromPeer: MCPeerID) {
+        //Show alert with offer accept or decline invitation
+        //manager.invitation(accept: Bool)
     }
 }

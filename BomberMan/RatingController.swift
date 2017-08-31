@@ -57,9 +57,17 @@ class RatingController: UIViewController {
     func askUserAboutName() {
         
         let alert = UIAlertController(title: "Save your score", message: "Input your name here", preferredStyle: .alert)
+        
         let confirmAction = UIAlertAction(title: "Done", style: .default, handler: { (action) -> Void in
-            
-        let nicknameField = alert.textFields![0] })
+//            let score = UserScore(username: nicknameField.text ?? "User", score: 45600)
+//            ScoresManager.shared.saveData(score: score)
+        
+    
+        let nicknameField = alert.textFields![0]
+        
+        let score = UserScore(username: nicknameField.text ?? "User", score: 45600)
+        ScoresManager.shared.saveData(score: score) })
+
         
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { (action) -> Void in })
         

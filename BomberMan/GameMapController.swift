@@ -69,6 +69,7 @@ class GameMapController: UIViewController {
                 
                 if orc.animationImages?.first != UIImage(named: "down1") && orc.animationImages?.first != nil {
                     count = 0
+                    countAnimation = 0
                     orc.stopAnimating()
                     orc.animationImages = downImageArray
                     orc.animationDuration = 0.5
@@ -85,6 +86,7 @@ class GameMapController: UIViewController {
                 
                 if orc.animationImages?.first != UIImage(named: "left1") && orc.animationImages?.first != nil {
                     count = 0
+                    countAnimation = 0
                     orc.stopAnimating()
                     orc.animationImages = leftImageArray
                     orc.animationDuration = 0.5
@@ -102,6 +104,7 @@ class GameMapController: UIViewController {
                 
                 if orc.animationImages?.first != UIImage(named: "right1") && orc.animationImages?.first != nil{
                     count = 0
+                    countAnimation = 0
                     orc.stopAnimating()
                     orc.animationImages = rightImageArray
                     orc.animationDuration = 0.5
@@ -118,6 +121,7 @@ class GameMapController: UIViewController {
                 
                 if orc.animationImages?.first != UIImage(named: "up1") && orc.animationImages?.first != nil {
                     count = 0
+                    countAnimation = 0
                     orc.stopAnimating()
                     orc.animationImages = upImageArray
                     orc.animationDuration = 0.5

@@ -60,46 +60,37 @@ class GameMapController: UIViewController {
     
     func move(in direction: Direction) {
         if Brain.shared.move(to: direction, player: Player()) {
+            orc.animationRepeatCount = 1
             switch direction {
             case .bottom:
-                let downImageArray = (1...5).map { UIImage(named: "down\($0)")! }
+                let downImageArray = (1...5).map { UIImage(named: "down\($0)") ?? #imageLiteral(resourceName: "noImage")  }
                 animateImages(images: downImageArray, x: 0, y: 50)
-                orc.image = UIImage(named: "down1")
+                
             case .left:
-                let leftImageArray = (1...5).map { UIImage(named: "left\($0)")! }
+                let leftImageArray = (1...5).map { UIImage(named: "left\($0)") ?? #imageLiteral(resourceName: "noImage") }
                 animateImages(images: leftImageArray, x: -50, y: 0)
-                orc.image = UIImage(named: "left1")
+                
             case .right:
-                let rightImageArray = (1...5).map { UIImage(named: "right\($0)")! }
+                let rightImageArray = (1...5).map { UIImage(named: "right\($0)") ?? #imageLiteral(resourceName: "noImage") }
                 animateImages(images: rightImageArray, x: 50, y: 0)
-                orc.image = UIImage(named: "right1")
-            case .top:
-                let upImageArray = (1...5).map { UIImage(named: "up\($0)")! }
+                           case .top:
+                let upImageArray = (1...5).map { UIImage(named: "up\($0)") ?? #imageLiteral(resourceName: "noImage") }
                 animateImages(images: upImageArray, x: 0, y: -50)
-                orc.image = UIImage(named: "up1")
+                
             }
         }
     }
     
     func animateImages(images:[UIImage],x:CGFloat,y:CGFloat){
         let op  = UIViewAnimationOptions.beginFromCurrentState
-        
-        UIView.animate(withDuration: 0.5, delay: 0, options: op, animations: {[weak self] in
-            
-            if !(self?.orc.isAnimating)! {
-                
-                self?.orc.animationImages = images
-                self?.orc.animationDuration = 0.5
-                self?.orc.startAnimating()
-            }
-            
+        UIView.animate(withDuration: 0.35,delay:0,options: op,animations: {[weak self] in
+            self?.orc.animationImages = images
+            self?.orc.animationDuration = 0.35
             self?.orc.transform = (self?.orc.transform.translatedBy(x: x, y: y))!
-            }, completion: { [weak self] finished in
-                
-            if finished {
-                self?.orc.stopAnimating()
+            self?.orc.startAnimating()
             }
-        })
+            
+        )
         
     }
     

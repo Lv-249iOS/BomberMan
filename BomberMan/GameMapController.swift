@@ -12,6 +12,8 @@ class GameMapController: UIViewController {
     
     @IBOutlet weak var mapScroll: UIScrollView!
     
+    let brain = Brain.shared
+    
     var map: String!
     var orc: UIImageView!
     var count = 0
@@ -19,8 +21,7 @@ class GameMapController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        map = "WWWWWWWWWWW  P     WW        WW        WW  B BBB WW  B B   WW  BBBBB WW    B B WW  BBB B WWWWWWWWWWW"
+        map = brain.sceneData
         
         var ii = 0
         var jj = 0

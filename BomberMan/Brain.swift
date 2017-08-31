@@ -13,6 +13,7 @@ class Brain {
     private var sceneData: String = "WWWWWWWWWWW  P     WW        WW        WW  B BBB WW  B B   WW  BBBBB WW    B B WW  BBB B WWWWWWWWWWW"
     private var sceneWidth = 10
     private var player = Player.init(markForScene: "P", canFly: false, minesCount: 1, explosionPower: 1)
+    var gameTimer: Timer!
     
     func appendScene(with width: Int, scene: String) {
         sceneData = scene
@@ -97,8 +98,62 @@ class Brain {
         if let playerPosition = sceneData.characters.index(of: "P"), player.minesCount > entryPointsCount(for: sceneData, char: "X")  {
             sceneData.characters.remove(at: playerPosition)
             sceneData.characters.insert("Q", at: playerPosition)
+            startTimer(at: playerPosition, power: player.explosionPower)
             return true
         }
         return false
+    }
+    
+    func startTimer(at position: String.Index, power: Int) {
+        gameTimer = Timer.init(timeInterval: 2, repeats: false, block: { [weak self] gameTimer in
+            self?.explode(at: position, power: power)
+        })
+    }
+    
+    func explode(at position: String.Index, power: Int) {
+        var explosion = Exploplosion.init()
+        sceneData.characters.remove(at: position)
+        sceneData.characters.insert("F", at: position)
+        for i in 1...power + 1 {
+            let indexForFire = sceneData.characters.index(position, offsetBy: i * sceneWidth)
+            if sceneData[indexForFire] != "W" {
+                sceneData.remove(at: indexForFire)
+                sceneData.insert("F", at: indexForFire)
+                explosion.bottom += 1
+            } else {
+                break
+            }
+        }
+        for i in 1...power + 1 {
+            let indexForFire = sceneData.characters.index(position, offsetBy: -i * sceneWidth)
+            if sceneData[indexForFire] != "W" {
+                sceneData.remove(at: indexForFire)
+                sceneData.insert("F", at: indexForFire)
+                explosion.top += 1
+            } else {
+                break
+            }
+        }
+        for i in 1...power + 1 {
+            let indexForFire = sceneData.characters.index(position, offsetBy: i)
+            if sceneData[indexForFire] != "W" {
+                sceneData.remove(at: indexForFire)
+                sceneData.insert("F", at: indexForFire)
+                explosion.right += 1
+            } else {
+                break
+            }
+        }
+        for i in 1...power + 1 {
+            let indexForFire = sceneData.characters.index(position, offsetBy: -i)
+            if sceneData[indexForFire] != "W" {
+                sceneData.remove(at: indexForFire)
+                sceneData.insert("F", at: indexForFire)
+                explosion.left += 1
+            } else {
+                break
+            }
+        }
+        //call method from map send explosion + position
     }
 }

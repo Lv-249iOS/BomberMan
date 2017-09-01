@@ -130,10 +130,41 @@ class Brain {
     }
     
     func startBombTimer(at position: String.Index, power: Int) {
-         Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { [weak self] _ in
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { [weak self] _ in
             self?.explode(at: position, power: power)
-            //bombTimer.invalidate()
         })
+    }
+    
+    func startFireTimer(explosion: Explosion, position: String.Index) {
+        Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
+            self?.fadeFire(explosion: explosion, position: position)
+        }
+    }
+    
+    func fadeFire(explosion: Explosion, position: String.Index) {
+        scene.data.remove(at: position)
+        scene.data.insert(" ", at: position)
+        for i in 0..<explosion.bottom  {
+            let indexForFire = scene.data.characters.index(position, offsetBy: (i+1) * scene.width)
+            scene.data.remove(at: indexForFire)
+            scene.data.insert(" ", at: indexForFire)
+        }
+        for i in 0..<explosion.top  {
+            let indexForFire = scene.data.characters.index(position, offsetBy: -(i+1) * scene.width)
+            scene.data.remove(at: indexForFire)
+            scene.data.insert(" ", at: indexForFire)
+        }
+        for i in 0..<explosion.right  {
+            let indexForFire = scene.data.characters.index(position, offsetBy: (i+1))
+            scene.data.remove(at: indexForFire)
+            scene.data.insert(" ", at: indexForFire)
+        }
+        for i in 0..<explosion.left  {
+            let indexForFire = scene.data.characters.index(position, offsetBy: -(i+1))
+            scene.data.remove(at: indexForFire)
+            scene.data.insert(" ", at: indexForFire)
+        }
+        redrawScene?()
     }
     
     func explode(at position: String.Index, power: Int) {
@@ -181,7 +212,7 @@ class Brain {
             }
         }
         showFire?(explosion, position)
-        
+        startFireTimer(explosion: explosion, position: position)
         //call method from map send explosion + position
     }
 }

@@ -41,6 +41,10 @@ class GameMapController: UIViewController {
         brain.redrawScene = { [weak self] _ in
             self?.drawMap()
         }
+        brain.killHero = { [weak self] player in
+            self?.killHero(player: player)
+        }
+
     }
     
     func addSubImageView(_ rect: CGRect, image: UIImage) {
@@ -59,6 +63,8 @@ class GameMapController: UIViewController {
         
         var i = 0
         var j = 0
+        
+        map = brain.shareScene().data
         
         for tile in map.characters {
             

@@ -7,51 +7,32 @@
 //
 
 import UIKit
-import AVFoundation
 
 class MenuController: UIViewController {
     
     @IBOutlet weak var soundButton: UIButton!
-    var audioPlayer = AVAudioPlayer()
+    
+    var soundManager = SoundManager()
     
     @IBAction func onSoundTap(_ sender: UIButton) {
-        setSoundIfNeeded()
+        soundManager.soundState = !soundManager.soundState
+        set(soundState: soundManager.soundState)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if UserDefaults.standard.value(forKey: "soundState") as? Bool == nil {
-            UserDefaults.standard.set(false, forKey: "soundState")
-        }
-        
-        initMelody()
-        setSoundIfNeeded()
+        set(soundState: soundManager.soundState)
     }
     
-    func setSoundIfNeeded() {
-        if let soundState = UserDefaults.standard.value(forKey: "soundState") as? Bool {
-            if soundState != true {
-                soundButton.setImage(#imageLiteral(resourceName: "soundOn"), for: .normal)
-                audioPlayer.play()
-                
-            } else {
-                soundButton.setImage(#imageLiteral(resourceName: "soundOff"), for: .normal)
-                audioPlayer.stop()
-            }
+    func set(soundState: Bool) {
+        if soundState {
+            soundButton.setImage(#imageLiteral(resourceName: "soundOn"), for: .normal)
+            soundManager.playMusic()
             
-            UserDefaults.standard.set(!soundState, forKey: "soundState")
-        }
-    }
-    
-    func initMelody() {
-        do {
-            if let musicFile = Bundle.main.path(forResource: "opening", ofType: "mp3") {
-                audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: musicFile))
-            }
-            
-        } catch {
-            print(error)
+        } else {
+            soundButton.setImage(#imageLiteral(resourceName: "soundOff"), for: .normal)
+            soundManager.stopMusic()
         }
     }
 }

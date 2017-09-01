@@ -12,7 +12,7 @@ class SoundManager {
     
     enum Sound: String {
         case state = "soundState"
-        case name = "melody"
+        case name = "opening"
         case type = "mp3"
     }
     

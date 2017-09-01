@@ -15,15 +15,16 @@ class GameLayoutController: UIViewController {
     var detailsController: DetailsController!
     var gameMapController: GameMapController!
     var controlPanelController: ControlPanelController!
+    let brain = Brain.shared
     
-    var pause = UIButton()
+    var pause = PauseView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        pause = UIButton()
-        pause.pauseStyle()
-        pause.addTarget(self, action: #selector(turnOffpause), for: .touchUpInside)
+        pause.onPauseButtTap = { [weak self] in
+            self?.turnOffpause()
+        }
     }
     
     // Turns off pause from game scene
@@ -50,14 +51,14 @@ class GameLayoutController: UIViewController {
     
     // Controls arrow's events
     func move(direction: Direction) {
-        gameMapController.move(in: direction)
+        brain.move(to: direction, player: Player.init())
         
        
     }
 
     // Controls bomb setting
     func setBomb() {
-        gameMapController.addBomb()
+        brain.plantBomb(player: Player.init())
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -106,16 +107,5 @@ class GameLayoutController: UIViewController {
         detailsController.onHomeTap = { [weak self] in
             self?.turnToHome()
         }
-    }
-}
-
-extension UIButton {
-    
-    func pauseStyle() {
-        backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.9)
-        
-        imageView?.contentMode = .scaleAspectFit
-        tintColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.5)
-        setImage(#imageLiteral(resourceName: "pause").withRenderingMode(.alwaysTemplate), for: .normal)
     }
 }

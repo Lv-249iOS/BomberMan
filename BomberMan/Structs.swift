@@ -14,6 +14,11 @@ struct Block {
     var walkable = false
 }
 
+struct Scene {
+    var data = ""
+    var width = 0
+}
+
 struct Player {
 //    var health = 1
     var markForScene: Character = "0"

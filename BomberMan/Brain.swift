@@ -10,17 +10,18 @@ import Foundation
 
 class Brain {
     static let shared = Brain()
-    private var sceneData: String = "WWWWWWWWWWW  P     WW        WW        WW  B BBB WW  B B   WW  BBBBB WW    B B WW  BBB B WWWWWWWWWWW"
-    private var sceneWidth = 10
-    private var player = Player.init(markForScene: "P", canFly: false, minesCount: 2, explosionPower: 1)
+    private var scene = Scene.init(data: "WWWWWWWWWWW  P     WW        WW        WW  B BBB WW  B B   WW  BBBBB WW    B B WW  BBB B WWWWWWWWWWW", width: 10)
+    private var player = Player.init(markForScene: "P", canFly: false, minesCount: 1, explosionPower: 1)
     var gameTimer: Timer!
     var showFire: ((Explosion, String.Index)->())?
+    var move: ((Direction, Int)->())?
+    var plantBomb: (()->())?
     var cantGo = "WBXQ"
     var ifCanFly = "W"
 
-    func appendScene(with width: Int, scene: String) {
-        sceneData = scene
-        sceneWidth = width
+    func appendScene(with width: Int, data: String) {
+        scene.data = data
+        scene.width = width
     }
     
     func entryPointsCount(for testStr: String, char: Character) -> Int {
@@ -33,82 +34,95 @@ class Brain {
         return count
     }
     
-    func shareScene() -> String {
-        return sceneData
+    func shareScene() -> Scene {
+        return scene
     }
 
-    func move(to direction: Direction, player: Player) -> Bool {
-        if let playerPosition = sceneData.characters.index(of: "P") ?? sceneData.characters.index(of: "Q") {
+    func move(to direction: Direction, player: Player) {
+        if let playerPosition = scene.data.characters.index(of: "P") ?? scene.data.characters.index(of: "Q") {
             switch direction {
             case .bottom:
-                let directionPosition = sceneData.characters.index(playerPosition, offsetBy: sceneWidth)
-                if !cantGo.characters.contains(sceneData[directionPosition]) {
-                    if sceneData[playerPosition] == "P" {
-                        sceneData.characters.remove(at: playerPosition)
-                        sceneData.characters.insert(" ", at: playerPosition)
+                let directionPosition = scene.data.characters.index(playerPosition, offsetBy: scene.width)
+                if !cantGo.characters.contains(scene.data[directionPosition]) {
+                    if scene.data[playerPosition] == "P" {
+                        scene.data.characters.remove(at: playerPosition)
+                        scene.data.characters.insert(" ", at: playerPosition)
                     } else {
-                        sceneData.characters.remove(at: playerPosition)
-                        sceneData.characters.insert("X", at: playerPosition)
+                        scene.data.characters.remove(at: playerPosition)
+                        scene.data.characters.insert("X", at: playerPosition)
                     }
-                    sceneData.characters.remove(at: directionPosition)
-                    sceneData.characters.insert("P", at: directionPosition)
-                    return true
+                    scene.data.characters.remove(at: directionPosition)
+                    scene.data.characters.insert("P", at: directionPosition)
+                    if let intValue = Int(player.markForScene.description) {
+                        move?(direction, intValue)
+                    }
+                    return
                 }
             case .left:
-                let directionPosition = sceneData.characters.index(before: playerPosition)
-                if !cantGo.characters.contains(sceneData[directionPosition]) {
-                    if sceneData[playerPosition] == "P" {
-                        sceneData.characters.remove(at: playerPosition)
-                        sceneData.characters.insert(" ", at: playerPosition)
+                let directionPosition = scene.data.characters.index(before: playerPosition)
+                if !cantGo.characters.contains(scene.data[directionPosition]) {
+                    if scene.data[playerPosition] == "P" {
+                        scene.data.characters.remove(at: playerPosition)
+                        scene.data.characters.insert(" ", at: playerPosition)
                     } else {
-                        sceneData.characters.remove(at: playerPosition)
-                        sceneData.characters.insert("X", at: playerPosition)
+                        scene.data.characters.remove(at: playerPosition)
+                        scene.data.characters.insert("X", at: playerPosition)
                     }
-                    sceneData.characters.remove(at: directionPosition)
-                    sceneData.characters.insert("P", at: directionPosition)
-                    return true
+                    scene.data.characters.remove(at: directionPosition)
+                    scene.data.characters.insert("P", at: directionPosition)
+                    if let intValue = Int(player.markForScene.description) {
+                        move?(direction, intValue)
+                    }
+                    return
                 }
             case .right:
-                let directionPosition = sceneData.characters.index(after: playerPosition)
-                if !cantGo.characters.contains(sceneData[directionPosition]) {
-                    if sceneData[playerPosition] == "P" {
-                        sceneData.characters.remove(at: playerPosition)
-                        sceneData.characters.insert(" ", at: playerPosition)
+                let directionPosition = scene.data.characters.index(after: playerPosition)
+                if !cantGo.characters.contains(scene.data[directionPosition]) {
+                    if scene.data[playerPosition] == "P" {
+                        scene.data.characters.remove(at: playerPosition)
+                        scene.data.characters.insert(" ", at: playerPosition)
                     } else {
-                        sceneData.characters.remove(at: playerPosition)
-                        sceneData.characters.insert("X", at: playerPosition)
+                        scene.data.characters.remove(at: playerPosition)
+                        scene.data.characters.insert("X", at: playerPosition)
                     }
-                    sceneData.characters.remove(at: directionPosition)
-                    sceneData.characters.insert("P", at: directionPosition)
-                    return true
+                    scene.data.characters.remove(at: directionPosition)
+                    scene.data.characters.insert("P", at: directionPosition)
+                    if let intValue = Int(player.markForScene.description) {
+                        move?(direction, intValue)
+                    }
+                    return
                 }
             case .top:
-                let directionPosition = sceneData.index(playerPosition, offsetBy: -sceneWidth)
-                if !cantGo.characters.contains(sceneData[directionPosition]) {
-                    if sceneData[playerPosition] == "P" {
-                        sceneData.characters.remove(at: playerPosition)
-                        sceneData.characters.insert(" ", at: playerPosition)
+                let directionPosition = scene.data.index(playerPosition, offsetBy: -scene.width)
+                if !cantGo.characters.contains(scene.data[directionPosition]) {
+                    if scene.data[playerPosition] == "P" {
+                        scene.data.characters.remove(at: playerPosition)
+                        scene.data.characters.insert(" ", at: playerPosition)
                     } else {
-                        sceneData.characters.remove(at: playerPosition)
-                        sceneData.characters.insert("X", at: playerPosition)
+                        scene.data.characters.remove(at: playerPosition)
+                        scene.data.characters.insert("X", at: playerPosition)
                     }
-                    sceneData.characters.remove(at: directionPosition)
-                    sceneData.characters.insert("P", at: directionPosition)
-                    return true
+                    scene.data.characters.remove(at: directionPosition)
+                    scene.data.characters.insert("P", at: directionPosition)
+                    if let intValue = Int(player.markForScene.description) {
+                        move?(direction, intValue)
+                    }
+                    return
                 }
             }
         }
-        return false
+        return
     }
     
-    func plantBomb() -> Bool {
-        if let playerPosition = sceneData.characters.index(of: "P"), player.minesCount > entryPointsCount(for: sceneData, char: "X")  {
-            sceneData.characters.remove(at: playerPosition)
-            sceneData.characters.insert("Q", at: playerPosition)
+    func plantBomb(player: Player) {
+        if let playerPosition = scene.data.characters.index(of: "P"), player.minesCount > entryPointsCount(for: scene.data, char: "X")  {
+            scene.data.characters.remove(at: playerPosition)
+            scene.data.characters.insert("Q", at: playerPosition)
             startTimer(at: playerPosition, power: player.explosionPower)
-            return true
+            plantBomb?()
+            return
         }
-        return false
+        return
     }
     
     func startTimer(at position: String.Index, power: Int) {
@@ -120,43 +134,43 @@ class Brain {
     
     func explode(at position: String.Index, power: Int) {
         var explosion = Explosion.init()
-        sceneData.characters.remove(at: position)
-        sceneData.characters.insert("F", at: position)
+        scene.data.characters.remove(at: position)
+        scene.data.characters.insert("F", at: position)
         for i in 1...power  {
-            let indexForFire = sceneData.characters.index(position, offsetBy: i * sceneWidth)
-            if sceneData[indexForFire] != "W" {
-                sceneData.remove(at: indexForFire)
-                sceneData.insert("F", at: indexForFire)
+            let indexForFire = scene.data.characters.index(position, offsetBy: i * scene.width)
+            if scene.data[indexForFire] != "W" {
+                scene.data.remove(at: indexForFire)
+                scene.data.insert("F", at: indexForFire)
                 explosion.bottom += 1
             } else {
                 break
             }
         }
         for i in 1...power  {
-            let indexForFire = sceneData.characters.index(position, offsetBy: -i * sceneWidth)
-            if sceneData[indexForFire] != "W" {
-                sceneData.remove(at: indexForFire)
-                sceneData.insert("F", at: indexForFire)
+            let indexForFire = scene.data.characters.index(position, offsetBy: -i * scene.width)
+            if scene.data[indexForFire] != "W" {
+                scene.data.remove(at: indexForFire)
+                scene.data.insert("F", at: indexForFire)
                 explosion.top += 1
             } else {
                 break
             }
         }
         for i in 1...power  {
-            let indexForFire = sceneData.characters.index(position, offsetBy: i)
-            if sceneData[indexForFire] != "W" {
-                sceneData.remove(at: indexForFire)
-                sceneData.insert("F", at: indexForFire)
+            let indexForFire = scene.data.characters.index(position, offsetBy: i)
+            if scene.data[indexForFire] != "W" {
+                scene.data.remove(at: indexForFire)
+                scene.data.insert("F", at: indexForFire)
                 explosion.right += 1
             } else {
                 break
             }
         }
         for i in 1...power  {
-            let indexForFire = sceneData.characters.index(position, offsetBy: -i)
-            if sceneData[indexForFire] != "W" {
-                sceneData.remove(at: indexForFire)
-                sceneData.insert("F", at: indexForFire)
+            let indexForFire = scene.data.characters.index(position, offsetBy: -i)
+            if scene.data[indexForFire] != "W" {
+                scene.data.remove(at: indexForFire)
+                scene.data.insert("F", at: indexForFire)
                 explosion.left += 1
             } else {
                 break

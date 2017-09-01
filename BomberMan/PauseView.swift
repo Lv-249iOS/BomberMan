@@ -33,6 +33,10 @@ class PauseView: UIView {
     
     private func commonInit() {
         Bundle.main.loadNibNamed("PauseView", owner: self, options: nil)
+        tintColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.5)
+        pauseButton.setImage(#imageLiteral(resourceName: "pause ").withRenderingMode(.alwaysTemplate), for: .normal)
+
+        
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]

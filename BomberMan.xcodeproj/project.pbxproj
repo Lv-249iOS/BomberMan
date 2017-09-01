@@ -44,6 +44,8 @@
 		A9E460081F59853D0091266C /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E460071F59853D0091266C /* SoundManager.swift */; };
 		A9E4600A1F5999F40091266C /* SingleDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9E460091F5999F40091266C /* SingleDetailsView.xib */; };
 		A9E4600C1F599A660091266C /* SingleDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E4600B1F599A660091266C /* SingleDetailsView.swift */; };
+		A9E4600E1F599FA20091266C /* MultiDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E4600D1F599FA20091266C /* MultiDetailsView.swift */; };
+		A9E460101F599FC80091266C /* MultiDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9E4600F1F599FC80091266C /* MultiDetailsView.xib */; };
 		E73B03F01F572BD5008C0FC2 /* down2.png in Resources */ = {isa = PBXBuildFile; fileRef = E73B03EF1F572BD5008C0FC2 /* down2.png */; };
 		E73B03F21F572BDA008C0FC2 /* down3.png in Resources */ = {isa = PBXBuildFile; fileRef = E73B03F11F572BDA008C0FC2 /* down3.png */; };
 		E73B03F41F572BDF008C0FC2 /* down4.png in Resources */ = {isa = PBXBuildFile; fileRef = E73B03F31F572BDF008C0FC2 /* down4.png */; };
@@ -127,6 +129,8 @@
 		A9E460071F59853D0091266C /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		A9E460091F5999F40091266C /* SingleDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleDetailsView.xib; sourceTree = "<group>"; };
 		A9E4600B1F599A660091266C /* SingleDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleDetailsView.swift; sourceTree = "<group>"; };
+		A9E4600D1F599FA20091266C /* MultiDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiDetailsView.swift; sourceTree = "<group>"; };
+		A9E4600F1F599FC80091266C /* MultiDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiDetailsView.xib; sourceTree = "<group>"; };
 		E73B03EF1F572BD5008C0FC2 /* down2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down2.png; sourceTree = "<group>"; };
 		E73B03F11F572BDA008C0FC2 /* down3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down3.png; sourceTree = "<group>"; };
 		E73B03F31F572BDF008C0FC2 /* down4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down4.png; sourceTree = "<group>"; };
@@ -373,6 +377,8 @@
 				A9E45FE51F596A5A0091266C /* GameOverView.swift */,
 				A9E460091F5999F40091266C /* SingleDetailsView.xib */,
 				A9E4600B1F599A660091266C /* SingleDetailsView.swift */,
+				A9E4600D1F599FA20091266C /* MultiDetailsView.swift */,
+				A9E4600F1F599FC80091266C /* MultiDetailsView.xib */,
 			);
 			name = "Xib files";
 			sourceTree = "<group>";
@@ -537,6 +543,7 @@
 				E73B04081F572C1D008C0FC2 /* left2.png in Resources */,
 				E73B03F21F572BDA008C0FC2 /* down3.png in Resources */,
 				E77C3CDD1F59889200DE1CE1 /* death4.png in Resources */,
+				A9E460101F599FC80091266C /* MultiDetailsView.xib in Resources */,
 				A95FC51F1F502C7500E1F926 /* Main.storyboard in Resources */,
 				E73B03F01F572BD5008C0FC2 /* down2.png in Resources */,
 				E77C3CDF1F59889200DE1CE1 /* death6.png in Resources */,
@@ -573,6 +580,7 @@
 				A95FC51C1F502C7500E1F926 /* MenuController.swift in Sources */,
 				A9E45FE61F596A5A0091266C /* GameOverView.swift in Sources */,
 				20AE55AC1F55A2C800043A07 /* TopTenCell.swift in Sources */,
+				A9E4600E1F599FA20091266C /* MultiDetailsView.swift in Sources */,
 				61475F2F1F51CA2F00B68DAA /* Structs.swift in Sources */,
 				A95BCE721F5423DE0021B1E7 /* ControlPanelController.swift in Sources */,
 				A95BCE891F544D6B0021B1E7 /* GameLayoutController.swift in Sources */,

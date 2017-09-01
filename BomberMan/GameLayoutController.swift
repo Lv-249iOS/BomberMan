@@ -15,6 +15,7 @@ class GameLayoutController: UIViewController {
     var detailsController: DetailsController!
     var gameMapController: GameMapController!
     var controlPanelController: ControlPanelController!
+    let brain = Brain.shared
     
     var pause = UIButton()
     
@@ -50,14 +51,14 @@ class GameLayoutController: UIViewController {
     
     // Controls arrow's events
     func move(direction: Direction) {
-        gameMapController.move(in: direction)
+        brain.move(to: direction, player: Player.init())
         
        
     }
 
     // Controls bomb setting
     func setBomb() {
-        gameMapController.addBomb()
+        brain.plantBomb(player: Player.init())
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

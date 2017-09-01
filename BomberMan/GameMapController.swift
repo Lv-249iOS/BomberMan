@@ -23,12 +23,28 @@ class GameMapController: UIViewController {
         super.viewDidLoad()
         map = brain.shareScene()
         
-        var ii = 0
-        var jj = 0
+        
         
         let sideTilesCount = sqrt(Double(map.characters.count))
-        
         mapScroll.contentSize = CGSize(width: 50 * sideTilesCount, height: 50 * sideTilesCount)
+        
+        drawMap()
+        
+        brain.showFire = { [weak self] explosion, center in
+            self?.explode(ranges: explosion, center: center)
+        }
+    }
+    
+    func drawMap() {
+        
+        for i in mapScroll.subviews {
+        i.removeFromSuperview()
+        }
+    
+        let sideTilesCount = sqrt(Double(map.characters.count))
+        
+        var ii = 0
+        var jj = 0
         
         for i in map.characters {
             if i == "W" {
@@ -58,10 +74,7 @@ class GameMapController: UIViewController {
                 ii += 50
             }
         }
-        
-        brain.showFire = { [weak self] explosion, center in
-            self?.explode(ranges: explosion, center: center)
-        }
+    
     }
     
     func move(in direction: Direction) {
@@ -130,6 +143,8 @@ class GameMapController: UIViewController {
     }
     
     func explode(ranges: Explosion, center: String.Index) {
+        map = brain.shareScene()
+        drawMap()
         
         let intValue = map.distance(from: map.startIndex, to: center)
         let x = intValue%10 * 50
@@ -140,43 +155,43 @@ class GameMapController: UIViewController {
         var down = ranges.bottom
         
         let rect = CGRect(x: x, y: y, width: 50, height: 50)
-        let bomb = UIImageView(frame: rect)
-        bomb.image = #imageLiteral(resourceName: "fire")
-        mapScroll.addSubview(bomb)
+        let fire = UIImageView(frame: rect)
+        fire.image = #imageLiteral(resourceName: "fire")
+        mapScroll.addSubview(fire)
         
-        if left >= 0 {
+        if left > 0 {
             while left > 0 {
                 let rect = CGRect(x: x - left*50, y: y, width: 50, height: 50)
-                let bomb = UIImageView(frame: rect)
-                bomb.image = #imageLiteral(resourceName: "fire")
-                mapScroll.addSubview(bomb)
+                let fire = UIImageView(frame: rect)
+                fire.image = #imageLiteral(resourceName: "fire")
+                mapScroll.addSubview(fire)
                 left -= 1
             }
         }
-        if right >= 0 {
+        if right > 0 {
             while right > 0 {
                 let rect = CGRect(x: x + right*50, y: y, width: 50, height: 50)
-                let bomb = UIImageView(frame: rect)
-                bomb.image = #imageLiteral(resourceName: "fire")
-                mapScroll.addSubview(bomb)
+                let fire = UIImageView(frame: rect)
+                fire.image = #imageLiteral(resourceName: "fire")
+                mapScroll.addSubview(fire)
                 right -= 1
             }
         }
-        if up >= 0 {
+        if up > 0 {
             while up > 0 {
                 let rect = CGRect(x: x , y: y - up*50 , width: 50, height: 50)
-                let bomb = UIImageView(frame: rect)
-                bomb.image = #imageLiteral(resourceName: "fire")
-                mapScroll.addSubview(bomb)
+                let fire = UIImageView(frame: rect)
+                fire.image = #imageLiteral(resourceName: "fire")
+                mapScroll.addSubview(fire)
                 up -= 1
             }
         }
-        if down >= 0 {
+        if down > 0 {
             while down > 0 {
                 let rect = CGRect(x: x , y: y + down * 50, width: 50, height: 50)
-                let bomb = UIImageView(frame: rect)
-                bomb.image = #imageLiteral(resourceName: "fire")
-                mapScroll.addSubview(bomb)
+                let fire = UIImageView(frame: rect)
+                fire.image = #imageLiteral(resourceName: "fire")
+                mapScroll.addSubview(fire)
                 down -= 1
             }
         }

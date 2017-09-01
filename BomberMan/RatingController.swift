@@ -31,31 +31,26 @@ class RatingController: UIViewController {
         return true
     }
     
-    
+    // Asks user to confirm cleaning of records
     func createScoreAlert(title: String, messege: String) {
         let alert = UIAlertController(title: title, message: messege, preferredStyle: UIAlertControllerStyle.alert)
-        
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { [weak self] (action) in
             self?.topTenController?.clearScores()
             self?.scoresManager.removeFromArchive()
         }))
-        
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
         }))
-        
         self.present(alert, animated: true, completion:  nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "TopTenSegue",
             let controller = segue.destination as? TopTenController {
-            
             topTenController = controller
             
         }
     }
-    
     
     // Alert to save yser's nickname
     func askUserAboutName() {
@@ -63,14 +58,10 @@ class RatingController: UIViewController {
         
         let confirmAction = UIAlertAction(title: "Done", style: .default, handler: { (action) -> Void in
             let nicknameField = alert.textFields![0]
-            
             let score = UserScore(username: nicknameField.text ?? "User", score: 45600)
             ScoresManager.shared.saveData(score: score)
             self.topTenController?.scores.append(score)
             self.topTenController?.tableView.reloadData()
-            
-            
-            
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { (action) -> Void in })
@@ -81,6 +72,7 @@ class RatingController: UIViewController {
             nicknameField.keyboardType = .default
             nicknameField.keyboardAppearance = .dark
             
+            alert.view.tintColor = UIColor.purple
             alert.addAction(confirmAction)
             alert.addAction(cancelAction)
             

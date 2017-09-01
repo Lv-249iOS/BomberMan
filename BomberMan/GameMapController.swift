@@ -132,14 +132,54 @@ class GameMapController: UIViewController {
     func explode(ranges: Explosion, center: String.Index) {
         
         let intValue = map.distance(from: map.startIndex, to: center)
-        let x = intValue%10
-        let y = intValue/10
+        let x = intValue%10 * 50
+        let y = intValue / 10 * 50
+        var left = ranges.left
+        var right = ranges.right
+        var up = ranges.top
+        var down = ranges.bottom
         
-        let rect = CGRect(x: x*50, y: y*50, width: 50, height: 50)
+        let rect = CGRect(x: x, y: y, width: 50, height: 50)
         let bomb = UIImageView(frame: rect)
         bomb.image = #imageLiteral(resourceName: "fire")
         mapScroll.addSubview(bomb)
         
+        if left >= 0 {
+            while left > 0 {
+                let rect = CGRect(x: x - left*50, y: y, width: 50, height: 50)
+                let bomb = UIImageView(frame: rect)
+                bomb.image = #imageLiteral(resourceName: "fire")
+                mapScroll.addSubview(bomb)
+                left -= 1
+            }
+        }
+        if right >= 0 {
+            while right > 0 {
+                let rect = CGRect(x: x + right*50, y: y, width: 50, height: 50)
+                let bomb = UIImageView(frame: rect)
+                bomb.image = #imageLiteral(resourceName: "fire")
+                mapScroll.addSubview(bomb)
+                right -= 1
+            }
+        }
+        if up >= 0 {
+            while up > 0 {
+                let rect = CGRect(x: x , y: y - up*50 , width: 50, height: 50)
+                let bomb = UIImageView(frame: rect)
+                bomb.image = #imageLiteral(resourceName: "fire")
+                mapScroll.addSubview(bomb)
+                up -= 1
+            }
+        }
+        if down >= 0 {
+            while down > 0 {
+                let rect = CGRect(x: x , y: y + down * 50, width: 50, height: 50)
+                let bomb = UIImageView(frame: rect)
+                bomb.image = #imageLiteral(resourceName: "fire")
+                mapScroll.addSubview(bomb)
+                down -= 1
+            }
+        }
     }
     
     func animate(images:[UIImage]) {

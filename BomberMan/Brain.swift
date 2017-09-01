@@ -116,7 +116,7 @@ class Brain {
         var explosion = Explosion.init()
         sceneData.characters.remove(at: position)
         sceneData.characters.insert("F", at: position)
-        for i in 1...power + 1 {
+        for i in 1...power  {
             let indexForFire = sceneData.characters.index(position, offsetBy: i * sceneWidth)
             if sceneData[indexForFire] != "W" {
                 sceneData.remove(at: indexForFire)
@@ -126,7 +126,7 @@ class Brain {
                 break
             }
         }
-        for i in 1...power + 1 {
+        for i in 1...power  {
             let indexForFire = sceneData.characters.index(position, offsetBy: -i * sceneWidth)
             if sceneData[indexForFire] != "W" {
                 sceneData.remove(at: indexForFire)
@@ -136,7 +136,7 @@ class Brain {
                 break
             }
         }
-        for i in 1...power + 1 {
+        for i in 1...power  {
             let indexForFire = sceneData.characters.index(position, offsetBy: i)
             if sceneData[indexForFire] != "W" {
                 sceneData.remove(at: indexForFire)
@@ -146,7 +146,7 @@ class Brain {
                 break
             }
         }
-        for i in 1...power + 1 {
+        for i in 1...power  {
             let indexForFire = sceneData.characters.index(position, offsetBy: -i)
             if sceneData[indexForFire] != "W" {
                 sceneData.remove(at: indexForFire)

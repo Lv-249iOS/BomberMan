@@ -42,75 +42,32 @@ class Brain {
 
     func move(to direction: Direction, player: Player) {
         if let playerPosition = scene.data.characters.index(of: player.markForScene) ?? scene.data.characters.index(of: "Q") {
+            var directionPosition: String.Index
             switch direction {
-            case .bottom:
-                let directionPosition = scene.data.characters.index(playerPosition, offsetBy: scene.width)
-                if !cantGo.characters.contains(scene.data[directionPosition]) {
-                    if scene.data[playerPosition] == player.markForScene {
-                        scene.data.characters.remove(at: playerPosition)
-                        scene.data.characters.insert(" ", at: playerPosition)
-                    } else {
-                        scene.data.characters.remove(at: playerPosition)
-                        scene.data.characters.insert("X", at: playerPosition)
-                    }
-                    scene.data.characters.remove(at: directionPosition)
-                    scene.data.characters.insert(player.markForScene, at: directionPosition)
-                    if let intValue = Int(player.markForScene.description) {
-                        move?(direction, intValue)
-                    }
+                case .bottom: directionPosition = scene.data.characters.index(playerPosition, offsetBy: scene.width)
+                case .left: directionPosition = scene.data.characters.index(before: playerPosition)
+                case .right: directionPosition = scene.data.characters.index(after: playerPosition)
+                case .top: directionPosition = scene.data.index(playerPosition, offsetBy: -scene.width)
+            }
+            if !cantGo.characters.contains(scene.data[directionPosition]) {
+                if scene.data[playerPosition] == player.markForScene {
+                    scene.data.characters.remove(at: playerPosition)
+                    scene.data.characters.insert(" ", at: playerPosition)
+                } else {
+                    scene.data.characters.remove(at: playerPosition)
+                    scene.data.characters.insert("X", at: playerPosition)
+                }
+                if scene.data[directionPosition] == "F", let intValue = Int(player.markForScene.description) {
+                    move?(direction, intValue)
+                    killHero?(intValue)
                     return
                 }
-            case .left:
-                let directionPosition = scene.data.characters.index(before: playerPosition)
-                if !cantGo.characters.contains(scene.data[directionPosition]) {
-                    if scene.data[playerPosition] == player.markForScene {
-                        scene.data.characters.remove(at: playerPosition)
-                        scene.data.characters.insert(" ", at: playerPosition)
-                    } else {
-                        scene.data.characters.remove(at: playerPosition)
-                        scene.data.characters.insert("X", at: playerPosition)
-                    }
-                    scene.data.characters.remove(at: directionPosition)
-                    scene.data.characters.insert(player.markForScene, at: directionPosition)
-                    if let intValue = Int(player.markForScene.description) {
-                        move?(direction, intValue)
-                    }
-                    return
+                scene.data.characters.remove(at: directionPosition)
+                scene.data.characters.insert(player.markForScene, at: directionPosition)
+                if let intValue = Int(player.markForScene.description) {
+                    move?(direction, intValue)
                 }
-            case .right:
-                let directionPosition = scene.data.characters.index(after: playerPosition)
-                if !cantGo.characters.contains(scene.data[directionPosition]) {
-                    if scene.data[playerPosition] == player.markForScene {
-                        scene.data.characters.remove(at: playerPosition)
-                        scene.data.characters.insert(" ", at: playerPosition)
-                    } else {
-                        scene.data.characters.remove(at: playerPosition)
-                        scene.data.characters.insert("X", at: playerPosition)
-                    }
-                    scene.data.characters.remove(at: directionPosition)
-                    scene.data.characters.insert(player.markForScene, at: directionPosition)
-                    if let intValue = Int(player.markForScene.description) {
-                        move?(direction, intValue)
-                    }
-                    return
-                }
-            case .top:
-                let directionPosition = scene.data.index(playerPosition, offsetBy: -scene.width)
-                if !cantGo.characters.contains(scene.data[directionPosition]) {
-                    if scene.data[playerPosition] == player.markForScene {
-                        scene.data.characters.remove(at: playerPosition)
-                        scene.data.characters.insert(" ", at: playerPosition)
-                    } else {
-                        scene.data.characters.remove(at: playerPosition)
-                        scene.data.characters.insert("X", at: playerPosition)
-                    }
-                    scene.data.characters.remove(at: directionPosition)
-                    scene.data.characters.insert(player.markForScene, at: directionPosition)
-                    if let intValue = Int(player.markForScene.description) {
-                        move?(direction, intValue)
-                    }
-                    return
-                }
+                return
             }
         }
         return
@@ -130,10 +87,41 @@ class Brain {
     }
     
     func startBombTimer(at position: String.Index, power: Int) {
-         Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { [weak self] _ in
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { [weak self] _ in
             self?.explode(at: position, power: power)
-            //bombTimer.invalidate()
         })
+    }
+    
+    func startFireTimer(explosion: Explosion, position: String.Index) {
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { [weak self] _ in
+            self?.fadeFire(explosion: explosion, position: position)
+        }
+    }
+    
+    func fadeFire(explosion: Explosion, position: String.Index) {
+        scene.data.remove(at: position)
+        scene.data.insert(" ", at: position)
+        for i in 0..<explosion.bottom  {
+            let indexForFire = scene.data.characters.index(position, offsetBy: (i+1) * scene.width)
+            scene.data.remove(at: indexForFire)
+            scene.data.insert(" ", at: indexForFire)
+        }
+        for i in 0..<explosion.top  {
+            let indexForFire = scene.data.characters.index(position, offsetBy: -(i+1) * scene.width)
+            scene.data.remove(at: indexForFire)
+            scene.data.insert(" ", at: indexForFire)
+        }
+        for i in 0..<explosion.right  {
+            let indexForFire = scene.data.characters.index(position, offsetBy: (i+1))
+            scene.data.remove(at: indexForFire)
+            scene.data.insert(" ", at: indexForFire)
+        }
+        for i in 0..<explosion.left  {
+            let indexForFire = scene.data.characters.index(position, offsetBy: -(i+1))
+            scene.data.remove(at: indexForFire)
+            scene.data.insert(" ", at: indexForFire)
+        }
+        redrawScene?()
     }
     
     func explode(at position: String.Index, power: Int) {
@@ -181,7 +169,6 @@ class Brain {
             }
         }
         showFire?(explosion, position)
-        
-        //call method from map send explosion + position
+        startFireTimer(explosion: explosion, position: position)
     }
 }

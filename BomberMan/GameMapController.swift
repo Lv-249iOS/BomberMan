@@ -41,6 +41,9 @@ class GameMapController: UIViewController {
         brain.redrawScene = { [weak self] _ in
             self?.drawMap()
         }
+        brain.killHero = { [weak self] player in
+            self?.killHero(player: player)
+        }
     }
     
     func drawMap() {
@@ -95,6 +98,7 @@ class GameMapController: UIViewController {
     func killHero(player: Int) {
         let rect = CGRect(x: players[player].frame.origin.x, y: players[player].frame.origin.y, width: 50, height: 50)
         let death = UIImageView(frame: rect)
+        mapScroll.addSubview(death)
         
         players[player].removeFromSuperview()
         

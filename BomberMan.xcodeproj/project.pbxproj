@@ -288,11 +288,11 @@
 		A95FC5181F502C7500E1F926 /* BomberMan */ = {
 			isa = PBXGroup;
 			children = (
+				616E603A1F5038CE000B4A01 /* Supporting Files */,
 				A9E45FE21F596A230091266C /* Xib files */,
 				E73B03EC1F572BAF008C0FC2 /* Images */,
 				A987D19B1F56EFDF00CCF677 /* Music */,
 				2023B3B81F55ECCD00B6F993 /* Utilities */,
-				616E603A1F5038CE000B4A01 /* Supporting Files */,
 				A95BCE701F5421BD0021B1E7 /* CustomTiles */,
 				A95BCE7F1F5427FC0021B1E7 /* Classes */,
 				61475F231F51C92500B68DAA /* Brain */,
@@ -320,10 +320,18 @@
 		A9E45FE21F596A230091266C /* Xib files */ = {
 			isa = PBXGroup;
 			children = (
+				A9E45FE71F5970480091266C /* GameOver */,
+			);
+			name = "Xib files";
+			sourceTree = "<group>";
+		};
+		A9E45FE71F5970480091266C /* GameOver */ = {
+			isa = PBXGroup;
+			children = (
 				A9E45FE31F596A3F0091266C /* GameOverView.xib */,
 				A9E45FE51F596A5A0091266C /* GameOverView.swift */,
 			);
-			name = "Xib files";
+			name = GameOver;
 			sourceTree = "<group>";
 		};
 		E73B03EC1F572BAF008C0FC2 /* Images */ = {

@@ -120,7 +120,7 @@ class GameMapController: UIViewController {
             }
             clickСount += 1
             
-            let frame = CGRect(x: hero.frame.origin.x-100, y: hero.frame.origin.y-100, width: hero.frame.width*5, height: hero.frame.height*5)
+            let frame = CGRect(x: hero.frame.origin.x-150, y: hero.frame.origin.y-150, width: hero.frame.width*6, height: hero.frame.height*6)
             
             mapScroll.scrollRectToVisible(frame, animated: true)
         }

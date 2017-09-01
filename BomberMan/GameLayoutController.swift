@@ -51,14 +51,14 @@ class GameLayoutController: UIViewController {
     
     // Controls arrow's events
     func move(direction: Direction) {
-        brain.move(to: direction, player: Player.init())
+        brain.move(to: direction, player: brain.player)
         
        
     }
 
     // Controls bomb setting
     func setBomb() {
-        brain.plantBomb(player: Player.init())
+        brain.plantBomb(player: brain.player)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

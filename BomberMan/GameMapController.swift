@@ -38,6 +38,9 @@ class GameMapController: UIViewController {
         brain.plantBomb = { [weak self] player in
             self?.addBomb(player: player)
         }
+        brain.redrawScene = { [weak self] _ in
+            self?.drawMap()
+        }
     }
     
     func drawMap() {
@@ -64,7 +67,7 @@ class GameMapController: UIViewController {
                 let box = BoxView(frame: rect)
                 box.backgroundColor = UIColor.brown
                 mapScroll.addSubview(box)
-            case "P":
+            case "0":
                 let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
                 let player = UIImageView(frame: rect)
                 players.append(player)
@@ -87,6 +90,10 @@ class GameMapController: UIViewController {
             }
         }
     
+    }
+    
+    func killHero(player: Int) {
+        
     }
     
     func move(in direction: Direction, player: Int) {

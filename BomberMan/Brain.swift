@@ -12,9 +12,11 @@ class Brain {
     static let shared = Brain()
     private var sceneData: String = "WWWWWWWWWWW  P     WW        WW        WW  B BBB WW  B B   WW  BBBBB WW    B B WW  BBB B WWWWWWWWWWW"
     private var sceneWidth = 10
-    private var player = Player.init(markForScene: "P", canFly: false, minesCount: 1, explosionPower: 1)
+    private var player = Player.init(markForScene: "P", canFly: false, minesCount: 2, explosionPower: 1)
     var gameTimer: Timer!
     var showFire: ((Explosion, String.Index)->())?
+    var cantGo = "WBXQ"
+    var ifCanFly = "W"
 
     func appendScene(with width: Int, scene: String) {
         sceneData = scene
@@ -39,7 +41,8 @@ class Brain {
         if let playerPosition = sceneData.characters.index(of: "P") ?? sceneData.characters.index(of: "Q") {
             switch direction {
             case .bottom:
-                if sceneData[sceneData.characters.index(playerPosition, offsetBy: sceneWidth)] == " " {
+                let directionPosition = sceneData.characters.index(playerPosition, offsetBy: sceneWidth)
+                if !cantGo.characters.contains(sceneData[directionPosition]) {
                     if sceneData[playerPosition] == "P" {
                         sceneData.characters.remove(at: playerPosition)
                         sceneData.characters.insert(" ", at: playerPosition)
@@ -47,12 +50,13 @@ class Brain {
                         sceneData.characters.remove(at: playerPosition)
                         sceneData.characters.insert("X", at: playerPosition)
                     }
-                    sceneData.characters.remove(at: sceneData.index(playerPosition, offsetBy: sceneWidth))
-                    sceneData.characters.insert("P", at: sceneData.index(playerPosition, offsetBy: sceneWidth))
+                    sceneData.characters.remove(at: directionPosition)
+                    sceneData.characters.insert("P", at: directionPosition)
                     return true
                 }
             case .left:
-                if sceneData[sceneData.characters.index(before: playerPosition)] == " " {
+                let directionPosition = sceneData.characters.index(before: playerPosition)
+                if !cantGo.characters.contains(sceneData[directionPosition]) {
                     if sceneData[playerPosition] == "P" {
                         sceneData.characters.remove(at: playerPosition)
                         sceneData.characters.insert(" ", at: playerPosition)
@@ -60,12 +64,13 @@ class Brain {
                         sceneData.characters.remove(at: playerPosition)
                         sceneData.characters.insert("X", at: playerPosition)
                     }
-                    sceneData.characters.remove(at: sceneData.index(before: playerPosition))
-                    sceneData.characters.insert("P", at: sceneData.index(before: playerPosition))
+                    sceneData.characters.remove(at: directionPosition)
+                    sceneData.characters.insert("P", at: directionPosition)
                     return true
                 }
             case .right:
-                if sceneData[sceneData.characters.index(after: playerPosition)] == " " {
+                let directionPosition = sceneData.characters.index(after: playerPosition)
+                if !cantGo.characters.contains(sceneData[directionPosition]) {
                     if sceneData[playerPosition] == "P" {
                         sceneData.characters.remove(at: playerPosition)
                         sceneData.characters.insert(" ", at: playerPosition)
@@ -73,12 +78,13 @@ class Brain {
                         sceneData.characters.remove(at: playerPosition)
                         sceneData.characters.insert("X", at: playerPosition)
                     }
-                    sceneData.characters.remove(at: sceneData.index(after: playerPosition))
-                    sceneData.characters.insert("P", at: sceneData.index(after: playerPosition))
+                    sceneData.characters.remove(at: directionPosition)
+                    sceneData.characters.insert("P", at: directionPosition)
                     return true
                 }
             case .top:
-                if sceneData[sceneData.characters.index(playerPosition, offsetBy: -sceneWidth)] == " " {
+                let directionPosition = sceneData.index(playerPosition, offsetBy: -sceneWidth)
+                if !cantGo.characters.contains(sceneData[directionPosition]) {
                     if sceneData[playerPosition] == "P" {
                         sceneData.characters.remove(at: playerPosition)
                         sceneData.characters.insert(" ", at: playerPosition)
@@ -86,8 +92,8 @@ class Brain {
                         sceneData.characters.remove(at: playerPosition)
                         sceneData.characters.insert("X", at: playerPosition)
                     }
-                    sceneData.characters.remove(at: sceneData.index(playerPosition, offsetBy: -sceneWidth))
-                    sceneData.characters.insert("P", at: sceneData.index(playerPosition, offsetBy: -sceneWidth))
+                    sceneData.characters.remove(at: directionPosition)
+                    sceneData.characters.insert("P", at: directionPosition)
                     return true
                 }
             }

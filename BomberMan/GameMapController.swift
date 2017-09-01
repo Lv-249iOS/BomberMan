@@ -93,6 +93,19 @@ class GameMapController: UIViewController {
     }
     
     func killHero(player: Int) {
+        let rect = CGRect(x: players[player].frame.origin.x, y: players[player].frame.origin.y, width: 50, height: 50)
+        let death = UIImageView(frame: rect)
+        
+        players[player].removeFromSuperview()
+        
+        death.animationImages = (1...8).map { UIImage(named: "death\($0)") ?? #imageLiteral(resourceName: "noImage") }
+        death.animationRepeatCount = 1
+        death.animationDuration = 1
+        death.startAnimating()
+        
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { _ in
+            death.removeFromSuperview()
+        })
         
     }
     

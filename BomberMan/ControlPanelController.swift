@@ -13,6 +13,9 @@ class ControlPanelController: UIViewController {
     var onArrowTap: ((Direction)->())?
     var onBombTap: (()->())?
     
+    @IBOutlet var buttons: [UIButton]!
+    @IBOutlet weak var bombButton: UIButton!
+    
     // Send Arrow direction
     @IBAction func arrowTap(_ sender: UIButton) {
         if let arrowTag = Direction(rawValue: sender.tag) {
@@ -25,9 +28,15 @@ class ControlPanelController: UIViewController {
         onBombTap?()
     }
     
+    func setButtonState(isEnabled: Bool) {
+        for but in buttons {
+            but.isEnabled = isEnabled
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        bombButton.imageView?.contentMode = .scaleAspectFit
     }
 }

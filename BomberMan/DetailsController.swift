@@ -13,36 +13,41 @@ class DetailsController: UIViewController {
     var onPauseTap: ((Bool)->())?
     var onHomeTap: (()->())?
     
-    @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    
     var isPause: Bool = false
+    
+    @IBOutlet var detailsView: SingleDetailsView!
     
     // Shows current time usage in label
     func present(time: String) { // Change to Timer
-        timeLabel.text = time
+        detailsView.timeLabel.text = time
     }
     
     // Shows current score in label
     func present(score: Double) {
-        scoreLabel.text = "\(score)"
+        detailsView.scoreLabel.text = "\(score)"
     }
     
     // Sends event that pause taped
-    @IBAction func pauseTap(_ sender: UIButton) {
+    func pauseTap() {
         isPause = isPause == false ? true : false
         onPauseTap?(isPause)
     }
     
     // Sends event that home taped
-    @IBAction func homeTap(_ sender: UIButton) {
+    func homeTap() {
         onHomeTap?()
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        detailsView.onHomeButtTap = { [weak self] in
+            self?.homeTap()
+        }
+        
+        detailsView.onPauseButtTap = {[weak self] in
+            self?.pauseTap()
+        }
         // Do any additional setup after loading the view.
     }
 }

@@ -34,6 +34,8 @@
 		A95FC5321F502C7500E1F926 /* BomberManTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FC5311F502C7500E1F926 /* BomberManTests.swift */; };
 		A987D1981F56DA2C00CCF677 /* FireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A987D1971F56DA2C00CCF677 /* FireView.swift */; };
 		A987D19A1F56EFDA00CCF677 /* opening.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A987D1991F56EFDA00CCF677 /* opening.mp3 */; };
+		A9E45FE41F596A3F0091266C /* GameOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9E45FE31F596A3F0091266C /* GameOverView.xib */; };
+		A9E45FE61F596A5A0091266C /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E45FE51F596A5A0091266C /* GameOverView.swift */; };
 		E73B03F01F572BD5008C0FC2 /* down2.png in Resources */ = {isa = PBXBuildFile; fileRef = E73B03EF1F572BD5008C0FC2 /* down2.png */; };
 		E73B03F21F572BDA008C0FC2 /* down3.png in Resources */ = {isa = PBXBuildFile; fileRef = E73B03F11F572BDA008C0FC2 /* down3.png */; };
 		E73B03F41F572BDF008C0FC2 /* down4.png in Resources */ = {isa = PBXBuildFile; fileRef = E73B03F31F572BDF008C0FC2 /* down4.png */; };
@@ -98,6 +100,8 @@
 		A95FC5331F502C7500E1F926 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A987D1971F56DA2C00CCF677 /* FireView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireView.swift; sourceTree = "<group>"; };
 		A987D1991F56EFDA00CCF677 /* opening.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = opening.mp3; sourceTree = "<group>"; };
+		A9E45FE31F596A3F0091266C /* GameOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameOverView.xib; sourceTree = "<group>"; };
+		A9E45FE51F596A5A0091266C /* GameOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		E73B03EF1F572BD5008C0FC2 /* down2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down2.png; sourceTree = "<group>"; };
 		E73B03F11F572BDA008C0FC2 /* down3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down3.png; sourceTree = "<group>"; };
 		E73B03F31F572BDF008C0FC2 /* down4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down4.png; sourceTree = "<group>"; };
@@ -284,6 +288,7 @@
 		A95FC5181F502C7500E1F926 /* BomberMan */ = {
 			isa = PBXGroup;
 			children = (
+				A9E45FE21F596A230091266C /* Xib files */,
 				E73B03EC1F572BAF008C0FC2 /* Images */,
 				A987D19B1F56EFDF00CCF677 /* Music */,
 				2023B3B81F55ECCD00B6F993 /* Utilities */,
@@ -310,6 +315,15 @@
 				A987D1991F56EFDA00CCF677 /* opening.mp3 */,
 			);
 			name = Music;
+			sourceTree = "<group>";
+		};
+		A9E45FE21F596A230091266C /* Xib files */ = {
+			isa = PBXGroup;
+			children = (
+				A9E45FE31F596A3F0091266C /* GameOverView.xib */,
+				A9E45FE51F596A5A0091266C /* GameOverView.swift */,
+			);
+			name = "Xib files";
 			sourceTree = "<group>";
 		};
 		E73B03EC1F572BAF008C0FC2 /* Images */ = {
@@ -437,6 +451,7 @@
 				A95FC5271F502C7500E1F926 /* LaunchScreen.storyboard in Resources */,
 				A95FC5241F502C7500E1F926 /* Assets.xcassets in Resources */,
 				A908D0901F56B1A40097CF51 /* CreationGame.storyboard in Resources */,
+				A9E45FE41F596A3F0091266C /* GameOverView.xib in Resources */,
 				E73B04121F572C38008C0FC2 /* right2.png in Resources */,
 				E73B04061F572C19008C0FC2 /* left3.png in Resources */,
 				E73B04161F5733F2008C0FC2 /* down1.png in Resources */,
@@ -477,6 +492,7 @@
 				154658431F56C99400DB0184 /* ConnectionService.swift in Sources */,
 				A95BCE861F5428F40021B1E7 /* RatingController.swift in Sources */,
 				A95FC51C1F502C7500E1F926 /* MenuController.swift in Sources */,
+				A9E45FE61F596A5A0091266C /* GameOverView.swift in Sources */,
 				20AE55AC1F55A2C800043A07 /* TopTenCell.swift in Sources */,
 				61475F2F1F51CA2F00B68DAA /* Structs.swift in Sources */,
 				A95BCE721F5423DE0021B1E7 /* ControlPanelController.swift in Sources */,

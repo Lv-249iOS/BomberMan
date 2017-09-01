@@ -8,5 +8,8 @@
 
 import Foundation
 class Game {
+    let score = Int()
+    let gameStart = Bool()
+    let gameEnd = Bool()
 
 }

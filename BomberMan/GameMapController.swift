@@ -78,6 +78,11 @@ class GameMapController: UIViewController {
                 let fire = UIImageView(frame: rect)
                 fire.image = #imageLiteral(resourceName: "fire")
                 mapScroll.addSubview(fire)
+            case "X":
+                let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
+                let bomb = UIImageView(frame: rect)
+                bomb.image = #imageLiteral(resourceName: "bomb")
+                mapScroll.addSubview(bomb)
             default:
                 break
             }

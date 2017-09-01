@@ -14,10 +14,10 @@ class GameMapController: UIViewController {
     
     let brain = Brain.shared
     
-    var map: String!
-    var hero: UIImageView!
-    var clickСount = 0
-    var animationCount = 0
+    private var map: String!
+    private var hero: UIImageView!
+    private var clickСount = 0
+    private var animationCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,7 @@ class GameMapController: UIViewController {
         
         
         let sideTilesCount = sqrt(Double(map.characters.count))
+        
         mapScroll.contentSize = CGSize(width: 50 * sideTilesCount, height: 50 * sideTilesCount)
         
         drawMap()
@@ -37,8 +38,8 @@ class GameMapController: UIViewController {
     
     func drawMap() {
         
-        for i in mapScroll.subviews {
-        i.removeFromSuperview()
+        for subview in mapScroll.subviews {
+        subview.removeFromSuperview()
         }
     
         let sideTilesCount = sqrt(Double(map.characters.count))
@@ -47,24 +48,30 @@ class GameMapController: UIViewController {
         var jj = 0
         
         for i in map.characters {
-            if i == "W" {
+            
+            switch i {
+            case "W":
                 let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
                 let wall = WallView(frame: rect)
                 wall.backgroundColor = UIColor.gray
                 mapScroll.addSubview(wall)
-                
-            } else if i == "B" {
+            case "B":
                 let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
                 let box = BoxView(frame: rect)
                 box.backgroundColor = UIColor.brown
                 mapScroll.addSubview(box)
-                
-            } else if i == "P" {
+            case "P":
                 let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
                 hero = UIImageView(frame: rect)
                 hero.image = UIImage(named: "hero")
                 mapScroll.addSubview(hero)
-                
+            case "F":
+                let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
+                let fire = UIImageView(frame: rect)
+                fire.image = #imageLiteral(resourceName: "fire")
+                mapScroll.addSubview(fire)
+            default:
+                break
             }
             
             if ii / 50 == Int(sideTilesCount-1) {
@@ -86,14 +93,14 @@ class GameMapController: UIViewController {
                     
                     animate(images: downImageArray)
                 }
-                animateImagesforMove(images: downImageArray, x: 0, y: 50)
+                animateImagesForMove(images: downImageArray, x: 0, y: 50)
                 
             case .left:
                 let leftImageArray = (1...5).map { UIImage(named: "left\($0)") ?? #imageLiteral(resourceName: "noImage") }
                 if hero.animationImages?.first != UIImage(named: "left1") && hero.animationImages?.first != nil {
                     animate(images: leftImageArray)
                 }
-                animateImagesforMove(images: leftImageArray, x: -50, y: 0)
+                animateImagesForMove(images: leftImageArray, x: -50, y: 0)
                 
             case .right:
                 let rightImageArray = (1...5).map { UIImage(named: "right\($0)") ?? #imageLiteral(resourceName: "noImage") }
@@ -101,7 +108,7 @@ class GameMapController: UIViewController {
                     
                     animate(images: rightImageArray)
                 }
-                animateImagesforMove(images: rightImageArray, x: 50, y: 0)
+                animateImagesForMove(images: rightImageArray, x: 50, y: 0)
                 
             case .top:
                 let upImageArray = (1...5).map { UIImage(named: "up\($0)") ?? #imageLiteral(resourceName: "noImage") }
@@ -109,18 +116,19 @@ class GameMapController: UIViewController {
                     
                     animate(images: upImageArray)
                 }
-                animateImagesforMove(images: upImageArray, x: 0, y: -50)
+                animateImagesForMove(images: upImageArray, x: 0, y: -50)
             }
             clickСount += 1
+            
             let frame = CGRect(x: hero.frame.origin.x-100, y: hero.frame.origin.y-100, width: hero.frame.width*5, height: hero.frame.height*5)
             
             mapScroll.scrollRectToVisible(frame, animated: true)
         }
     }
     
-    func animateImagesforMove(images:[UIImage],x:CGFloat,y:CGFloat){
-        let op  = UIViewAnimationOptions.beginFromCurrentState
-        UIView.animate(withDuration: 0.5, delay: 0, options: op, animations: {[weak self] in
+    func animateImagesForMove(images:[UIImage],x:CGFloat,y:CGFloat){
+        let options  = UIViewAnimationOptions.beginFromCurrentState
+        UIView.animate(withDuration: 0.5, delay: 0, options: options, animations: {[weak self] in
             if !(self?.hero.isAnimating)! {
                 self?.hero.animationImages = images
                 self?.hero.animationDuration = 0.5
@@ -133,16 +141,14 @@ class GameMapController: UIViewController {
                     if self?.clickСount == self?.animationCount {
                         self?.hero.stopAnimating()
                         self?.animationCount = 0
-                        self?.clickСount = 0
-                        
-                        
-                        
+                        self?.clickСount = 0   
                     }
                 }
         })
     }
     
     func explode(ranges: Explosion, center: String.Index) {
+        
         map = brain.shareScene()
         drawMap()
         

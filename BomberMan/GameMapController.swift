@@ -48,7 +48,7 @@ class GameMapController: UIViewController {
         for subview in mapScroll.subviews {
         subview.removeFromSuperview()
         }
-    
+        map = brain.shareScene().data
         let sideTilesCount = sqrt(Double(map.characters.count))
         
         var ii = 0

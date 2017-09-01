@@ -23,23 +23,20 @@ class GameLayoutController: UIViewController {
         super.viewDidLoad()
         
         pause.onPauseButtTap = { [weak self] in
-            self?.turnOffpause()
+            self?.changePause(state: false)
         }
     }
     
-    // Turns off pause from game scene
-    func turnOffpause() {
-        detailsController.isPause = false
-        pause.removeFromSuperview()
-    }
-    
     // Catchs pause state from details
-    func turnOnPause(state: Bool) {
+    func changePause(state: Bool) {
         if state {
             pause.frame = gameMapController.mapScroll.frame
+            controlPanelController.setButtonState(isEnabled: false)
             gameContainer.addSubview(pause)
             
         } else {
+            detailsController.isPause = false
+            controlPanelController.setButtonState(isEnabled: true)
             pause.removeFromSuperview()
         }
     }
@@ -101,7 +98,7 @@ class GameLayoutController: UIViewController {
         detailsController = controller
         
         detailsController.onPauseTap = { [weak self] state in
-            self?.turnOnPause(state: state)
+            self?.changePause(state: state)
         }
         
         detailsController.onHomeTap = { [weak self] in

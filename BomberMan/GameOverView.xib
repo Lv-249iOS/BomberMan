@@ -33,11 +33,11 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Over" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="84E-l2-QFu">
                     <rect key="frame" x="84.5" y="242.5" width="206" height="48"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" red="0.19518545940000001" green="0.1759372095" blue="0.31680227529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="0.5096244352409639" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.91678530859999996" green="0.92527406140000001" blue="0.92527406140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="jWk-GS-vPe" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="OYw-PY-Sgz"/>
                 <constraint firstItem="jWk-GS-vPe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="TcM-DG-QSD"/>

@@ -15,7 +15,7 @@ class Brain {
     var gameTimer: Timer!
     var showFire: ((Explosion, String.Index)->())?
     var move: ((Direction, Int)->())?
-    var plantBomb: (()->())?
+    var plantBomb: ((Int)->())?
     var cantGo = "WBXQ"
     var ifCanFly = "W"
 
@@ -119,7 +119,9 @@ class Brain {
             scene.data.characters.remove(at: playerPosition)
             scene.data.characters.insert("Q", at: playerPosition)
             startTimer(at: playerPosition, power: player.explosionPower)
-            plantBomb?()
+            if let intValue = Int(player.markForScene.description) {
+                plantBomb?(intValue)
+            }
             return
         }
         return

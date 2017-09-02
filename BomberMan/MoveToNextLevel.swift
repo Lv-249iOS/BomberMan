@@ -16,9 +16,11 @@ class MoveToNextLevel: UIView {
     @IBOutlet weak var moveOnButton: UIButton!
     @IBOutlet weak var messageLabel: UILabel!
     
+    // Closures for repeat and continue actions
     var onRepeatButtTap: (()->())?
     var onMoveOnButtTap: (()->())?
 
+    // Block with button actions
     @IBAction func onRepeatTap(_ sender: UIButton) {
         onRepeatButtTap?()
     }
@@ -27,18 +29,21 @@ class MoveToNextLevel: UIView {
         onMoveOnButtTap?()
     }
     
+    // UIViews can be created two ways: interface builder or  directly in code
+    // They have a initializer for each of these creation methods
+    // and we need to override both of them with our own custom initializer.
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         commonInit()
     }
     
+    // This is custom init with view created in xib file
     private func commonInit() {
         Bundle.main.loadNibNamed("MoveToNextLevel", owner: self, options: nil)
         addSubview(contentView)

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2023B3BB1F55ED0600B6F993 /* Date+SinceDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023B3BA1F55ED0600B6F993 /* Date+SinceDate.swift */; };
 		A908D0901F56B1A40097CF51 /* CreationGame.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A908D08E1F56B1A40097CF51 /* CreationGame.storyboard */; };
 		A94BDEA41F5AFCE80085E073 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDEA31F5AFCE80085E073 /* ConnectionService.swift */; };
 		A94BDEA91F5AFD150085E073 /* RatingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDEA51F5AFD150085E073 /* RatingController.swift */; };
@@ -26,6 +25,7 @@
 		A94BDECC1F5B013C0085E073 /* Brain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDEC91F5B013C0085E073 /* Brain.swift */; };
 		A94BDECD1F5B013C0085E073 /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDECA1F5B013C0085E073 /* Levels.swift */; };
 		A94BDECE1F5B013C0085E073 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDECB1F5B013C0085E073 /* Structs.swift */; };
+		A94BDED01F5B01CE0085E073 /* Date+SinceDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDECF1F5B01CE0085E073 /* Date+SinceDate.swift */; };
 		A95BCE791F5427570021B1E7 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95BCE771F5427570021B1E7 /* Game.storyboard */; };
 		A95BCE7C1F5427CE0021B1E7 /* Rating.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95BCE7A1F5427CE0021B1E7 /* Rating.storyboard */; };
 		A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FC5191F502C7500E1F926 /* AppDelegate.swift */; };
@@ -89,7 +89,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2023B3BA1F55ED0600B6F993 /* Date+SinceDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+SinceDate.swift"; sourceTree = "<group>"; };
 		A908D08F1F56B1A40097CF51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CreationGame.storyboard; sourceTree = "<group>"; };
 		A94BDEA31F5AFCE80085E073 /* ConnectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionService.swift; sourceTree = "<group>"; };
 		A94BDEA51F5AFD150085E073 /* RatingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingController.swift; sourceTree = "<group>"; };
@@ -108,6 +107,7 @@
 		A94BDEC91F5B013C0085E073 /* Brain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brain.swift; sourceTree = "<group>"; };
 		A94BDECA1F5B013C0085E073 /* Levels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
 		A94BDECB1F5B013C0085E073 /* Structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
+		A94BDECF1F5B01CE0085E073 /* Date+SinceDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+SinceDate.swift"; sourceTree = "<group>"; };
 		A95BCE781F5427570021B1E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Game.storyboard; sourceTree = "<group>"; };
 		A95BCE7B1F5427CE0021B1E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Rating.storyboard; sourceTree = "<group>"; };
 		A95FC5161F502C7500E1F926 /* BomberMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BomberMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,20 +198,12 @@
 			path = Connection;
 			sourceTree = "<group>";
 		};
-		2023B3B81F55ECCD00B6F993 /* Utilities */ = {
+		2023B3B81F55ECCD00B6F993 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2023B3B91F55ECD700B6F993 /* Extensions */,
+				A94BDECF1F5B01CE0085E073 /* Date+SinceDate.swift */,
 			);
-			name = Utilities;
-			sourceTree = "<group>";
-		};
-		2023B3B91F55ECD700B6F993 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				2023B3BA1F55ED0600B6F993 /* Date+SinceDate.swift */,
-			);
-			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		61475F231F51C92500B68DAA /* Brain */ = {
@@ -314,7 +306,7 @@
 				A9E45FE21F596A230091266C /* Xib files */,
 				E73B03EC1F572BAF008C0FC2 /* Images */,
 				A987D19B1F56EFDF00CCF677 /* Music */,
-				2023B3B81F55ECCD00B6F993 /* Utilities */,
+				2023B3B81F55ECCD00B6F993 /* Extensions */,
 				A95BCE701F5421BD0021B1E7 /* CustomTiles */,
 				A95BCE7A1F5427CE0021B1E7 /* Rating.storyboard */,
 				A95FC51D1F502C7500E1F926 /* Main.storyboard */,
@@ -603,7 +595,6 @@
 			files = (
 				A9E460AE1F5AE32F0091266C /* FireView.swift in Sources */,
 				A94BDEBE1F5AFDA40085E073 /* UserScore.swift in Sources */,
-				2023B3BB1F55ED0600B6F993 /* Date+SinceDate.swift in Sources */,
 				A9E4604E1F5ADC9E0091266C /* MoveToNextLevelView.swift in Sources */,
 				A94BDECC1F5B013C0085E073 /* Brain.swift in Sources */,
 				A9E460B01F5AE32F0091266C /* WallView.swift in Sources */,
@@ -614,6 +605,7 @@
 				A94BDEB81F5AFD570085E073 /* MultiPlayerGame.swift in Sources */,
 				A94BDEB31F5AFD450085E073 /* DetailsController.swift in Sources */,
 				A94BDEAC1F5AFD150085E073 /* TopTenController.swift in Sources */,
+				A94BDED01F5B01CE0085E073 /* Date+SinceDate.swift in Sources */,
 				A9E460531F5ADCE00091266C /* MultiDetailsView.swift in Sources */,
 				A94BDEA91F5AFD150085E073 /* RatingController.swift in Sources */,
 				A9E460581F5ADD0E0091266C /* ControlPanelView.swift in Sources */,

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UtY-cH-NUP">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Multi Player Game-->
+        <scene sceneID="tik-jf-8I5">
+            <objects>
+                <viewController id="UtY-cH-NUP" customClass="MultiPlayerGame" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jBC-zA-g2u"/>
+                        <viewControllerLayoutGuide type="bottom" id="XAx-ni-XyW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eXA-YH-Izs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mla-fu-PCq">
+                                <rect key="frame" x="47" y="267" width="281" height="133"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0be-59-nRI">
+                                        <rect key="frame" x="0.0" y="0.0" width="281" height="62.5"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
+                                        <state key="normal" title="Create">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="createNewGame:" destination="UtY-cH-NUP" eventType="touchUpInside" id="iz9-C4-LCu"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oe1-j9-MEp">
+                                        <rect key="frame" x="0.0" y="70.5" width="281" height="62.5"/>
+                                        <color key="backgroundColor" red="0.4039215686" green="0.36470588240000001" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
+                                        <state key="normal" title="Join">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="joinToNewGame:" destination="UtY-cH-NUP" eventType="touchUpInside" id="ICM-dy-x07"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="oe1-j9-MEp" secondAttribute="bottom" id="1Hv-Rq-5xE"/>
+                                    <constraint firstItem="0be-59-nRI" firstAttribute="leading" secondItem="mla-fu-PCq" secondAttribute="leading" id="65H-6e-iIY"/>
+                                    <constraint firstItem="0be-59-nRI" firstAttribute="top" secondItem="mla-fu-PCq" secondAttribute="top" id="B71-3u-GCh"/>
+                                    <constraint firstAttribute="trailing" secondItem="oe1-j9-MEp" secondAttribute="trailing" id="HYq-fK-Gh0"/>
+                                    <constraint firstItem="oe1-j9-MEp" firstAttribute="height" secondItem="0be-59-nRI" secondAttribute="height" id="WSV-6u-1ZZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="0be-59-nRI" secondAttribute="trailing" id="X4J-0L-9Cx"/>
+                                    <constraint firstItem="oe1-j9-MEp" firstAttribute="leading" secondItem="mla-fu-PCq" secondAttribute="leading" id="bMy-Bc-p4l"/>
+                                    <constraint firstItem="oe1-j9-MEp" firstAttribute="top" secondItem="0be-59-nRI" secondAttribute="bottom" constant="8" symbolic="YES" id="mE9-fz-wXR"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mla-fu-PCq" firstAttribute="centerY" secondItem="eXA-YH-Izs" secondAttribute="centerY" id="aup-m2-pBj"/>
+                            <constraint firstItem="mla-fu-PCq" firstAttribute="height" secondItem="eXA-YH-Izs" secondAttribute="height" multiplier="0.2" id="gdf-hf-S3h"/>
+                            <constraint firstItem="mla-fu-PCq" firstAttribute="centerX" secondItem="eXA-YH-Izs" secondAttribute="centerX" id="iie-aW-6iI"/>
+                            <constraint firstItem="mla-fu-PCq" firstAttribute="width" secondItem="eXA-YH-Izs" secondAttribute="width" multiplier="0.75" id="uZ9-VO-zIF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="joinButton" destination="oe1-j9-MEp" id="upj-S0-WGX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bBX-LU-Cp7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-319.19999999999999" y="676.91154422788611"/>
+        </scene>
+    </scenes>
+</document>

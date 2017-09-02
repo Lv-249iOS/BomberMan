@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Game Layout Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="GameLayoutController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5R9-Xv-Hma">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="bPZ-UK-hog" kind="embed" identifier="DetailsControllerSegue" id="5hB-aY-F9A"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9n-yH-NtM">
+                                <rect key="frame" x="0.0" y="426" width="320" height="142"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="ERx-rV-w8n" kind="embed" identifier="ControlPanelControllerSegue" id="jKg-Nv-fbM"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1o5-IG-azI">
+                                <rect key="frame" x="0.0" y="85" width="320" height="341"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="qzH-iy-0LW" kind="embed" identifier="GameMapControllerSegue" id="eRt-Sz-ew8"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95927189089999998" green="0.95927189089999998" blue="0.95927189089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="i9n-yH-NtM" secondAttribute="trailing" id="42i-iq-ZuR"/>
+                            <constraint firstItem="1o5-IG-azI" firstAttribute="top" secondItem="5R9-Xv-Hma" secondAttribute="bottom" id="8IL-4N-FIq"/>
+                            <constraint firstItem="5R9-Xv-Hma" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="D5X-MY-Kds"/>
+                            <constraint firstItem="i9n-yH-NtM" firstAttribute="top" secondItem="1o5-IG-azI" secondAttribute="bottom" id="Ey2-9H-tAt"/>
+                            <constraint firstItem="i9n-yH-NtM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="IrA-8a-Jq9"/>
+                            <constraint firstAttribute="trailing" secondItem="1o5-IG-azI" secondAttribute="trailing" id="Q9h-Ap-SFb"/>
+                            <constraint firstItem="1o5-IG-azI" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.6" id="dbS-EI-RUb"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="i9n-yH-NtM" secondAttribute="bottom" id="ddE-ev-8pF"/>
+                            <constraint firstAttribute="trailing" secondItem="5R9-Xv-Hma" secondAttribute="trailing" id="e9O-Sp-xM8"/>
+                            <constraint firstItem="i9n-yH-NtM" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.25" id="l2X-Ge-zA9"/>
+                            <constraint firstItem="5R9-Xv-Hma" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="r0o-oz-v53"/>
+                            <constraint firstItem="1o5-IG-azI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="y2w-mh-hc6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="gameContainer" destination="1o5-IG-azI" id="OOb-3z-CbT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="141.59999999999999" y="137.18140929535232"/>
+        </scene>
+        <!--Control Panel Controller-->
+        <scene sceneID="vsz-WH-Dky">
+            <objects>
+                <viewController id="ERx-rV-w8n" customClass="ControlPanelController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tGY-kP-Nzx"/>
+                        <viewControllerLayoutGuide type="bottom" id="zWF-xy-lXt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LY2-74-vPK" customClass="ControlPanelView" customModule="BomberMan" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="142"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="controlPanelView" destination="LY2-74-vPK" id="EZg-SD-tgX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ivF-kY-NvZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1004.3478260869566" y="439.4021739130435"/>
+        </scene>
+        <!--Game Map Controller-->
+        <scene sceneID="zpo-gg-9dK">
+            <objects>
+                <viewController id="qzH-iy-0LW" customClass="GameMapController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x3M-Xr-zWM"/>
+                        <viewControllerLayoutGuide type="bottom" id="oPP-dy-rPt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Peo-uR-gXH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="341"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Lh-E4-0fJ">
+                                <rect key="frame" x="20" y="8" width="280" height="325"/>
+                                <color key="backgroundColor" red="0.1951854593842508" green="0.17593720950982022" blue="0.31680227534562211" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oPP-dy-rPt" firstAttribute="top" secondItem="9Lh-E4-0fJ" secondAttribute="bottom" constant="8" symbolic="YES" id="03p-0U-VAl"/>
+                            <constraint firstItem="9Lh-E4-0fJ" firstAttribute="top" secondItem="x3M-Xr-zWM" secondAttribute="bottom" constant="8" symbolic="YES" id="JZK-cs-3gV"/>
+                            <constraint firstItem="9Lh-E4-0fJ" firstAttribute="leading" secondItem="Peo-uR-gXH" secondAttribute="leading" constant="20" symbolic="YES" id="Uy1-dl-oP3"/>
+                            <constraint firstAttribute="trailing" secondItem="9Lh-E4-0fJ" secondAttribute="trailing" constant="20" symbolic="YES" id="xcB-ew-ihe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapScroll" destination="9Lh-E4-0fJ" id="Io7-zY-0cE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8X5-tv-m33" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1005.7971014492755" y="136.95652173913044"/>
+        </scene>
+        <!--Details Controller-->
+        <scene sceneID="0GN-Vh-8kT">
+            <objects>
+                <viewController id="bPZ-UK-hog" customClass="DetailsController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jia-Xi-Xth"/>
+                        <viewControllerLayoutGuide type="bottom" id="dFT-vA-39w"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DLi-4z-5KT" customClass="SingleDetailsView" customModule="BomberMan" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="detailsView" destination="DLi-4z-5KT" id="gYi-QT-aBy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yP4-5v-bPV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1005.6" y="-131.78410794602701"/>
+        </scene>
+    </scenes>
+</document>

@@ -9,18 +9,14 @@
 import UIKit
 
 class SingleDetailsView: UIView {
-
+    
+    @IBOutlet var contentView: UIView!
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var homeButton: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var timeNameLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var scoreNameLabel: UILabel!
-    @IBOutlet var contentView: UIView!
-    @IBOutlet weak var textInfoStackView: UIStackView!
-    @IBOutlet weak var timeStackView: UIStackView!
-    @IBOutlet weak var scoreStackView: UIStackView!
 
+    // Closures for back to home and pause actions
     var onHomeButtTap: (()->())?
     var onPauseButtTap: (()->())?
     
@@ -32,15 +28,17 @@ class SingleDetailsView: UIView {
         onPauseButtTap?()
     }
     
+    // UIViews can be created two ways: interface builder or  directly in code
+    // They have a initializer for each of these creation methods
+    // and we need to override both of them with our own custom initializer.
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         commonInit()
     }
     

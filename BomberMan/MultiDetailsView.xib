@@ -13,19 +13,15 @@
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="w72-zB-Wqs"/>
                 <outlet property="homeButton" destination="PKY-yC-FAS" id="H2M-fq-EYN"/>
-                <outlet property="p1name" destination="6xR-Zd-oQj" id="fRC-9g-e7Y"/>
-                <outlet property="p2name" destination="JPn-5O-oGh" id="wUL-Re-gWm"/>
-                <outlet property="p3name" destination="68L-Mv-taf" id="JaI-Um-bdy"/>
-                <outlet property="p4name" destination="68g-f7-46y" id="J2K-X5-Lj2"/>
-                <outletCollection property="playersLabel" destination="nuE-co-v7k" collectionClass="NSMutableArray" id="1y5-k3-EKX"/>
-                <outletCollection property="playersLabel" destination="WM9-3T-AeC" collectionClass="NSMutableArray" id="l4j-h3-r6l"/>
-                <outletCollection property="playersLabel" destination="7hm-iI-XOD" collectionClass="NSMutableArray" id="kwF-kh-vyW"/>
-                <outletCollection property="playersLabel" destination="7Vd-vO-GtQ" collectionClass="NSMutableArray" id="ySn-rc-qcF"/>
+                <outletCollection property="playersNames" destination="6xR-Zd-oQj" collectionClass="NSMutableArray" id="RGu-Fb-KON"/>
+                <outletCollection property="playersNames" destination="JPn-5O-oGh" collectionClass="NSMutableArray" id="WGY-Ej-3Ce"/>
+                <outletCollection property="playersNames" destination="68L-Mv-taf" collectionClass="NSMutableArray" id="Y5k-YR-lcR"/>
+                <outletCollection property="playersNames" destination="68g-f7-46y" collectionClass="NSMutableArray" id="AQK-bg-KR9"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="368" height="206"/>
+            <rect key="frame" x="0.0" y="0.0" width="368" height="90"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="P1:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nuE-co-v7k">
@@ -88,7 +84,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="68L-Mv-taf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" symbolic="YES" id="A76-w7-l1Y"/>
                 <constraint firstItem="68g-f7-46y" firstAttribute="top" secondItem="68L-Mv-taf" secondAttribute="bottom" constant="8" symbolic="YES" id="QMy-0l-t51"/>
@@ -112,7 +108,7 @@
                 <constraint firstItem="nuE-co-v7k" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="zaA-LV-Kby"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="31" y="-177"/>
+            <point key="canvasLocation" x="31" y="-235"/>
         </view>
     </objects>
     <resources>

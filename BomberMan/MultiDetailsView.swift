@@ -11,11 +11,9 @@ import UIKit
 class MultiDetailsView: UIView {
 
     @IBOutlet var contentView: UIView!
-    @IBOutlet var playersLabel: [UILabel]!
-    @IBOutlet weak var p2name: UILabel!
-    @IBOutlet weak var p1name: UILabel!
-    @IBOutlet weak var p4name: UILabel!
-    @IBOutlet weak var p3name: UILabel!
+    
+    @IBOutlet var playersNames: [UILabel]!
+    
     @IBOutlet weak var homeButton: UIButton!
     
     var onHomeButtTap: (()->())?
@@ -24,16 +22,27 @@ class MultiDetailsView: UIView {
         onHomeButtTap?()
     }
     
+    func setNames(names: [String]) {
+        if playersNames.count >= names.count {
+            var index: Int = 0
+            for name in names {
+                playersNames[index].text = name
+                index += 1
+            }
+        }
+    }
+    
+    // UIViews can be created two ways: interface builder or  directly in code
+    // They have a initializer for each of these creation methods
+    // and we need to override both of them with our own custom initializer.
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         commonInit()
     }
     
@@ -43,5 +52,4 @@ class MultiDetailsView: UIView {
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
-
 }

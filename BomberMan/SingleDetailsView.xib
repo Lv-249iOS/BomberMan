@@ -16,17 +16,12 @@
                 <outlet property="homeButton" destination="62d-tz-WbX" id="Zf9-72-CZx"/>
                 <outlet property="pauseButton" destination="aze-eu-Pej" id="yvn-mO-agW"/>
                 <outlet property="scoreLabel" destination="RDS-qq-RUJ" id="Pr1-Om-nH7"/>
-                <outlet property="scoreNameLabel" destination="64w-YN-pfw" id="Z3L-wf-uDU"/>
-                <outlet property="scoreStackView" destination="9GE-aJ-6FI" id="91w-rU-IwM"/>
-                <outlet property="textInfoStackView" destination="Xoi-6v-MYt" id="kH8-R4-pCh"/>
                 <outlet property="timeLabel" destination="i8f-sB-jgS" id="CWE-Dy-LyE"/>
-                <outlet property="timeNameLabel" destination="h0U-fa-YFf" id="CSa-Y9-L6p"/>
-                <outlet property="timeStackView" destination="VNy-2q-M68" id="NLd-5f-ZSf"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="DdF-pa-RkE" userLabel="contentView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="257"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Xoi-6v-MYt">
@@ -105,7 +100,7 @@
                 <constraint firstItem="aze-eu-Pej" firstAttribute="top" secondItem="DdF-pa-RkE" secondAttribute="top" constant="20" symbolic="YES" id="r3E-z7-6Tb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="31.5" y="584.5"/>
+            <point key="canvasLocation" x="31.5" y="500"/>
         </view>
     </objects>
     <resources>

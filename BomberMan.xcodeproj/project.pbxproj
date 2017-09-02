@@ -37,8 +37,8 @@
 		A987D19A1F56EFDA00CCF677 /* opening.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A987D1991F56EFDA00CCF677 /* opening.mp3 */; };
 		A9E45FE41F596A3F0091266C /* GameOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9E45FE31F596A3F0091266C /* GameOverView.xib */; };
 		A9E45FE61F596A5A0091266C /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E45FE51F596A5A0091266C /* GameOverView.swift */; };
-		A9E460031F5984130091266C /* MoveToNextLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E45FFF1F5984130091266C /* MoveToNextLevel.swift */; };
-		A9E460041F5984130091266C /* MoveToNextLevel.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9E460001F5984130091266C /* MoveToNextLevel.xib */; };
+		A9E460031F5984130091266C /* MoveToNextLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E45FFF1F5984130091266C /* MoveToNextLevelView.swift */; };
+		A9E460041F5984130091266C /* MoveToNextLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9E460001F5984130091266C /* MoveToNextLevelView.xib */; };
 		A9E460051F5984130091266C /* PauseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E460011F5984130091266C /* PauseView.swift */; };
 		A9E460061F5984130091266C /* PauseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9E460021F5984130091266C /* PauseView.xib */; };
 		A9E460081F59853D0091266C /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E460071F59853D0091266C /* SoundManager.swift */; };
@@ -124,8 +124,8 @@
 		A987D1991F56EFDA00CCF677 /* opening.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = opening.mp3; sourceTree = "<group>"; };
 		A9E45FE31F596A3F0091266C /* GameOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameOverView.xib; sourceTree = "<group>"; };
 		A9E45FE51F596A5A0091266C /* GameOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
-		A9E45FFF1F5984130091266C /* MoveToNextLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToNextLevel.swift; sourceTree = "<group>"; };
-		A9E460001F5984130091266C /* MoveToNextLevel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoveToNextLevel.xib; sourceTree = "<group>"; };
+		A9E45FFF1F5984130091266C /* MoveToNextLevelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToNextLevelView.swift; sourceTree = "<group>"; };
+		A9E460001F5984130091266C /* MoveToNextLevelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoveToNextLevelView.xib; sourceTree = "<group>"; };
 		A9E460011F5984130091266C /* PauseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseView.swift; sourceTree = "<group>"; };
 		A9E460021F5984130091266C /* PauseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PauseView.xib; sourceTree = "<group>"; };
 		A9E460071F59853D0091266C /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
@@ -378,8 +378,7 @@
 				A9E460131F59B1930091266C /* gameOver */,
 				A9E460141F59B19C0091266C /* singleDetailsView */,
 				A9E460151F59B1A90091266C /* multiDetailsView */,
-				A9E460181F5AC3380091266C /* ControlPanelView.xib */,
-				A9E4601A1F5AC3610091266C /* ControlPanelView.swift */,
+				A9E4601D1F5ACB780091266C /* controlPanelView */,
 			);
 			name = "Xib files";
 			sourceTree = "<group>";
@@ -387,8 +386,8 @@
 		A9E460111F59B1800091266C /* moveOn */ = {
 			isa = PBXGroup;
 			children = (
-				A9E45FFF1F5984130091266C /* MoveToNextLevel.swift */,
-				A9E460001F5984130091266C /* MoveToNextLevel.xib */,
+				A9E45FFF1F5984130091266C /* MoveToNextLevelView.swift */,
+				A9E460001F5984130091266C /* MoveToNextLevelView.xib */,
 			);
 			name = moveOn;
 			sourceTree = "<group>";
@@ -427,6 +426,15 @@
 				A9E4600F1F599FC80091266C /* MultiDetailsView.xib */,
 			);
 			name = multiDetailsView;
+			sourceTree = "<group>";
+		};
+		A9E4601D1F5ACB780091266C /* controlPanelView */ = {
+			isa = PBXGroup;
+			children = (
+				A9E460181F5AC3380091266C /* ControlPanelView.xib */,
+				A9E4601A1F5AC3610091266C /* ControlPanelView.swift */,
+			);
+			name = controlPanelView;
 			sourceTree = "<group>";
 		};
 		E73B03EC1F572BAF008C0FC2 /* Images */ = {
@@ -568,7 +576,7 @@
 				E77C3CDC1F59889200DE1CE1 /* death3.png in Resources */,
 				E73B03FE1F572BFC008C0FC2 /* up4.png in Resources */,
 				E73B04141F572C3C008C0FC2 /* right1.png in Resources */,
-				A9E460041F5984130091266C /* MoveToNextLevel.xib in Resources */,
+				A9E460041F5984130091266C /* MoveToNextLevelView.xib in Resources */,
 				E73B03FC1F572BF7008C0FC2 /* up3.png in Resources */,
 				A95FC5271F502C7500E1F926 /* LaunchScreen.storyboard in Resources */,
 				A95FC5241F502C7500E1F926 /* Assets.xcassets in Resources */,
@@ -635,7 +643,7 @@
 				20D545081F596F84008ADA60 /* Levels.swift in Sources */,
 				A9E460081F59853D0091266C /* SoundManager.swift in Sources */,
 				61475F311F51CA4900B68DAA /* Brain.swift in Sources */,
-				A9E460031F5984130091266C /* MoveToNextLevel.swift in Sources */,
+				A9E460031F5984130091266C /* MoveToNextLevelView.swift in Sources */,
 				A95BCE741F5423FA0021B1E7 /* GameMapController.swift in Sources */,
 				A95BCE761F5424D00021B1E7 /* DetailsController.swift in Sources */,
 				A9E4600C1F599A660091266C /* SingleDetailsView.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoveToNextLevel: UIView {
+class MoveToNextLevelView: UIView {
 
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var buttonsStack: UIStackView!
@@ -45,7 +45,7 @@ class MoveToNextLevel: UIView {
     
     // This is custom init with view created in xib file
     private func commonInit() {
-        Bundle.main.loadNibNamed("MoveToNextLevel", owner: self, options: nil)
+        Bundle.main.loadNibNamed("MoveToNextLevelView", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]

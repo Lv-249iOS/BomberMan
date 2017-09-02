@@ -21,11 +21,19 @@ struct Scene {
 
 struct Player {
 //    var health = 1
+    var name = ""
     var markForScene: Character = "0"
-    var canFly = false
+//    var canFly = false
     var minesCount = 1
     var explosionPower = 1
 //    var speed = 1
+}
+
+struct Mob {
+//    var type =
+    var animationSpeed = 1
+    var position: String.Index
+    var direction: Direction
 }
 
 struct Explosion {
@@ -39,6 +47,12 @@ struct Enemy {
     var speed = 1
     var canFly = false
 }
+
+//enum MobType: Image {
+//    case weird =
+//    case original =
+//    case sea =
+//}
 
 enum Direction: Int {
     case top = 1

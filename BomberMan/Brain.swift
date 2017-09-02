@@ -11,41 +11,67 @@ import Foundation
 class Brain {
     static let shared = Brain()
     private var scene = Scene.init(data: "WWWWWWWWWWW  0     WWM       WW        WW  B BBB WW  BMB   WW  BBBBB WW    B B WW  BBBMB WWWWWWWWWWW", width: 10)
-    var player = Player.init(markForScene: "0", canFly: false, minesCount: 2, explosionPower: 1)
-    var mobs = String()
-    var x = [Int]()
-    var y =  [Int]()
-    var gameTimer: Timer!
+    var player = Player.init(name: "Player", markForScene: "0", minesCount: 1, explosionPower: 1)
+    private var mobs: [Mob] = []
+//    var x = [Int]()
+//    var y =  [Int]()
+    //var gameTimer: Timer!
+    
     var showFire: ((Explosion, String.Index)->())?
     var move: ((Direction, Int)->())?
     var plantBomb: ((Int)->())?
     var redrawScene: (()->())?
     var killHero: ((Int)->())?
-    var cantGo = "WBXQ"
-    var ifCanFly = "W"
-    let mob: Character  = "M"
     
-    func getmobposition()-> ([Int],[Int],Int){
-        let  map = shareScene().data
-        var counting = 0
+    var cantGo = "WBXQ"
+//    var ifCanFly = "W"
+//    let mob: Character  = "M"
+    
+    func getMobs() {
         var i = 0
-        for char in  map.characters  {
-            if char == mob {
-               let index = map.characters.index(map.startIndex, offsetBy: i)
-                let intValue = map.distance(from: map.startIndex, to: index)
-                 x.append(intValue%10)
-                 y.append(intValue/10)
-                counting += 1
-          }
-        i += 1
+        mobs.removeAll()
+        for char in scene.data.characters {
+            if char == "M" {
+                let index = scene.data.characters.index(scene.data.startIndex, offsetBy: i)
+                let mob = Mob.init(animationSpeed: 1, position: index, direction: setMobDirection())
+                mobs.append(mob)
+//                let intValue = scene.data.distance(from: scene.data.startIndex, to: index)
+            }
+            i += 1
         }
-        return(x,y,counting)
     }
     
-    func setmobdirection()-> Direction {
-        let randomdirection = arc4random_uniform(3) + 1
-        return Direction(rawValue: Int(randomdirection))!
+    func startMobsMovement() {
+        for var mob in mobs {
+            var directionPosition: String.Index
+            switch mob.direction {
+                case .bottom: directionPosition = scene.data.characters.index(mob.position, offsetBy: scene.width)
+                case .left: directionPosition = scene.data.characters.index(before: mob.position)
+                case .right: directionPosition = scene.data.characters.index(after: mob.position)
+                case .top: directionPosition = scene.data.index(mob.position, offsetBy: -scene.width)
+            }
+            while !cantGo.characters.contains(scene.data[directionPosition]), scene.data[directionPosition] != "U" {
+                mob.direction = setMobDirection()
+                switch mob.direction {
+                case .bottom: directionPosition = scene.data.characters.index(mob.position, offsetBy: scene.width)
+                case .left: directionPosition = scene.data.characters.index(before: mob.position)
+                case .right: directionPosition = scene.data.characters.index(after: mob.position)
+                case .top: directionPosition = scene.data.index(mob.position, offsetBy: -scene.width)
+                }
+            }
+            //game map call
+            scene.data.characters.remove(at: mob.position)
+            scene.data.characters.insert(" ", at: mob.position)
+            ///need finish, check for player kill
+        }
+    }
     
+    func setMobDirection() -> Direction {
+        let randomDirection = arc4random_uniform(3) + 1
+        if let direction = Direction(rawValue: Int(randomDirection)) {
+            return direction
+        }
+        return Direction.bottom
     }
 
     func appendScene(with width: Int, data: String) {

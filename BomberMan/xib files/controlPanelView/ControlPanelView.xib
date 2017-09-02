@@ -26,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jv8-ou-LI6">
-                    <rect key="frame" x="103" y="20" width="169" height="49"/>
+                    <rect key="frame" x="103" y="20" width="169" height="46.5"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                     <state key="normal" title="↑">
@@ -37,7 +37,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlQ-ZZ-dmC">
-                    <rect key="frame" x="103" y="126" width="169" height="49"/>
+                    <rect key="frame" x="103" y="128.5" width="169" height="46.5"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                     <state key="normal" title="↓">
@@ -70,7 +70,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lGn-AU-na4" userLabel="Bomb">
-                    <rect key="frame" x="103" y="77" width="169" height="49"/>
+                    <rect key="frame" x="103" y="74.5" width="169" height="46"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" image="bomb"/>
                     <connections>
@@ -86,7 +86,7 @@
                 <constraint firstAttribute="bottom" secondItem="vlQ-ZZ-dmC" secondAttribute="bottom" constant="20" symbolic="YES" id="JV8-OO-DDr"/>
                 <constraint firstItem="dl6-Qb-2Yh" firstAttribute="leading" secondItem="di2-Mm-ZEp" secondAttribute="leading" constant="20" symbolic="YES" id="LN8-jZ-ug7"/>
                 <constraint firstItem="lGn-AU-na4" firstAttribute="height" secondItem="Jv8-ou-LI6" secondAttribute="height" id="MrZ-pT-rXO"/>
-                <constraint firstItem="vlQ-ZZ-dmC" firstAttribute="top" secondItem="lGn-AU-na4" secondAttribute="bottom" id="N99-5e-c2t"/>
+                <constraint firstItem="vlQ-ZZ-dmC" firstAttribute="top" secondItem="lGn-AU-na4" secondAttribute="bottom" constant="8" symbolic="YES" id="N99-5e-c2t"/>
                 <constraint firstItem="bjf-kf-XB9" firstAttribute="leading" secondItem="lGn-AU-na4" secondAttribute="trailing" constant="8" symbolic="YES" id="Pam-Ov-2WZ"/>
                 <constraint firstItem="Jv8-ou-LI6" firstAttribute="top" secondItem="di2-Mm-ZEp" secondAttribute="top" constant="20" symbolic="YES" id="QZ9-Q1-3Fv"/>
                 <constraint firstItem="bjf-kf-XB9" firstAttribute="top" secondItem="di2-Mm-ZEp" secondAttribute="top" constant="20" symbolic="YES" id="QrF-dP-Myv"/>

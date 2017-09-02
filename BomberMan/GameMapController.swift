@@ -23,6 +23,7 @@ class GameMapController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         map = brain.shareScene().data
+        print(brain.getmobposition())
         sceneWidth = brain.shareScene().width
         
         mapScroll.contentSize = CGSize(width: 50 * sceneWidth, height: 50 * (map.characters.count / sceneWidth))
@@ -99,6 +100,8 @@ class GameMapController: UIViewController {
                 players.append(player)
                 players[0].image = UIImage(named: "hero")
                 mapScroll.addSubview(players[0])
+            case"M":
+                addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image:#imageLiteral(resourceName: "balloon1") )
             default:
                 break
             }

@@ -20,7 +20,7 @@ class ControlPanelController: UIViewController {
     @IBAction func arrowTap(_ sender: UIButton) {
         if let arrowTag = Direction(rawValue: sender.tag) {
             onArrowTap?(arrowTag)
-            print(arrowTag)
+            //print(arrowTag)
         }
     }
     

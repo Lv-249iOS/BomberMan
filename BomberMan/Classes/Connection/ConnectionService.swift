@@ -20,6 +20,7 @@ protocol InvitationDelegate {
 }
 
 class ConnectionServiceManager: NSObject {
+    
     static let shared = ConnectionServiceManager()
     // Service type must be a unique string, at most 15 characters long
     // and can contain only ASCII lowercase letters, numbers and hyphens.

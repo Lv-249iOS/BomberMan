@@ -10,8 +10,11 @@ import Foundation
 
 class Brain {
     static let shared = Brain()
-    private var scene = Scene.init(data: "WWWWWWWWWWW  0     WW        WW        WW  B BBB WW  B B   WW  BBBBB WW    B B WW  BBB B WWWWWWWWWWW", width: 10)
+    private var scene = Scene.init(data: "WWWWWWWWWWW  0     WWM       WW        WW  B BBB WW  BMB   WW  BBBBB WW    B B WW  BBBMB WWWWWWWWWWW", width: 10)
     var player = Player.init(markForScene: "0", canFly: false, minesCount: 2, explosionPower: 1)
+    var mobs = String()
+    var x = [Int]()
+    var y =  [Int]()
     var gameTimer: Timer!
     var showFire: ((Explosion, String.Index)->())?
     var move: ((Direction, Int)->())?
@@ -20,6 +23,30 @@ class Brain {
     var killHero: ((Int)->())?
     var cantGo = "WBXQ"
     var ifCanFly = "W"
+    let mob: Character  = "M"
+    
+    func getmobposition()-> ([Int],[Int],Int){
+        let  map = shareScene().data
+        var counting = 0
+        var i = 0
+        for char in  map.characters  {
+            if char == mob {
+               let index = map.characters.index(map.startIndex, offsetBy: i)
+                let intValue = map.distance(from: map.startIndex, to: index)
+                 x.append(intValue%10)
+                 y.append(intValue/10)
+                counting += 1
+          }
+        i += 1
+        }
+        return(x,y,counting)
+    }
+    
+    func setmobdirection()-> Direction {
+        let randomdirection = arc4random_uniform(3) + 1
+        return Direction(rawValue: Int(randomdirection))!
+    
+    }
 
     func appendScene(with width: Int, data: String) {
         scene.data = data
@@ -48,6 +75,7 @@ class Brain {
                 case .left: directionPosition = scene.data.characters.index(before: playerPosition)
                 case .right: directionPosition = scene.data.characters.index(after: playerPosition)
                 case .top: directionPosition = scene.data.index(playerPosition, offsetBy: -scene.width)
+                
             }
             if !cantGo.characters.contains(scene.data[directionPosition]) {
                 if scene.data[playerPosition] == player.markForScene {
@@ -93,7 +121,7 @@ class Brain {
     }
     
     func startFireTimer(explosion: Explosion, position: String.Index) {
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { [weak self] _ in
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
             self?.fadeFire(explosion: explosion, position: position)
         }
     }

@@ -46,6 +46,8 @@
 		A9E4600C1F599A660091266C /* SingleDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E4600B1F599A660091266C /* SingleDetailsView.swift */; };
 		A9E4600E1F599FA20091266C /* MultiDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E4600D1F599FA20091266C /* MultiDetailsView.swift */; };
 		A9E460101F599FC80091266C /* MultiDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9E4600F1F599FC80091266C /* MultiDetailsView.xib */; };
+		A9E460191F5AC3380091266C /* ControlPanelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9E460181F5AC3380091266C /* ControlPanelView.xib */; };
+		A9E4601B1F5AC3610091266C /* ControlPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E4601A1F5AC3610091266C /* ControlPanelView.swift */; };
 		E73B03F01F572BD5008C0FC2 /* down2.png in Resources */ = {isa = PBXBuildFile; fileRef = E73B03EF1F572BD5008C0FC2 /* down2.png */; };
 		E73B03F21F572BDA008C0FC2 /* down3.png in Resources */ = {isa = PBXBuildFile; fileRef = E73B03F11F572BDA008C0FC2 /* down3.png */; };
 		E73B03F41F572BDF008C0FC2 /* down4.png in Resources */ = {isa = PBXBuildFile; fileRef = E73B03F31F572BDF008C0FC2 /* down4.png */; };
@@ -131,6 +133,8 @@
 		A9E4600B1F599A660091266C /* SingleDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleDetailsView.swift; sourceTree = "<group>"; };
 		A9E4600D1F599FA20091266C /* MultiDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiDetailsView.swift; sourceTree = "<group>"; };
 		A9E4600F1F599FC80091266C /* MultiDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiDetailsView.xib; sourceTree = "<group>"; };
+		A9E460181F5AC3380091266C /* ControlPanelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ControlPanelView.xib; sourceTree = "<group>"; };
+		A9E4601A1F5AC3610091266C /* ControlPanelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlPanelView.swift; sourceTree = "<group>"; };
 		E73B03EF1F572BD5008C0FC2 /* down2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down2.png; sourceTree = "<group>"; };
 		E73B03F11F572BDA008C0FC2 /* down3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down3.png; sourceTree = "<group>"; };
 		E73B03F31F572BDF008C0FC2 /* down4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down4.png; sourceTree = "<group>"; };
@@ -374,6 +378,8 @@
 				A9E460131F59B1930091266C /* gameOver */,
 				A9E460141F59B19C0091266C /* singleDetailsView */,
 				A9E460151F59B1A90091266C /* multiDetailsView */,
+				A9E460181F5AC3380091266C /* ControlPanelView.xib */,
+				A9E4601A1F5AC3610091266C /* ControlPanelView.swift */,
 			);
 			name = "Xib files";
 			sourceTree = "<group>";
@@ -576,6 +582,7 @@
 				A9E4600A1F5999F40091266C /* SingleDetailsView.xib in Resources */,
 				A987D19A1F56EFDA00CCF677 /* opening.mp3 in Resources */,
 				E77C3CDE1F59889200DE1CE1 /* death5.png in Resources */,
+				A9E460191F5AC3380091266C /* ControlPanelView.xib in Resources */,
 				E77C3CE01F59889200DE1CE1 /* death7.png in Resources */,
 				E73B03F81F572BED008C0FC2 /* up1.png in Resources */,
 				E73B040E1F572C2F008C0FC2 /* right4.png in Resources */,
@@ -632,6 +639,7 @@
 				A95BCE741F5423FA0021B1E7 /* GameMapController.swift in Sources */,
 				A95BCE761F5424D00021B1E7 /* DetailsController.swift in Sources */,
 				A9E4600C1F599A660091266C /* SingleDetailsView.swift in Sources */,
+				A9E4601B1F5AC3610091266C /* ControlPanelView.swift in Sources */,
 				20AE55AA1F55A2A900043A07 /* TopTenController.swift in Sources */,
 				A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */,
 			);

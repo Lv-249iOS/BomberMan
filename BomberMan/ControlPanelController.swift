@@ -10,33 +10,35 @@ import UIKit
 
 class ControlPanelController: UIViewController {
  
-    var onArrowTap: ((Direction)->())?
-    var onBombTap: (()->())?
+    var moveTo: ((Direction)->())?
+    var setBomb: (()->())?
     
-    @IBOutlet var buttons: [UIButton]!
-    @IBOutlet weak var bombButton: UIButton!
+    @IBOutlet var controlPanelView: ControlPanelView!
     
     // Send Arrow direction
-    @IBAction func arrowTap(_ sender: UIButton) {
-        if let arrowTag = Direction(rawValue: sender.tag) {
-            onArrowTap?(arrowTag)
-            print(arrowTag)
-        }
+    func moveEvent(with direction: Direction) {
+        // send event
+        moveTo?(direction)
     }
     
-    @IBAction func setBomb(_ sender: UIButton) {
-        onBombTap?()
+    func setBombEvent() {
+        // send event
+        setBomb?()
     }
-    
+
     func setButtonState(isEnabled: Bool) {
-        for but in buttons {
-            but.isEnabled = isEnabled
-        }
+        controlPanelView.setButtonState(isEnabled: isEnabled)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bombButton.imageView?.contentMode = .scaleAspectFit
+        controlPanelView.onArrowTap = { [weak self] direction in
+            self?.moveEvent(with: direction)
+        }
+        
+        controlPanelView.onBombTap = { [weak self] in
+            self?.setBombEvent()
+        }
     }
 }

@@ -84,11 +84,11 @@ class GameLayoutController: UIViewController {
     func prepareControlPanelController(controller: ControlPanelController) {
         controlPanelController = controller
         
-        controlPanelController.onArrowTap = { [weak self]  path in
+        controlPanelController.moveTo = { [weak self]  path in
             self?.move(direction: path)
         }
         
-        controlPanelController.onBombTap = { [weak self] in
+        controlPanelController.setBomb = { [weak self] in
             self?.setBomb()
         }
     }

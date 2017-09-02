@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -77,94 +76,13 @@
                         <viewControllerLayoutGuide type="top" id="tGY-kP-Nzx"/>
                         <viewControllerLayoutGuide type="bottom" id="zWF-xy-lXt"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="LY2-74-vPK">
+                    <view key="view" contentMode="scaleToFill" id="LY2-74-vPK" customClass="ControlPanelView" customModule="BomberMan" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="142"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHS-ge-coG">
-                                <rect key="frame" x="88" y="8" width="144" height="36.5"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <state key="normal" title="↑">
-                                    <color key="titleColor" red="0.96068006750000001" green="0.96084433790000001" blue="0.96066969629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="arrowTap:" destination="ERx-rV-w8n" eventType="touchUpInside" id="xCa-fj-x3Y"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7g-Bx-mTn">
-                                <rect key="frame" x="88" y="97.5" width="144" height="36.5"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <state key="normal" title="↓">
-                                    <color key="titleColor" red="0.96068006750000001" green="0.96084433790000001" blue="0.96066969629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="arrowTap:" destination="ERx-rV-w8n" eventType="touchUpInside" id="DOj-xD-7MZ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49r-yU-Gok" userLabel="Bomb">
-                                <rect key="frame" x="88" y="52.5" width="144" height="37"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="bomb"/>
-                                <connections>
-                                    <action selector="setBomb:" destination="ERx-rV-w8n" eventType="touchUpInside" id="dUA-4j-UGA"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CR4-m2-N0k">
-                                <rect key="frame" x="240" y="8" width="64" height="126"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <state key="normal" title="→">
-                                    <color key="titleColor" red="0.96068006750000001" green="0.96084433790000001" blue="0.96066969629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="arrowTap:" destination="ERx-rV-w8n" eventType="touchUpInside" id="hi0-Q2-u8K"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zx1-9A-voK">
-                                <rect key="frame" x="16" y="8" width="64" height="126"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <state key="normal" title="←">
-                                    <color key="titleColor" red="0.96068006750000001" green="0.96084433790000001" blue="0.96066969629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="arrowTap:" destination="ERx-rV-w8n" eventType="touchUpInside" id="wcm-hC-gRd"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="49r-yU-Gok" firstAttribute="top" secondItem="gHS-ge-coG" secondAttribute="bottom" constant="8" symbolic="YES" id="0hx-Go-iPw"/>
-                            <constraint firstItem="Zx1-9A-voK" firstAttribute="leading" secondItem="LY2-74-vPK" secondAttribute="leadingMargin" id="5r3-sQ-G8N"/>
-                            <constraint firstItem="49r-yU-Gok" firstAttribute="height" secondItem="gHS-ge-coG" secondAttribute="height" id="81K-8k-vZf"/>
-                            <constraint firstItem="c7g-Bx-mTn" firstAttribute="top" secondItem="49r-yU-Gok" secondAttribute="bottom" constant="8" symbolic="YES" id="9jO-Nn-h2W"/>
-                            <constraint firstItem="zWF-xy-lXt" firstAttribute="top" secondItem="CR4-m2-N0k" secondAttribute="bottom" constant="8" symbolic="YES" id="A3C-AA-193"/>
-                            <constraint firstItem="Zx1-9A-voK" firstAttribute="top" secondItem="tGY-kP-Nzx" secondAttribute="bottom" constant="8" symbolic="YES" id="DUl-Ft-K0c"/>
-                            <constraint firstItem="CR4-m2-N0k" firstAttribute="top" secondItem="tGY-kP-Nzx" secondAttribute="bottom" constant="8" symbolic="YES" id="Gdj-5G-f11"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="CR4-m2-N0k" secondAttribute="trailing" id="HrV-6X-eiX"/>
-                            <constraint firstItem="c7g-Bx-mTn" firstAttribute="height" secondItem="gHS-ge-coG" secondAttribute="height" id="Ikn-Ae-iwv"/>
-                            <constraint firstItem="zWF-xy-lXt" firstAttribute="top" secondItem="c7g-Bx-mTn" secondAttribute="bottom" constant="8" symbolic="YES" id="Sjh-hV-psO"/>
-                            <constraint firstItem="gHS-ge-coG" firstAttribute="leading" secondItem="Zx1-9A-voK" secondAttribute="trailing" constant="8" symbolic="YES" id="TLA-Mm-NIA"/>
-                            <constraint firstItem="49r-yU-Gok" firstAttribute="leading" secondItem="Zx1-9A-voK" secondAttribute="trailing" constant="8" symbolic="YES" id="TTi-sU-gtA"/>
-                            <constraint firstItem="Zx1-9A-voK" firstAttribute="width" secondItem="CR4-m2-N0k" secondAttribute="width" id="WTT-jz-BZ0"/>
-                            <constraint firstItem="CR4-m2-N0k" firstAttribute="leading" secondItem="49r-yU-Gok" secondAttribute="trailing" constant="8" symbolic="YES" id="cD9-3x-7gl"/>
-                            <constraint firstItem="CR4-m2-N0k" firstAttribute="leading" secondItem="c7g-Bx-mTn" secondAttribute="trailing" constant="8" symbolic="YES" id="hdH-2G-pDf"/>
-                            <constraint firstItem="gHS-ge-coG" firstAttribute="top" secondItem="tGY-kP-Nzx" secondAttribute="bottom" constant="8" symbolic="YES" id="lH5-PU-YND"/>
-                            <constraint firstItem="c7g-Bx-mTn" firstAttribute="leading" secondItem="Zx1-9A-voK" secondAttribute="trailing" constant="8" symbolic="YES" id="tH2-7T-vPl"/>
-                            <constraint firstItem="zWF-xy-lXt" firstAttribute="top" secondItem="Zx1-9A-voK" secondAttribute="bottom" constant="8" symbolic="YES" id="x6P-9S-Tek"/>
-                            <constraint firstItem="CR4-m2-N0k" firstAttribute="width" secondItem="LY2-74-vPK" secondAttribute="width" multiplier="0.2" id="yaE-vt-adz"/>
-                            <constraint firstItem="CR4-m2-N0k" firstAttribute="leading" secondItem="gHS-ge-coG" secondAttribute="trailing" constant="8" symbolic="YES" id="zPd-0y-ZJ1"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="bombButton" destination="49r-yU-Gok" id="gsS-PV-xIK"/>
-                        <outletCollection property="buttons" destination="Zx1-9A-voK" collectionClass="NSMutableArray" id="YKk-v8-frz"/>
-                        <outletCollection property="buttons" destination="gHS-ge-coG" collectionClass="NSMutableArray" id="5F0-cU-uHa"/>
-                        <outletCollection property="buttons" destination="c7g-Bx-mTn" collectionClass="NSMutableArray" id="eqn-Re-Dbs"/>
-                        <outletCollection property="buttons" destination="CR4-m2-N0k" collectionClass="NSMutableArray" id="J8u-6E-gsd"/>
-                        <outletCollection property="buttons" destination="49r-yU-Gok" collectionClass="NSMutableArray" id="qnS-N7-Dih"/>
+                        <outlet property="controlPanelView" destination="LY2-74-vPK" id="EZg-SD-tgX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ivF-kY-NvZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -226,7 +144,4 @@
             <point key="canvasLocation" x="1005.6" y="-131.78410794602701"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="bomb" width="128" height="128"/>
-    </resources>
 </document>

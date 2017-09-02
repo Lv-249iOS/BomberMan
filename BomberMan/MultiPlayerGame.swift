@@ -9,20 +9,42 @@
 import UIKit
 import MultipeerConnectivity
 
-class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, InvitationFromUserDelegate {
+class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, InvitationDelegate {
     
-    private let manager = ConnectionServiceManager()
+    func invitationWasReceived(fromPeer: String) {
+        let alert = UIAlertController(title: "", message: "\(fromPeer) wants to play with you.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let acceptAction: UIAlertAction = UIAlertAction(title: "Accept", style: UIAlertActionStyle.default) { (alertAction) -> Void in
+            self.manager.invitationHandler(true, self.manager.session)
+        }
+        
+        let declineAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (alertAction) -> Void in
+            self.manager.invitationHandler(false, nil)
+        }
+        
+        alert.addAction(acceptAction)
+        alert.addAction(declineAction)
+        
+        OperationQueue.main.addOperation { () -> Void in
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    private let manager = ConnectionServiceManager.shared
     
     @IBOutlet weak var joinButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        manager.invitationDelegate = self
     }
     
     @IBAction func createNewGame(_ sender: UIButton) {
         manager.startBrowser()
-        manager.serviceBrowser.delegate = self
-        self.present(manager.serviceBrowser, animated: true, completion: nil)
+        guard let browser = manager.serviceBrowser else { return }
+        browser.delegate = self
+        self.present(browser, animated: true, completion: nil)
+        
     }
     
     @IBAction func joinToNewGame(_ sender: UIButton) {
@@ -36,10 +58,9 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
     
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
         manager.stopBrowser()
+        manager.disconnect()
     }
     
-    func invitationWasReceived(fromPeer: MCPeerID) {
-        //Show alert with offer accept or decline invitation
-        //manager.invitation(accept: Bool)
-    }
+    
+    
 }

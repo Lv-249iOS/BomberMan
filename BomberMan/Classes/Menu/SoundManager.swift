@@ -21,7 +21,7 @@ class SoundManager {
     init() {
         player = AVAudioPlayer()
         setMelody(name: Sound.name.rawValue, type: Sound.type.rawValue)
-        
+        player?.numberOfLoops = -1
         // in firts launch app value will be nil
         if UserDefaults.standard.value(forKey: Sound.state.rawValue) as? Bool == nil {
             UserDefaults.standard.set(true, forKey: Sound.state.rawValue)

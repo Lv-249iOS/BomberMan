@@ -277,8 +277,8 @@
 		A95BCE871F5429B60021B1E7 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				A94BDEB91F5AFD6C0085E073 /* MenuController.swift */,
 				A94BDEBA1F5AFD6C0085E073 /* SoundManager.swift */,
+				A94BDEB91F5AFD6C0085E073 /* MenuController.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";

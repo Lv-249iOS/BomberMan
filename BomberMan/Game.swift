@@ -8,5 +8,9 @@
 
 import Foundation
 class Game {
+    let score = Int()
+    func gamestart(){}
+    func gameEnd(){}
+    let players = [Int]()
 
 }

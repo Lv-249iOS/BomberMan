@@ -24,7 +24,7 @@ class GameMapController: UIViewController {
         super.viewDidLoad()
         map = brain.shareScene().data
         sceneWidth = brain.shareScene().width
-
+        
         mapScroll.contentSize = CGSize(width: 50 * sceneWidth, height: 50 * (map.characters.count / sceneWidth))
         
         drawMap()
@@ -41,64 +41,100 @@ class GameMapController: UIViewController {
         brain.redrawScene = { [weak self] _ in
             self?.drawMap()
         }
+        brain.killHero = { [weak self] player in
+            self?.killHero(player: player)
+        }
+
+    }
+    
+    func addSubImageView(_ rect: CGRect, image: UIImage) {
+        let imageSub = UIImageView(frame: rect)
+        imageSub.image = image
+        mapScroll.addSubview(imageSub)
     }
     
     func drawMap() {
         
         for subview in mapScroll.subviews {
-        subview.removeFromSuperview()
+            subview.removeFromSuperview()
         }
-    
+        
         let sideTilesCount = sqrt(Double(map.characters.count))
         
-        var ii = 0
-        var jj = 0
+        var i = 0
+        var j = 0
         
-        for i in map.characters {
+        map = brain.shareScene().data
+        
+        for tile in map.characters {
             
-            switch i {
+            switch tile {
             case "W":
-                let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
+                let rect = CGRect(x: i, y: j, width: 50, height: 50)
                 let wall = WallView(frame: rect)
                 wall.backgroundColor = UIColor.gray
                 mapScroll.addSubview(wall)
             case "B":
-                let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
+                let rect = CGRect(x: i, y: j, width: 50, height: 50)
                 let box = BoxView(frame: rect)
                 box.backgroundColor = UIColor.brown
                 mapScroll.addSubview(box)
             case "0":
-                let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
+                let rect = CGRect(x: i, y: j, width: 50, height: 50)
                 let player = UIImageView(frame: rect)
                 players.append(player)
                 players[0].image = UIImage(named: "hero")
                 mapScroll.addSubview(players[0])
             case "F":
-                let rect = CGRect(x: ii, y: jj, width: 50, height: 50)
-                let fire = UIImageView(frame: rect)
-                fire.image = #imageLiteral(resourceName: "fire")
-                mapScroll.addSubview(fire)
+                addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
+                
+            case "X":
+                addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "bomb"))
+                
+            case "Q":
+                addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "bomb"))
+                
+                let rect1 = CGRect(x: i, y: j, width: 50, height: 50)
+                let player = UIImageView(frame: rect1)
+                players.append(player)
+                players[0].image = UIImage(named: "hero")
+                mapScroll.addSubview(players[0])
             default:
                 break
             }
             
-            if ii / 50 == Int(sideTilesCount-1) {
-                jj += 50
-                ii = 0
+            if i / 50 == Int(sideTilesCount-1) {
+                j += 50
+                i = 0
             } else {
-                ii += 50
+                i += 50
             }
         }
-    
+        
     }
     
     func killHero(player: Int) {
+        let rect = CGRect(x: players[player].frame.origin.x, y: players[player].frame.origin.y, width: 50, height: 50)
+        let death = UIImageView(frame: rect)
+        mapScroll.addSubview(death)
+        
+        players[player].removeFromSuperview()
+        
+        death.animationImages = (1...8).map { UIImage(named: "death\($0)") ?? #imageLiteral(resourceName: "noImage") }
+        death.animationRepeatCount = 1
+        death.animationDuration = 1
+        death.startAnimating()
+        
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { _ in
+            death.removeFromSuperview()
+        })
         
     }
     
     func move(in direction: Direction, player: Int) {
         switch direction {
         case .bottom:
+            
             let downImageArray = (1...5).map { UIImage(named: "down\($0)") ?? #imageLiteral(resourceName: "noImage")  }
             if players[player].animationImages?.first != UIImage(named: "down1") && players[player].animationImages?.first != nil {
                 
@@ -107,6 +143,7 @@ class GameMapController: UIViewController {
             animateImagesForMove(images: downImageArray, x: 0, y: 50, player: player)
             
         case .left:
+            
             let leftImageArray = (1...5).map { UIImage(named: "left\($0)") ?? #imageLiteral(resourceName: "noImage") }
             if players[player].animationImages?.first != UIImage(named: "left1") && players[player].animationImages?.first != nil {
                 animate(images: leftImageArray, player: player)
@@ -114,14 +151,16 @@ class GameMapController: UIViewController {
             animateImagesForMove(images: leftImageArray, x: -50, y: 0, player: player)
             
         case .right:
+            
             let rightImageArray = (1...5).map { UIImage(named: "right\($0)") ?? #imageLiteral(resourceName: "noImage") }
-            if players[player].animationImages?.first != UIImage(named: "right1") && players[player].animationImages?.first != nil{
-                
+            if players[player].animationImages?.first != UIImage(named: "right1") && players[player].animationImages?.first != nil {
+
                 animate(images: rightImageArray, player: player)
             }
             animateImagesForMove(images: rightImageArray, x: 50, y: 0, player: player)
             
         case .top:
+            
             let upImageArray = (1...5).map { UIImage(named: "up\($0)") ?? #imageLiteral(resourceName: "noImage") }
             if players[player].animationImages?.first != UIImage(named: "up1") && players[player].animationImages?.first != nil {
                 
@@ -129,6 +168,7 @@ class GameMapController: UIViewController {
             }
             animateImagesForMove(images: upImageArray, x: 0, y: -50, player: player)
         }
+        
         clickСount += 1
         
         let frame = CGRect(x: players[player].frame.origin.x-150, y: players[player].frame.origin.y-150, width: players[player].frame.width*6, height: players[player].frame.height*6)
@@ -151,7 +191,7 @@ class GameMapController: UIViewController {
                     if self?.clickСount == self?.animationCount {
                         self?.players[player].stopAnimating()
                         self?.animationCount = 0
-                        self?.clickСount = 0   
+                        self?.clickСount = 0
                     }
                 }
         })
@@ -165,49 +205,33 @@ class GameMapController: UIViewController {
         let intValue = map.distance(from: map.startIndex, to: center)
         let x = intValue%10 * 50
         let y = intValue / 10 * 50
+        
         var left = ranges.left
         var right = ranges.right
         var up = ranges.top
         var down = ranges.bottom
         
-        let rect = CGRect(x: x, y: y, width: 50, height: 50)
-        let fire = UIImageView(frame: rect)
-        fire.image = #imageLiteral(resourceName: "fire")
-        mapScroll.addSubview(fire)
-        
-        if left > 0 {
-            while left > 0 {
-                let rect = CGRect(x: x - left*50, y: y, width: 50, height: 50)
-                let fire = UIImageView(frame: rect)
-                fire.image = #imageLiteral(resourceName: "fire")
-                mapScroll.addSubview(fire)
+        if left >= 0 {
+            while left >= 0 {
+                addSubImageView(CGRect(x: x - left*50, y: y, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
                 left -= 1
             }
         }
         if right > 0 {
             while right > 0 {
-                let rect = CGRect(x: x + right*50, y: y, width: 50, height: 50)
-                let fire = UIImageView(frame: rect)
-                fire.image = #imageLiteral(resourceName: "fire")
-                mapScroll.addSubview(fire)
+                addSubImageView(CGRect(x: x + right*50, y: y, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
                 right -= 1
             }
         }
         if up > 0 {
             while up > 0 {
-                let rect = CGRect(x: x , y: y - up*50 , width: 50, height: 50)
-                let fire = UIImageView(frame: rect)
-                fire.image = #imageLiteral(resourceName: "fire")
-                mapScroll.addSubview(fire)
+                addSubImageView(CGRect(x: x , y: y - up*50, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
                 up -= 1
             }
         }
         if down > 0 {
             while down > 0 {
-                let rect = CGRect(x: x , y: y + down * 50, width: 50, height: 50)
-                let fire = UIImageView(frame: rect)
-                fire.image = #imageLiteral(resourceName: "fire")
-                mapScroll.addSubview(fire)
+                addSubImageView(CGRect(x: x , y: y + down * 50, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
                 down -= 1
             }
         }
@@ -224,10 +248,8 @@ class GameMapController: UIViewController {
     }
     
     func addBomb(player: Int) {
-        let rect = CGRect(x: players[player].frame.origin.x, y: players[player].frame.origin.y, width: 50, height: 50)
-        let bomb = UIImageView(frame: rect)
-        bomb.image = #imageLiteral(resourceName: "bomb")
-        mapScroll.addSubview(bomb)
+        addSubImageView(CGRect(x: players[player].frame.origin.x, y: players[player].frame.origin.y, width: 50, height: 50), image: #imageLiteral(resourceName: "bomb"))
+        
         mapScroll.willRemoveSubview(players[player])
         mapScroll.addSubview(players[player])
     }

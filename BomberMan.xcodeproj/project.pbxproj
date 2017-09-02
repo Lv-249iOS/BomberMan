@@ -216,15 +216,16 @@
 			path = Brain;
 			sourceTree = "<group>";
 		};
-		616E603A1F5038CE000B4A01 /* Supporting Files */ = {
+		616E603A1F5038CE000B4A01 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				A95FC5191F502C7500E1F926 /* AppDelegate.swift */,
-				A95FC5231F502C7500E1F926 /* Assets.xcassets */,
 				A95FC5251F502C7500E1F926 /* LaunchScreen.storyboard */,
-				A95FC5281F502C7500E1F926 /* Info.plist */,
+				A95BCE7A1F5427CE0021B1E7 /* Rating.storyboard */,
+				A95FC51D1F502C7500E1F926 /* Main.storyboard */,
+				A95BCE771F5427570021B1E7 /* Game.storyboard */,
+				A908D08E1F56B1A40097CF51 /* CreationGame.storyboard */,
 			);
-			name = "Supporting Files";
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		A95BCE701F5421BD0021B1E7 /* CustomTiles */ = {
@@ -302,17 +303,16 @@
 		A95FC5181F502C7500E1F926 /* BomberMan */ = {
 			isa = PBXGroup;
 			children = (
-				616E603A1F5038CE000B4A01 /* Supporting Files */,
+				A95FC5191F502C7500E1F926 /* AppDelegate.swift */,
+				A95FC5231F502C7500E1F926 /* Assets.xcassets */,
+				A95FC5281F502C7500E1F926 /* Info.plist */,
+				616E603A1F5038CE000B4A01 /* Storyboards */,
+				A95BCE701F5421BD0021B1E7 /* CustomTiles */,
 				A9E45FE21F596A230091266C /* Xib files */,
+				2023B3B81F55ECCD00B6F993 /* Extensions */,
+				A95BCE7F1F5427FC0021B1E7 /* Classes */,
 				E73B03EC1F572BAF008C0FC2 /* Images */,
 				A987D19B1F56EFDF00CCF677 /* Music */,
-				2023B3B81F55ECCD00B6F993 /* Extensions */,
-				A95BCE701F5421BD0021B1E7 /* CustomTiles */,
-				A95BCE7A1F5427CE0021B1E7 /* Rating.storyboard */,
-				A95FC51D1F502C7500E1F926 /* Main.storyboard */,
-				A95BCE771F5427570021B1E7 /* Game.storyboard */,
-				A908D08E1F56B1A40097CF51 /* CreationGame.storyboard */,
-				A95BCE7F1F5427FC0021B1E7 /* Classes */,
 				61475F231F51C92500B68DAA /* Brain */,
 			);
 			path = BomberMan;

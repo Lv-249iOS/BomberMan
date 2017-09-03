@@ -19,6 +19,16 @@ struct Scene {
     var width = 0
 }
 
+struct Door {
+    var health = 2
+}
+
+struct Upgrade {
+    var health = 2
+    var position: String.Index
+    var type: UpgradeType = .anotherBomb
+}
+
 struct Player {
 //    var health = 1
     var name = ""
@@ -31,6 +41,7 @@ struct Player {
 
 struct Mob {
 //    var type =
+    var identifier = 0
     var animationSpeed = 1
     var position: String.Index
     var direction: Direction
@@ -53,6 +64,17 @@ struct Enemy {
 //    case original =
 //    case sea =
 //}
+
+enum UpgradeType: Int {
+    case anotherBomb
+    case strongerBomb
+}
+
+enum DoubleHealthThings: Int {
+    case door
+    case anotherBomb
+    case strongerBomb
+}
 
 enum Direction: Int {
     case top = 1

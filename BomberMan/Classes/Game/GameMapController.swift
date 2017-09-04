@@ -24,6 +24,8 @@ class GameMapController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let scene = Scene(data: Levels().level(with: 0), width: 10)
+        brain.initializeGame(with: scene)
         updateContentSize()
         
         brain.showFire = { [weak self] explosion, center in
@@ -44,8 +46,9 @@ class GameMapController: UIViewController {
         brain.moveMob = { [weak self] direction, mob in
             self?.moveMob(in: direction, mob: mob)
         }
-        
-
+        brain.killMob = { [weak self] mob in
+            self?.killMob(mob: mob)
+        }
     }
     
     func addSubImageView(_ rect: CGRect, image: UIImage) {
@@ -72,8 +75,9 @@ class GameMapController: UIViewController {
     func drawMap() {
 
         for subview in mapScroll.subviews {
-                subview.removeFromSuperview()
+            subview.removeFromSuperview()
         }
+        mobs.removeAll()
         
         let sceneWidth = brain.shareScene().width
         map = brain.shareScene().data
@@ -117,6 +121,7 @@ class GameMapController: UIViewController {
                 let mob = UIImageView(frame: rect)
                 mob.image = #imageLiteral(resourceName: "balloon1")
                 mobs.append(mob)
+                mob.tag = brain.shareMobs()[mobs.count - 1]
                 mapScroll.addSubview(mobs.last!)
             case "U":
                 let rect = CGRect(x: i, y: j, width: 50, height: 50)
@@ -165,7 +170,13 @@ class GameMapController: UIViewController {
     }
     
     func killMob(mob:Int) {
-        kill(mobs, pos: mob)
+        var i = 0
+        for a in mobs {
+            if a.tag == mob {
+            kill(mobs, pos: i)
+            }
+            i += 1
+        }
     }
     
     func killHero(player: Int) {
@@ -173,23 +184,29 @@ class GameMapController: UIViewController {
     }
     
     func moveMob(in direction: Direction, mob: Int) {
-    
+        var i = 0
+        for a in mobs {
+            if a.tag == mob {
+                break
+            }
+            i += 1
+        }
         switch direction {
         case .top:
-            UIView.animate(withDuration: 0.3, animations: { [weak self] in
-            self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: 0, y: 50))!
+            UIView.animate(withDuration: 1, animations: { [weak self] in
+            self?.mobs[i].transform = (self?.mobs[i].transform.translatedBy(x: 0, y: -50))!
             })
         case .bottom:
-            UIView.animate(withDuration: 0.3, animations: { [weak self] in
-                self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: 0, y: -50))!
+            UIView.animate(withDuration: 1, animations: { [weak self] in
+                self?.mobs[i].transform = (self?.mobs[i].transform.translatedBy(x: 0, y: 50))!
             })
         case .right:
-            UIView.animate(withDuration: 0.3, animations: { [weak self] in
-                self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: 50, y: 0))!
+            UIView.animate(withDuration: 1, animations: { [weak self] in
+                self?.mobs[i].transform = (self?.mobs[i].transform.translatedBy(x: 50, y: 0))!
             })
         case .left:
-            UIView.animate(withDuration: 0.3, animations: { [weak self] in
-                self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: -50, y: 0))!
+            UIView.animate(withDuration: 1, animations: { [weak self] in
+                self?.mobs[i].transform = (self?.mobs[i].transform.translatedBy(x: -50, y: 0))!
             })
         }
     

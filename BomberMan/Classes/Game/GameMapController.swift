@@ -23,12 +23,8 @@ class GameMapController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        map = brain.shareScene().data
-        sceneWidth = brain.shareScene().width
         
-        mapScroll.contentSize = CGSize(width: 50 * sceneWidth, height: 50 * (map.characters.count / sceneWidth))
-        
-        drawMap()
+        updateContentSize()
         
         brain.showFire = { [weak self] explosion, center in
             self?.explode(ranges: explosion, center: center)
@@ -58,11 +54,19 @@ class GameMapController: UIViewController {
         mapScroll.addSubview(imageSub)
     }
     
-    func addSubImageBox(x: Int, y: Int) {
+    func addSubBoxView(x: Int, y: Int) {
         let rect = CGRect(x: x, y: y, width: 50, height: 50)
         let box = BoxView(frame: rect)
         box.backgroundColor = UIColor.brown
         mapScroll.addSubview(box)
+    }
+    
+    func updateContentSize() {
+        map = brain.shareScene().data
+        sceneWidth = brain.shareScene().width
+        
+        mapScroll.contentSize = CGSize(width: 50 * sceneWidth, height: 50 * (map.characters.count / sceneWidth))
+        drawMap()
     }
     
     func drawMap() {
@@ -87,7 +91,7 @@ class GameMapController: UIViewController {
                 wall.backgroundColor = UIColor.gray
                 mapScroll.addSubview(wall)
             case "B":
-                addSubImageBox(x: i, y: j)
+                addSubBoxView(x: i, y: j)
             case "0":
                 let rect = CGRect(x: i, y: j, width: 50, height: 50)
                 let player = UIImageView(frame: rect)
@@ -120,15 +124,14 @@ class GameMapController: UIViewController {
                 if upgrages[upgradeCounter].health == 1 {
                     addSubImageView(rect, image: #imageLiteral(resourceName: "Medal"))
                 } else {
-                    addSubImageBox(x: i, y: j)
+                    addSubBoxView(x: i, y: j)
                 }
                 upgradeCounter += 1
             case "D":
-                let rect = CGRect(x: i, y: j, width: 50, height: 50)
                 if brain.door.health == 1 {
-                    addSubImageView(rect, image: #imageLiteral(resourceName: "door"))
+                    addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "door"))
                 } else {
-                    addSubImageBox(x: i, y: j)
+                    addSubBoxView(x: i, y: j)
                 }
             default:
                 break
@@ -264,8 +267,8 @@ class GameMapController: UIViewController {
         drawMap()
         
         let intValue = map.distance(from: map.startIndex, to: center)
-        let x = intValue%10 * 50
-        let y = intValue / 10 * 50
+        let x = intValue % brain.shareScene().width * 50
+        let y = intValue / brain.shareScene().width * 50
         
         var left = ranges.left
         var right = ranges.right

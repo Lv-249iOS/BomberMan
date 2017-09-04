@@ -47,8 +47,8 @@ class GameLayoutController: UIViewController {
     
     func moveToNextLvl() {
         moveToNextLevel.removeFromSuperview()
-        let scene = Scene(data: Levels().level(with: 2), width: 15)
-        brain.initializeGame(with: scene)
+        brain.initializeGame(with: brain.currentLvl + 1)
+        gameMapController.updateContentSize()
 
     }
     

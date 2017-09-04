@@ -37,7 +37,6 @@
 		A94BDEAC1F5AFD150085E073 /* TopTenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDEA81F5AFD150085E073 /* TopTenController.swift */; };
 		A94BDEB21F5AFD450085E073 /* ControlPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDEAD1F5AFD450085E073 /* ControlPanelController.swift */; };
 		A94BDEB31F5AFD450085E073 /* DetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDEAE1F5AFD450085E073 /* DetailsController.swift */; };
-		A94BDEB41F5AFD450085E073 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDEAF1F5AFD450085E073 /* Game.swift */; };
 		A94BDEB51F5AFD450085E073 /* GameLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDEB01F5AFD450085E073 /* GameLayoutController.swift */; };
 		A94BDEB61F5AFD450085E073 /* GameMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDEB11F5AFD450085E073 /* GameMapController.swift */; };
 		A94BDEB81F5AFD570085E073 /* MultiPlayerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDEB71F5AFD570085E073 /* MultiPlayerGame.swift */; };
@@ -121,7 +120,6 @@
 		A94BDEA81F5AFD150085E073 /* TopTenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopTenController.swift; sourceTree = "<group>"; };
 		A94BDEAD1F5AFD450085E073 /* ControlPanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlPanelController.swift; sourceTree = "<group>"; };
 		A94BDEAE1F5AFD450085E073 /* DetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsController.swift; sourceTree = "<group>"; };
-		A94BDEAF1F5AFD450085E073 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		A94BDEB01F5AFD450085E073 /* GameLayoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLayoutController.swift; sourceTree = "<group>"; };
 		A94BDEB11F5AFD450085E073 /* GameMapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameMapController.swift; sourceTree = "<group>"; };
 		A94BDEB71F5AFD570085E073 /* MultiPlayerGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPlayerGame.swift; sourceTree = "<group>"; };
@@ -271,7 +269,6 @@
 				A94BDEAE1F5AFD450085E073 /* DetailsController.swift */,
 				A94BDEB11F5AFD450085E073 /* GameMapController.swift */,
 				A94BDEAD1F5AFD450085E073 /* ControlPanelController.swift */,
-				A94BDEAF1F5AFD450085E073 /* Game.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -630,7 +627,6 @@
 				A94BDEAA1F5AFD150085E073 /* ScoresManager.swift in Sources */,
 				A9E460401F5ADC040091266C /* GameOverView.swift in Sources */,
 				A94BDEB51F5AFD450085E073 /* GameLayoutController.swift in Sources */,
-				A94BDEB41F5AFD450085E073 /* Game.swift in Sources */,
 				A94BDEB21F5AFD450085E073 /* ControlPanelController.swift in Sources */,
 				A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */,
 				A9E460AF1F5AE32F0091266C /* BoxView.swift in Sources */,

@@ -11,7 +11,7 @@ import Foundation
 class Brain {
     static let shared = Brain()
     
-    private var scene = Scene(data: Levels().level(with: 0), width: 10)
+    fileprivate var scene = Scene(data: Levels().level(with: 0), width: 10)
     private var cantGo = "WBXQ"
     private var mobs: [Mob] = []
     
@@ -20,6 +20,8 @@ class Brain {
     var door = Door()
     var gameTimer: Timer!
     var score = 0
+    var currentLvl = 0
+    
     
     var showFire: ((Explosion, String.Index)->())?
     var move: ((Direction, Int)->())?
@@ -32,7 +34,9 @@ class Brain {
     var gameEnd: ((Bool)->())?
     
     //used at the beginning of the game
-    func initializeGame(with scene: Scene) {
+    func initializeGame(with lvlNumber: Int) {
+        currentLvl = lvlNumber
+        setlevel(numberoflevel: currentLvl)
         self.scene.data = scene.data
         self.scene.width = scene.width
         redrawScene?()
@@ -414,4 +418,21 @@ class Brain {
         }
         startFireTimer(explosion: explosion, position: position)
     }
+
+    func setlevel(numberoflevel: Int) {
+        let currentlevel: String
+        let width: Int
+        if numberoflevel == 0 {
+            width = 10
+        }
+        else {
+            width  = 15
+        }
+        currentlevel = Levels().level(with: numberoflevel)
+        scene = Scene(data: currentlevel, width: width)
+    }
+    
+    
+    
+    
 }

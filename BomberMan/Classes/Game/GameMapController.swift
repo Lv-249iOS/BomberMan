@@ -96,11 +96,7 @@ class GameMapController: UIViewController {
                 
                 let rect = CGRect(x: i, y: j, width: 50, height: 50)
                 let player = UIImageView(frame: rect)
-                player.image = UIImage(named: "hero")
-                
-//                player.tintColor = UIColor.red
-//                player.image = player.image?.withRenderingMode(.alwaysTemplate)
-                
+                player.image = UIImage(named: "hero")                
                 players.append(player)
                 mapScroll.addSubview(players.last!)
             case"M":

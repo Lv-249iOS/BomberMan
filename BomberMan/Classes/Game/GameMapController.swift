@@ -114,9 +114,7 @@ class GameMapController: UIViewController {
                 let rect = CGRect(x: i, y: j, width: 50, height: 50)
                 let upgrages = brain.upgrades
                 if upgrages[upgradeCounter].health == 1 {
-                    let upgrade = UIImageView(frame: rect)
-                    upgrade.image = #imageLiteral(resourceName: "Medal")
-                    mapScroll.addSubview(upgrade)
+                    addSubImageView(rect, image: #imageLiteral(resourceName: "Medal"))
                 } else {
                     let rect = CGRect(x: i, y: j, width: 50, height: 50)
                     let box = BoxView(frame: rect)
@@ -287,7 +285,7 @@ class GameMapController: UIViewController {
         }
         if down > 0 {
             while down > 0 {
-                addSubImageView(CGRect(x: x , y: y + down * 50, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
+                addSubImageView(CGRect(x: x , y: y + down*50, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
                 down -= 1
             }
         }

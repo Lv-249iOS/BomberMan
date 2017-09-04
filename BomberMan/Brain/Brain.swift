@@ -177,6 +177,15 @@ class Brain {
     }
 
     func move(to direction: Direction, player: inout Player) {
+        func removePlayerMark(atPosition position: String.Index) {
+            if scene.data[position] == player.markForScene {
+                scene.data.characters.remove(at: position)
+                scene.data.characters.insert(" ", at: position)
+            } else {
+                scene.data.characters.remove(at: position)
+                scene.data.characters.insert("X", at: position)
+            }
+        }
         if let playerPosition = scene.data.characters.index(of: player.markForScene) ?? scene.data.characters.index(of: "Q") {
             var directionPosition: String.Index
             var canGo = true
@@ -190,6 +199,7 @@ class Brain {
             if !cantGo.characters.contains(scene.data[directionPosition]) {
                 switch scene.data[directionPosition] {
                 case "F":
+                    removePlayerMark(atPosition: playerPosition)
                     if let intValue = Int(player.markForScene.description) {
                         move?(direction, intValue)
                         killHero?(intValue)
@@ -218,6 +228,7 @@ class Brain {
                         }
                     }
                 case "M":
+                    removePlayerMark(atPosition: playerPosition)
                     if let intValue = Int(player.markForScene.description) {
                         move?(direction, intValue)
                         killHero?(intValue)
@@ -228,13 +239,7 @@ class Brain {
                     break
                 }
                 if canGo {
-                    if scene.data[playerPosition] == player.markForScene {
-                        scene.data.characters.remove(at: playerPosition)
-                        scene.data.characters.insert(" ", at: playerPosition)
-                    } else {
-                        scene.data.characters.remove(at: playerPosition)
-                        scene.data.characters.insert("X", at: playerPosition)
-                    }
+                    removePlayerMark(atPosition: playerPosition)
                     scene.data.characters.remove(at: directionPosition)
                     scene.data.characters.insert(player.markForScene, at: directionPosition)
                     if let intValue = Int(player.markForScene.description) {
@@ -368,7 +373,7 @@ class Brain {
             let indexForFire = scene.data.characters.index(position, offsetBy: -i * scene.width)
             let blowOptions: (canBurn: Bool, canProceed: Bool) = blowFire(onPosition: indexForFire)
             if blowOptions.canBurn {
-                explosion.bottom += 1
+                explosion.top += 1
             }
             if blowOptions.canProceed == false {
                 break
@@ -378,7 +383,7 @@ class Brain {
             let indexForFire = scene.data.characters.index(position, offsetBy: i)
             let blowOptions: (canBurn: Bool, canProceed: Bool) = blowFire(onPosition: indexForFire)
             if blowOptions.canBurn {
-                explosion.bottom += 1
+                explosion.right += 1
             }
             if blowOptions.canProceed == false {
                 break
@@ -388,7 +393,7 @@ class Brain {
             let indexForFire = scene.data.characters.index(position, offsetBy: -i)
             let blowOptions: (canBurn: Bool, canProceed: Bool) = blowFire(onPosition: indexForFire)
             if blowOptions.canBurn {
-                explosion.bottom += 1
+                explosion.left += 1
             }
             if blowOptions.canProceed == false {
                 break

@@ -16,7 +16,7 @@ class GameLayoutController: UIViewController {
     var gameMapController: GameMapController!
     var controlPanelController: ControlPanelController!
     let brain = Brain.shared
-    
+    //var game = Game()
     var pause = PauseView()
     
     override func viewDidLoad() {

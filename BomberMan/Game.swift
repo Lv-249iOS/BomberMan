@@ -8,9 +8,20 @@
 
 import Foundation
 class Game {
-    let score = Int()
-    func gamestart(){}
+    let score = 0
+    let brain = Brain.shared
+    let levels = Levels.init()
+    
+    func gameStart(){
+        guard let data = levels.level(with: 1) else { return }
+        let scene = Scene.init(data: data, width: 10)
+        brain.appendScene(with: scene.width, data: scene.data)
+        
+        //brain.setmobdirection()
+        //brain.startmobmovement()
+        
+    }
     func gameEnd(){}
     let players = [Int]()
-
+    
 }

@@ -35,7 +35,7 @@ class ConnectionServiceManager: NSObject {
     var invitationHandler: ((Bool, MCSession?) -> Swift.Void)!
     var session: MCSession!
     var serviceAdvertiser : MCNearbyServiceAdvertiser? = nil
-    var serviceBrowser : MCBrowserViewController!
+    var serviceBrowser : MCBrowserViewController? = nil
     
     var delegate: ConnectionServiceManagerDelegate?
     var browserDelegate : MCBrowserViewControllerDelegate?
@@ -52,7 +52,6 @@ class ConnectionServiceManager: NSObject {
     }
     
     func startBrowser() {
-        
         browserDelegate = serviceBrowser?.delegate
         serviceBrowser?.browser?.startBrowsingForPeers()
         serviceBrowser?.maximumNumberOfPeers = maxCountOfPlayers
@@ -134,7 +133,5 @@ extension ConnectionServiceManager : MCSessionDelegate {
     
     func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL, withError error: Error?) {
         NSLog("%@", "didFinishReceivingResourceWithName")
-    }
-    public func session(_ session: MCSession, didReceiveCertificate certificate: [Any]?, fromPeer peerID: MCPeerID, certificateHandler: @escaping (Bool) -> Swift.Void) {
     }
 }

@@ -11,7 +11,7 @@ import Foundation
 class Levels {
     
     enum Level: String {
-        case one = "WWWWWWWWWWW  0     WW        WW        WW  B BBB WW  B B   WW  BBBBB WW    B B WW  BBB B WWWWWWWWWWW"
+        case one = "WWWWWWWWWWW  0     WW        WW        WW  B BBB WW  B B   WW  BBBBB WW    B B WWM BBBMB WWWWWWWWWWW"
         case two = "WWWWWWWWWWWWWWWW  WBW  BBB WWWW             WW   BBBBB  WW WW  BBBBBBB    WW  B BBB B    WW   BBBBB     WW    BBB      WW     B    0  WW     BBB     WW             WWWWWWWWWWWWWWWW"
         case three = "WWWWWWWWWWWWWWWW 0           WW    BBWBB    WW   BBBWBBB   WW   BBBWBBB   WW    BBBBB    WW      B      WW     BBB     WW      B      WW  BBB WWWWW BWW          BWBWWWWWWWWWWWWWWWW"
         case four = "WWWWWWWWWWWWWWWW0  BBBBBBBB  WW WBW W W W W WW BB BBBB BBBBWWBW WBWBWBWBWBWWBBBBBB BB   BWWBWBWBWBWBWBW WWBBB B BBB  BBWWBWBWBW WBWBWBWW BBBBBBBBBBBBWW WBWBWBWBWBW WW  BBBBB BBB  WWWWWWWWWWWWWWWW"

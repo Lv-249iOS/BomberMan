@@ -23,12 +23,10 @@ class GameMapController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        map = brain.shareScene().data
-        sceneWidth = brain.shareScene().width
         
-        mapScroll.contentSize = CGSize(width: 50 * sceneWidth, height: 50 * (map.characters.count / sceneWidth))
-        
-        drawMap()
+        let scene = Scene(data: Levels().level(with: 0), width: 10)
+        brain.initializeGame(with: scene)
+        updateContentSize()
         
         brain.showFire = { [weak self] explosion, center in
             self?.explode(ranges: explosion, center: center)
@@ -48,8 +46,9 @@ class GameMapController: UIViewController {
         brain.moveMob = { [weak self] direction, mob in
             self?.moveMob(in: direction, mob: mob)
         }
-        
-
+        brain.killMob = { [weak self] mob in
+            self?.killMob(mob: mob)
+        }
     }
     
     func addSubImageView(_ rect: CGRect, image: UIImage) {
@@ -58,18 +57,27 @@ class GameMapController: UIViewController {
         mapScroll.addSubview(imageSub)
     }
     
-    func addSubImageBox(x: Int, y: Int) {
+    func addSubBoxView(x: Int, y: Int) {
         let rect = CGRect(x: x, y: y, width: 50, height: 50)
         let box = BoxView(frame: rect)
         box.backgroundColor = UIColor.brown
         mapScroll.addSubview(box)
     }
     
+    func updateContentSize() {
+        map = brain.shareScene().data
+        sceneWidth = brain.shareScene().width
+        
+        mapScroll.contentSize = CGSize(width: 50 * sceneWidth, height: 50 * (map.characters.count / sceneWidth))
+        drawMap()
+    }
+    
     func drawMap() {
 
         for subview in mapScroll.subviews {
-                subview.removeFromSuperview()
+            subview.removeFromSuperview()
         }
+        mobs.removeAll()
         
         let sceneWidth = brain.shareScene().width
         map = brain.shareScene().data
@@ -87,7 +95,7 @@ class GameMapController: UIViewController {
                 wall.backgroundColor = UIColor.gray
                 mapScroll.addSubview(wall)
             case "B":
-                addSubImageBox(x: i, y: j)
+                addSubBoxView(x: i, y: j)
             case "0":
                 let rect = CGRect(x: i, y: j, width: 50, height: 50)
                 let player = UIImageView(frame: rect)
@@ -113,6 +121,7 @@ class GameMapController: UIViewController {
                 let mob = UIImageView(frame: rect)
                 mob.image = #imageLiteral(resourceName: "balloon1")
                 mobs.append(mob)
+                mob.tag = brain.shareMobs()[mobs.count - 1]
                 mapScroll.addSubview(mobs.last!)
             case "U":
                 let rect = CGRect(x: i, y: j, width: 50, height: 50)
@@ -120,15 +129,14 @@ class GameMapController: UIViewController {
                 if upgrages[upgradeCounter].health == 1 {
                     addSubImageView(rect, image: #imageLiteral(resourceName: "Medal"))
                 } else {
-                    addSubImageBox(x: i, y: j)
+                    addSubBoxView(x: i, y: j)
                 }
                 upgradeCounter += 1
             case "D":
-                let rect = CGRect(x: i, y: j, width: 50, height: 50)
                 if brain.door.health == 1 {
-                    addSubImageView(rect, image: #imageLiteral(resourceName: "door"))
+                    addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "door"))
                 } else {
-                    addSubImageBox(x: i, y: j)
+                    addSubBoxView(x: i, y: j)
                 }
             default:
                 break
@@ -162,7 +170,13 @@ class GameMapController: UIViewController {
     }
     
     func killMob(mob:Int) {
-        kill(mobs, pos: mob)
+        var i = 0
+        for a in mobs {
+            if a.tag == mob {
+            kill(mobs, pos: i)
+            }
+            i += 1
+        }
     }
     
     func killHero(player: Int) {
@@ -170,23 +184,29 @@ class GameMapController: UIViewController {
     }
     
     func moveMob(in direction: Direction, mob: Int) {
-    
+        var i = 0
+        for a in mobs {
+            if a.tag == mob {
+                break
+            }
+            i += 1
+        }
         switch direction {
         case .top:
-            UIView.animate(withDuration: 0.3, animations: { [weak self] in
-            self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: 0, y: 50))!
+            UIView.animate(withDuration: 1, animations: { [weak self] in
+            self?.mobs[i].transform = (self?.mobs[i].transform.translatedBy(x: 0, y: -50))!
             })
         case .bottom:
-            UIView.animate(withDuration: 0.3, animations: { [weak self] in
-                self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: 0, y: -50))!
+            UIView.animate(withDuration: 1, animations: { [weak self] in
+                self?.mobs[i].transform = (self?.mobs[i].transform.translatedBy(x: 0, y: 50))!
             })
         case .right:
-            UIView.animate(withDuration: 0.3, animations: { [weak self] in
-                self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: 50, y: 0))!
+            UIView.animate(withDuration: 1, animations: { [weak self] in
+                self?.mobs[i].transform = (self?.mobs[i].transform.translatedBy(x: 50, y: 0))!
             })
         case .left:
-            UIView.animate(withDuration: 0.3, animations: { [weak self] in
-                self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: -50, y: 0))!
+            UIView.animate(withDuration: 1, animations: { [weak self] in
+                self?.mobs[i].transform = (self?.mobs[i].transform.translatedBy(x: -50, y: 0))!
             })
         }
     
@@ -264,8 +284,8 @@ class GameMapController: UIViewController {
         drawMap()
         
         let intValue = map.distance(from: map.startIndex, to: center)
-        let x = intValue%10 * 50
-        let y = intValue / 10 * 50
+        let x = intValue % brain.shareScene().width * 50
+        let y = intValue / brain.shareScene().width * 50
         
         var left = ranges.left
         var right = ranges.right

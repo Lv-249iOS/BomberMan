@@ -43,16 +43,16 @@ class Brain {
         score = 0
         
         var i = 0
+        var mobIdentifier = 0
         for char in scene.data.characters {
             let index = scene.data.characters.index(scene.data.startIndex, offsetBy: i)
             switch char {
             case "M":
-                let identifier = scene.data.distance(from: scene.data.startIndex, to: index)
-                let mob = Mob(identifier: identifier,
+                let mob = Mob(identifier: mobIdentifier,
                               animationSpeed: 1,
                               position: index,
                               direction: setMobDirection())
-                
+                mobIdentifier += 1
                 mobs.append(mob)
             case "U":
                 let randomType = arc4random_uniform(1)
@@ -71,48 +71,61 @@ class Brain {
     }
     
     private func moveMobs() {
-        var i = 0
-        for var mob in mobs {
-            var directionPosition: String.Index
+        func getDirectionPosition(mob: Mob) -> String.Index {
+            let directionPosition: String.Index
             switch mob.direction {
             case .bottom: directionPosition = scene.data.characters.index(mob.position, offsetBy: scene.width)
             case .left: directionPosition = scene.data.characters.index(before: mob.position)
             case .right: directionPosition = scene.data.characters.index(after: mob.position)
             case .top: directionPosition = scene.data.index(mob.position, offsetBy: -scene.width)
             }
-            while !cantGo.characters.contains(scene.data[directionPosition]), scene.data[directionPosition] != "U", scene.data[directionPosition] != "D" {
+            return directionPosition
+        }
+        
+        var i = 0
+        var modifiedMobArray: [Mob] = []
+        for var mob in mobs {
+            var directionPosition = getDirectionPosition(mob: mob)
+            while cantGo.characters.contains(scene.data[directionPosition])
+                //, scene.data[directionPosition] != "U", scene.data[directionPosition] != "D" 
+            {
                 mob.direction = setMobDirection()
-                switch mob.direction {
-                case .bottom: directionPosition = scene.data.characters.index(mob.position, offsetBy: scene.width)
-                case .left: directionPosition = scene.data.characters.index(before: mob.position)
-                case .right: directionPosition = scene.data.characters.index(after: mob.position)
-                case .top: directionPosition = scene.data.index(mob.position, offsetBy: -scene.width)
-                }
+                directionPosition = getDirectionPosition(mob: mob)
             }
             scene.data.characters.remove(at: mob.position)
             scene.data.characters.insert(" ", at: mob.position)
             switch scene.data[directionPosition] {
             case "F":
-                //move on map
+                moveMob?(mob.direction, mob.identifier)
                 killMob?(mob.identifier)
                 score += 200
                 mobs.remove(at: i)
                 i -= 1
             case player.markForScene:
                 killHero?(0)
-                //move on map
+                moveMob?(mob.direction, mob.identifier)
                 gameEnd?(false)
-            default: break
-                //move on map
+            default: moveMob?(mob.direction, mob.identifier)
             }
             scene.data.characters.remove(at: directionPosition)
             scene.data.characters.insert("M", at: directionPosition)
+            mob.position = directionPosition
             i += 1
+            let modifiedMob = Mob(identifier: mob.identifier, animationSpeed: mob.animationSpeed, position: mob.position, direction: mob.direction)
+            modifiedMobArray.append(modifiedMob)
+        }
+        mobs.removeAll()
+        for mob in modifiedMobArray {
+            mobs.append(mob)
         }
     }
     
+//    private func redo(mobs: [Mob]) {
+//        mobs
+//    }
+    
     private func setMobDirection() -> Direction {
-        let randomDirection = arc4random_uniform(3) + 1
+        let randomDirection = arc4random_uniform(4) + 1
         if let direction = Direction(rawValue: Int(randomDirection)) {
             return direction
         }
@@ -155,8 +168,8 @@ class Brain {
     
     private func getMobIndexInPrivateArray(mob: Mob) -> Int? {
         var i = 0
-        for mob in mobs {
-            if mob.identifier == mobs[i].identifier {
+        for _ in mobs {
+           if mob.identifier == mobs[i].identifier {
                 return i
             }
             i += 1
@@ -279,7 +292,7 @@ class Brain {
     }
     
     private func startFireTimer(explosion: Explosion, position: String.Index) {
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
+        Timer.scheduledTimer(withTimeInterval: 0.0001, repeats: false) { [weak self] _ in
             self?.fadeFire(explosion: explosion, position: position)
         }
     }

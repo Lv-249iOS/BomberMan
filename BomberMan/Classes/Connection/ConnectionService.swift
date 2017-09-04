@@ -33,7 +33,7 @@ class ConnectionServiceManager: NSObject {
     private var maxCountOfPlayers = 4
     
     var invitationHandler: ((Bool, MCSession?) -> Swift.Void)!
-    var session: MCSession!
+    
     var serviceAdvertiser : MCNearbyServiceAdvertiser? = nil
     var serviceBrowser : MCBrowserViewController? = nil
     
@@ -41,10 +41,14 @@ class ConnectionServiceManager: NSObject {
     var browserDelegate : MCBrowserViewControllerDelegate?
     var invitationDelegate: InvitationDelegate?
     
+    lazy var session: MCSession = {
+        let session = MCSession (peer: self.myPeerId,securityIdentity: nil,encryptionPreference: .required)
+        return session
+    } ()
+    
     private override init() {
         super.init()
         myPeerId = MCPeerID(displayName: UIDevice.current.name)
-        session = MCSession (peer: self.myPeerId,securityIdentity: nil,encryptionPreference: .required)
         serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: playerServiceType)
         serviceBrowser = MCBrowserViewController(serviceType: playerServiceType, session: session)
         session.delegate = self

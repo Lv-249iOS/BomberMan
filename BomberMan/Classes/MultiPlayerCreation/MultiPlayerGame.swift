@@ -13,11 +13,16 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
     
     private let manager = ConnectionServiceManager.shared
     
+    @IBOutlet weak var phoneView: PhoneView?
     @IBOutlet weak var joinButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         manager.invitationDelegate = self
+    }
+    
+    @IBAction func close(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func createNewGame(_ sender: UIButton) {
@@ -27,8 +32,33 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
         self.present(browser, animated: true, completion: nil)
     }
     
+    
+    var isWaiting = false
     @IBAction func joinToNewGame(_ sender: UIButton) {
-        manager.advertiseSelf(true)
+        if isWaiting == false {
+            isWaiting = true
+            changeSceneView()
+        } else {
+            isWaiting = false
+            changeSceneView()
+        }
+    }
+    
+    func changeSceneView() {
+        if isWaiting {
+            manager.advertiseSelf(false)
+            phoneView?.runSpinAnimationOn()
+            
+            joinButton.setTitle("Waiting...", for: .normal)
+        } else {
+            manager.advertiseSelf(true)
+            phoneView?.stopSpinAnimation()
+            joinButton.setTitle("Join", for: .normal)
+        }
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {

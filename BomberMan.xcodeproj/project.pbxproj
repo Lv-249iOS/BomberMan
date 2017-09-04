@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A908D0901F56B1A40097CF51 /* CreationGame.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A908D08E1F56B1A40097CF51 /* CreationGame.storyboard */; };
+		A93D442D1F5D38CB008B4A10 /* PhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93D442B1F5D38CB008B4A10 /* PhoneView.swift */; };
+		A93D442E1F5D38CB008B4A10 /* PhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A93D442C1F5D38CB008B4A10 /* PhoneView.xib */; };
 		A94BDEA41F5AFCE80085E073 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDEA31F5AFCE80085E073 /* ConnectionService.swift */; };
 		A94BDEA91F5AFD150085E073 /* RatingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDEA51F5AFD150085E073 /* RatingController.swift */; };
 		A94BDEAA1F5AFD150085E073 /* ScoresManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BDEA61F5AFD150085E073 /* ScoresManager.swift */; };
@@ -90,6 +92,8 @@
 
 /* Begin PBXFileReference section */
 		A908D08F1F56B1A40097CF51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CreationGame.storyboard; sourceTree = "<group>"; };
+		A93D442B1F5D38CB008B4A10 /* PhoneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneView.swift; sourceTree = "<group>"; };
+		A93D442C1F5D38CB008B4A10 /* PhoneView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneView.xib; sourceTree = "<group>"; };
 		A94BDEA31F5AFCE80085E073 /* ConnectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionService.swift; sourceTree = "<group>"; };
 		A94BDEA51F5AFD150085E073 /* RatingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingController.swift; sourceTree = "<group>"; };
 		A94BDEA61F5AFD150085E073 /* ScoresManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresManager.swift; sourceTree = "<group>"; };
@@ -228,6 +232,16 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
+		A93D442A1F5D38A0008B4A10 /* PhoneView */ = {
+			isa = PBXGroup;
+			children = (
+				A93D442B1F5D38CB008B4A10 /* PhoneView.swift */,
+				A93D442C1F5D38CB008B4A10 /* PhoneView.xib */,
+			);
+			name = PhoneView;
+			path = phoneView;
+			sourceTree = "<group>";
+		};
 		A95BCE701F5421BD0021B1E7 /* CustomTiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +343,7 @@
 		A9E45FE21F596A230091266C /* Xib files */ = {
 			isa = PBXGroup;
 			children = (
+				A93D442A1F5D38A0008B4A10 /* PhoneView */,
 				A9E460551F5ADCF70091266C /* ControlPanelView */,
 				A9E460501F5ADCC70091266C /* MultiDetailsView */,
 				A9E4604B1F5ADC850091266C /* MoveToNextLevelView */,
@@ -550,6 +565,7 @@
 				A9E460711F5ADE9C0091266C /* down3.png in Resources */,
 				E77C3CDA1F59889200DE1CE1 /* death1.png in Resources */,
 				A9E4604A1F5ADC5F0091266C /* SingleDetailsView.xib in Resources */,
+				A93D442E1F5D38CB008B4A10 /* PhoneView.xib in Resources */,
 				A9E4607B1F5ADE9C0091266C /* right3.png in Resources */,
 				A9E460791F5ADE9C0091266C /* right1.png in Resources */,
 				A9E460741F5ADE9C0091266C /* left1.png in Resources */,
@@ -599,6 +615,7 @@
 				A94BDECC1F5B013C0085E073 /* Brain.swift in Sources */,
 				A9E460B01F5AE32F0091266C /* WallView.swift in Sources */,
 				A94BDED21F5B0F940085E073 /* SoundManager.swift in Sources */,
+				A93D442D1F5D38CB008B4A10 /* PhoneView.swift in Sources */,
 				A9E460441F5ADC1F0091266C /* PauseView.swift in Sources */,
 				A9E460491F5ADC5F0091266C /* SingleDetailsView.swift in Sources */,
 				A94BDEA41F5AFCE80085E073 /* ConnectionService.swift in Sources */,

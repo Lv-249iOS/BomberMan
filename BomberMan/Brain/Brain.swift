@@ -11,15 +11,13 @@ import Foundation
 class Brain {
     static let shared = Brain()
     
-    private var initialScene = Scene.init(data: "WWWWWWWWWWW  0     WWM       WW        WW  B BBB WW  BMB   WW  BBBBB WW    B B WW  BBBMB WWWWWWWWWWW",
-                                          width: 10)
-    private var scene = Scene.init(data: "WWWWWWWWWWW  0     WWM       WW        WW  B BBB WW  BMB   WW  BBBBB WW    B B WW  BBBMB WWWWWWWWWWW", width: 10)
+    private var scene = Scene(data: Levels().level(with: 0), width: 10)
     private var cantGo = "WBXQ"
     private var mobs: [Mob] = []
-    var upgrades: [Upgrade] = []
     
-    var player = Player.init(name: "Player", markForScene: "0", minesCount: 1, explosionPower: 1)
-    var door = Door.init()
+    var upgrades: [Upgrade] = []
+    var player = Player(name: "Player", markForScene: "0", minesCount: 1, explosionPower: 1)
+    var door = Door()
     var gameTimer: Timer!
     var score = 0
     
@@ -34,8 +32,10 @@ class Brain {
     var gameEnd: ((Bool)->())?
     
     //used at the beginning of the game
-    func initializeGame(withScene: Scene) {
-        scene = initialScene
+    func initializeGame(with scene: Scene) {
+        self.scene.data = scene.data
+        self.scene.width = scene.width
+        redrawScene?()
         
         door.health = 2
         mobs.removeAll()
@@ -48,7 +48,11 @@ class Brain {
             switch char {
             case "M":
                 let identifier = scene.data.distance(from: scene.data.startIndex, to: index)
-                let mob = Mob.init(identifier: identifier, animationSpeed: 1, position: index, direction: setMobDirection())
+                let mob = Mob(identifier: identifier,
+                              animationSpeed: 1,
+                              position: index,
+                              direction: setMobDirection())
+                
                 mobs.append(mob)
             case "U":
                 let randomType = arc4random_uniform(1)
@@ -59,6 +63,7 @@ class Brain {
             }
             i += 1
         }
+        
         startMobsMovement()
         gameTimer = Timer.scheduledTimer(withTimeInterval: 120, repeats: false, block: { [weak self] _ in
             self?.gameEnd?(false)
@@ -70,10 +75,10 @@ class Brain {
         for var mob in mobs {
             var directionPosition: String.Index
             switch mob.direction {
-                case .bottom: directionPosition = scene.data.characters.index(mob.position, offsetBy: scene.width)
-                case .left: directionPosition = scene.data.characters.index(before: mob.position)
-                case .right: directionPosition = scene.data.characters.index(after: mob.position)
-                case .top: directionPosition = scene.data.index(mob.position, offsetBy: -scene.width)
+            case .bottom: directionPosition = scene.data.characters.index(mob.position, offsetBy: scene.width)
+            case .left: directionPosition = scene.data.characters.index(before: mob.position)
+            case .right: directionPosition = scene.data.characters.index(after: mob.position)
+            case .top: directionPosition = scene.data.index(mob.position, offsetBy: -scene.width)
             }
             while !cantGo.characters.contains(scene.data[directionPosition]), scene.data[directionPosition] != "U", scene.data[directionPosition] != "D" {
                 mob.direction = setMobDirection()
@@ -112,11 +117,6 @@ class Brain {
             return direction
         }
         return Direction.bottom
-    }
-
-    func appendScene(withWidth width: Int, data: String) {
-        initialScene.data = data
-        initialScene.width = width
     }
     
     private func entryPointsCount(for testStr: String, char: Character) -> Int {
@@ -176,7 +176,7 @@ class Brain {
         }
         return identifiers
     }
-
+    
     func move(to direction: Direction, player: inout Player) {
         func removePlayerMark(atPosition position: String.Index) {
             if scene.data[position] == player.markForScene {
@@ -191,10 +191,10 @@ class Brain {
             var directionPosition: String.Index
             var canGo = true
             switch direction {
-                case .bottom: directionPosition = scene.data.characters.index(playerPosition, offsetBy: scene.width)
-                case .left: directionPosition = scene.data.characters.index(before: playerPosition)
-                case .right: directionPosition = scene.data.characters.index(after: playerPosition)
-                case .top: directionPosition = scene.data.index(playerPosition, offsetBy: -scene.width)
+            case .bottom: directionPosition = scene.data.characters.index(playerPosition, offsetBy: scene.width)
+            case .left: directionPosition = scene.data.characters.index(before: playerPosition)
+            case .right: directionPosition = scene.data.characters.index(after: playerPosition)
+            case .top: directionPosition = scene.data.index(playerPosition, offsetBy: -scene.width)
                 
             }
             if !cantGo.characters.contains(scene.data[directionPosition]) {
@@ -246,11 +246,11 @@ class Brain {
                     if let intValue = Int(player.markForScene.description) {
                         move?(direction, intValue)
                     }
-//                    return
+                    //                    return
                 }
             }
         }
-//        return
+        //        return
     }
     
     func plantBomb(player: Player) {

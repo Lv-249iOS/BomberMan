@@ -45,6 +45,10 @@ class GameMapController: UIViewController {
         brain.killHero = { [weak self] player in
             self?.killHero(player: player)
         }
+        brain.moveMob = { [weak self] direction, mob in
+            self?.moveMob(in: direction, mob: mob)
+        }
+        
 
     }
     
@@ -55,9 +59,9 @@ class GameMapController: UIViewController {
     }
     
     func drawMap() {
-        
+
         for subview in mapScroll.subviews {
-            subview.removeFromSuperview()
+                subview.removeFromSuperview()
         }
         
         let sceneWidth = brain.shareScene().width
@@ -65,6 +69,7 @@ class GameMapController: UIViewController {
         
         var i = 0
         var j = 0
+        var upgradeCounter = 0
         
         for tile in map.characters {
             
@@ -99,12 +104,27 @@ class GameMapController: UIViewController {
                 player.image = UIImage(named: "hero")                
                 players.append(player)
                 mapScroll.addSubview(players.last!)
-            case"M":
+            case "M":
                 let rect = CGRect(x: i, y: j, width: 50, height: 50)
                 let mob = UIImageView(frame: rect)
                 mob.image = #imageLiteral(resourceName: "balloon1")
                 mobs.append(mob)
                 mapScroll.addSubview(mobs.last!)
+            case "U":
+                let rect = CGRect(x: i, y: j, width: 50, height: 50)
+                let upgrages = brain.upgrades
+                if upgrages[upgradeCounter].health == 1 {
+                    let upgrade = UIImageView(frame: rect)
+                    upgrade.image = #imageLiteral(resourceName: "Medal")
+                    mapScroll.addSubview(upgrade)
+                } else {
+                    let rect = CGRect(x: i, y: j, width: 50, height: 50)
+                    let box = BoxView(frame: rect)
+                    box.backgroundColor = UIColor.brown
+                    mapScroll.addSubview(box)
+                }
+                upgradeCounter += 1
+
             default:
                 break
             }
@@ -119,12 +139,12 @@ class GameMapController: UIViewController {
         
     }
     
-    func killHero(player: Int) {
-        let rect = CGRect(x: players[player].frame.origin.x, y: players[player].frame.origin.y, width: 50, height: 50)
+    func kill(_ views: [UIImageView], pos: Int) {
+        let rect = CGRect(x: views[pos].frame.origin.x, y: views[pos].frame.origin.y, width: 50, height: 50)
         let death = UIImageView(frame: rect)
         mapScroll.addSubview(death)
         
-        players[player].removeFromSuperview()
+        views[pos].removeFromSuperview()
         
         death.animationImages = (1...8).map { UIImage(named: "death\($0)") ?? #imageLiteral(resourceName: "noImage") }
         death.animationRepeatCount = 1
@@ -134,7 +154,14 @@ class GameMapController: UIViewController {
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { _ in
             death.removeFromSuperview()
         })
-        
+    }
+    
+    func killMob(mob:Int) {
+        kill(mobs, pos: mob)
+    }
+    
+    func killHero(player: Int) {
+        kill(players, pos: player)
     }
     
     func moveMob(in direction: Direction, mob: Int) {

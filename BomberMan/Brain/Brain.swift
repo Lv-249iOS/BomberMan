@@ -16,7 +16,7 @@ class Brain {
     private var scene = Scene.init(data: "WWWWWWWWWWW  0     WWM       WW        WW  B BBB WW  BMB   WW  BBBBB WW    B B WW  BBBMB WWWWWWWWWWW", width: 10)
     private var cantGo = "WBXQ"
     private var mobs: [Mob] = []
-    private var upgrades: [Upgrade] = []
+    var upgrades: [Upgrade] = []
     
     var player = Player.init(name: "Player", markForScene: "0", minesCount: 1, explosionPower: 1)
     var door = Door.init()

@@ -16,7 +16,7 @@ class Brain {
     private var scene = Scene.init(data: "WWWWWWWWWWW  0     WWM       WW        WW  B BBB WW  BMB   WW  BBBBB WW    B B WW  BBBMB WWWWWWWWWWW", width: 10)
     private var cantGo = "WBXQ"
     private var mobs: [Mob] = []
-    private var upgrades: [Upgrade] = []
+    var upgrades: [Upgrade] = []
     
     var player = Player.init(name: "Player", markForScene: "0", minesCount: 1, explosionPower: 1)
     var door = Door.init()
@@ -36,6 +36,7 @@ class Brain {
     //used at the beginning of the game
     func initializeGame(withScene: Scene) {
         scene = initialScene
+        
         door.health = 2
         mobs.removeAll()
         upgrades.removeAll()
@@ -310,20 +311,21 @@ class Brain {
     }
     
     //sets fire on position in scene and returns true if nothing stops it
-    private func blowFire(onPosition index: String.Index) -> (Bool, Bool) {
+    private func blowFire(onPosition index: String.Index) -> (Bool, Bool, [Int]) {
         var canProceed = true
         var canBurn = true
+        var killedPlayers: [Int] = []
         
         switch scene.data[index] {
-        case "W": return (false, false)
+        case "W": return (false, false, killedPlayers)
         case "B": canProceed = false
         case player.markForScene:
             gameEnd?(false)
             if let intValue = Int(player.markForScene.description) {
-                killHero?(intValue)
+                killedPlayers.append(intValue)
             }
         case "U":
-            guard let upgradeIndex = getUpgradeIndex(atPosition: index) else { return (false, false) }
+            guard let upgradeIndex = getUpgradeIndex(atPosition: index) else { return (false, false, []) }
             if upgrades[upgradeIndex].health == 2 {
                 upgrades[upgradeIndex].health = 1
                 switch upgrades[upgradeIndex].type {
@@ -356,54 +358,47 @@ class Brain {
             scene.data.remove(at: index)
             scene.data.insert("F", at: index)
         }
-        return (canBurn, canProceed)
+        return (canBurn, canProceed, killedPlayers)
     }
     
     private func explode(at position: String.Index, power: Int) {
+        var killedPlayers: [Int] = []
         var explosion = Explosion.init()
+        
+        func explode(inDirection direction: Direction) -> Int {
+            var strength = 0
+            var offset = 0
+            for i in 1...power  {
+                switch direction {
+                case .bottom: offset = i * scene.width
+                case .left: offset = -i
+                case .right: offset = i
+                case .top: offset = -i * scene.width
+                }
+                let indexForFire = scene.data.characters.index(position, offsetBy: offset)
+                let blowOptions: (canBurn: Bool, canProceed: Bool, killedPlayers: [Int]) = blowFire(onPosition: indexForFire)
+                if blowOptions.canBurn {
+                    strength += 1
+                }
+                if blowOptions.canProceed == false {
+                    break
+                }
+                for player in blowOptions.killedPlayers {
+                    killedPlayers.append(player)
+                }
+            }
+            return strength
+        }
         scene.data.characters.remove(at: position)
         scene.data.characters.insert("F", at: position)
-        for i in 1...power  {
-            let indexForFire = scene.data.characters.index(position, offsetBy: i * scene.width)
-            let blowOptions: (canBurn: Bool, canProceed: Bool) = blowFire(onPosition: indexForFire)
-            if blowOptions.canBurn {
-                explosion.bottom += 1
-            }
-            if blowOptions.canProceed == false {
-                break
-            }
-        }
-        for i in 1...power  {
-            let indexForFire = scene.data.characters.index(position, offsetBy: -i * scene.width)
-            let blowOptions: (canBurn: Bool, canProceed: Bool) = blowFire(onPosition: indexForFire)
-            if blowOptions.canBurn {
-                explosion.top += 1
-            }
-            if blowOptions.canProceed == false {
-                break
-            }
-        }
-        for i in 1...power  {
-            let indexForFire = scene.data.characters.index(position, offsetBy: i)
-            let blowOptions: (canBurn: Bool, canProceed: Bool) = blowFire(onPosition: indexForFire)
-            if blowOptions.canBurn {
-                explosion.right += 1
-            }
-            if blowOptions.canProceed == false {
-                break
-            }
-        }
-        for i in 1...power  {
-            let indexForFire = scene.data.characters.index(position, offsetBy: -i)
-            let blowOptions: (canBurn: Bool, canProceed: Bool) = blowFire(onPosition: indexForFire)
-            if blowOptions.canBurn {
-                explosion.left += 1
-            }
-            if blowOptions.canProceed == false {
-                break
-            }
-        }
+        explosion.bottom = explode(inDirection: .bottom)
+        explosion.left = explode(inDirection: .left)
+        explosion.right = explode(inDirection: .right)
+        explosion.top = explode(inDirection: .top)
         showFire?(explosion, position)
+        for player in killedPlayers {
+            killHero?(player)
+        }
         startFireTimer(explosion: explosion, position: position)
     }
 }

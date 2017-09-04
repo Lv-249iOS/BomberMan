@@ -29,6 +29,13 @@ class TopTenController: UITableViewController {
         let score = scores[indexPath.row]
         cell.configure(with: score)
         
+        switch indexPath.row {
+        case 0: cell.cellImage?.image = #imageLiteral(resourceName: "gold-medal")
+        case 1: cell.cellImage?.image = #imageLiteral(resourceName: "silver-medal")
+        case 2: cell.cellImage?.image = #imageLiteral(resourceName: "bronze-medal")
+        default: break
+        }
+        
         return cell
     }
     

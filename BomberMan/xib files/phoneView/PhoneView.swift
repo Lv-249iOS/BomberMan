@@ -30,13 +30,12 @@ class PhoneView: UIView, CAAnimationDelegate {
     
     private func commonInit() {
         Bundle.main.loadNibNamed("PhoneView", owner: self, options: nil)
-        runSpinAnimationOn(view: self, duration: 2, rotation: 2, repeats: .infinity)
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
-    func runSpinAnimationOn(view: UIView, duration: Double, rotation: Double, repeats: Float) {
+    func runSpinAnimationOn(duration: Double = 2, rotation: Double = 1, repeats: Float = .infinity) {
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
         animation.delegate = self
         
@@ -46,7 +45,10 @@ class PhoneView: UIView, CAAnimationDelegate {
         animation.repeatCount = repeats
         animation.isRemovedOnCompletion = false
         animation.fillMode = kCAFillModeForwards
-        view.layer.add(animation, forKey: "rotationAnimation")
+        phoneIcon.layer.add(animation, forKey: "rotationAnimation")
     }
-
+    
+    func stopSpinAnimation() {
+        phoneIcon.layer.removeAnimation(forKey: "rotationAnimation")
+    }
 }

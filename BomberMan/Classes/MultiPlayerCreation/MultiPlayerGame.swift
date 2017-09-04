@@ -47,11 +47,12 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
     func changeSceneView() {
         if isWaiting {
             manager.advertiseSelf(false)
-            phoneView?.isHidden = false
+            phoneView?.runSpinAnimationOn()
+            
             joinButton.setTitle("Waiting...", for: .normal)
         } else {
             manager.advertiseSelf(true)
-            phoneView?.isHidden = true
+            phoneView?.stopSpinAnimation()
             joinButton.setTitle("Join", for: .normal)
         }
     }

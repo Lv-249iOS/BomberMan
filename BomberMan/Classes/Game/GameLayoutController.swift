@@ -41,17 +41,19 @@ class GameLayoutController: UIViewController {
         }
         
         brain.gameEnd = { [weak self] isHeroDead in
-            self?.gameEnd(isHeroAlive: isHeroDead)
+            self?.gameEnd(didWin: isHeroDead)
         }
     }
     
     func moveToNextLvl() {
-        
+        moveToNextLevel.removeFromSuperview()
+        let scene = Scene(data: Levels().level(with: 2), width: 15)
+        brain.initializeGame(with: scene)
+
     }
     
-    
-    func gameEnd(isHeroAlive: Bool) {
-        if isHeroAlive {
+    func gameEnd(didWin: Bool) {
+        if didWin {
             moveToNextLevel.frame = gameMapController.mapScroll.frame
             gameContainer.addSubview(moveToNextLevel)
         } else {

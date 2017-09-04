@@ -317,7 +317,11 @@ class Brain {
         switch scene.data[index] {
         case "W": return (false, false)
         case "B": canProceed = false
-        case player.markForScene: gameEnd?(false)
+        case player.markForScene:
+            gameEnd?(false)
+            if let intValue = Int(player.markForScene.description) {
+                killHero?(intValue)
+            }
         case "U":
             guard let upgradeIndex = getUpgradeIndex(atPosition: index) else { return (false, false) }
             if upgrades[upgradeIndex].health == 2 {

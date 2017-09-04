@@ -35,7 +35,7 @@ class ConnectionServiceManager: NSObject {
     var invitationHandler: ((Bool, MCSession?) -> Swift.Void)!
     var session: MCSession!
     var serviceAdvertiser : MCNearbyServiceAdvertiser? = nil
-    var serviceBrowser : MCBrowserViewController!
+    var serviceBrowser : MCBrowserViewController? = nil
     
     var delegate: ConnectionServiceManagerDelegate?
     var browserDelegate : MCBrowserViewControllerDelegate?
@@ -52,7 +52,6 @@ class ConnectionServiceManager: NSObject {
     }
     
     func startBrowser() {
-        
         browserDelegate = serviceBrowser?.delegate
         serviceBrowser?.browser?.startBrowsingForPeers()
         serviceBrowser?.maximumNumberOfPeers = maxCountOfPlayers

@@ -20,7 +20,8 @@ class Brain {
     
     var player = Player.init(name: "Player", markForScene: "0", minesCount: 1, explosionPower: 1)
     var door = Door.init()
-    //var gameTimer: Timer!
+    var gameTimer: Timer!
+    var score = 0
     
     var showFire: ((Explosion, String.Index)->())?
     var move: ((Direction, Int)->())?
@@ -38,6 +39,7 @@ class Brain {
         door.health = 2
         mobs.removeAll()
         upgrades.removeAll()
+        score = 0
         
         var i = 0
         for char in scene.data.characters {
@@ -57,6 +59,9 @@ class Brain {
             i += 1
         }
         startMobsMovement()
+        gameTimer = Timer.scheduledTimer(withTimeInterval: 120, repeats: false, block: { [weak self] _ in
+            self?.gameEnd?(false)
+        })
     }
     
     private func moveMobs() {
@@ -82,11 +87,12 @@ class Brain {
             scene.data.characters.insert(" ", at: mob.position)
             switch scene.data[directionPosition] {
             case "F":
-                //=================//=================//=================//=================//=================//=================
-                //killMob?(
+                //move on map
+                killMob?(mob.identifier)
+                score += 200
                 mobs.remove(at: i)
                 i -= 1
-            case "0":
+            case player.markForScene:
                 killHero?(0)
                 //move on map
                 gameEnd?(false)
@@ -133,8 +139,27 @@ class Brain {
         return nil
     }
     
-    //=================//=================//=================//=================//=================//=================//=================
     private func getMobIndex(atPosition position: String.Index) -> [Mob]? {
+        var result: [Mob] = []
+        for mob in mobs {
+            if mob.position == position {
+                result.append(mob)
+            }
+        }
+        if result.count == 0 {
+            return nil
+        }
+        return result
+    }
+    
+    private func getMobIndexInPrivateArray(mob: Mob) -> Int? {
+        var i = 0
+        for mob in mobs {
+            if mob.identifier == mobs[i].identifier {
+                return i
+            }
+            i += 1
+        }
         return nil
     }
     
@@ -280,16 +305,16 @@ class Brain {
     }
     
     //sets fire on position in scene and returns true if nothing stops it
-    private func blowFire(onPosition index: String.Index) -> Bool {
+    private func blowFire(onPosition index: String.Index) -> (Bool, Bool) {
         var canProceed = true
         var canBurn = true
         
         switch scene.data[index] {
-        case "W": return false
+        case "W": return (false, false)
         case "B": canProceed = false
-        case "0": gameEnd?(false)
+        case player.markForScene: gameEnd?(false)
         case "U":
-            guard let upgradeIndex = getUpgradeIndex(atPosition: index) else { return false }
+            guard let upgradeIndex = getUpgradeIndex(atPosition: index) else { return (false, false) }
             if upgrades[upgradeIndex].health == 2 {
                 upgrades[upgradeIndex].health = 1
                 switch upgrades[upgradeIndex].type {
@@ -305,8 +330,16 @@ class Brain {
             }
             canBurn = false
             canProceed = false
-            //=================//=================//=================//=================//=================//=================
-        case "M": break
+        case "M":
+            if let mobsAtCurrentPosition = getMobIndex(atPosition: index) {
+                for mob in mobsAtCurrentPosition {
+                    if let indexInPrivateArray = getMobIndexInPrivateArray(mob: mob) {
+                        mobs.remove(at: indexInPrivateArray)
+                        killMob?(mob.identifier)
+                        score += 200
+                    }
+                }
+            }
         default:
             break
         }
@@ -314,7 +347,7 @@ class Brain {
             scene.data.remove(at: index)
             scene.data.insert("F", at: index)
         }
-        return canProceed
+        return (canBurn, canProceed)
     }
     
     private func explode(at position: String.Index, power: Int) {
@@ -323,41 +356,41 @@ class Brain {
         scene.data.characters.insert("F", at: position)
         for i in 1...power  {
             let indexForFire = scene.data.characters.index(position, offsetBy: i * scene.width)
-            if scene.data[indexForFire] != "W" {
-                scene.data.remove(at: indexForFire)
-                scene.data.insert("F", at: indexForFire)
+            let blowOptions: (canBurn: Bool, canProceed: Bool) = blowFire(onPosition: indexForFire)
+            if blowOptions.canBurn {
                 explosion.bottom += 1
-            } else {
+            }
+            if blowOptions.canProceed == false {
                 break
             }
         }
         for i in 1...power  {
             let indexForFire = scene.data.characters.index(position, offsetBy: -i * scene.width)
-            if scene.data[indexForFire] != "W" {
-                scene.data.remove(at: indexForFire)
-                scene.data.insert("F", at: indexForFire)
-                explosion.top += 1
-            } else {
+            let blowOptions: (canBurn: Bool, canProceed: Bool) = blowFire(onPosition: indexForFire)
+            if blowOptions.canBurn {
+                explosion.bottom += 1
+            }
+            if blowOptions.canProceed == false {
                 break
             }
         }
         for i in 1...power  {
             let indexForFire = scene.data.characters.index(position, offsetBy: i)
-            if scene.data[indexForFire] != "W" {
-                scene.data.remove(at: indexForFire)
-                scene.data.insert("F", at: indexForFire)
-                explosion.right += 1
-            } else {
+            let blowOptions: (canBurn: Bool, canProceed: Bool) = blowFire(onPosition: indexForFire)
+            if blowOptions.canBurn {
+                explosion.bottom += 1
+            }
+            if blowOptions.canProceed == false {
                 break
             }
         }
         for i in 1...power  {
             let indexForFire = scene.data.characters.index(position, offsetBy: -i)
-            if scene.data[indexForFire] != "W" {
-                scene.data.remove(at: indexForFire)
-                scene.data.insert("F", at: indexForFire)
-                explosion.left += 1
-            } else {
+            let blowOptions: (canBurn: Bool, canProceed: Bool) = blowFire(onPosition: indexForFire)
+            if blowOptions.canBurn {
+                explosion.bottom += 1
+            }
+            if blowOptions.canProceed == false {
                 break
             }
         }

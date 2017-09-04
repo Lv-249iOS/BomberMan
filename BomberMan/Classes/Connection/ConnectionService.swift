@@ -20,6 +20,7 @@ protocol InvitationDelegate {
 }
 
 class ConnectionServiceManager: NSObject {
+    
     static let shared = ConnectionServiceManager()
     // Service type must be a unique string, at most 15 characters long
     // and can contain only ASCII lowercase letters, numbers and hyphens.
@@ -30,7 +31,7 @@ class ConnectionServiceManager: NSObject {
     
     //maxCountOfPlayers can't be more than 7
     private var maxCountOfPlayers = 4
-
+    
     var invitationHandler: ((Bool, MCSession?) -> Swift.Void)!
     
     var serviceAdvertiser : MCNearbyServiceAdvertiser? = nil
@@ -40,7 +41,13 @@ class ConnectionServiceManager: NSObject {
     var browserDelegate : MCBrowserViewControllerDelegate?
     var invitationDelegate: InvitationDelegate?
     
-    private override init() {}
+    private override init() {
+        serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: playerServiceType)
+        super.init()
+        serviceAdvertiser?.delegate = self
+        serviceBrowser = MCBrowserViewController(serviceType: self.playerServiceType, session: session)
+        browserDelegate = serviceBrowser?.delegate
+    }
     
     lazy var session: MCSession = {
         let session = MCSession (
@@ -53,9 +60,7 @@ class ConnectionServiceManager: NSObject {
     } ()
     
     func startBrowser() {
-        serviceBrowser = MCBrowserViewController(serviceType: self.playerServiceType, session: session)
         serviceBrowser?.maximumNumberOfPeers = 4
-        //Check whether we need it ↓
         browserDelegate = serviceBrowser?.delegate
     }
     
@@ -70,9 +75,7 @@ class ConnectionServiceManager: NSObject {
     
     func advertiseSelf(_ advertise: Bool) {
         if advertise {
-            serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: playerServiceType)
             serviceAdvertiser?.startAdvertisingPeer()
-            serviceAdvertiser?.delegate = self
         } else {
             serviceAdvertiser?.stopAdvertisingPeer()
             serviceAdvertiser = nil

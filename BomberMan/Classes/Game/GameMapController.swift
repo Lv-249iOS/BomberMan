@@ -24,7 +24,6 @@ class GameMapController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         map = brain.shareScene().data
-        print(brain.getmobposition())
         sceneWidth = brain.shareScene().width
         
         mapScroll.contentSize = CGSize(width: 50 * sceneWidth, height: 50 * (map.characters.count / sceneWidth))

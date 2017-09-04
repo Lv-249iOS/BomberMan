@@ -48,7 +48,7 @@ class GameLayoutController: UIViewController {
     
     // Controls arrow's events
     func move(direction: Direction) {
-        brain.move(to: direction, player: brain.player)
+        brain.move(to: direction, player: &brain.player)
         
        
     }

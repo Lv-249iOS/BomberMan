@@ -7,20 +7,24 @@
 //
 
 import Foundation
-class Game {
-    let brain = Brain.shared
-    let score = Int()
-    init(){
-        brain.gameEnd = { [weak self] didWin in
-            self?.gameEnd(didWin: didWin)
+var level = 1
+
+extension Brain {
+    
+    func startGamelevel()  {
+        if level == 1 {
+            let levelscene = Levels().level(with: 1)
+            let scene  = Scene.init(data: levelscene ?? "", width: 10)
+            initializeGame(withScene: scene)
+            
         }
-    }
-    
-    func gamestart(){}
-    
-    func gameEnd(didWin: Bool){
+        let levelscene = Levels().level(with: level)
+        let scene  = Scene.init(data: levelscene ?? "", width: 15)
+        initializeGame(withScene: scene)
         
     }
-    let players = [Int]()
-
+    func endOfGame() {
+        
+    }
+    
 }

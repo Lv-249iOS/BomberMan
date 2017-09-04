@@ -25,7 +25,7 @@
                             <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="connection" translatesAutoresizingMaskIntoConstraints="NO" id="iK6-3q-hVW">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdZ-dM-CY1" customClass="PhoneView" customModule="BomberMan" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdZ-dM-CY1" customClass="PhoneView" customModule="BomberMan" customModuleProvider="target">
                                 <rect key="frame" x="46.5" y="433" width="281" height="133.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -67,6 +67,19 @@
                                     <constraint firstItem="oe1-j9-MEp" firstAttribute="top" secondItem="0be-59-nRI" secondAttribute="bottom" constant="8" symbolic="YES" id="mE9-fz-wXR"/>
                                 </constraints>
                             </view>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yN1-iS-Qor">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Connection block" id="57p-rJ-LVk">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="3zn-kt-Aqt">
+                                            <connections>
+                                                <action selector="close:" destination="UtY-cH-NUP" id="IrR-7G-53E"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -86,6 +99,7 @@
                     </view>
                     <connections>
                         <outlet property="joinButton" destination="oe1-j9-MEp" id="upj-S0-WGX"/>
+                        <outlet property="phoneView" destination="EdZ-dM-CY1" id="jkv-Lp-pdT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bBX-LU-Cp7" userLabel="First Responder" sceneMemberID="firstResponder"/>

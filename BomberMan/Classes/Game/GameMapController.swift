@@ -58,6 +58,13 @@ class GameMapController: UIViewController {
         mapScroll.addSubview(imageSub)
     }
     
+    func addSubImageBox(x: Int, y: Int) {
+        let rect = CGRect(x: x, y: y, width: 50, height: 50)
+        let box = BoxView(frame: rect)
+        box.backgroundColor = UIColor.brown
+        mapScroll.addSubview(box)
+    }
+    
     func drawMap() {
 
         for subview in mapScroll.subviews {
@@ -80,10 +87,7 @@ class GameMapController: UIViewController {
                 wall.backgroundColor = UIColor.gray
                 mapScroll.addSubview(wall)
             case "B":
-                let rect = CGRect(x: i, y: j, width: 50, height: 50)
-                let box = BoxView(frame: rect)
-                box.backgroundColor = UIColor.brown
-                mapScroll.addSubview(box)
+                addSubImageBox(x: i, y: j)
             case "0":
                 let rect = CGRect(x: i, y: j, width: 50, height: 50)
                 let player = UIImageView(frame: rect)
@@ -116,13 +120,16 @@ class GameMapController: UIViewController {
                 if upgrages[upgradeCounter].health == 1 {
                     addSubImageView(rect, image: #imageLiteral(resourceName: "Medal"))
                 } else {
-                    let rect = CGRect(x: i, y: j, width: 50, height: 50)
-                    let box = BoxView(frame: rect)
-                    box.backgroundColor = UIColor.brown
-                    mapScroll.addSubview(box)
+                    addSubImageBox(x: i, y: j)
                 }
                 upgradeCounter += 1
-
+            case "D":
+                let rect = CGRect(x: i, y: j, width: 50, height: 50)
+                if brain.door.health == 1 {
+                    addSubImageView(rect, image: #imageLiteral(resourceName: "door"))
+                } else {
+                    addSubImageBox(x: i, y: j)
+                }
             default:
                 break
             }

@@ -22,6 +22,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="connection" translatesAutoresizingMaskIntoConstraints="NO" id="iK6-3q-hVW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdZ-dM-CY1" customClass="PhoneView" customModule="BomberMan" customModuleProvider="target">
+                                <rect key="frame" x="46.5" y="433" width="281" height="133.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mla-fu-PCq">
                                 <rect key="frame" x="47" y="267" width="281" height="133"/>
                                 <subviews>
@@ -63,10 +70,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="iK6-3q-hVW" firstAttribute="top" secondItem="eXA-YH-Izs" secondAttribute="top" id="6ca-x3-4kK"/>
+                            <constraint firstItem="EdZ-dM-CY1" firstAttribute="width" secondItem="oe1-j9-MEp" secondAttribute="width" id="Adq-E1-lfB"/>
+                            <constraint firstItem="iK6-3q-hVW" firstAttribute="leading" secondItem="eXA-YH-Izs" secondAttribute="leading" id="JWs-Ec-3tl"/>
                             <constraint firstItem="mla-fu-PCq" firstAttribute="centerY" secondItem="eXA-YH-Izs" secondAttribute="centerY" id="aup-m2-pBj"/>
+                            <constraint firstItem="EdZ-dM-CY1" firstAttribute="top" secondItem="oe1-j9-MEp" secondAttribute="bottom" constant="33" id="ezg-aK-nQ5"/>
                             <constraint firstItem="mla-fu-PCq" firstAttribute="height" secondItem="eXA-YH-Izs" secondAttribute="height" multiplier="0.2" id="gdf-hf-S3h"/>
+                            <constraint firstItem="XAx-ni-XyW" firstAttribute="top" secondItem="iK6-3q-hVW" secondAttribute="bottom" id="gsL-7t-niz"/>
                             <constraint firstItem="mla-fu-PCq" firstAttribute="centerX" secondItem="eXA-YH-Izs" secondAttribute="centerX" id="iie-aW-6iI"/>
+                            <constraint firstAttribute="trailing" secondItem="iK6-3q-hVW" secondAttribute="trailing" id="kxZ-e4-kde"/>
+                            <constraint firstItem="EdZ-dM-CY1" firstAttribute="height" secondItem="eXA-YH-Izs" secondAttribute="height" multiplier="0.2" id="tkw-Z6-O8b"/>
                             <constraint firstItem="mla-fu-PCq" firstAttribute="width" secondItem="eXA-YH-Izs" secondAttribute="width" multiplier="0.75" id="uZ9-VO-zIF"/>
+                            <constraint firstItem="EdZ-dM-CY1" firstAttribute="centerX" secondItem="eXA-YH-Izs" secondAttribute="centerX" id="w2O-K1-4Si"/>
                         </constraints>
                     </view>
                     <connections>
@@ -78,4 +93,7 @@
             <point key="canvasLocation" x="-319.19999999999999" y="676.91154422788611"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="connection" width="4264" height="2854"/>
+    </resources>
 </document>

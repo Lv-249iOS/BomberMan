@@ -27,41 +27,35 @@ class ConnectionServiceManager: NSObject {
     private let playerServiceType = "multi-player"
     
     //This peerID's name can be changed to username
-    private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
+    private var myPeerId : MCPeerID!
     
     //maxCountOfPlayers can't be more than 7
     private var maxCountOfPlayers = 4
     
     var invitationHandler: ((Bool, MCSession?) -> Swift.Void)!
-    
+    var session: MCSession!
     var serviceAdvertiser : MCNearbyServiceAdvertiser? = nil
-    var serviceBrowser : MCBrowserViewController? = nil
+    var serviceBrowser : MCBrowserViewController!
     
     var delegate: ConnectionServiceManagerDelegate?
     var browserDelegate : MCBrowserViewControllerDelegate?
     var invitationDelegate: InvitationDelegate?
     
     private override init() {
-        serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: playerServiceType)
         super.init()
+        myPeerId = MCPeerID(displayName: UIDevice.current.name)
+        session = MCSession (peer: self.myPeerId,securityIdentity: nil,encryptionPreference: .required)
+        serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: playerServiceType)
+        serviceBrowser = MCBrowserViewController(serviceType: playerServiceType, session: session)
+        session.delegate = self
         serviceAdvertiser?.delegate = self
-        serviceBrowser = MCBrowserViewController(serviceType: self.playerServiceType, session: session)
-        browserDelegate = serviceBrowser?.delegate
     }
     
-    lazy var session: MCSession = {
-        let session = MCSession (
-            peer: self.myPeerId,
-            securityIdentity: nil,
-            encryptionPreference: .required
-        )
-        session.delegate = self
-        return session
-    } ()
-    
     func startBrowser() {
-        serviceBrowser?.maximumNumberOfPeers = 4
+        
         browserDelegate = serviceBrowser?.delegate
+        serviceBrowser?.browser?.startBrowsingForPeers()
+        serviceBrowser?.maximumNumberOfPeers = maxCountOfPlayers
     }
     
     func stopBrowser() {
@@ -78,7 +72,6 @@ class ConnectionServiceManager: NSObject {
             serviceAdvertiser?.startAdvertisingPeer()
         } else {
             serviceAdvertiser?.stopAdvertisingPeer()
-            serviceAdvertiser = nil
         }
     }
     
@@ -106,13 +99,13 @@ class ConnectionServiceManager: NSObject {
 
 extension ConnectionServiceManager : MCNearbyServiceAdvertiserDelegate {
     
-    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Swift.Void) {
+    public func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Swift.Void) {
         NSLog("%@", "didReceiveInvitationFromPeer: \(peerID)")
         self.invitationHandler = invitationHandler
         invitationDelegate?.invitationWasReceived(fromPeer: peerID.displayName)
     }
     
-    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
+    public func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
         NSLog("%@", "didNotStartAdvertisingPeer: \(error)")
     }
 }
@@ -141,5 +134,7 @@ extension ConnectionServiceManager : MCSessionDelegate {
     
     func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL, withError error: Error?) {
         NSLog("%@", "didFinishReceivingResourceWithName")
+    }
+    public func session(_ session: MCSession, didReceiveCertificate certificate: [Any]?, fromPeer peerID: MCPeerID, certificateHandler: @escaping (Bool) -> Swift.Void) {
     }
 }

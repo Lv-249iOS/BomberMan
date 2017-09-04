@@ -19,6 +19,7 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
     override func viewDidLoad() {
         super.viewDidLoad()
         manager.invitationDelegate = self
+        
     }
     
     @IBAction func close(_ sender: UIBarButtonItem) {
@@ -33,7 +34,7 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
     }
     
     
-    var isWaiting = false
+    var isWaiting = true
     @IBAction func joinToNewGame(_ sender: UIButton) {
         if isWaiting == false {
             isWaiting = true
@@ -45,13 +46,12 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
     }
     
     func changeSceneView() {
-        if isWaiting {
-            manager.advertiseSelf(false)
+        if !isWaiting {
+            manager.advertiseSelf(true)
             phoneView?.runSpinAnimationOn()
-            
             joinButton.setTitle("Waiting...", for: .normal)
         } else {
-            manager.advertiseSelf(true)
+            manager.advertiseSelf(false)
             phoneView?.stopSpinAnimation()
             joinButton.setTitle("Join", for: .normal)
         }
@@ -68,6 +68,7 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
     
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
         manager.stopBrowser()
+
         manager.disconnect()
     }
     

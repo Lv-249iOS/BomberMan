@@ -53,7 +53,7 @@ class GameLayoutController: UIViewController {
     }
     
     func gameEnd(didWin: Bool) {
-        if didWin {
+        if !didWin && brain.currentLvl<8 {
             moveToNextLevel.frame = gameMapController.mapScroll.frame
             gameContainer.addSubview(moveToNextLevel)
         } else {

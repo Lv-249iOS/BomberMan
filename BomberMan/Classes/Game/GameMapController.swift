@@ -120,7 +120,7 @@ class GameMapController: UIViewController {
                 let mob = UIImageView(frame: rect)
                 mob.image = #imageLiteral(resourceName: "balloon1")
                 mobs.append(mob)
-                mob.tag = brain.shareMobs()[mobs.count - 1]
+               mob.tag = brain.shareMobs()[mobs.count - 1]
                 mapScroll.addSubview(mobs.last!)
             case "U":
                 let rect = CGRect(x: i, y: j, width: 50, height: 50)

@@ -59,6 +59,15 @@ class DetailsController: UIViewController {
         isTimerRunning = false
     }
     
+    func resetTimer() {
+        stopTimer()
+        detailsView.scoreLabel.text = "0.0"
+        detailsView.timeLabel.text = "00:00"
+
+        Brain.shared.currentTime = Brain.shared.timeLimit
+        
+    }
+    
     // Stop timer if it's running now and pause's switched on
     func changeTimerState() {
         isTimerRunning && isPause ? stopTimer() : runTimer()
@@ -74,7 +83,7 @@ class DetailsController: UIViewController {
             present(time: TimeInterval.toString(Brain.shared.currentTime))
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

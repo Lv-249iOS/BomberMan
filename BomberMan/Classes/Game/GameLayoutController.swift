@@ -17,7 +17,6 @@ class GameLayoutController: UIViewController {
     var gameMapController: GameMapController!
     var controlPanelController: ControlPanelController!
     let brain = Brain.shared
-    //var game = Game()
     var pause = PauseView()
     var gameOver = GameOverView()
     var moveToNextLevel = MoveToNextLevelView()
@@ -51,14 +50,16 @@ class GameLayoutController: UIViewController {
     }
     
     func moveToNextLvl() {
+        detailsController.resetTimer()
         moveToNextLevel.removeFromSuperview()
         brain.initializeGame(with: brain.currentLvl + 1)
         gameMapController.updateContentSize()
-        
+        detailsController.runTimer()
     }
     
     func gameEnd(didWin: Bool) {
-        if !didWin && brain.currentLvl<8 {
+        detailsController.resetTimer()
+        if !didWin && brain.currentLvl < 8 {
             moveToNextLevel.frame = gameMapController.mapScroll.frame
             gameContainer.addSubview(moveToNextLevel)
         } else {
@@ -69,6 +70,8 @@ class GameLayoutController: UIViewController {
     }
     
     func replayGame(isGameOver: Bool) {
+        detailsController.resetTimer()
+        detailsController.runTimer()
         isGameOver ? gameOver.removeFromSuperview() : moveToNextLevel.removeFromSuperview()
     }
     

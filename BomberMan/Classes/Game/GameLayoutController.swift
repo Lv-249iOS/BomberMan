@@ -19,6 +19,7 @@ class GameLayoutController: UIViewController {
     let brain = Brain.shared
     var pause = PauseView()
     var gameOver = GameOverView()
+    var gameWin = WinView()
     var moveToNextLevel = MoveToNextLevelView()
     
     override func viewDidLoad() {
@@ -51,6 +52,7 @@ class GameLayoutController: UIViewController {
     
     func moveToNextLvl() {
         detailsController.resetTimer()
+        brain.invalidateTimers()
         moveToNextLevel.removeFromSuperview()
         brain.initializeGame(with: brain.currentLvl + 1)
         gameMapController.updateContentSize()
@@ -59,11 +61,17 @@ class GameLayoutController: UIViewController {
     
     func gameEnd(didWin: Bool) {
         detailsController.resetTimer()
+        brain.invalidateTimers()
         if !didWin && brain.currentLvl < 8 {
             moveToNextLevel.frame = gameMapController.mapScroll.frame
             gameContainer.addSubview(moveToNextLevel)
-        } else {
+        } else if !didWin && brain.currentLvl == 8 {
+
+            gameWin.frame = gameMapController.mapScroll.frame
+            gameContainer.addSubview(gameWin)
             askUserAboutName()
+            // MARK: You must remove game win view if clicked on but
+        } else {
             gameOver.frame = gameMapController.mapScroll.frame
             gameContainer.addSubview(gameOver)
         }
@@ -71,8 +79,11 @@ class GameLayoutController: UIViewController {
     
     func replayGame(isGameOver: Bool) {
         detailsController.resetTimer()
+        brain.invalidateTimers()
         detailsController.runTimer()
         isGameOver ? gameOver.removeFromSuperview() : moveToNextLevel.removeFromSuperview()
+        brain.initializeGame(with: brain.currentLvl)
+        gameMapController.updateContentSize()
     }
     
     // Catchs pause state from details
@@ -165,8 +176,6 @@ class GameLayoutController: UIViewController {
             let nicknameField = alert.textFields![0]
             let score = UserScore(username: nicknameField.text ?? "User", score: 45600)
             ScoresManager.shared.saveData(score: score)
-            self.topTenController?.scores.append(score)
-            self.topTenController?.tableView.reloadData()
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { (action) -> Void in })
         alert.addTextField { (nicknameField: UITextField) in

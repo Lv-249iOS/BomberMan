@@ -13,6 +13,7 @@ class ScoresManager {
     private init() {
         loadData()
     }
+    
     var userScores: [UserScore] = []
     
     var filePath: String {
@@ -29,17 +30,17 @@ class ScoresManager {
     }
     
     public func saveData(score: UserScore) {
-        self.userScores.append(score)
+        userScores.append(score)
         
         // NSKeyedArchiver is going to look in every records list class and look for encode function and is going to encode our data and save it to our file path. This does everything for encoding and decoding.
         // Archive root object saves our array of record (our data) to our filepath url
-        NSKeyedArchiver.archiveRootObject(self.userScores, toFile: filePath)
+        NSKeyedArchiver.archiveRootObject(userScores, toFile: filePath)
     }
     
     public func loadData() {
         // if we can get back our data from our archives (load our data), get our data along our file path and cast it as an array of userscores
         if let ourData = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [UserScore] {
-            self.userScores = ourData
+            userScores = ourData
         }
     }
     

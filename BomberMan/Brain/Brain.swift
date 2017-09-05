@@ -43,7 +43,6 @@ class Brain {
         setlevel(numberoflevel: currentLvl)
         self.scene.data = scene.data
         self.scene.width = scene.width
-        redrawScene?()
         currentTime = timeLimit
         door.health = 2
         mobs.removeAll()
@@ -63,7 +62,7 @@ class Brain {
                 mobIdentifier += 1
                 mobs.append(mob)
             case "U":
-                let randomType = arc4random_uniform(1)
+                let randomType = arc4random_uniform(2)
                 guard let type = UpgradeType(rawValue: Int(randomType)) else { return }
                 let upgrade = Upgrade.init(health: 2, position: index, type: type)
                 upgrades.append(upgrade)
@@ -72,6 +71,7 @@ class Brain {
             i += 1
         }
         
+        redrawScene?()
         startMobsMovement()
         startGameTimer()
     }
@@ -99,12 +99,25 @@ class Brain {
         var i = 0
         var modifiedMobArray: [Mob] = []
         for var mob in mobs {
+            if arc4random_uniform(7) == 5 {
+                mob.direction = setMobDirection()
+            }
             var directionPosition = getDirectionPosition(mob: mob)
-            while cantGo.characters.contains(scene.data[directionPosition])
-                //, scene.data[directionPosition] != "U", scene.data[directionPosition] != "D" 
-            {
+            var loopsCount = 0
+            var needToContinue = false
+            while cantGo.characters.contains(scene.data[directionPosition]), scene.data[directionPosition] != "U", scene.data[directionPosition] != "D" {
                 mob.direction = setMobDirection()
                 directionPosition = getDirectionPosition(mob: mob)
+                loopsCount += 1
+                if loopsCount > 9 {
+                    needToContinue = true
+                    break
+                }
+            }
+            if needToContinue {
+                let modifiedMob = Mob(identifier: mob.identifier, animationSpeed: mob.animationSpeed, position: mob.position, direction: mob.direction)
+                modifiedMobArray.append(modifiedMob)
+                continue
             }
             scene.data.characters.remove(at: mob.position)
             scene.data.characters.insert(" ", at: mob.position)
@@ -114,12 +127,15 @@ class Brain {
                 killMob?(mob.identifier)
                 score += 200
                 mobs.remove(at: i)
-                i -= 1
+                needToContinue = true
             case player.markForScene:
                 killHero?(0)
                 moveMob?(mob.direction, mob.identifier)
                 gameEnd?(false)
             default: moveMob?(mob.direction, mob.identifier)
+            }
+            if needToContinue {
+                continue
             }
             scene.data.characters.remove(at: directionPosition)
             scene.data.characters.insert("M", at: directionPosition)
@@ -133,10 +149,6 @@ class Brain {
             mobs.append(mob)
         }
     }
-    
-//    private func redo(mobs: [Mob]) {
-//        mobs
-//    }
     
     private func setMobDirection() -> Direction {
         let randomDirection = arc4random_uniform(4) + 1
@@ -183,7 +195,7 @@ class Brain {
     private func getMobIndexInPrivateArray(mob: Mob) -> Int? {
         var i = 0
         for _ in mobs {
-           if mob.identifier == mobs[i].identifier {
+            if mob.identifier == mobs[i].identifier {
                 return i
             }
             i += 1
@@ -242,6 +254,9 @@ class Brain {
                         case .strongerBomb:
                             player.explosionPower += 1
                         }
+                        upgrades.remove(at: index)
+                        score += 100
+                        redrawScene?()
                     } else {
                         canGo = false
                     }
@@ -250,6 +265,7 @@ class Brain {
                         canGo = false
                     } else {
                         if let intValue = Int(player.markForScene.description) {
+                            score += 500
                             move?(direction, intValue)
                             gameEnd?(true)
                             return
@@ -273,11 +289,9 @@ class Brain {
                     if let intValue = Int(player.markForScene.description) {
                         move?(direction, intValue)
                     }
-                    //                    return
                 }
             }
         }
-        //        return
     }
     
     func plantBomb(player: Player) {
@@ -378,6 +392,7 @@ class Brain {
                 case .strongerBomb: showImage?(.strongerBomb, index)
                 }
                 canBurn = false
+                canProceed = false
             }
         case "D":
             if door.health == 2 {
@@ -447,7 +462,7 @@ class Brain {
         }
         startFireTimer(explosion: explosion, position: position)
     }
-
+    
     func setlevel(numberoflevel: Int) {
         let currentlevel: String
         let width: Int

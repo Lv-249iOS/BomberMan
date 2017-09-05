@@ -23,7 +23,6 @@ class RatingController: UIViewController {
         createScoreAlert(title: "Do you really want clean scores?", messege: "Your records will be empty")
     }
     
-    
     override var prefersStatusBarHidden: Bool {
         return true
     }

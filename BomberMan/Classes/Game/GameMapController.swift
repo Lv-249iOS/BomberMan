@@ -151,7 +151,12 @@ class GameMapController: UIViewController {
                 let rect = CGRect(x: i, y: j, width: 50, height: 50)
                 let upgrages = brain.upgrades
                 if upgrages[upgradeCounter].health == 1 {
-                    addSubImageView(rect, image: #imageLiteral(resourceName: "Medal"))
+                    switch upgrages[upgradeCounter].type {
+                    case .anotherBomb:
+                        addSubImageView(rect, image: #imageLiteral(resourceName: "bombupgrade"))
+                    case .strongerBomb:
+                        addSubImageView(rect, image: #imageLiteral(resourceName: "powerupgrade"))
+                    }
                 } else {
                     addSubBoxView(x: i, y: j)
                 }

@@ -229,6 +229,8 @@ class Brain {
         if let playerPosition = scene.data.characters.index(of: player.markForScene) ?? scene.data.characters.index(of: "Q") {
             var directionPosition: String.Index
             var canGo = true
+            var shouldRedraw = false
+            
             switch direction {
             case .bottom: directionPosition = scene.data.characters.index(playerPosition, offsetBy: scene.width)
             case .left: directionPosition = scene.data.characters.index(before: playerPosition)
@@ -256,7 +258,7 @@ class Brain {
                         }
                         upgrades.remove(at: index)
                         score += 100
-                        redrawScene?()
+                        shouldRedraw = true
                     } else {
                         canGo = false
                     }
@@ -288,6 +290,9 @@ class Brain {
                     scene.data.characters.insert(player.markForScene, at: directionPosition)
                     if let intValue = Int(player.markForScene.description) {
                         move?(direction, intValue)
+                    }
+                    if shouldRedraw {
+                        redrawScene?()
                     }
                 }
             }

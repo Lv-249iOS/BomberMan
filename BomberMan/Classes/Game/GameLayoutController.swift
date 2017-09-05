@@ -43,6 +43,10 @@ class GameLayoutController: UIViewController {
         brain.gameEnd = { [weak self] isHeroDead in
             self?.gameEnd(didWin: isHeroDead)
         }
+        
+        brain.presentTime = { [weak self] time in
+            self?.presentTimer(time: time)
+        }
     }
     
     func moveToNextLvl() {
@@ -60,7 +64,6 @@ class GameLayoutController: UIViewController {
             gameOver.frame = gameMapController.mapScroll.frame
             gameContainer.addSubview(gameOver)
         }
-        
     }
     
     func replayGame(isGameOver: Bool) {
@@ -85,6 +88,10 @@ class GameLayoutController: UIViewController {
     func turnToHome() {
         brain.invalidateTimers()
         dismiss(animated: true, completion: nil)
+    }
+    
+    func presentTimer(time: TimeInterval) {
+        detailsController.present(time: "\(time)")
     }
     
     // Controls arrow's events

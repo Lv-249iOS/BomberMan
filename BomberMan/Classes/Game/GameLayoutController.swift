@@ -19,6 +19,7 @@ class GameLayoutController: UIViewController {
     let brain = Brain.shared
     var pause = PauseView()
     var gameOver = GameOverView()
+    var gameWin = WinView()
     var moveToNextLevel = MoveToNextLevelView()
     
     override func viewDidLoad() {
@@ -64,8 +65,13 @@ class GameLayoutController: UIViewController {
         if !didWin && brain.currentLvl < 8 {
             moveToNextLevel.frame = gameMapController.mapScroll.frame
             gameContainer.addSubview(moveToNextLevel)
-        } else {
+        } else if !didWin && brain.currentLvl == 8 {
+
+            gameWin.frame = gameMapController.mapScroll.frame
+            gameContainer.addSubview(gameWin)
             askUserAboutName()
+            // MARK: You must remove game win view if clicked on but
+        } else {
             gameOver.frame = gameMapController.mapScroll.frame
             gameContainer.addSubview(gameOver)
         }

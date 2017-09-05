@@ -22,10 +22,6 @@ class RatingController: UIViewController {
     @IBAction func cleanScores(_ sender: Any) {
         createScoreAlert(title: "Do you really want clean scores?", messege: "Your records will be empty")
     }
-   
-    override func viewDidAppear(_ animated: Bool) {
-        askUserAboutName()
-    }
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -41,6 +37,7 @@ class RatingController: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
         }))
+        alert.view.tintColor = UIColor.black
         self.present(alert, animated: true, completion:  nil)
     }
     
@@ -48,35 +45,6 @@ class RatingController: UIViewController {
         if segue.identifier == "TopTenSegue",
             let controller = segue.destination as? TopTenController {
             topTenController = controller
-            
-        }
-    }
-    
-    // Alert to save yser's nickname
-    func askUserAboutName() {
-        let alert = UIAlertController(title: "Save your score", message: "Input your name here", preferredStyle: .alert)
-        
-        let confirmAction = UIAlertAction(title: "Done", style: .default, handler: { (action) -> Void in
-            let nicknameField = alert.textFields![0]
-            let score = UserScore(username: nicknameField.text ?? "User", score: 45600)
-            ScoresManager.shared.saveData(score: score)
-            self.topTenController?.scores.append(score)
-            self.topTenController?.tableView.reloadData()
-        })
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { (action) -> Void in })
-        
-        alert.addTextField { (nicknameField: UITextField) in
-            nicknameField.placeholder = "your name is..."
-            nicknameField.clearButtonMode = .whileEditing
-            nicknameField.keyboardType = .default
-            nicknameField.keyboardAppearance = .dark
-            
-            alert.view.tintColor = UIColor.purple
-            alert.addAction(confirmAction)
-            alert.addAction(cancelAction)
-            
-            self.present(alert, animated: true, completion:  nil)
         }
     }
 }

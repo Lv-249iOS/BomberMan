@@ -18,6 +18,7 @@ extension Date {
         let earliest = now.earlierDate(date as Date)
         let latest = (earliest == now as Date) ? date : now as Date
         
+        // To present date in reverse format we need some transformations
         let components = calendar.dateComponents(unitFlags, from: earliest as Date,  to: latest as Date)
         if (components.weekOfYear! >= 2) {
             let dateFormatter = DateFormatter()

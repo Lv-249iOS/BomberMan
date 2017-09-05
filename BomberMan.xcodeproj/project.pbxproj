@@ -293,10 +293,10 @@
 			isa = PBXGroup;
 			children = (
 				A94BDEBD1F5AFDA40085E073 /* UserScore.swift */,
-				A94BDEA51F5AFD150085E073 /* RatingController.swift */,
 				A94BDEA61F5AFD150085E073 /* ScoresManager.swift */,
-				A94BDEA71F5AFD150085E073 /* TopTenCell.swift */,
+				A94BDEA51F5AFD150085E073 /* RatingController.swift */,
 				A94BDEA81F5AFD150085E073 /* TopTenController.swift */,
+				A94BDEA71F5AFD150085E073 /* TopTenCell.swift */,
 			);
 			path = Rating;
 			sourceTree = "<group>";

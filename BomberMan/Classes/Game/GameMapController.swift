@@ -20,6 +20,7 @@ class GameMapController: UIViewController {
     private var mobs: [UIImageView] = []
     private var clickСount = 0
     private var animationCount = 0
+    var firstTime = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,9 +75,17 @@ class GameMapController: UIViewController {
     func drawMap() {
 
         for subview in mapScroll.subviews {
-            subview.removeFromSuperview()
+            if let a = subview as? UIImageView {
+                if !players.contains(a), !mobs.contains(a), a.tag != 666 {
+                    subview.removeFromSuperview()
+                }
+            } else {
+                subview.removeFromSuperview()
+            }
+            
         }
-        mobs.removeAll()
+//        mobs.removeAll()
+//        players.removeAll()
         
         let sceneWidth = brain.shareScene().width
         map = brain.shareScene().data
@@ -96,11 +105,15 @@ class GameMapController: UIViewController {
             case "B":
                 addSubBoxView(x: i, y: j)
             case "0":
-                let rect = CGRect(x: i, y: j, width: 50, height: 50)
-                let player = UIImageView(frame: rect)
-                players.append(player)
-                players[0].image = UIImage(named: "hero")
-                mapScroll.addSubview(players[0])
+                if firstTime {
+                    let rect = CGRect(x: i, y: j, width: 50, height: 50)
+                    let player = UIImageView(frame: rect)
+                    player.image = UIImage(named: "hero")
+                    players.append(player)
+                    if !players.isEmpty {
+                        mapScroll.addSubview(players.last!)
+                    }
+                }
             case "F":
                 addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
                 
@@ -116,12 +129,16 @@ class GameMapController: UIViewController {
                 players.append(player)
                 mapScroll.addSubview(players.last!)
             case "M":
-                let rect = CGRect(x: i, y: j, width: 50, height: 50)
-                let mob = UIImageView(frame: rect)
-                mob.image = #imageLiteral(resourceName: "balloon1")
-                mobs.append(mob)
-                mob.tag = brain.shareMobs()[mobs.count - 1]
-                mapScroll.addSubview(mobs.last!)
+                if firstTime {
+                    let rect = CGRect(x: i, y: j, width: 50, height: 50)
+                    let mob = UIImageView(frame: rect)
+                    mob.image = #imageLiteral(resourceName: "balloon1")
+                    mobs.append(mob)
+                    if !mobs.isEmpty {
+                        mob.tag = brain.shareMobs()[mobs.count - 1]
+                        mapScroll.addSubview(mobs.last!)
+                    } 
+                }
             case "U":
                 let rect = CGRect(x: i, y: j, width: 50, height: 50)
                 let upgrages = brain.upgrades
@@ -149,12 +166,15 @@ class GameMapController: UIViewController {
             }
         }
         
+        firstTime = false
+        
     }
     
     func kill(_ views: [UIImageView], pos: Int) {
-        let rect = CGRect(x: views[pos].frame.origin.x, y: views[pos].frame.origin.y, width: 50, height: 50)
+        let rect = CGRect(x: views[pos].frame.origin.x-25, y: views[pos].frame.origin.y-25, width: 100, height: 100)
         let death = UIImageView(frame: rect)
         mapScroll.addSubview(death)
+        death.tag = 666
         
         views[pos].removeFromSuperview()
         
@@ -173,6 +193,7 @@ class GameMapController: UIViewController {
         for a in mobs {
             if a.tag == mob {
             kill(mobs, pos: i)
+            break
             }
             i += 1
         }

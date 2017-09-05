@@ -14,8 +14,9 @@ class TopTenController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = 80
+        tableView.rowHeight = 80 // approximate hieght of cells
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scores.count
     }
@@ -29,6 +30,7 @@ class TopTenController: UITableViewController {
         let score = scores[indexPath.row]
         cell.configure(with: score)
         
+        // Set medals for first three places
         switch indexPath.row {
         case 0: cell.cellImage?.image = #imageLiteral(resourceName: "gold-medal")
         case 1: cell.cellImage?.image = #imageLiteral(resourceName: "silver-medal")
@@ -39,6 +41,7 @@ class TopTenController: UITableViewController {
         return cell
     }
     
+    // Clearing all records from table view
     public func clearScores() {
         scores.removeAll()
         tableView.reloadData()

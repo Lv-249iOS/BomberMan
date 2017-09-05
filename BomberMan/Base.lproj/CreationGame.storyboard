@@ -6,10 +6,47 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Event Pop Over Controller-->
+        <scene sceneID="94z-Qd-bcz">
+            <objects>
+                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="currentContext" id="EIN-sG-IoS" customClass="EventPopOverController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="L69-vt-68Y"/>
+                        <viewControllerLayoutGuide type="bottom" id="Css-PS-crm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AxC-Kl-Lck">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="112"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f8i-qO-CqN" customClass="EventPopOverView" customModule="BomberMan" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="112"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="f8i-qO-CqN" firstAttribute="leading" secondItem="AxC-Kl-Lck" secondAttribute="leading" id="33t-sV-tuA"/>
+                            <constraint firstAttribute="trailing" secondItem="f8i-qO-CqN" secondAttribute="trailing" id="AOr-nr-5bP"/>
+                            <constraint firstItem="Css-PS-crm" firstAttribute="top" secondItem="f8i-qO-CqN" secondAttribute="bottom" id="dRE-pa-hyU"/>
+                            <constraint firstItem="f8i-qO-CqN" firstAttribute="top" secondItem="AxC-Kl-Lck" secondAttribute="top" id="oqn-iB-wVb"/>
+                        </constraints>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="250" height="112"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="popOverView" destination="f8i-qO-CqN" id="FiK-ix-geG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VA3-4b-jGD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="544" y="916.64167916041981"/>
+        </scene>
         <!--Multi Player Game-->
         <scene sceneID="tik-jf-8I5">
             <objects>
@@ -80,18 +117,50 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ach-5k-apQ">
+                                <rect key="frame" x="16" y="629" width="30" height="30"/>
+                                <color key="backgroundColor" red="0.83217525920000002" green="0.83217525920000002" blue="0.83217525920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="BN8-tT-ue9"/>
+                                    <constraint firstAttribute="height" constant="30" id="iQ3-uE-DXm"/>
+                                </constraints>
+                                <state key="normal" title="?">
+                                    <color key="titleColor" red="0.4039215686" green="0.36470588240000001" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="EIN-sG-IoS" kind="popoverPresentation" identifier="EventPopOverSegue" popoverAnchorView="Ach-5k-apQ" id="x18-H8-9az">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start buttle with your friends" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OgP-Cq-fTs">
+                                <rect key="frame" x="47" y="145" width="281" height="72"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <color key="highlightedColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="OgP-Cq-fTs" firstAttribute="centerX" secondItem="eXA-YH-Izs" secondAttribute="centerX" id="3EI-Sn-V47"/>
                             <constraint firstItem="iK6-3q-hVW" firstAttribute="top" secondItem="eXA-YH-Izs" secondAttribute="top" id="6ca-x3-4kK"/>
                             <constraint firstItem="EdZ-dM-CY1" firstAttribute="width" secondItem="oe1-j9-MEp" secondAttribute="width" id="Adq-E1-lfB"/>
+                            <constraint firstItem="Ach-5k-apQ" firstAttribute="leading" secondItem="eXA-YH-Izs" secondAttribute="leadingMargin" id="J0r-Pa-a9t"/>
                             <constraint firstItem="iK6-3q-hVW" firstAttribute="leading" secondItem="eXA-YH-Izs" secondAttribute="leading" id="JWs-Ec-3tl"/>
+                            <constraint firstItem="0be-59-nRI" firstAttribute="top" secondItem="OgP-Cq-fTs" secondAttribute="bottom" constant="50" id="X06-tN-xYI"/>
                             <constraint firstItem="mla-fu-PCq" firstAttribute="centerY" secondItem="eXA-YH-Izs" secondAttribute="centerY" id="aup-m2-pBj"/>
                             <constraint firstItem="EdZ-dM-CY1" firstAttribute="top" secondItem="oe1-j9-MEp" secondAttribute="bottom" constant="33" id="ezg-aK-nQ5"/>
                             <constraint firstItem="mla-fu-PCq" firstAttribute="height" secondItem="eXA-YH-Izs" secondAttribute="height" multiplier="0.2" id="gdf-hf-S3h"/>
                             <constraint firstItem="XAx-ni-XyW" firstAttribute="top" secondItem="iK6-3q-hVW" secondAttribute="bottom" id="gsL-7t-niz"/>
                             <constraint firstItem="mla-fu-PCq" firstAttribute="centerX" secondItem="eXA-YH-Izs" secondAttribute="centerX" id="iie-aW-6iI"/>
                             <constraint firstAttribute="trailing" secondItem="iK6-3q-hVW" secondAttribute="trailing" id="kxZ-e4-kde"/>
+                            <constraint firstItem="OgP-Cq-fTs" firstAttribute="width" secondItem="0be-59-nRI" secondAttribute="width" id="nsV-OU-WA3"/>
+                            <constraint firstItem="XAx-ni-XyW" firstAttribute="top" secondItem="Ach-5k-apQ" secondAttribute="bottom" constant="8" symbolic="YES" id="okQ-67-YDh"/>
                             <constraint firstItem="EdZ-dM-CY1" firstAttribute="height" secondItem="eXA-YH-Izs" secondAttribute="height" multiplier="0.2" id="tkw-Z6-O8b"/>
                             <constraint firstItem="mla-fu-PCq" firstAttribute="width" secondItem="eXA-YH-Izs" secondAttribute="width" multiplier="0.75" id="uZ9-VO-zIF"/>
                             <constraint firstItem="EdZ-dM-CY1" firstAttribute="centerX" secondItem="eXA-YH-Izs" secondAttribute="centerX" id="w2O-K1-4Si"/>

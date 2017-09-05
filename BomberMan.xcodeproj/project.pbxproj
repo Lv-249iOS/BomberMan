@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A908D0901F56B1A40097CF51 /* CreationGame.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A908D08E1F56B1A40097CF51 /* CreationGame.storyboard */; };
+		A92AA4321F5E8A2C0025EFB6 /* EventPopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A92AA4311F5E8A2C0025EFB6 /* EventPopOverView.xib */; };
+		A92AA4341F5E8D250025EFB6 /* EventPopOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92AA4331F5E8D250025EFB6 /* EventPopOverView.swift */; };
+		A92AA4361F5E901D0025EFB6 /* EventPopOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92AA4351F5E901D0025EFB6 /* EventPopOverController.swift */; };
 		A93D442D1F5D38CB008B4A10 /* PhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93D442B1F5D38CB008B4A10 /* PhoneView.swift */; };
 		A93D442E1F5D38CB008B4A10 /* PhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A93D442C1F5D38CB008B4A10 /* PhoneView.xib */; };
 		A93D44431F5D5B60008B4A10 /* down11.png in Resources */ = {isa = PBXBuildFile; fileRef = A93D442F1F5D5B60008B4A10 /* down11.png */; };
@@ -65,7 +68,6 @@
 		A9E460541F5ADCE00091266C /* MultiDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9E460521F5ADCE00091266C /* MultiDetailsView.xib */; };
 		A9E460581F5ADD0E0091266C /* ControlPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E460561F5ADD0E0091266C /* ControlPanelView.swift */; };
 		A9E460591F5ADD0E0091266C /* ControlPanelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9E460571F5ADD0E0091266C /* ControlPanelView.xib */; };
-		A9E460AE1F5AE32F0091266C /* FireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E460AB1F5AE32F0091266C /* FireView.swift */; };
 		A9E460AF1F5AE32F0091266C /* BoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E460AC1F5AE32F0091266C /* BoxView.swift */; };
 		A9E460B01F5AE32F0091266C /* WallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E460AD1F5AE32F0091266C /* WallView.swift */; };
 		A9E460F01F5AE6E90091266C /* opening.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A9E460EF1F5AE6E90091266C /* opening.mp3 */; };
@@ -91,6 +93,9 @@
 
 /* Begin PBXFileReference section */
 		A908D08F1F56B1A40097CF51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CreationGame.storyboard; sourceTree = "<group>"; };
+		A92AA4311F5E8A2C0025EFB6 /* EventPopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventPopOverView.xib; sourceTree = "<group>"; };
+		A92AA4331F5E8D250025EFB6 /* EventPopOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventPopOverView.swift; sourceTree = "<group>"; };
+		A92AA4351F5E901D0025EFB6 /* EventPopOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventPopOverController.swift; sourceTree = "<group>"; };
 		A93D442B1F5D38CB008B4A10 /* PhoneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneView.swift; sourceTree = "<group>"; };
 		A93D442C1F5D38CB008B4A10 /* PhoneView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneView.xib; sourceTree = "<group>"; };
 		A93D442F1F5D5B60008B4A10 /* down11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down11.png; sourceTree = "<group>"; };
@@ -151,7 +156,6 @@
 		A9E460521F5ADCE00091266C /* MultiDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiDetailsView.xib; sourceTree = "<group>"; };
 		A9E460561F5ADD0E0091266C /* ControlPanelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlPanelView.swift; sourceTree = "<group>"; };
 		A9E460571F5ADD0E0091266C /* ControlPanelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ControlPanelView.xib; sourceTree = "<group>"; };
-		A9E460AB1F5AE32F0091266C /* FireView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireView.swift; sourceTree = "<group>"; };
 		A9E460AC1F5AE32F0091266C /* BoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxView.swift; sourceTree = "<group>"; };
 		A9E460AD1F5AE32F0091266C /* WallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallView.swift; sourceTree = "<group>"; };
 		A9E460EF1F5AE6E90091266C /* opening.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = opening.mp3; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				A94BDEB71F5AFD570085E073 /* MultiPlayerGame.swift */,
+				A92AA4351F5E901D0025EFB6 /* EventPopOverController.swift */,
 			);
 			name = MultiPlayer;
 			path = MultiPlayerCreation;
@@ -230,6 +235,15 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
+		A92AA4301F5E89F90025EFB6 /* EventPopOverView */ = {
+			isa = PBXGroup;
+			children = (
+				A92AA4311F5E8A2C0025EFB6 /* EventPopOverView.xib */,
+				A92AA4331F5E8D250025EFB6 /* EventPopOverView.swift */,
+			);
+			path = EventPopOverView;
+			sourceTree = "<group>";
+		};
 		A93D442A1F5D38A0008B4A10 /* PhoneView */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,7 +257,6 @@
 		A95BCE701F5421BD0021B1E7 /* CustomTiles */ = {
 			isa = PBXGroup;
 			children = (
-				A9E460AB1F5AE32F0091266C /* FireView.swift */,
 				A9E460AC1F5AE32F0091266C /* BoxView.swift */,
 				A9E460AD1F5AE32F0091266C /* WallView.swift */,
 			);
@@ -277,10 +290,10 @@
 			isa = PBXGroup;
 			children = (
 				A94BDEBD1F5AFDA40085E073 /* UserScore.swift */,
-				A94BDEA51F5AFD150085E073 /* RatingController.swift */,
 				A94BDEA61F5AFD150085E073 /* ScoresManager.swift */,
-				A94BDEA71F5AFD150085E073 /* TopTenCell.swift */,
+				A94BDEA51F5AFD150085E073 /* RatingController.swift */,
 				A94BDEA81F5AFD150085E073 /* TopTenController.swift */,
+				A94BDEA71F5AFD150085E073 /* TopTenCell.swift */,
 			);
 			path = Rating;
 			sourceTree = "<group>";
@@ -340,6 +353,7 @@
 		A9E45FE21F596A230091266C /* Xib files */ = {
 			isa = PBXGroup;
 			children = (
+				A92AA4301F5E89F90025EFB6 /* EventPopOverView */,
 				A93D442A1F5D38A0008B4A10 /* PhoneView */,
 				A9E460551F5ADCF70091266C /* ControlPanelView */,
 				A9E460501F5ADCC70091266C /* MultiDetailsView */,
@@ -567,6 +581,7 @@
 				A93D44561F5D5B60008B4A10 /* up15.png in Resources */,
 				A93D44471F5D5B60008B4A10 /* down15.png in Resources */,
 				A93D44501F5D5B60008B4A10 /* right14.png in Resources */,
+				A92AA4321F5E8A2C0025EFB6 /* EventPopOverView.xib in Resources */,
 				A9E460591F5ADD0E0091266C /* ControlPanelView.xib in Resources */,
 				E77C3CDB1F59889200DE1CE1 /* death2.png in Resources */,
 				A93D444C1F5D5B60008B4A10 /* left15.png in Resources */,
@@ -606,12 +621,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9E460AE1F5AE32F0091266C /* FireView.swift in Sources */,
 				A94BDEBE1F5AFDA40085E073 /* UserScore.swift in Sources */,
 				A9E4604E1F5ADC9E0091266C /* MoveToNextLevelView.swift in Sources */,
 				A94BDECC1F5B013C0085E073 /* Brain.swift in Sources */,
 				A9E460B01F5AE32F0091266C /* WallView.swift in Sources */,
 				A94BDED21F5B0F940085E073 /* SoundManager.swift in Sources */,
+				A92AA4341F5E8D250025EFB6 /* EventPopOverView.swift in Sources */,
 				A93D442D1F5D38CB008B4A10 /* PhoneView.swift in Sources */,
 				A9E460441F5ADC1F0091266C /* PauseView.swift in Sources */,
 				A9E460491F5ADC5F0091266C /* SingleDetailsView.swift in Sources */,
@@ -629,6 +644,7 @@
 				A94BDEB51F5AFD450085E073 /* GameLayoutController.swift in Sources */,
 				A94BDEB21F5AFD450085E073 /* ControlPanelController.swift in Sources */,
 				A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */,
+				A92AA4361F5E901D0025EFB6 /* EventPopOverController.swift in Sources */,
 				A9E460AF1F5AE32F0091266C /* BoxView.swift in Sources */,
 				A94BDECE1F5B013C0085E073 /* Structs.swift in Sources */,
 				A94BDEB61F5AFD450085E073 /* GameMapController.swift in Sources */,

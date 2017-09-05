@@ -22,6 +22,7 @@ class Brain {
     var score = 0
     var currentLvl = 0
     
+    var timers: [Timer] = []
     
     var showFire: ((Explosion, String.Index)->())?
     var move: ((Direction, Int)->())?
@@ -69,9 +70,15 @@ class Brain {
         }
         
         startMobsMovement()
-        gameTimer = Timer.scheduledTimer(withTimeInterval: 120, repeats: false, block: { [weak self] _ in
+        startGameTimer()
+    }
+    
+    func startGameTimer() {
+        gameTimer = Timer.scheduledTimer(withTimeInterval: 120, repeats: false) { [weak self] _ in
             self?.gameEnd?(false)
-        })
+        }
+        
+        timers.append(gameTimer)
     }
     
     private func moveMobs() {
@@ -284,21 +291,39 @@ class Brain {
     }
     
     private func startMobsMovement() {
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+        
+        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             self?.moveMobs()
         }
+        
+        timers.append(timer)
+        
     }
     
     private func startBombTimer(at position: String.Index, power: Int) {
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { [weak self] _ in
+        let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { [weak self] _ in
             self?.explode(at: position, power: power)
-        })
+        }
+        
+        timers.append(timer)
+        
     }
     
     private func startFireTimer(explosion: Explosion, position: String.Index) {
-        Timer.scheduledTimer(withTimeInterval: 0.0001, repeats: false) { [weak self] _ in
+        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
             self?.fadeFire(explosion: explosion, position: position)
         }
+        
+        timers.append(timer)
+    }
+    
+    
+    func invalidateTimers() {
+        for timer in timers {
+            timer.invalidate()
+        }
+        
+        timers = []
     }
     
     private func fadeFire(explosion: Explosion, position: String.Index) {
@@ -413,6 +438,7 @@ class Brain {
         explosion.right = explode(inDirection: .right)
         explosion.top = explode(inDirection: .top)
         showFire?(explosion, position)
+        
         for player in killedPlayers {
             killHero?(player)
         }

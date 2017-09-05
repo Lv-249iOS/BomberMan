@@ -17,6 +17,7 @@ class SingleDetailsView: UIView {
     @IBOutlet weak var scoreLabel: UILabel!
 
     // Closures for back to home and pause actions
+    
     var onHomeButtTap: (()->())?
     var onPauseButtTap: (()->())?
     

@@ -10,6 +10,7 @@ import Foundation
 
 class UserScore: NSObject, NSCoding {
     
+    // Set names for my keys
     struct Key {
         static let id = "id"
         static let username = "username"
@@ -24,6 +25,7 @@ class UserScore: NSObject, NSCoding {
     
     override init() {}
     
+    // My initialiser
     init(username: String, score: Int) {
         self.id = UUID().uuidString // generate random unique id
         self.username = username
@@ -31,7 +33,10 @@ class UserScore: NSObject, NSCoding {
         self.date = Date()
     }
     
+    // Decode objects
     required init?(coder aDecoder: NSCoder) {
+        
+        // Retrives our saved objects and casts it as...
         if let id = aDecoder.decodeObject(forKey: Key.id) as? String {
             self.id = id
         }
@@ -44,6 +49,7 @@ class UserScore: NSObject, NSCoding {
         }
     }
     
+    // Encode (save) our objects
     func encode(with aCoder: NSCoder) {
         aCoder.encode(id, forKey: Key.id)
         aCoder.encode(username, forKey: Key.username)

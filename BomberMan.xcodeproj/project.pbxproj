@@ -12,6 +12,8 @@
 		A92AA4341F5E8D250025EFB6 /* EventPopOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92AA4331F5E8D250025EFB6 /* EventPopOverView.swift */; };
 		A92AA4361F5E901D0025EFB6 /* EventPopOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92AA4351F5E901D0025EFB6 /* EventPopOverController.swift */; };
 		A92AA4381F5ED2530025EFB6 /* ExtensionForTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92AA4371F5ED2530025EFB6 /* ExtensionForTimeInterval.swift */; };
+		A92AA43B1F5EDD210025EFB6 /* WinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A92AA43A1F5EDD210025EFB6 /* WinView.xib */; };
+		A92AA43D1F5EE1080025EFB6 /* WinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92AA43C1F5EE1080025EFB6 /* WinView.swift */; };
 		A93D442D1F5D38CB008B4A10 /* PhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93D442B1F5D38CB008B4A10 /* PhoneView.swift */; };
 		A93D442E1F5D38CB008B4A10 /* PhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A93D442C1F5D38CB008B4A10 /* PhoneView.xib */; };
 		A93D44431F5D5B60008B4A10 /* down11.png in Resources */ = {isa = PBXBuildFile; fileRef = A93D442F1F5D5B60008B4A10 /* down11.png */; };
@@ -98,6 +100,8 @@
 		A92AA4331F5E8D250025EFB6 /* EventPopOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventPopOverView.swift; sourceTree = "<group>"; };
 		A92AA4351F5E901D0025EFB6 /* EventPopOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventPopOverController.swift; sourceTree = "<group>"; };
 		A92AA4371F5ED2530025EFB6 /* ExtensionForTimeInterval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForTimeInterval.swift; sourceTree = "<group>"; };
+		A92AA43A1F5EDD210025EFB6 /* WinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WinView.xib; sourceTree = "<group>"; };
+		A92AA43C1F5EE1080025EFB6 /* WinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinView.swift; sourceTree = "<group>"; };
 		A93D442B1F5D38CB008B4A10 /* PhoneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneView.swift; sourceTree = "<group>"; };
 		A93D442C1F5D38CB008B4A10 /* PhoneView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneView.xib; sourceTree = "<group>"; };
 		A93D442F1F5D5B60008B4A10 /* down11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down11.png; sourceTree = "<group>"; };
@@ -247,6 +251,15 @@
 			path = EventPopOverView;
 			sourceTree = "<group>";
 		};
+		A92AA4391F5EDD0E0025EFB6 /* WinView */ = {
+			isa = PBXGroup;
+			children = (
+				A92AA43A1F5EDD210025EFB6 /* WinView.xib */,
+				A92AA43C1F5EE1080025EFB6 /* WinView.swift */,
+			);
+			name = WinView;
+			sourceTree = "<group>";
+		};
 		A93D442A1F5D38A0008B4A10 /* PhoneView */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +369,7 @@
 		A9E45FE21F596A230091266C /* Xib files */ = {
 			isa = PBXGroup;
 			children = (
+				A92AA4391F5EDD0E0025EFB6 /* WinView */,
 				A92AA4301F5E89F90025EFB6 /* EventPopOverView */,
 				A93D442A1F5D38A0008B4A10 /* PhoneView */,
 				A9E460551F5ADCF70091266C /* ControlPanelView */,
@@ -577,6 +591,7 @@
 				A95FC5241F502C7500E1F926 /* Assets.xcassets in Resources */,
 				A908D0901F56B1A40097CF51 /* CreationGame.storyboard in Resources */,
 				A93D44521F5D5B60008B4A10 /* up11.png in Resources */,
+				A92AA43B1F5EDD210025EFB6 /* WinView.xib in Resources */,
 				E77C3CDA1F59889200DE1CE1 /* death1.png in Resources */,
 				A9E4604A1F5ADC5F0091266C /* SingleDetailsView.xib in Resources */,
 				A93D442E1F5D38CB008B4A10 /* PhoneView.xib in Resources */,
@@ -645,6 +660,7 @@
 				A94BDEAA1F5AFD150085E073 /* ScoresManager.swift in Sources */,
 				A9E460401F5ADC040091266C /* GameOverView.swift in Sources */,
 				A94BDEB51F5AFD450085E073 /* GameLayoutController.swift in Sources */,
+				A92AA43D1F5EE1080025EFB6 /* WinView.swift in Sources */,
 				A94BDEB21F5AFD450085E073 /* ControlPanelController.swift in Sources */,
 				A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */,
 				A92AA4361F5E901D0025EFB6 /* EventPopOverController.swift in Sources */,

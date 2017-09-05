@@ -11,16 +11,4 @@ import UIKit
 class EventPopOverController: UIViewController {
     
     @IBOutlet var popOverView: EventPopOverView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        popOverView.onDontShowButtTap = { [weak self] in
-            self?.onNeverShowAgainTap()
-        }
-    }
-    
-    func onNeverShowAgainTap() {
-
-    }
 }

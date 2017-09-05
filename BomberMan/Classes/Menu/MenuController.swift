@@ -14,6 +14,7 @@ class MenuController: UIViewController {
     
     var soundManager = SoundManager()
     
+    // Controls sound state
     @IBAction func onSoundTap(_ sender: UIButton) {
         soundManager.soundState = !soundManager.soundState
         set(soundState: soundManager.soundState)
@@ -25,6 +26,7 @@ class MenuController: UIViewController {
         set(soundState: soundManager.soundState)
     }
     
+    // Switchs on/off music
     func set(soundState: Bool) {
         if soundState {
             soundButton.setImage(#imageLiteral(resourceName: "soundOn"), for: .normal)

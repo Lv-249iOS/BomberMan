@@ -14,6 +14,7 @@ class TopTenCell: UITableViewCell {
     @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
     
+    // Generation of cell's elements
     public func configure(with score: UserScore){
         userName.text = score.username
         raitingScore.text = "\(score.score)"

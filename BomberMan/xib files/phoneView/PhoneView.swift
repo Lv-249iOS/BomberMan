@@ -35,6 +35,8 @@ class PhoneView: UIView, CAAnimationDelegate {
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
+    // Animation block for phone view spinning
+    
     func runSpinAnimationOn(duration: Double = 2, rotation: Double = 1, repeats: Float = .infinity) {
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
         animation.delegate = self

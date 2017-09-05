@@ -34,6 +34,10 @@ class ControlPanelView: UIView {
         }
     }
     
+    // UIViews can be created two ways: interface builder or  directly in code
+    // They have a initializer for each of these creation methods
+    // and we need to override both of them with our own custom initializer.
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

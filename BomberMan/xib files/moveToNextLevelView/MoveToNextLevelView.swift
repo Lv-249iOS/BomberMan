@@ -21,6 +21,7 @@ class MoveToNextLevelView: UIView {
     var onMoveOnButtTap: (()->())?
 
     // Block with button actions
+    
     @IBAction func onRepeatTap(_ sender: UIButton) {
         onRepeatButtTap?()
     }

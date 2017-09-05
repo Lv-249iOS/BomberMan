@@ -12,6 +12,7 @@ class GameLayoutController: UIViewController {
     
     @IBOutlet weak var gameContainer: UIView!
     
+    var topTenController: TopTenController?
     var detailsController: DetailsController!
     var gameMapController: GameMapController!
     var controlPanelController: ControlPanelController!
@@ -49,17 +50,19 @@ class GameLayoutController: UIViewController {
         moveToNextLevel.removeFromSuperview()
         brain.initializeGame(with: brain.currentLvl + 1)
         gameMapController.updateContentSize()
-
+        
     }
     
     func gameEnd(didWin: Bool) {
-        if didWin {
+        if !didWin && brain.currentLvl<8 {
             moveToNextLevel.frame = gameMapController.mapScroll.frame
             gameContainer.addSubview(moveToNextLevel)
         } else {
+            askUserAboutName()
             gameOver.frame = gameMapController.mapScroll.frame
             gameContainer.addSubview(gameOver)
         }
+        
     }
     
     func replayGame(isGameOver: Bool) {
@@ -82,6 +85,7 @@ class GameLayoutController: UIViewController {
     
     // Returns to menu page
     func turnToHome() {
+        brain.invalidateTimers()
         dismiss(animated: true, completion: nil)
     }
     
@@ -140,6 +144,33 @@ class GameLayoutController: UIViewController {
         
         detailsController.onHomeTap = { [weak self] in
             self?.turnToHome()
+        }
+    }
+    
+    // Alert to save yser's nickname to record score
+    func askUserAboutName() {
+        let alert = UIAlertController(title: "Save your score", message: "Input your name here", preferredStyle: .alert)
+        
+        let confirmAction = UIAlertAction(title: "Done", style: .default, handler: { (action) -> Void in
+            let nicknameField = alert.textFields![0]
+            let score = UserScore(username: nicknameField.text ?? "User", score: 45600)
+            ScoresManager.shared.saveData(score: score)
+            self.topTenController?.scores.append(score)
+            self.topTenController?.tableView.reloadData()
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { (action) -> Void in })
+        alert.addTextField { (nicknameField: UITextField) in
+            nicknameField.placeholder = "your name is..."
+            nicknameField.clearButtonMode = .whileEditing
+            nicknameField.keyboardType = .default
+            nicknameField.keyboardAppearance = .dark
+            
+            alert.view.tintColor = UIColor.black
+            alert.addAction(confirmAction)
+            alert.addAction(cancelAction)
+            
+            self.present(alert, animated: true, completion:  nil)
         }
     }
 }

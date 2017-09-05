@@ -158,7 +158,6 @@ class GameLayoutController: UIViewController {
             self.topTenController?.scores.append(score)
             self.topTenController?.tableView.reloadData()
         })
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { (action) -> Void in })
         alert.addTextField { (nicknameField: UITextField) in
             nicknameField.placeholder = "your name is..."

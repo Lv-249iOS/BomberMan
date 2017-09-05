@@ -11,6 +11,7 @@
 		A92AA4321F5E8A2C0025EFB6 /* EventPopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A92AA4311F5E8A2C0025EFB6 /* EventPopOverView.xib */; };
 		A92AA4341F5E8D250025EFB6 /* EventPopOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92AA4331F5E8D250025EFB6 /* EventPopOverView.swift */; };
 		A92AA4361F5E901D0025EFB6 /* EventPopOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92AA4351F5E901D0025EFB6 /* EventPopOverController.swift */; };
+		A92AA4381F5ED2530025EFB6 /* ExtensionForTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92AA4371F5ED2530025EFB6 /* ExtensionForTimeInterval.swift */; };
 		A93D442D1F5D38CB008B4A10 /* PhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93D442B1F5D38CB008B4A10 /* PhoneView.swift */; };
 		A93D442E1F5D38CB008B4A10 /* PhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A93D442C1F5D38CB008B4A10 /* PhoneView.xib */; };
 		A93D44431F5D5B60008B4A10 /* down11.png in Resources */ = {isa = PBXBuildFile; fileRef = A93D442F1F5D5B60008B4A10 /* down11.png */; };
@@ -96,6 +97,7 @@
 		A92AA4311F5E8A2C0025EFB6 /* EventPopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventPopOverView.xib; sourceTree = "<group>"; };
 		A92AA4331F5E8D250025EFB6 /* EventPopOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventPopOverView.swift; sourceTree = "<group>"; };
 		A92AA4351F5E901D0025EFB6 /* EventPopOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventPopOverController.swift; sourceTree = "<group>"; };
+		A92AA4371F5ED2530025EFB6 /* ExtensionForTimeInterval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForTimeInterval.swift; sourceTree = "<group>"; };
 		A93D442B1F5D38CB008B4A10 /* PhoneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneView.swift; sourceTree = "<group>"; };
 		A93D442C1F5D38CB008B4A10 /* PhoneView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneView.xib; sourceTree = "<group>"; };
 		A93D442F1F5D5B60008B4A10 /* down11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down11.png; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 		2023B3B81F55ECCD00B6F993 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A92AA4371F5ED2530025EFB6 /* ExtensionForTimeInterval.swift */,
 				A94BDECF1F5B01CE0085E073 /* Date+SinceDate.swift */,
 			);
 			path = Extensions;
@@ -650,6 +653,7 @@
 				A94BDEB61F5AFD450085E073 /* GameMapController.swift in Sources */,
 				A94BDEBB1F5AFD6C0085E073 /* MenuController.swift in Sources */,
 				A94BDEAB1F5AFD150085E073 /* TopTenCell.swift in Sources */,
+				A92AA4381F5ED2530025EFB6 /* ExtensionForTimeInterval.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,6 +23,8 @@ class Brain {
     var currentLvl = 0
     
     var timers: [Timer] = []
+    var currentTime: TimeInterval = 120
+    let timeLimit: TimeInterval = 120
     
     var showFire: ((Explosion, String.Index)->())?
     var move: ((Direction, Int)->())?
@@ -33,6 +35,7 @@ class Brain {
     var killMob: ((Int)->())?
     var moveMob: ((Direction, Int)->())?
     var gameEnd: ((Bool)->())?
+    var presentTime: ((Double)->())?
     
     //used at the beginning of the game
     func initializeGame(with lvlNumber: Int) {
@@ -41,7 +44,7 @@ class Brain {
         self.scene.data = scene.data
         self.scene.width = scene.width
         redrawScene?()
-        
+        currentTime = timeLimit
         door.health = 2
         mobs.removeAll()
         upgrades.removeAll()
@@ -457,8 +460,4 @@ class Brain {
         currentlevel = Levels().level(with: numberoflevel)
         scene = Scene(data: currentlevel, width: width)
     }
-    
-    
-    
-    
 }

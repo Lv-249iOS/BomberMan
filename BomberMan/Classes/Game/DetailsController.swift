@@ -12,13 +12,16 @@ class DetailsController: UIViewController {
     
     var onPauseTap: ((Bool)->())?
     var onHomeTap: (()->())?
+    var timeOver: (()->())?
     
     var isPause: Bool = false
+    var timer: Timer!
+    var isTimerRunning = false
     
     @IBOutlet var detailsView: SingleDetailsView!
     
     // Shows current time usage in label
-    func present(time: String) { // Change to Timer
+    func present(time: String) {
         detailsView.timeLabel.text = time
     }
     
@@ -30,16 +33,52 @@ class DetailsController: UIViewController {
     // Sends event that pause taped
     func pauseTap() {
         isPause = isPause == false ? true : false
+        stopTimer()
         onPauseTap?(isPause)
     }
     
     // Sends event that home taped
     func homeTap() {
+        stopTimer()
         onHomeTap?()
     }
     
+    // Starting running timer
+    func runTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 1,
+                                     target: self,
+                                     selector: (#selector(presentTimer)),
+                                     userInfo: nil,
+                                     repeats: true)
+        isTimerRunning = true
+    }
+    
+    // Methods for timer invalidation
+    func stopTimer() {
+        timer.invalidate()
+        isTimerRunning = false
+    }
+    
+    // Stop timer if it's running now and pause's switched on
+    func changeTimerState() {
+        isTimerRunning && isPause ? stopTimer() : runTimer()
+    }
+    
+    // Updates timer and shows in label
+    func presentTimer() {
+        if Brain.shared.currentTime < 1 {
+            timer.invalidate()
+            timeOver?()
+        } else {
+            Brain.shared.currentTime -= 1
+            present(time: TimeInterval.toString(Brain.shared.currentTime))
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        runTimer()
         
         detailsView.onHomeButtTap = { [weak self] in
             self?.homeTap()
@@ -48,6 +87,5 @@ class DetailsController: UIViewController {
         detailsView.onPauseButtTap = {[weak self] in
             self?.pauseTap()
         }
-        // Do any additional setup after loading the view.
     }
 }

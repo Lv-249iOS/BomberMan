@@ -68,7 +68,7 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
     
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
         manager.stopBrowser()
-
+        
         manager.disconnect()
     }
     
@@ -91,6 +91,20 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
             self.present(alert, animated: true, completion: nil)
         }
     }
+}
+
+extension MultiPlayerGame: UIPopoverPresentationControllerDelegate {
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EventPopOverSegue",
+            let controller = segue.destination as? EventPopOverController {
+            
+            controller.popoverPresentationController?.delegate = self
+            controller.popoverPresentationController?.permittedArrowDirections = .down
+        }
+    }
     
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
 }

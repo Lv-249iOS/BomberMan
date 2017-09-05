@@ -22,6 +22,7 @@ class MultiDetailsView: UIView {
         onHomeButtTap?()
     }
     
+    // Sets names of current players
     func setNames(names: [String]) {
         if playersNames.count >= names.count {
             var index: Int = 0

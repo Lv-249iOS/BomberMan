@@ -60,6 +60,7 @@ class GameLayoutController: UIViewController {
             gameOver.frame = gameMapController.mapScroll.frame
             gameContainer.addSubview(gameOver)
         }
+        
     }
     
     func replayGame(isGameOver: Bool) {
@@ -82,6 +83,7 @@ class GameLayoutController: UIViewController {
     
     // Returns to menu page
     func turnToHome() {
+        brain.invalidateTimers()
         dismiss(animated: true, completion: nil)
     }
     

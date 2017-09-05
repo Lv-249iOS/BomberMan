@@ -37,7 +37,7 @@ class GameMapController: UIViewController {
         brain.plantBomb = { [weak self] player in
             self?.addBomb(player: player)
         }
-        brain.redrawScene = { [weak self] _ in
+        brain.redrawScene = { [weak self] in
             self?.drawMap()
         }
         brain.killHero = { [weak self] player in
@@ -132,7 +132,9 @@ class GameMapController: UIViewController {
                 
                 let rect = CGRect(x: i, y: j, width: 50, height: 50)
                 let player = UIImageView(frame: rect)
-                player.image = UIImage(named: "hero")                
+                player.image = UIImage(named: "hero")
+                players.last!.removeFromSuperview()
+                players.removeLast()
                 players.append(player)
                 mapScroll.addSubview(players.last!)
             case "M":
@@ -142,7 +144,6 @@ class GameMapController: UIViewController {
                     mob.image = #imageLiteral(resourceName: "balloon1")
                     mobs.append(mob)
                     if !mobs.isEmpty {
-                        mob.tag = brain.shareMobs()[mobs.count - 1]
                         mapScroll.addSubview(mobs.last!)
                     } 
                 }
@@ -196,14 +197,7 @@ class GameMapController: UIViewController {
     }
     
     func killMob(mob:Int) {
-        var i = 0
-        for a in mobs {
-            if a.tag == mob {
-            kill(mobs, pos: i)
-            break
-            }
-            i += 1
-        }
+        kill(mobs, pos: mob)
     }
     
     func killHero(player: Int) {
@@ -211,29 +205,23 @@ class GameMapController: UIViewController {
     }
     
     func moveMob(in direction: Direction, mob: Int) {
-        var i = 0
-        for a in mobs {
-            if a.tag == mob {
-                break
-            }
-            i += 1
-        }
+
         switch direction {
         case .top:
             UIView.animate(withDuration: 1, animations: { [weak self] in
-            self?.mobs[i].transform = (self?.mobs[i].transform.translatedBy(x: 0, y: -50))!
+            self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: 0, y: -50))!
             })
         case .bottom:
             UIView.animate(withDuration: 1, animations: { [weak self] in
-                self?.mobs[i].transform = (self?.mobs[i].transform.translatedBy(x: 0, y: 50))!
+                self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: 0, y: 50))!
             })
         case .right:
             UIView.animate(withDuration: 1, animations: { [weak self] in
-                self?.mobs[i].transform = (self?.mobs[i].transform.translatedBy(x: 50, y: 0))!
+                self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: 50, y: 0))!
             })
         case .left:
             UIView.animate(withDuration: 1, animations: { [weak self] in
-                self?.mobs[i].transform = (self?.mobs[i].transform.translatedBy(x: -50, y: 0))!
+                self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: -50, y: 0))!
             })
         }
     

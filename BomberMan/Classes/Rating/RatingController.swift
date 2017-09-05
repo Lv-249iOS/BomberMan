@@ -22,7 +22,7 @@ class RatingController: UIViewController {
     @IBAction func cleanScores(_ sender: Any) {
         createScoreAlert(title: "Do you really want clean scores?", messege: "Your records will be empty")
     }
-    
+   
     override func viewDidAppear(_ animated: Bool) {
         askUserAboutName()
     }

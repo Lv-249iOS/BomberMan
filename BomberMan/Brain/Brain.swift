@@ -13,6 +13,7 @@ class Brain {
     
     fileprivate var scene = Scene(data: Levels().level(with: 0), width: 10)
     private var cantGo = "WBXQ"
+    private var mobCantGo = "WBXQUD"
     private var mobs: [Mob] = []
     
     var upgrades: [Upgrade] = []
@@ -36,9 +37,10 @@ class Brain {
     var moveMob: ((Direction, Int)->())?
     var gameEnd: ((Bool)->())?
     var presentTime: ((Double)->())?
+    var refreshScore: ((Int)->())?
     
     //used at the beginning of the game
-    func initializeGame(with lvlNumber: Int) {
+    func initializeGame(with lvlNumber: Int, completelyNew: Bool) {
         currentLvl = lvlNumber
         setlevel(numberoflevel: currentLvl)
         self.scene.data = scene.data
@@ -47,7 +49,11 @@ class Brain {
         door.health = 2
         mobs.removeAll()
         upgrades.removeAll()
-        score = 0
+        if completelyNew {
+            score = 0
+            player = Player(name: player.name, markForScene: player.markForScene, minesCount: 1, explosionPower: 1)
+            refreshScore?(score)
+        }
         
         var i = 0
         var mobIdentifier = 0
@@ -105,7 +111,7 @@ class Brain {
             var directionPosition = getDirectionPosition(mob: mob)
             var loopsCount = 0
             var needToContinue = false
-            while cantGo.characters.contains(scene.data[directionPosition]), scene.data[directionPosition] != "U", scene.data[directionPosition] != "D" {
+            while mobCantGo.characters.contains(scene.data[directionPosition]) {
                 mob.direction = setMobDirection()
                 directionPosition = getDirectionPosition(mob: mob)
                 loopsCount += 1
@@ -126,6 +132,7 @@ class Brain {
                 moveMob?(mob.direction, mob.identifier)
                 killMob?(mob.identifier)
                 score += 200
+                refreshScore?(score)
                 mobs.remove(at: i)
                 needToContinue = true
             case player.markForScene:
@@ -246,6 +253,11 @@ class Brain {
                         move?(direction, intValue)
                         killHero?(intValue)
                         gameEnd?(false)
+                        score -= 1000
+                        if score < 0 {
+                            score = 0
+                        }
+                        refreshScore?(score)
                         return
                     }
                 case "U":
@@ -258,6 +270,7 @@ class Brain {
                         }
                         upgrades.remove(at: index)
                         score += 100
+                        refreshScore?(score)
                         shouldRedraw = true
                     } else {
                         canGo = false
@@ -268,6 +281,7 @@ class Brain {
                     } else {
                         if let intValue = Int(player.markForScene.description) {
                             score += 500
+                            refreshScore?(score)
                             move?(direction, intValue)
                             gameEnd?(true)
                             return
@@ -279,6 +293,11 @@ class Brain {
                         move?(direction, intValue)
                         killHero?(intValue)
                         gameEnd?(false)
+                        score -= 1000
+                        if score < 0 {
+                            score = 0
+                        }
+                        refreshScore?(score)
                         return
                     }
                 default:
@@ -385,6 +404,11 @@ class Brain {
         case "B": canProceed = false
         case player.markForScene:
             gameEnd?(false)
+            score -= 1000
+            if score < 0 {
+                score = 0
+            }
+            refreshScore?(score)
             if let intValue = Int(player.markForScene.description) {
                 killedPlayers.append(intValue)
             }
@@ -413,6 +437,7 @@ class Brain {
                         mobs.remove(at: indexInPrivateArray)
                         killMob?(mob.identifier)
                         score += 200
+                        refreshScore?(score)
                     }
                 }
             }

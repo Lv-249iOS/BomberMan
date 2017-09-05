@@ -41,30 +41,45 @@ class GameLayoutController: UIViewController {
             self?.replayGame(isGameOver: false)
         }
         
-        brain.gameEnd = { [weak self] isHeroDead in
-            self?.gameEnd(didWin: isHeroDead)
+        brain.gameEnd = { [weak self] didWin in
+            if !didWin {
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self?.gameEnd(didWin: didWin)
+                }
+            } else {
+                self?.gameEnd(didWin: didWin)
+            }
         }
         
         brain.presentTime = { [weak self] time in
             self?.presentTimer(time: time)
         }
+        
+        brain.refreshScore = { [weak self] score in
+            self?.presentScore(score: score)
+        
+        }
     }
+    
+    
     
     func moveToNextLvl() {
         detailsController.resetTimer()
         brain.invalidateTimers()
         moveToNextLevel.removeFromSuperview()
-        brain.initializeGame(with: brain.currentLvl + 1)
+        brain.initializeGame(with: brain.currentLvl + 1, completelyNew: false)
         gameMapController.updateContentSize()
         detailsController.runTimer()
+        presentScore(score: brain.score)
     }
     
     func gameEnd(didWin: Bool) {
         detailsController.resetTimer()
         brain.invalidateTimers()
-        if !didWin && brain.currentLvl < 8 {
+        if didWin && brain.currentLvl < 8 {
             moveToNextLevel.frame = gameMapController.mapScroll.frame
             gameContainer.addSubview(moveToNextLevel)
+            presentScore(score: brain.score)
         } else if !didWin && brain.currentLvl == 8 {
 
             gameWin.frame = gameMapController.mapScroll.frame
@@ -74,6 +89,9 @@ class GameLayoutController: UIViewController {
         } else {
             gameOver.frame = gameMapController.mapScroll.frame
             gameContainer.addSubview(gameOver)
+            if brain.score > 0 {
+                askUserAboutName()
+            }
         }
     }
     
@@ -82,7 +100,7 @@ class GameLayoutController: UIViewController {
         brain.invalidateTimers()
         detailsController.runTimer()
         isGameOver ? gameOver.removeFromSuperview() : moveToNextLevel.removeFromSuperview()
-        brain.initializeGame(with: brain.currentLvl)
+        brain.initializeGame(with: brain.currentLvl, completelyNew: false)
         gameMapController.updateContentSize()
     }
     
@@ -105,6 +123,11 @@ class GameLayoutController: UIViewController {
         brain.invalidateTimers()
         dismiss(animated: true, completion: nil)
     }
+    
+    func presentScore(score:Int){
+        detailsController.present(score: Double(score))
+    }
+    
     
     func presentTimer(time: TimeInterval) {
         detailsController.present(time: "\(time)")
@@ -174,7 +197,7 @@ class GameLayoutController: UIViewController {
         
         let confirmAction = UIAlertAction(title: "Done", style: .default, handler: { (action) -> Void in
             let nicknameField = alert.textFields![0]
-            let score = UserScore(username: nicknameField.text ?? "User", score: 45600)
+            let score = UserScore(username: nicknameField.text ?? "User", score: self.brain.score)
             ScoresManager.shared.saveData(score: score)
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { (action) -> Void in })

@@ -25,7 +25,7 @@ class GameMapController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        brain.initializeGame(with: 0)
+        brain.initializeGame(with: 0, completelyNew: true)
         updateContentSize()
         
         brain.showFire = { [weak self] explosion, center in

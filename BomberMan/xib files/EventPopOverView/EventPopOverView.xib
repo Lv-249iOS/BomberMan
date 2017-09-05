@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="250" height="112"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For connection, you must be on one network!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdk-Tc-o3X">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For connection, you must be on the one network!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdk-Tc-o3X">
                     <rect key="frame" x="20" y="20" width="152" height="72"/>
                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                     <color key="textColor" red="0.19518545940000001" green="0.1759372095" blue="0.31680227529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

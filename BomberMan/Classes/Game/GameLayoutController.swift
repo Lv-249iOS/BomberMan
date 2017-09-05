@@ -16,8 +16,10 @@ class GameLayoutController: UIViewController {
     var gameMapController: GameMapController!
     var controlPanelController: ControlPanelController!
     let brain = Brain.shared
-    
+    //var game = Game()
     var pause = PauseView()
+    var gameOver = GameOverView()
+    var moveToNextLevel = MoveToNextLevelView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,43 @@ class GameLayoutController: UIViewController {
         pause.onPauseButtTap = { [weak self] in
             self?.changePause(state: false)
         }
+        
+        gameOver.onRepeatButtTap = { [weak self] in
+            self?.replayGame(isGameOver: true)
+        }
+        
+        moveToNextLevel.onMoveOnButtTap = { [weak self] in
+            self?.moveToNextLvl()
+        }
+        
+        moveToNextLevel.onRepeatButtTap = { [weak self] in
+            self?.replayGame(isGameOver: false)
+        }
+        
+        brain.gameEnd = { [weak self] isHeroDead in
+            self?.gameEnd(didWin: isHeroDead)
+        }
+    }
+    
+    func moveToNextLvl() {
+        moveToNextLevel.removeFromSuperview()
+        brain.initializeGame(with: brain.currentLvl + 1)
+        gameMapController.updateContentSize()
+
+    }
+    
+    func gameEnd(didWin: Bool) {
+        if didWin {
+            moveToNextLevel.frame = gameMapController.mapScroll.frame
+            gameContainer.addSubview(moveToNextLevel)
+        } else {
+            gameOver.frame = gameMapController.mapScroll.frame
+            gameContainer.addSubview(gameOver)
+        }
+    }
+    
+    func replayGame(isGameOver: Bool) {
+        isGameOver ? gameOver.removeFromSuperview() : moveToNextLevel.removeFromSuperview()
     }
     
     // Catchs pause state from details
@@ -48,11 +87,9 @@ class GameLayoutController: UIViewController {
     
     // Controls arrow's events
     func move(direction: Direction) {
-        brain.move(to: direction, player: brain.player)
-        
-       
+        brain.move(to: direction, player: &brain.player)
     }
-
+    
     // Controls bomb setting
     func setBomb() {
         brain.plantBomb(player: brain.player)

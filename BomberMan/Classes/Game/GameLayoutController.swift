@@ -168,8 +168,6 @@ class GameLayoutController: UIViewController {
             let nicknameField = alert.textFields![0]
             let score = UserScore(username: nicknameField.text ?? "User", score: 45600)
             ScoresManager.shared.saveData(score: score)
-            self.topTenController?.scores.append(score)
-            self.topTenController?.tableView.reloadData()
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { (action) -> Void in })
         alert.addTextField { (nicknameField: UITextField) in

@@ -80,17 +80,9 @@
 		E77C3CDF1F59889200DE1CE1 /* death6.png in Resources */ = {isa = PBXBuildFile; fileRef = E77C3CD71F59889200DE1CE1 /* death6.png */; };
 		E77C3CE01F59889200DE1CE1 /* death7.png in Resources */ = {isa = PBXBuildFile; fileRef = E77C3CD81F59889200DE1CE1 /* death7.png */; };
 		E77C3CE11F59889200DE1CE1 /* death8.png in Resources */ = {isa = PBXBuildFile; fileRef = E77C3CD91F59889200DE1CE1 /* death8.png */; };
+		E7C191541F5EE69A00C1497F /* powerupgrade.png in Resources */ = {isa = PBXBuildFile; fileRef = E7C191531F5EE69A00C1497F /* powerupgrade.png */; };
+		E7C191561F5EE6A400C1497F /* bombupgrade.png in Resources */ = {isa = PBXBuildFile; fileRef = E7C191551F5EE6A400C1497F /* bombupgrade.png */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A95FC52E1F502C7500E1F926 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A95FC50E1F502C7500E1F926 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A95FC5151F502C7500E1F926;
-			remoteInfo = BomberMan;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A908D08F1F56B1A40097CF51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CreationGame.storyboard; sourceTree = "<group>"; };
@@ -145,7 +137,6 @@
 		A95FC5231F502C7500E1F926 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A95FC5261F502C7500E1F926 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A95FC5281F502C7500E1F926 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A95FC52D1F502C7500E1F926 /* BomberManTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BomberManTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9E4603E1F5ADC040091266C /* GameOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		A9E4603F1F5ADC040091266C /* GameOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameOverView.xib; sourceTree = "<group>"; };
 		A9E460421F5ADC1F0091266C /* PauseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseView.swift; sourceTree = "<group>"; };
@@ -169,17 +160,12 @@
 		E77C3CD71F59889200DE1CE1 /* death6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = death6.png; sourceTree = "<group>"; };
 		E77C3CD81F59889200DE1CE1 /* death7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = death7.png; sourceTree = "<group>"; };
 		E77C3CD91F59889200DE1CE1 /* death8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = death8.png; sourceTree = "<group>"; };
+		E7C191531F5EE69A00C1497F /* powerupgrade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = powerupgrade.png; sourceTree = "<group>"; };
+		E7C191551F5EE6A400C1497F /* bombupgrade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bombupgrade.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A95FC5131F502C7500E1F926 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A95FC52A1F502C7500E1F926 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -321,7 +307,6 @@
 			isa = PBXGroup;
 			children = (
 				A95FC5161F502C7500E1F926 /* BomberMan.app */,
-				A95FC52D1F502C7500E1F926 /* BomberManTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -459,6 +444,8 @@
 		E73B03EC1F572BAF008C0FC2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E7C191551F5EE6A400C1497F /* bombupgrade.png */,
+				E7C191531F5EE69A00C1497F /* powerupgrade.png */,
 				A9E4605A1F5ADE600091266C /* playerSprite */,
 				E77C3CD11F59889200DE1CE1 /* death */,
 			);
@@ -500,24 +487,6 @@
 			productReference = A95FC5161F502C7500E1F926 /* BomberMan.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A95FC52C1F502C7500E1F926 /* BomberManTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A95FC5391F502C7500E1F926 /* Build configuration list for PBXNativeTarget "BomberManTests" */;
-			buildPhases = (
-				A95FC5291F502C7500E1F926 /* Sources */,
-				A95FC52A1F502C7500E1F926 /* Frameworks */,
-				A95FC52B1F502C7500E1F926 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A95FC52F1F502C7500E1F926 /* PBXTargetDependency */,
-			);
-			name = BomberManTests;
-			productName = BomberManTests;
-			productReference = A95FC52D1F502C7500E1F926 /* BomberManTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -532,11 +501,6 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 2U8WSM4T5B;
 						ProvisioningStyle = Automatic;
-					};
-					A95FC52C1F502C7500E1F926 = {
-						CreatedOnToolsVersion = 8.3.3;
-						ProvisioningStyle = Automatic;
-						TestTargetID = A95FC5151F502C7500E1F926;
 					};
 				};
 			};
@@ -554,7 +518,6 @@
 			projectRoot = "";
 			targets = (
 				A95FC5151F502C7500E1F926 /* BomberMan */,
-				A95FC52C1F502C7500E1F926 /* BomberManTests */,
 			);
 		};
 /* End PBXProject section */
@@ -564,6 +527,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7C191541F5EE69A00C1497F /* powerupgrade.png in Resources */,
 				A95BCE791F5427570021B1E7 /* Game.storyboard in Resources */,
 				A9E460451F5ADC1F0091266C /* PauseView.xib in Resources */,
 				A93D444E1F5D5B60008B4A10 /* right12.png in Resources */,
@@ -600,6 +564,7 @@
 				E77C3CDF1F59889200DE1CE1 /* death6.png in Resources */,
 				A93D44511F5D5B60008B4A10 /* right15.png in Resources */,
 				A93D44481F5D5B60008B4A10 /* left11.png in Resources */,
+				E7C191561F5EE6A400C1497F /* bombupgrade.png in Resources */,
 				A93D44551F5D5B60008B4A10 /* up14.png in Resources */,
 				E77C3CE11F59889200DE1CE1 /* death8.png in Resources */,
 				A95BCE7C1F5427CE0021B1E7 /* Rating.storyboard in Resources */,
@@ -607,13 +572,6 @@
 				A93D44541F5D5B60008B4A10 /* up13.png in Resources */,
 				A93D44531F5D5B60008B4A10 /* up12.png in Resources */,
 				A93D44451F5D5B60008B4A10 /* down13.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A95FC52B1F502C7500E1F926 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,22 +615,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A95FC5291F502C7500E1F926 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A95FC52F1F502C7500E1F926 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A95FC5151F502C7500E1F926 /* BomberMan */;
-			targetProxy = A95FC52E1F502C7500E1F926 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A908D08E1F56B1A40097CF51 /* CreationGame.storyboard */ = {
@@ -843,36 +786,6 @@
 			};
 			name = Release;
 		};
-		A95FC53A1F502C7500E1F926 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = BomberManTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "IT-Academy.BomberManTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BomberMan.app/BomberMan";
-			};
-			name = Debug;
-		};
-		A95FC53B1F502C7500E1F926 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = BomberManTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "IT-Academy.BomberManTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BomberMan.app/BomberMan";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -890,15 +803,6 @@
 			buildConfigurations = (
 				A95FC5371F502C7500E1F926 /* Debug */,
 				A95FC5381F502C7500E1F926 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A95FC5391F502C7500E1F926 /* Build configuration list for PBXNativeTarget "BomberManTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A95FC53A1F502C7500E1F926 /* Debug */,
-				A95FC53B1F502C7500E1F926 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

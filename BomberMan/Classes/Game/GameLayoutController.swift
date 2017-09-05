@@ -70,6 +70,8 @@ class GameLayoutController: UIViewController {
     
     func replayGame(isGameOver: Bool) {
         isGameOver ? gameOver.removeFromSuperview() : moveToNextLevel.removeFromSuperview()
+        brain.initializeGame(with: brain.currentLvl)
+        gameMapController.updateContentSize()
     }
     
     // Catchs pause state from details

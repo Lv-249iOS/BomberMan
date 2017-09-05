@@ -65,7 +65,6 @@
 		A9E460541F5ADCE00091266C /* MultiDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9E460521F5ADCE00091266C /* MultiDetailsView.xib */; };
 		A9E460581F5ADD0E0091266C /* ControlPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E460561F5ADD0E0091266C /* ControlPanelView.swift */; };
 		A9E460591F5ADD0E0091266C /* ControlPanelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9E460571F5ADD0E0091266C /* ControlPanelView.xib */; };
-		A9E460AE1F5AE32F0091266C /* FireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E460AB1F5AE32F0091266C /* FireView.swift */; };
 		A9E460AF1F5AE32F0091266C /* BoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E460AC1F5AE32F0091266C /* BoxView.swift */; };
 		A9E460B01F5AE32F0091266C /* WallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E460AD1F5AE32F0091266C /* WallView.swift */; };
 		A9E460F01F5AE6E90091266C /* opening.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A9E460EF1F5AE6E90091266C /* opening.mp3 */; };
@@ -151,7 +150,6 @@
 		A9E460521F5ADCE00091266C /* MultiDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiDetailsView.xib; sourceTree = "<group>"; };
 		A9E460561F5ADD0E0091266C /* ControlPanelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlPanelView.swift; sourceTree = "<group>"; };
 		A9E460571F5ADD0E0091266C /* ControlPanelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ControlPanelView.xib; sourceTree = "<group>"; };
-		A9E460AB1F5AE32F0091266C /* FireView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireView.swift; sourceTree = "<group>"; };
 		A9E460AC1F5AE32F0091266C /* BoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxView.swift; sourceTree = "<group>"; };
 		A9E460AD1F5AE32F0091266C /* WallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallView.swift; sourceTree = "<group>"; };
 		A9E460EF1F5AE6E90091266C /* opening.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = opening.mp3; sourceTree = "<group>"; };
@@ -243,7 +241,6 @@
 		A95BCE701F5421BD0021B1E7 /* CustomTiles */ = {
 			isa = PBXGroup;
 			children = (
-				A9E460AB1F5AE32F0091266C /* FireView.swift */,
 				A9E460AC1F5AE32F0091266C /* BoxView.swift */,
 				A9E460AD1F5AE32F0091266C /* WallView.swift */,
 			);
@@ -606,7 +603,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9E460AE1F5AE32F0091266C /* FireView.swift in Sources */,
 				A94BDEBE1F5AFDA40085E073 /* UserScore.swift in Sources */,
 				A9E4604E1F5ADC9E0091266C /* MoveToNextLevelView.swift in Sources */,
 				A94BDECC1F5B013C0085E073 /* Brain.swift in Sources */,

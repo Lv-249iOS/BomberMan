@@ -82,6 +82,8 @@ class GameLayoutController: UIViewController {
         brain.invalidateTimers()
         detailsController.runTimer()
         isGameOver ? gameOver.removeFromSuperview() : moveToNextLevel.removeFromSuperview()
+        brain.initializeGame(with: brain.currentLvl)
+        gameMapController.updateContentSize()
     }
     
     // Catchs pause state from details

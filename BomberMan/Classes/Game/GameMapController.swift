@@ -69,7 +69,14 @@ class GameMapController: UIViewController {
         sceneWidth = brain.shareScene().width
         
         mapScroll.contentSize = CGSize(width: 50 * sceneWidth, height: 50 * (map.characters.count / sceneWidth))
+        firstTime = true
+        mobs.removeAll()
+        players.removeAll()
         drawMap()
+        let frame = CGRect(x: ((players.first?.frame.origin.x) ?? 0) - 150, y: ((players.first?.frame.origin.y) ?? 0) - 150, width: 350, height: 350)
+        
+        mapScroll.scrollRectToVisible(frame, animated: true)
+        
     }
     
     func drawMap() {

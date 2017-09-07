@@ -2,7 +2,7 @@
 //  WinView.swift
 //  BomberMan
 //
-//  Created by Alejandro Del Rio Albrechet on 9/5/17.
+//  Created by Kristina Del Rio Albrechet on 9/5/17.
 //  Copyright © 2017 Lv-249 iOS. All rights reserved.
 //
 

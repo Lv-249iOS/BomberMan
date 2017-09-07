@@ -20,6 +20,7 @@ class Brain {
     var player = Player(name: "Player", markForScene: "0", minesCount: 1, explosionPower: 1)
     var door = Door()
     var gameTimer: Timer!
+    var mobsTimer: Timer!
     var score = 0
     var currentLvl = 0
     
@@ -331,14 +332,16 @@ class Brain {
         return
     }
     
-    private func startMobsMovement() {
-        
-        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+    func startMobsMovement() {
+        mobsTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             self?.moveMobs()
         }
         
-        timers.append(timer)
-        
+        timers.append(mobsTimer)
+    }
+    
+    func stopMobsMovement() {
+        mobsTimer.invalidate()
     }
     
     private func startBombTimer(at position: String.Index, power: Int) {

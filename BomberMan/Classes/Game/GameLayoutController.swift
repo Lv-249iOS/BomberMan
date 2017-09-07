@@ -110,11 +110,13 @@ class GameLayoutController: UIViewController {
             pause.frame = gameMapController.mapScroll.frame
             controlPanelController.setButtonState(isEnabled: false)
             gameContainer.addSubview(pause)
+            brain.stopMobsMovement()
             detailsController.stopTimer()
             
         } else {
             detailsController.isPause = false
             controlPanelController.setButtonState(isEnabled: true)
+            brain.startMobsMovement()
             detailsController.runTimer()
             pause.removeFromSuperview()
         }

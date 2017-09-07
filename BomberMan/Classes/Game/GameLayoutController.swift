@@ -65,12 +65,13 @@ class GameLayoutController: UIViewController {
         if !didWin && brain.currentLvl < 8 {
             moveToNextLevel.frame = gameMapController.mapScroll.frame
             gameContainer.addSubview(moveToNextLevel)
+            
         } else if !didWin && brain.currentLvl == 8 {
-
             gameWin.frame = gameMapController.mapScroll.frame
             gameContainer.addSubview(gameWin)
             askUserAboutName()
             // MARK: You must remove game win view if clicked on but
+            
         } else {
             gameOver.frame = gameMapController.mapScroll.frame
             gameContainer.addSubview(gameOver)
@@ -90,10 +91,12 @@ class GameLayoutController: UIViewController {
             pause.frame = gameMapController.mapScroll.frame
             controlPanelController.setButtonState(isEnabled: false)
             gameContainer.addSubview(pause)
+            detailsController.stopTimer()
             
         } else {
             detailsController.isPause = false
             controlPanelController.setButtonState(isEnabled: true)
+            detailsController.runTimer()
             pause.removeFromSuperview()
         }
     }

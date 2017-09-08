@@ -20,7 +20,7 @@ class GameMapController: UIViewController {
     private var mobs: [UIImageView] = []
     private var clickСount = 0
     private var animationCount = 0
-    var firstTime = true
+    private var firstTime = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,8 +82,8 @@ class GameMapController: UIViewController {
     func drawMap() {
 
         for subview in mapScroll.subviews {
-            if let a = subview as? UIImageView {
-                if !players.contains(a), !mobs.contains(a), a.tag != 666 {
+            if let subImageView = subview as? UIImageView {
+                if !players.contains(subImageView), !mobs.contains(subImageView), subImageView.tag != 66 {
                     subview.removeFromSuperview()
                 }
             } else {
@@ -91,8 +91,6 @@ class GameMapController: UIViewController {
             }
             
         }
-//        mobs.removeAll()
-//        players.removeAll()
         
         let sceneWidth = brain.shareScene().width
         map = brain.shareScene().data
@@ -187,7 +185,7 @@ class GameMapController: UIViewController {
         let rect = CGRect(x: views[pos].frame.origin.x-25, y: views[pos].frame.origin.y-25, width: 100, height: 100)
         let death = UIImageView(frame: rect)
         mapScroll.addSubview(death)
-        death.tag = 666
+        death.tag = 66
         
         views[pos].removeFromSuperview()
         

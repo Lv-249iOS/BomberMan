@@ -39,9 +39,64 @@ class Brain {
     var presentTime: ((Double)->())?
     var refreshScore: ((Int)->())?
     
-    //used at the beginning of the game
+    // Used at the beginning of the game
     func initializeGame(with lvlNumber: Int, completelyNew: Bool) {
-        currentLvl = lvlNumber
+        changeLevel(with: lvlNumber)
+        resetScore(ifNeeded: completelyNew)
+        addMobsAndUpgrates()
+        redrawScene?()
+        startMobsMovement()
+        startGameTimer()
+    }
+    
+    func addMobsAndUpgrates() {
+        var i = 0, mobIdentifier = 0
+        for char in scene.data.characters {
+            let posIndex = scene.data.characters.index(scene.data.startIndex, offsetBy: i)
+            switch char {
+            case "M":
+                generateNewMob(with: mobIdentifier, on: posIndex)
+                mobIdentifier += 1
+            case "U":
+                generateNewUpgrate(on: posIndex)
+            default:
+                break
+            }
+            
+            i += 1
+        }
+    }
+    
+    // Adds upgrates in upgrate_arr
+    func generateNewUpgrate(on position: String.CharacterView.Index) {
+        let randomType = arc4random_uniform(2)
+        guard let type = UpgradeType(rawValue: Int(randomType)) else { return }
+        let upgrade = Upgrade(health: 2, position: position, type: type)
+        upgrades.append(upgrade)
+    }
+    
+    // Adds mob in mobs_array
+    func generateNewMob(with identifier: Int, on position: String.CharacterView.Index) {
+        let mob = Mob(identifier: identifier,
+                      animationSpeed: 1,
+                      position: position,
+                      direction: setMobDirection())
+        
+        mobs.append(mob)
+    }
+    
+    // if it's completely new game, reset score and create new player
+    func resetScore(ifNeeded completelyNew: Bool) {
+        if completelyNew {
+            score = 0
+            player = Player(name: player.name, markForScene: player.markForScene, minesCount: 1, explosionPower: 1)
+            refreshScore?(score)
+        }
+    }
+    
+    // Changes current level, updates scene/timer/health, delete mobs and upgrades
+    func changeLevel(with levelNum: Int) {
+        currentLvl = levelNum
         setlevel(numberoflevel: currentLvl)
         self.scene.data = scene.data
         self.scene.width = scene.width
@@ -49,49 +104,12 @@ class Brain {
         door.health = 2
         mobs.removeAll()
         upgrades.removeAll()
-        if completelyNew {
-            score = 0
-            player = Player(name: player.name, markForScene: player.markForScene, minesCount: 1, explosionPower: 1)
-            refreshScore?(score)
-        }
-        
-        var i = 0
-        var mobIdentifier = 0
-        for char in scene.data.characters {
-            let index = scene.data.characters.index(scene.data.startIndex, offsetBy: i)
-            switch char {
-            case "M":
-                let mob = Mob(identifier: mobIdentifier,
-                              animationSpeed: 1,
-                              position: index,
-                              direction: setMobDirection())
-                mobIdentifier += 1
-                mobs.append(mob)
-            case "U":
-                let randomType = arc4random_uniform(2)
-                guard let type = UpgradeType(rawValue: Int(randomType)) else { return }
-                let upgrade = Upgrade.init(health: 2, position: index, type: type)
-                upgrades.append(upgrade)
-            default: break
-            }
-            i += 1
-        }
-        
-        redrawScene?()
-        startMobsMovement()
-        startGameTimer()
     }
     
+    // create new scene
     func setlevel(numberoflevel: Int) {
-        let currentlevel: String
-        let width: Int
-        if numberoflevel == 0 {
-            width = 10
-        }
-        else {
-            width  = 15
-        }
-        currentlevel = Levels().level(with: numberoflevel)
+        let width = numberoflevel == 0 ? 10 : 15
+        let currentlevel = Levels().level(with: numberoflevel)
         scene = Scene(data: currentlevel, width: width)
     }
     
@@ -118,49 +136,5 @@ class Brain {
     
     func shareScene() -> Scene {
         return scene
-    }
-    
-    func startGameTimer() {
-        gameTimer = Timer.scheduledTimer(withTimeInterval: 120, repeats: false) { [weak self] _ in
-            self?.gameEnd?(false)
-        }
-        
-        timers.append(gameTimer)
-    }
-    
-    func startMobsMovement() {
-        mobsTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
-            self?.moveMobs()
-        }
-        
-        timers.append(mobsTimer)
-    }
-    
-    func stopMobsMovement() {
-        mobsTimer.invalidate()
-    }
-    
-    func startBombTimer(at position: String.Index, power: Int) {
-        let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { [weak self] _ in
-            self?.explode(at: position, power: power)
-        }
-        
-        timers.append(timer)
-    }
-    
-    func startFireTimer(explosion: Explosion, position: String.Index) {
-        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
-            self?.fadeFire(explosion: explosion, position: position)
-        }
-        
-        timers.append(timer)
-    }
-    
-    func invalidateTimers() {
-        for timer in timers {
-            timer.invalidate()
-        }
-        
-        timers = []
     }
 }

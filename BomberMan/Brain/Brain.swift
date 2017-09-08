@@ -41,7 +41,7 @@ class Brain {
     
     // Used at the beginning of the game
     func initializeGame(with lvlNumber: Int, completelyNew: Bool) {
-        changeLevel(with: lvlNumber)
+        setLevel(with: lvlNumber)
         resetScore(ifNeeded: completelyNew)
         addMobsAndUpgrates()
         redrawScene?()
@@ -95,7 +95,7 @@ class Brain {
     }
     
     // Changes current level, updates scene/timer/health, delete mobs and upgrades
-    func changeLevel(with levelNum: Int) {
+    func setLevel(with levelNum: Int) {
         currentLvl = levelNum
         setlevel(numberoflevel: currentLvl)
         self.scene.data = scene.data

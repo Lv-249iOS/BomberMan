@@ -9,6 +9,7 @@
 import Foundation
 
 extension Brain {
+    
     func startGameTimer() {
         gameTimer = Timer.scheduledTimer(withTimeInterval: 120, repeats: false) { [weak self] _ in
             self?.gameEnd?(false)
@@ -45,6 +46,7 @@ extension Brain {
         timers.append(timer)
     }
     
+    // Invalidates all timers in the game
     func invalidateTimers() {
         for timer in timers {
             timer.invalidate()

@@ -128,6 +128,8 @@ class Brain {
         timers.append(gameTimer)
     }
     
+    func startMobsMovement() {
+        mobsTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             self?.moveMobs()
         }
         
@@ -153,7 +155,6 @@ class Brain {
         
         timers.append(timer)
     }
-    
     
     func invalidateTimers() {
         for timer in timers {

@@ -20,6 +20,7 @@ extension Brain {
                 scene.data.characters.insert("X", at: position)
             }
         }
+        
         if let playerPosition = scene.data.characters.index(of: player.markForScene) ?? scene.data.characters.index(of: "Q") {
             var directionPosition: String.Index
             var canGo = true
@@ -90,6 +91,7 @@ extension Brain {
                 default:
                     break
                 }
+                
                 if canGo {
                     removePlayerMark(atPosition: playerPosition)
                     scene.data.characters.remove(at: directionPosition)
@@ -106,15 +108,16 @@ extension Brain {
     }
     
     func plantBomb(player: Player) {
-        if let playerPosition = scene.data.characters.index(of: player.markForScene), player.minesCount > entryPointsCount(for: scene.data, char: "X")  {
+        if let playerPosition = scene.data.characters.index(of: player.markForScene),
+            player.minesCount > entryPointsCount(for: scene.data, char: "X")  {
+            
             scene.data.characters.remove(at: playerPosition)
             scene.data.characters.insert("Q", at: playerPosition)
             startBombTimer(at: playerPosition, power: player.explosionPower)
+            
             if let intValue = Int(player.markForScene.description) {
                 plantBomb?(intValue)
             }
-            return
         }
-        return
     }
 }

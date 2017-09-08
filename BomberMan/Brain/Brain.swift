@@ -11,6 +11,8 @@ import Foundation
 class Brain {
     static let shared = Brain()
     
+    var tiles: [[Character]] = []
+    var width = 0
     var scene = Scene(data: Levels().level(with: 0), width: 10)
     var cantGo = "WBXQ"
     var mobCantGo = "WBXQUD"
@@ -80,6 +82,30 @@ class Brain {
         redrawScene?()
         startMobsMovement()
         startGameTimer()
+    }
+    
+    func toTiles(scene: String) {
+        for char in scene.characters {
+            var tile: [Character] = []
+            switch char {
+            case "U","D":
+                tile.append("B")
+                tile.append(char)
+            case " " : break
+            default:
+                tile.append(char)
+            }
+            tiles.append(tile)
+        }
+    }
+    
+    func setLevelWithTiles(levelNumber: Int) {
+        if levelNumber == 0 {
+            width = 10
+        } else {
+            width = 15
+        }
+        toTiles(scene: Levels().level(with: levelNumber))
     }
     
     func setlevel(numberoflevel: Int) {

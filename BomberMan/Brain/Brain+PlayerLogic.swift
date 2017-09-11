@@ -18,10 +18,10 @@ extension Brain {
             var shouldRedraw = false
             
             switch direction {
-            case .bottom: return player.position + scene.width
-            case .left: return player.position - 1
-            case .right: return player.position + 1
-            case .top: return player.position - scene.width
+            case .bottom: directionPosition = player.position + scene.width
+            case .left: directionPosition = player.position - 1
+            case .right: directionPosition = player.position + 1
+            case .top: directionPosition = player.position - scene.width
             }
             if playerCanGo(to: directionPosition) {
                 let last = tiles[directionPosition].last ?? " "

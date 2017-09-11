@@ -11,32 +11,23 @@ import Foundation
 extension Brain {
     
     func move(to direction: Direction, player: inout Player) {
-        func removePlayerMark(atPosition position: String.Index) {
-            if scene.data[position] == player.markForScene {
-                scene.data.characters.remove(at: position)
-                scene.data.characters.insert(" ", at: position)
-            } else {
-                scene.data.characters.remove(at: position)
-                scene.data.characters.insert("X", at: position)
-            }
-        }
         
         if let playerPosition = scene.data.characters.index(of: player.markForScene) ?? scene.data.characters.index(of: "Q") {
-            var directionPosition: String.Index
+            var directionPosition: Int
             var canGo = true
             var shouldRedraw = false
             
             switch direction {
-            case .bottom: directionPosition = scene.data.characters.index(playerPosition, offsetBy: scene.width)
-            case .left: directionPosition = scene.data.characters.index(before: playerPosition)
-            case .right: directionPosition = scene.data.characters.index(after: playerPosition)
-            case .top: directionPosition = scene.data.index(playerPosition, offsetBy: -scene.width)
-                
+            case .bottom: return player.position + scene.width
+            case .left: return player.position - 1
+            case .right: return player.position + 1
+            case .top: return player.position - scene.width
             }
-            if !cantGo.characters.contains(scene.data[directionPosition]) {
-                switch scene.data[directionPosition] {
+            if playerCanGo(to: directionPosition) {
+                let last = tiles[directionPosition].last ?? " "
+                switch last {
                 case "F":
-                    removePlayerMark(atPosition: playerPosition)
+                    tiles[player.position].removeLast()
                     if let intValue = Int(player.markForScene.description) {
                         move?(direction, intValue)
                         killHero?(intValue)
@@ -49,7 +40,7 @@ extension Brain {
                         return
                     }
                 case "U":
-                    if let index = getUpgradeIndex(atPosition: directionPosition), upgrades[index].health == 1 {
+                    if let index = getUpgradeIndex(atPosition: directionPosition) {
                         switch upgrades[index].type {
                         case .anotherBomb:
                             player.minesCount += 1
@@ -60,23 +51,17 @@ extension Brain {
                         score += 100
                         refreshScore?(score)
                         shouldRedraw = true
-                    } else {
-                        canGo = false
                     }
                 case "D":
-                    if door.health == 2 {
-                        canGo = false
-                    } else {
-                        if let intValue = Int(player.markForScene.description) {
-                            score += 500
-                            refreshScore?(score)
-                            move?(direction, intValue)
-                            gameEnd?(true)
-                            return
-                        }
+                    if let intValue = Int(player.markForScene.description) {
+                        score += 500
+                        refreshScore?(score)
+                        move?(direction, intValue)
+                        gameEnd?(true)
+                        return
                     }
                 case "M":
-                    removePlayerMark(atPosition: playerPosition)
+                    tiles[player.position].removeLast()
                     if let intValue = Int(player.markForScene.description) {
                         move?(direction, intValue)
                         killHero?(intValue)
@@ -93,9 +78,8 @@ extension Brain {
                 }
                 
                 if canGo {
-                    removePlayerMark(atPosition: playerPosition)
-                    scene.data.characters.remove(at: directionPosition)
-                    scene.data.characters.insert(player.markForScene, at: directionPosition)
+                    tiles[player.position].removeLast()
+                    tiles[directionPosition].append(player.markForScene)
                     if let intValue = Int(player.markForScene.description) {
                         move?(direction, intValue)
                     }
@@ -105,6 +89,15 @@ extension Brain {
                 }
             }
         }
+    }
+    
+    func playerCanGo(to directionPosition: Int) -> Bool {
+        for char in tiles[directionPosition].reversed() {
+            if cantGo.characters.contains(char) {
+                return false
+            }
+        }
+        return true
     }
     
     func canFitBomb(at position: Int) -> Bool {

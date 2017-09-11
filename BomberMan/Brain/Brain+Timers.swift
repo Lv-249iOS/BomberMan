@@ -30,7 +30,7 @@ extension Brain {
         mobsTimer.invalidate()
     }
     
-    func startBombTimer(at position: String.Index, power: Int) {
+    func startBombTimer(at position: Int, power: Int) {
         let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { [weak self] _ in
             self?.explode(at: position, power: power)
         }
@@ -38,7 +38,7 @@ extension Brain {
         timers.append(timer)
     }
     
-    func startFireTimer(explosion: Explosion, position: String.Index) {
+    func startFireTimer(explosion: Explosion, position: Int) {
         let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
             self?.fadeFire(explosion: explosion, position: position)
         }

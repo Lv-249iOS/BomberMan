@@ -56,7 +56,8 @@ class Levels {
 
 
 /*
- case one = "WWWWWWWWWW
+ case one = "
+ WWWWWWWWWW
  W  0     W
  W  W W W W
  W        W
@@ -67,7 +68,8 @@ class Levels {
  WM WBBMW W
  WWWWWWWWWW"
  
- case two = "WWWWWWWWWWWWWWW
+ case two = "
+ WWWWWWWWWWWWWWW
  W MWBW MBBBMWWW
  W             W
  W   BUBBB  WW W
@@ -80,7 +82,8 @@ class Levels {
  W            MW
  WWWWWWWWWWWWWWW"
  
- case three = "WWWWWWWWWWWWWWW
+ case three = "
+ WWWWWWWWWWWWWWW
  W 0          MW
  W    BBWBB    W
  W   BBBWBBB   W
@@ -93,7 +96,8 @@ class Levels {
  WM         BWBW
  WWWWWWWWWWWWWWW"
  
- case four = "WWWWWWWWWWWWWWW
+ case four = "
+ WWWWWWWWWWWWWWW
  W0 BUBBBBBBB  W
  W WBW W W W W W
  W BB MBBB BBBBW
@@ -107,7 +111,8 @@ class Levels {
  W MBBBBB UBBM W
  WWWWWWWWWWWWWWW"
  
- case five = "WWWWWWWWWWWWWWW
+ case five = "
+ WWWWWWWWWWWWWWW
  WBB  B  BBB WBW
  W   UBW WMWBWBW
  WWWWBWBW  WBW W
@@ -120,7 +125,8 @@ class Levels {
  W  M  B BB    W
  WWWWWWWWWWWWWWW"
  
- case six = "WWWWWWWWWWWWWWW
+ case six = "
+ WWWWWWWWWWWWWWW
  WBB  B BB BBB W
  WBWMWMW WBWBWBW
  WBBBB B  BBBBBW
@@ -134,7 +140,8 @@ class Levels {
  WBB DBBB B BB W
  WWWWWWWWWWWWWWW"
  
- case seven = "WWWWWWWWWWWWWWW
+ case seven = "
+ WWWWWWWWWWWWWWW
  W   M B B  U 0W
  W WBW WBWBWBW W
  WB B   BBBB BBW
@@ -148,7 +155,8 @@ class Levels {
  W   B  M  BB  W
  WWWWWWWWWWWWWWW"
  
- case eight = "WWWWWWWWWWWWWWW
+ case eight = "
+ WWWWWWWWWWWWWWW
  W    BU BWBB 0W
  W BWB B B BWB W
  WMWWW W  WWMW W
@@ -161,7 +169,8 @@ class Levels {
  W   W  WW   M W
  WWWWWWWWWWWWWWW"
  
- case nine = "WWWWWWWWWWWWWWW
+ case nine = "
+ WWWWWWWWWWWWWWW
  W   MBUB     WW
  W WBWWWB WWW  W
  W WBMW 0  MWW W

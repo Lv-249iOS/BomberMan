@@ -99,8 +99,8 @@ class Brain {
             var tile: [Character] = []
             switch char {
             case "U","D":
-                tile.append("B")
                 tile.append(char)
+                tile.append("B")
             case " " : break
             default:
                 tile.append(char)

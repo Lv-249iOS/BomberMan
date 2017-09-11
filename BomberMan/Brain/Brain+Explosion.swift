@@ -68,6 +68,9 @@ extension Brain {
                 needToBreak = true
                 canProceed = false
                 tiles[index].removeLast()
+                if !tiles[index].isEmpty {
+                    canBurn = false
+                }
             case player.markForScene:
                 gameEnd?(false)
                 score -= 1000

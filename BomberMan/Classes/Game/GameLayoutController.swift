@@ -144,7 +144,7 @@ class GameLayoutController: UIViewController {
     
     // Controls bomb setting
     func setBomb() {
-        brain.plantBomb(player: brain.player)
+        brain.plantBomb(player: &brain.player)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -18,7 +18,12 @@ class Brain {
     var mobCantGo = "WBXQUD"
     var mobs: [Mob] = []
     var upgrades: [Upgrade] = []
-    var player = Player(name: "Player", markForScene: "0", minesCount: 1, explosionPower: 1)
+    var player = Player(name: "Player",
+                        markForScene: "0",
+                        minesCount: 1,
+                        explosionPower: 1,
+                        position: 0,
+                        plantedMines: 0)
     var door = Door()
     var gameTimer: Timer!
     var mobsTimer: Timer!
@@ -29,10 +34,10 @@ class Brain {
     var currentTime: TimeInterval = 120
     let timeLimit: TimeInterval = 120
     
-    var showFire: ((Explosion, String.Index)->())?
+    var showFire: ((Explosion, Int)->())?
     var move: ((Direction, Int)->())?
     var plantBomb: ((Int)->())?
-    var showImage: ((DoubleHealthThings, String.Index)->())?
+    var showImage: ((DoubleHealthThings, Int)->())?
     var redrawScene: (()->())?
     var killHero: ((Int)->())?
     var killMob: ((Int)->())?
@@ -44,6 +49,8 @@ class Brain {
     // Used at the beginning of the game
     func initializeGame(with lvlNumber: Int, completelyNew: Bool) {
         setLevel(with: lvlNumber)
+        setLevelWithTiles(levelNumber: lvlNumber)
+        getPlayerPosition()
         resetScore(ifNeeded: completelyNew)
         addMobsAndUpgrates()
         redrawScene?()
@@ -53,14 +60,13 @@ class Brain {
     
     func addMobsAndUpgrates() {
         var i = 0, mobIdentifier = 0
-        for char in scene.data.characters {
-            let posIndex = scene.data.characters.index(scene.data.startIndex, offsetBy: i)
-            switch char {
+        for char in tiles {
+            switch char[0] {
             case "M":
-                generateNewMob(with: mobIdentifier, on: posIndex)
+                generateNewMob(with: mobIdentifier, on: i)
                 mobIdentifier += 1
             case "U":
-                generateNewUpgrate(on: posIndex)
+                generateNewUpgrate(on: i)
             default:
                 break
             }
@@ -70,15 +76,15 @@ class Brain {
     }
     
     // Adds upgrates in upgrate_arr
-    func generateNewUpgrate(on position: String.CharacterView.Index) {
+    func generateNewUpgrate(on position: Int) {
         let randomType = arc4random_uniform(2)
         guard let type = UpgradeType(rawValue: Int(randomType)) else { return }
-        let upgrade = Upgrade(health: 2, position: position, type: type)
+        let upgrade = Upgrade(health: 1, position: position, type: type)
         upgrades.append(upgrade)
     }
     
     // Adds mob in mobs_array
-    func generateNewMob(with identifier: Int, on position: String.CharacterView.Index) {
+    func generateNewMob(with identifier: Int, on position: Int) {
         let mob = Mob(identifier: identifier,
                       animationSpeed: 1,
                       position: position,
@@ -111,6 +117,11 @@ class Brain {
         toTiles(scene: Levels().level(with: levelNumber))
     }
     
+    func getPlayerPosition() {
+        player.position = scene.data.distance(from: scene.data.startIndex,
+                                              to: scene.data.characters.index(of: "0") ?? scene.data.startIndex)
+    }
+    
 //    func setlevel(numberoflevel: Int) {
 //        let currentlevel: String
 //        let width: Int
@@ -126,7 +137,12 @@ class Brain {
     func resetScore(ifNeeded completelyNew: Bool) {
         if completelyNew {
             score = 0
-            player = Player(name: player.name, markForScene: player.markForScene, minesCount: 1, explosionPower: 1)
+            player = Player(name: "Player",
+                            markForScene: "0",
+                            minesCount: 1,
+                            explosionPower: 1,
+                            position: 0,
+                            plantedMines: 0)
             refreshScore?(score)
         }
     }
@@ -138,7 +154,7 @@ class Brain {
         self.scene.data = scene.data
         self.scene.width = scene.width
         currentTime = timeLimit
-        door.health = 2
+        door.health = 1
         mobs.removeAll()
         upgrades.removeAll()
     }
@@ -160,7 +176,7 @@ class Brain {
         return count
     }
     
-    func getUpgradeIndex(atPosition position: String.Index) -> Int? {
+    func getUpgradeIndex(atPosition position: Int) -> Int? {
         var i = 0
         for item in upgrades {
             if item.position == position {

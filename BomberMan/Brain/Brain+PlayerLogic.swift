@@ -116,12 +116,9 @@ extension Brain {
     }
     
     func plantBomb(player: Player) {
-        if let playerPosition = scene.data.characters.index(of: player.markForScene),
-            player.minesCount > entryPointsCount(for: scene.data, char: "X")  {
-            
-            scene.data.characters.remove(at: playerPosition)
-            scene.data.characters.insert("Q", at: playerPosition)
-            startBombTimer(at: playerPosition, power: player.explosionPower)
+        if player.minesCount > player.plantedMines, canFitBomb(at: player.position)  {
+            tiles[player.position].insert("X", at: 0)
+            startBombTimer(at: playerPosition, player: player)
             
             if let intValue = Int(player.markForScene.description) {
                 plantBomb?(intValue)

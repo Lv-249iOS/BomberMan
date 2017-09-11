@@ -10,7 +10,7 @@ import Foundation
 
 extension Brain {
     
-    func explode(at position: String.Index, power: Int) {
+    func explode(at position: Int, power: Int) {
         var killedPlayers: [Int] = []
         var explosion = Explosion.init()
         
@@ -24,8 +24,7 @@ extension Brain {
                 case .right: offset = i
                 case .top: offset = -i * scene.width
                 }
-                let indexForFire = scene.data.characters.index(position, offsetBy: offset)
-                let blowOptions: (canBurn: Bool, canProceed: Bool, killedPlayers: [Int]) = blowFire(onPosition: indexForFire)
+                let blowOptions: (canBurn: Bool, canProceed: Bool, killedPlayers: [Int]) = blowFire(onPosition: position + offset)
                 if blowOptions.canBurn {
                     strength += 1
                 }
@@ -38,8 +37,10 @@ extension Brain {
             }
             return strength
         }
-        scene.data.characters.remove(at: position)
-        scene.data.characters.insert("F", at: position)
+        let blowOptions: (canBurn: Bool, canProceed: Bool, killedPlayers: [Int]) = blowFire(onPosition: position)
+        for player in blowOptions.killedPlayers {
+            killedPlayers.append(player)
+        }
         explosion.bottom = explode(inDirection: .bottom)
         explosion.left = explode(inDirection: .left)
         explosion.right = explode(inDirection: .right)

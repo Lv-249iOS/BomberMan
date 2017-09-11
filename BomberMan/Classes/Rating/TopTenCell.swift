@@ -20,4 +20,9 @@ class TopTenCell: UITableViewCell {
         raitingScore.text = "\(score.score)"
         dateLabel.text = score.date.timeSince()
     }
+    
+    override func prepareForReuse() {
+        cellImage.image = nil
+        super.prepareForReuse()
+    }
 }

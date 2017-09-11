@@ -66,15 +66,13 @@ extension Brain {
         }
     }
     
-    func getDirectionPosition(mob: Mob) -> String.Index {
-        let directionPosition: String.Index
+    func getDirectionPosition(mob: Mob) -> Int {
         switch mob.direction {
-        case .bottom: directionPosition = scene.data.characters.index(mob.position, offsetBy: scene.width)
-        case .left: directionPosition = scene.data.characters.index(before: mob.position)
-        case .right: directionPosition = scene.data.characters.index(after: mob.position)
-        case .top: directionPosition = scene.data.index(mob.position, offsetBy: -scene.width)
+        case .bottom: return mob.position + scene.width
+        case .left: return mob.position - 1
+        case .right: return mob.position + 1
+        case .top: return mob.position - scene.width
         }
-        return directionPosition
     }
     
     func setMobDirection() -> Direction {
@@ -105,7 +103,7 @@ extension Brain {
         return nil
     }
     
-    func getMobIndex(atPosition position: String.Index) -> [Mob]? {
+    func getMobIndex(atPosition position: Int) -> [Mob]? {
         var result: [Mob] = []
         for mob in mobs {
             if mob.position == position {

@@ -54,59 +54,55 @@ extension Brain {
     }
     
     //sets fire on position in scene and returns true if nothing stops it
-    func blowFire(onPosition index: String.Index) -> (Bool, Bool, [Int]) {
+    func blowFire(onPosition index: Int) -> (Bool, Bool, [Int]) {
         var canProceed = true
         var canBurn = true
         var killedPlayers: [Int] = []
         
-        switch scene.data[index] {
-        case "W": return (false, false, killedPlayers)
-        case "B": canProceed = false
-        case player.markForScene:
-            gameEnd?(false)
-            score -= 1000
-            if score < 0 {
-                score = 0
-            }
-            refreshScore?(score)
-            if let intValue = Int(player.markForScene.description) {
-                killedPlayers.append(intValue)
-            }
-        case "U":
-            guard let upgradeIndex = getUpgradeIndex(atPosition: index) else { return (false, false, []) }
-            if upgrades[upgradeIndex].health == 2 {
-                upgrades[upgradeIndex].health = 1
-                switch upgrades[upgradeIndex].type {
-                case .anotherBomb:  showImage?(.anotherBomb, index)
-                case .strongerBomb: showImage?(.strongerBomb, index)
+        for char in tiles[index].reversed() {
+            var needToBreak = false
+            
+            switch char {
+            case "W": return (false, false, killedPlayers)
+            case "B":
+                needToBreak = true
+                canProceed = false
+                tiles[index].removeLast()
+            case player.markForScene:
+                gameEnd?(false)
+                score -= 1000
+                if score < 0 {
+                    score = 0
                 }
+                refreshScore?(score)
+                if let intValue = Int(player.markForScene.description) {
+                    killedPlayers.append(intValue)
+                }
+                tiles[index].removeLast()
+            case "U":
+                tiles[index].removeLast()
+            case "D":
                 canBurn = false
                 canProceed = false
-            }
-        case "D":
-            if door.health == 2 {
-                showImage?(.door, index)
-                door.health = 1
-            }
-            canBurn = false
-            canProceed = false
-        case "M":
-            if let mobsAtCurrentPosition = getMobIndex(atPosition: index) {
-                for mob in mobsAtCurrentPosition {
-                    if let indexInPrivateArray = getMobIndexInPrivateArray(mob: mob) {
+            case "M":
+                if let mobAtCurrentPosition = getMobIndex(atPosition: index) {
+                    if let indexInPrivateArray = getMobIndexInPrivateArray(mob: mobAtCurrentPosition[0]) {
                         mobs.remove(at: indexInPrivateArray)
-                        killMob?(mob.identifier)
+                        killMob?(mobAtCurrentPosition[0].identifier)
                         score += 200
                         refreshScore?(score)
                     }
                 }
+                tiles[index].removeLast()
+            default:
+                break
             }
-        default:
-            break
+            if needToBreak {
+                break
+            }
         }
         if canBurn {
-            scene.data.remove(at: index)
-            scene.data.insert("F", at: index)
+            tiles[index].append("F")
         }
         return (canBurn, canProceed, killedPlayers)
     }

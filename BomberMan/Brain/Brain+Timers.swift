@@ -30,9 +30,12 @@ extension Brain {
         mobsTimer.invalidate()
     }
     
-    func startBombTimer(at position: Int, power: Int) {
+    func startBombTimer(withOptionsOfPlayer player: Player) {
         let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { [weak self] _ in
-            self?.explode(at: position, power: power)
+            self?.explode(withOptionsOfPlayer: player)
+            
+            //needs to be finished
+            self?.player.plantedMines -= 1
         }
         
         timers.append(timer)

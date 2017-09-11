@@ -107,6 +107,14 @@ extension Brain {
         }
     }
     
+    func canFitBomb(at position: Int) -> Bool {
+        for char in tiles[position] {
+            if char == "B" { return false }
+            if char == "X" { return false }
+        }
+        return true
+    }
+    
     func plantBomb(player: Player) {
         if let playerPosition = scene.data.characters.index(of: player.markForScene),
             player.minesCount > entryPointsCount(for: scene.data, char: "X")  {

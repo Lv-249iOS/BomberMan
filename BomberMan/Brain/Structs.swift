@@ -25,7 +25,7 @@ struct Door {
 
 struct Upgrade {
     var health = 2
-    var position: String.Index
+    var position: Int
     var type: UpgradeType = .anotherBomb
 }
 
@@ -36,6 +36,8 @@ struct Player {
 //    var canFly = false
     var minesCount = 1
     var explosionPower = 1
+    var position = 0
+    var plantedMines = 0
 //    var speed = 1
 }
 
@@ -43,7 +45,7 @@ struct Mob {
 //    var type =
     var identifier = 0
     var animationSpeed = 1
-    var position: String.Index
+    var position: Int
     var direction: Direction
 }
 

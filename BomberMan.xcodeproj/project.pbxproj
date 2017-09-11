@@ -62,6 +62,7 @@
 		A95FC51F1F502C7500E1F926 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95FC51D1F502C7500E1F926 /* Main.storyboard */; };
 		A95FC5241F502C7500E1F926 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A95FC5231F502C7500E1F926 /* Assets.xcassets */; };
 		A95FC5271F502C7500E1F926 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95FC5251F502C7500E1F926 /* LaunchScreen.storyboard */; };
+		A99006E31F62C8180031248E /* Brain+Timers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99006E21F62C8180031248E /* Brain+Timers.swift */; };
 		A9E460401F5ADC040091266C /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E4603E1F5ADC040091266C /* GameOverView.swift */; };
 		A9E460411F5ADC040091266C /* GameOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9E4603F1F5ADC040091266C /* GameOverView.xib */; };
 		A9E460441F5ADC1F0091266C /* PauseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E460421F5ADC1F0091266C /* PauseView.swift */; };
@@ -147,6 +148,7 @@
 		A95FC5231F502C7500E1F926 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A95FC5261F502C7500E1F926 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A95FC5281F502C7500E1F926 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A99006E21F62C8180031248E /* Brain+Timers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brain+Timers.swift"; sourceTree = "<group>"; };
 		A9E4603E1F5ADC040091266C /* GameOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		A9E4603F1F5ADC040091266C /* GameOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameOverView.xib; sourceTree = "<group>"; };
 		A9E460421F5ADC1F0091266C /* PauseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseView.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				616460701F61830E00402452 /* Brain+PlayerLogic.swift */,
 				A94BDECA1F5B013C0085E073 /* Levels.swift */,
 				A94BDECB1F5B013C0085E073 /* Structs.swift */,
+				A99006E21F62C8180031248E /* Brain+Timers.swift */,
 			);
 			path = Brain;
 			sourceTree = "<group>";
@@ -631,6 +634,7 @@
 				A92AA43D1F5EE1080025EFB6 /* WinView.swift in Sources */,
 				616460711F61830E00402452 /* Brain+PlayerLogic.swift in Sources */,
 				A94BDEB21F5AFD450085E073 /* ControlPanelController.swift in Sources */,
+				A99006E31F62C8180031248E /* Brain+Timers.swift in Sources */,
 				A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */,
 				616460731F61840400402452 /* Brain+Explosion.swift in Sources */,
 				A92AA4361F5E901D0025EFB6 /* EventPopOverController.swift in Sources */,

@@ -296,14 +296,13 @@ class GameMapController: UIViewController {
         })
     }
     
-    func explode(ranges: Explosion, center: String.Index) {
+    func explode(ranges: Explosion, center: Int) {
         
         map = brain.shareScene().data
         drawMap()
         
-        let intValue = map.distance(from: map.startIndex, to: center)
-        let x = intValue % brain.shareScene().width * 50
-        let y = intValue / brain.shareScene().width * 50
+        let x = center % brain.shareScene().width * 50
+        let y = center / brain.shareScene().width * 50
         
         var left = ranges.left
         var right = ranges.right

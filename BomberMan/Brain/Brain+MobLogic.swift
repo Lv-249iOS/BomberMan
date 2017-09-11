@@ -20,7 +20,7 @@ extension Brain {
             var directionPosition = getDirectionPosition(mob: mob)
             var loopsCount = 0
             var needToContinue = false
-            while mobCantGo.characters.contains(scene.data[directionPosition]) {
+            while mobCantGo(to: directionPosition) {
                 mob.direction = setMobDirection()
                 directionPosition = getDirectionPosition(mob: mob)
                 loopsCount += 1
@@ -64,6 +64,15 @@ extension Brain {
         for mob in modifiedMobArray {
             mobs.append(mob)
         }
+    }
+    
+    func mobCantGo(to directionPosition: Int) -> Bool {
+        for char in tiles[directionPosition].reversed() {
+            if mobCantGo.characters.contains(char) {
+                return true
+            }
+        }
+        return false
     }
     
     func getDirectionPosition(mob: Mob) -> Int {

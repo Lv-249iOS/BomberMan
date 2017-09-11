@@ -10,21 +10,21 @@ import Foundation
 
 extension Brain {
     
-    func explode(at position: Int, power: Int) {
+    func explode(withOptionsOfPlayer player: Player) {
         var killedPlayers: [Int] = []
         var explosion = Explosion.init()
         
         func explode(inDirection direction: Direction) -> Int {
             var strength = 0
             var offset = 0
-            for i in 1...power  {
+            for i in 1...player.explosionPower  {
                 switch direction {
                 case .bottom: offset = i * scene.width
                 case .left: offset = -i
                 case .right: offset = i
                 case .top: offset = -i * scene.width
                 }
-                let blowOptions: (canBurn: Bool, canProceed: Bool, killedPlayers: [Int]) = blowFire(onPosition: position + offset)
+                let blowOptions: (canBurn: Bool, canProceed: Bool, killedPlayers: [Int]) = blowFire(onPosition: player.position + offset)
                 if blowOptions.canBurn {
                     strength += 1
                 }
@@ -37,7 +37,7 @@ extension Brain {
             }
             return strength
         }
-        let blowOptions: (canBurn: Bool, canProceed: Bool, killedPlayers: [Int]) = blowFire(onPosition: position)
+        let blowOptions: (canBurn: Bool, canProceed: Bool, killedPlayers: [Int]) = blowFire(onPosition: player.position)
         for player in blowOptions.killedPlayers {
             killedPlayers.append(player)
         }
@@ -45,12 +45,12 @@ extension Brain {
         explosion.left = explode(inDirection: .left)
         explosion.right = explode(inDirection: .right)
         explosion.top = explode(inDirection: .top)
-        showFire?(explosion, position)
+        showFire?(explosion, player.position)
         
         for player in killedPlayers {
             killHero?(player)
         }
-        startFireTimer(explosion: explosion, position: position)
+        startFireTimer(explosion: explosion, position: player.position)
     }
     
     //sets fire on position in scene and returns true if nothing stops it

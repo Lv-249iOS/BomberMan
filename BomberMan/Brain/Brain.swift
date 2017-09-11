@@ -50,8 +50,8 @@ class Brain {
     func initializeGame(with lvlNumber: Int, completelyNew: Bool) {
         setLevel(with: lvlNumber)
         setLevelWithTiles(levelNumber: lvlNumber)
-        getPlayerPosition()
         resetScore(ifNeeded: completelyNew)
+        getPlayerPosition()
         addMobsAndUpgrates()
         redrawScene?()
         startMobsMovement()
@@ -61,16 +61,17 @@ class Brain {
     func addMobsAndUpgrates() {
         var i = 0, mobIdentifier = 0
         for char in tiles {
-            switch char[0] {
-            case "M":
-                generateNewMob(with: mobIdentifier, on: i)
-                mobIdentifier += 1
-            case "U":
-                generateNewUpgrate(on: i)
-            default:
-                break
+            if !char.isEmpty {
+                switch char[0] {
+                case "M":
+                    generateNewMob(with: mobIdentifier, on: i)
+                    mobIdentifier += 1
+                case "U":
+                    generateNewUpgrate(on: i)
+                default:
+                    break
+                }
             }
-            
             i += 1
         }
     }

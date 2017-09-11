@@ -34,9 +34,9 @@ extension Brain {
                 modifiedMobArray.append(modifiedMob)
                 continue
             }
-            scene.data.characters.remove(at: mob.position)
-            scene.data.characters.insert(" ", at: mob.position)
-            switch scene.data[directionPosition] {
+            tiles[mob.position].removeLast()
+            let last = tiles[directionPosition].last ?? " "
+            switch last {
             case "F":
                 moveMob?(mob.direction, mob.identifier)
                 killMob?(mob.identifier)
@@ -53,8 +53,7 @@ extension Brain {
             if needToContinue {
                 continue
             }
-            scene.data.characters.remove(at: directionPosition)
-            scene.data.characters.insert("M", at: directionPosition)
+            tiles[directionPosition].append("M")
             mob.position = directionPosition
             i += 1
             let modifiedMob = Mob(identifier: mob.identifier, animationSpeed: mob.animationSpeed, position: mob.position, direction: mob.direction)

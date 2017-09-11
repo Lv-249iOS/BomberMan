@@ -107,28 +107,23 @@ extension Brain {
         return (canBurn, canProceed, killedPlayers)
     }
     
-    func fadeFire(explosion: Explosion, position: String.Index) {
-        scene.data.remove(at: position)
-        scene.data.insert(" ", at: position)
+    func fadeFire(explosion: Explosion, position: Int) {
+        tiles[position].removeAll()
         for i in 0..<explosion.bottom  {
-            let indexForFire = scene.data.characters.index(position, offsetBy: (i+1) * scene.width)
-            scene.data.remove(at: indexForFire)
-            scene.data.insert(" ", at: indexForFire)
+            let indexForFire = position + (i+1) * scene.width
+            tiles[indexForFire].removeAll()
         }
         for i in 0..<explosion.top  {
-            let indexForFire = scene.data.characters.index(position, offsetBy: -(i+1) * scene.width)
-            scene.data.remove(at: indexForFire)
-            scene.data.insert(" ", at: indexForFire)
+            let indexForFire = position - (i+1) * scene.width
+            tiles[indexForFire].removeAll()
         }
         for i in 0..<explosion.right  {
-            let indexForFire = scene.data.characters.index(position, offsetBy: (i+1))
-            scene.data.remove(at: indexForFire)
-            scene.data.insert(" ", at: indexForFire)
+            let indexForFire = position + (i+1)
+            tiles[indexForFire].removeAll()
         }
         for i in 0..<explosion.left  {
-            let indexForFire = scene.data.characters.index(position, offsetBy: -(i+1))
-            scene.data.remove(at: indexForFire)
-            scene.data.insert(" ", at: indexForFire)
+            let indexForFire = position - (i+1)
+            tiles[indexForFire].removeAll()
         }
         redrawScene?()
     }

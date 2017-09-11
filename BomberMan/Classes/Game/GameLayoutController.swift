@@ -79,7 +79,7 @@ class GameLayoutController: UIViewController {
         if didWin && brain.currentLvl < 8 {
             moveToNextLevel.frame = gameMapController.mapScroll.frame
             gameContainer.addSubview(moveToNextLevel)
-            presentScore(score: brain.score)
+            
         } else if !didWin && brain.currentLvl == 8 {
             gameWin.frame = gameMapController.mapScroll.frame
             gameContainer.addSubview(gameWin)
@@ -93,6 +93,7 @@ class GameLayoutController: UIViewController {
                 askUserAboutName()
             }
         }
+        presentScore(score: brain.score)
     }
     
     func replayGame(isGameOver: Bool) {

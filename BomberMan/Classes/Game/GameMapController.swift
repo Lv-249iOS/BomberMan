@@ -334,6 +334,7 @@ class GameMapController: UIViewController {
                 down -= 1
             }
         }
+      
     }
     
     func animate(images:[UIImage], player: Int) {

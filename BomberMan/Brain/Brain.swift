@@ -24,7 +24,6 @@ class Brain {
                         explosionPower: 1,
                         position: 0,
                         plantedMines: 0)
-    var door = Door()
     var gameTimer: Timer!
     var mobsTimer: Timer!
     var score = 0
@@ -155,7 +154,6 @@ class Brain {
         self.scene.data = scene.data
         self.scene.width = scene.width
         currentTime = timeLimit
-        door.health = 1
         mobs.removeAll()
         upgrades.removeAll()
     }

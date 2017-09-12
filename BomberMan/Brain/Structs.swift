@@ -19,10 +19,6 @@ struct Scene {
     var width = 0
 }
 
-struct Door {
-    var health = 2
-}
-
 struct Upgrade {
     var health = 2
     var position: Int

@@ -80,7 +80,7 @@ class GameMapController: UIViewController {
     }
     
     func drawMap() {
-
+        
         for subview in mapScroll.subviews {
             if let subImageView = subview as? UIImageView {
                 if !players.contains(subImageView), !mobs.contains(subImageView), subImageView.tag != 66 {
@@ -93,88 +93,82 @@ class GameMapController: UIViewController {
         }
         
         let sceneWidth = brain.shareScene().width
-        map = brain.shareScene().data
+        //map = brain.shareScene().data
         
         var i = 0
         var j = 0
         var upgradeCounter = 0
         
-        for tile in map.characters {
-            
-            switch tile {
-            case "W":
-                let rect = CGRect(x: i, y: j, width: 50, height: 50)
-                let wall = WallView(frame: rect)
-                wall.backgroundColor = UIColor.gray
-                mapScroll.addSubview(wall)
-            case "B":
-                addSubBoxView(x: i, y: j)
-            case "0":
-                if firstTime {
+        for tile in brain.tiles {
+            for tileElement in tile {
+                switch tileElement {
+                case "W":
+                    let rect = CGRect(x: i, y: j, width: 50, height: 50)
+                    let wall = WallView(frame: rect)
+                    wall.backgroundColor = UIColor.gray
+                    mapScroll.addSubview(wall)
+                case "B":
+                    addSubBoxView(x: i, y: j)
+                case "0":
+                    if firstTime {
+                        let rect = CGRect(x: i, y: j, width: 50, height: 50)
+                        let player = UIImageView(frame: rect)
+                        player.image = UIImage(named: "hero")
+                        players.append(player)
+                        if !players.isEmpty {
+                            mapScroll.addSubview(players.last!)
+                        }
+                    }
+                case "F":
+                    addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
+                    
+                case "X":
+                    addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "bomb"))
+                    
+                case "Q":
+                    addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "bomb"))
+                    
                     let rect = CGRect(x: i, y: j, width: 50, height: 50)
                     let player = UIImageView(frame: rect)
                     player.image = UIImage(named: "hero")
+                    players.last!.removeFromSuperview()
+                    players.removeLast()
                     players.append(player)
-                    if !players.isEmpty {
-                        mapScroll.addSubview(players.last!)
+                    mapScroll.addSubview(players.last!)
+                case "M":
+                    if firstTime {
+                        let rect = CGRect(x: i, y: j, width: 50, height: 50)
+                        let mob = UIImageView(frame: rect)
+                        mob.image = #imageLiteral(resourceName: "balloon1")
+                        mobs.append(mob)
+                        if !mobs.isEmpty {
+                            mapScroll.addSubview(mobs.last!)
+                        }
                     }
-                }
-            case "F":
-                addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
-                
-            case "X":
-                addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "bomb"))
-                
-            case "Q":
-                addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "bomb"))
-                
-                let rect = CGRect(x: i, y: j, width: 50, height: 50)
-                let player = UIImageView(frame: rect)
-                player.image = UIImage(named: "hero")
-                players.last!.removeFromSuperview()
-                players.removeLast()
-                players.append(player)
-                mapScroll.addSubview(players.last!)
-            case "M":
-                if firstTime {
+                case "U":
                     let rect = CGRect(x: i, y: j, width: 50, height: 50)
-                    let mob = UIImageView(frame: rect)
-                    mob.image = #imageLiteral(resourceName: "balloon1")
-                    mobs.append(mob)
-                    if !mobs.isEmpty {
-                        mapScroll.addSubview(mobs.last!)
-                    } 
-                }
-            case "U":
-                let rect = CGRect(x: i, y: j, width: 50, height: 50)
-                let upgrages = brain.upgrades
-                if upgrages[upgradeCounter].health == 1 {
+                    let upgrages = brain.upgrades
                     switch upgrages[upgradeCounter].type {
                     case .anotherBomb:
                         addSubImageView(rect, image: #imageLiteral(resourceName: "bombupgrade"))
                     case .strongerBomb:
                         addSubImageView(rect, image: #imageLiteral(resourceName: "powerupgrade"))
                     }
-                } else {
-                    addSubBoxView(x: i, y: j)
-                }
-                upgradeCounter += 1
-            case "D":
-                if brain.door.health == 1 {
+                    upgradeCounter += 1
+                case "D":
                     addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "door"))
-                } else {
-                    addSubBoxView(x: i, y: j)
+                default:
+                    break
                 }
-            default:
-                break
+                
             }
-            
             if i / 50 == sceneWidth-1 {
                 j += 50
                 i = 0
             } else {
                 i += 50
             }
+            
         }
         
         firstTime = false
@@ -194,9 +188,9 @@ class GameMapController: UIViewController {
         death.animationDuration = 1
         death.startAnimating()
         
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { _ in
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) {_ in
             death.removeFromSuperview()
-        })
+        }
     }
     
     func killMob(mob:Int) {
@@ -208,11 +202,11 @@ class GameMapController: UIViewController {
     }
     
     func moveMob(in direction: Direction, mob: Int) {
-
+        
         switch direction {
         case .top:
             UIView.animate(withDuration: 1, animations: { [weak self] in
-            self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: 0, y: -50))!
+                self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: 0, y: -50))!
             })
         case .bottom:
             UIView.animate(withDuration: 1, animations: { [weak self] in
@@ -227,7 +221,7 @@ class GameMapController: UIViewController {
                 self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: -50, y: 0))!
             })
         }
-    
+        
     }
     
     func move(in direction: Direction, player: Int) {
@@ -253,7 +247,7 @@ class GameMapController: UIViewController {
             
             let rightImageArray = (1...5).map { UIImage(named: "right\(player+1)\($0)") ?? #imageLiteral(resourceName: "noImage") }
             if players[player].animationImages?.first != UIImage(named: "right\(player+1)1") && players[player].animationImages?.first != nil {
-
+                
                 animate(images: rightImageArray, player: player)
             }
             animateImagesForMove(images: rightImageArray, x: 50, y: 0, player: player)
@@ -284,66 +278,70 @@ class GameMapController: UIViewController {
                 self?.players[player].startAnimating()
             }
             self?.players[player].transform = (self?.players[player].transform.translatedBy(x: x, y: y))!
-            }, completion: { [weak self] finished in
-                if finished {
-                    self?.animationCount += 1
-                    if self?.clickСount == self?.animationCount {
-                        self?.players[player].stopAnimating()
-                        self?.animationCount = 0
-                        self?.clickСount = 0
-                    }
+        }) { [weak self] finished in
+            if finished {
+                self?.animationCount += 1
+                if self?.clickСount == self?.animationCount {
+                    self?.players[player].stopAnimating()
+                    self?.animationCount = 0
+                    self?.clickСount = 0
                 }
-        })
+            }
+        }
     }
     
     func explode(ranges: Explosion, center: Int) {
         
-        map = brain.shareScene().data
+        //maby we do not need this func???
+        
+        //map = brain.shareScene().data
         drawMap()
+        //
+        //        let x = center % brain.shareScene().width * 50
+        //        let y = center / brain.shareScene().width * 50
+        //
+        //        var left = ranges.left
+        //        var right = ranges.right
+        //        var up = ranges.top
+        //        var down = ranges.bottom
         
-        let x = center % brain.shareScene().width * 50
-        let y = center / brain.shareScene().width * 50
+        //        if left > 0 {
+        //            while left > 0 {
+        //                addSubImageView(CGRect(x: x - left*50, y: y, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
+        //                left -= 1
+        //            }
+        //        }
+        //        if right > 0 {
+        //            while right > 0 {
+        //                addSubImageView(CGRect(x: x + right*50, y: y, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
+        //                right -= 1
+        //            }
+        //        }
+        //        if up > 0 {
+        //            while up > 0 {
+        //                addSubImageView(CGRect(x: x , y: y - up*50, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
+        //                up -= 1
+        //            }
+        //        }
+        //        if down > 0 {
+        //            while down > 0 {
+        //                addSubImageView(CGRect(x: x , y: y + down*50, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
+        //                down -= 1
+        //            }
+        //        }
         
-        var left = ranges.left
-        var right = ranges.right
-        var up = ranges.top
-        var down = ranges.bottom
-        
-        if left >= 0 {
-            while left >= 0 {
-                addSubImageView(CGRect(x: x - left*50, y: y, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
-                left -= 1
-            }
-        }
-        if right > 0 {
-            while right > 0 {
-                addSubImageView(CGRect(x: x + right*50, y: y, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
-                right -= 1
-            }
-        }
-        if up > 0 {
-            while up > 0 {
-                addSubImageView(CGRect(x: x , y: y - up*50, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
-                up -= 1
-            }
-        }
-        if down > 0 {
-            while down > 0 {
-                addSubImageView(CGRect(x: x , y: y + down*50, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
-                down -= 1
-            }
-        }
-      
     }
     
     func animate(images:[UIImage], player: Int) {
         clickСount = 0
         animationCount = 0
+        players[player].layer.removeAllAnimations()
         players[player].stopAnimating()
+        
         players[player].animationImages = images
         players[player].animationDuration = 0.5
         players[player].startAnimating()
-        players[player].layer.removeAllAnimations()
+        
     }
     
     func addBomb(player: Int) {

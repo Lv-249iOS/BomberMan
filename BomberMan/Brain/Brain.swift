@@ -13,7 +13,6 @@ class Brain {
     
     var tiles: [[Character]] = []
     var width = 0
-    var scene = Scene(data: Levels().level(with: 0), width: 10)
     var cantGo = "WBXQ"
     var mobCantGo = "WBXQUD"
     var mobs: [Mob] = []
@@ -48,9 +47,7 @@ class Brain {
     // Used at the beginning of the game
     func initializeGame(with lvlNumber: Int, completelyNew: Bool) {
         setLevel(with: lvlNumber)
-        setLevelWithTiles(levelNumber: lvlNumber)
         resetScore(ifNeeded: completelyNew)
-        getPlayerPosition()
         addMobsAndUpgrates()
         redrawScene?()
         startMobsMovement()
@@ -108,31 +105,11 @@ class Brain {
         }
     }
     
-    func setLevelWithTiles(levelNumber: Int) {
-        if levelNumber == 0 {
-            width = 10
-        } else {
-            width = 15
-        }
-        toTiles(scene: Levels().level(with: levelNumber))
+    func getPlayerPosition(from scene: String) {
+        player.position = scene.distance(from: scene.startIndex,
+                                              to: scene.characters.index(of: "0") ?? scene.startIndex)
     }
     
-    func getPlayerPosition() {
-        player.position = scene.data.distance(from: scene.data.startIndex,
-                                              to: scene.data.characters.index(of: "0") ?? scene.data.startIndex)
-    }
-    
-//    func setlevel(numberoflevel: Int) {
-//        let currentlevel: String
-//        let width: Int
-//        if numberoflevel == 0 {
-//            width = 10
-//        }
-//        else {
-//            width  = 15
-//        }
-//        toTiles(scene: Levels().level(with: ))
-//    }
     // if it's completely new game, reset score and create new player
     func resetScore(ifNeeded completelyNew: Bool) {
         if completelyNew {
@@ -151,8 +128,6 @@ class Brain {
     func setLevel(with levelNum: Int) {
         currentLvl = levelNum
         setlevel(numberoflevel: currentLvl)
-        self.scene.data = scene.data
-        self.scene.width = scene.width
         currentTime = timeLimit
         mobs.removeAll()
         upgrades.removeAll()
@@ -160,9 +135,10 @@ class Brain {
     
     // create new scene
     func setlevel(numberoflevel: Int) {
-        let width = numberoflevel == 0 ? 10 : 15
+        width = numberoflevel == 0 ? 10 : 15
         let currentlevel = Levels().level(with: numberoflevel)
-        scene = Scene(data: currentlevel, width: width)
+        toTiles(scene: currentlevel)
+        getPlayerPosition(from: currentlevel)
     }
     
     func entryPointsCount(for testStr: String, char: Character) -> Int {
@@ -184,9 +160,5 @@ class Brain {
             i += 1
         }
         return nil
-    }
-    
-    func shareScene() -> Scene {
-        return scene
     }
 }

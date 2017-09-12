@@ -14,11 +14,6 @@ struct Block {
     var walkable = false
 }
 
-struct Scene {
-    var data = ""
-    var width = 0
-}
-
 struct Upgrade {
     var position: Int
     var type: UpgradeType = .anotherBomb

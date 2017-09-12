@@ -76,10 +76,10 @@ extension Brain {
     
     func getDirectionPosition(mob: Mob) -> Int {
         switch mob.direction {
-        case .bottom: return mob.position + scene.width
+        case .bottom: return mob.position + width
         case .left: return mob.position - 1
         case .right: return mob.position + 1
-        case .top: return mob.position - scene.width
+        case .top: return mob.position - width
         }
     }
     

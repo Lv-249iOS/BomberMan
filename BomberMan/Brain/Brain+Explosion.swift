@@ -20,10 +20,10 @@ extension Brain {
             var offset = 0
             for i in 1...player.explosionPower  {
                 switch direction {
-                case .bottom: offset = i * scene.width
+                case .bottom: offset = i * width
                 case .left: offset = -i
                 case .right: offset = i
-                case .top: offset = -i * scene.width
+                case .top: offset = -i * width
                 }
                 let blowOptions: (canBurn: Bool, canProceed: Bool, killedPlayers: [Int]) = blowFire(onPosition: player.position + offset)
                 if blowOptions.canBurn {
@@ -116,11 +116,11 @@ extension Brain {
     func fadeFire(explosion: Explosion, position: Int) {
         tiles[position].removeAll()
         for i in 0..<explosion.bottom  {
-            let indexForFire = position + (i+1) * scene.width
+            let indexForFire = position + (i+1) * width
             tiles[indexForFire].removeAll()
         }
         for i in 0..<explosion.top  {
-            let indexForFire = position - (i+1) * scene.width
+            let indexForFire = position - (i+1) * width
             tiles[indexForFire].removeAll()
         }
         for i in 0..<explosion.right  {

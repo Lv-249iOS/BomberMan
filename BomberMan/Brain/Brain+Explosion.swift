@@ -14,6 +14,7 @@ extension Brain {
         var killedPlayers: [Int] = []
         var explosion = Explosion.init()
         
+        //blows fire on tiles and returns how far goes the fire
         func explode(inDirection direction: Direction) -> Int {
             var strength = 0
             var offset = 0
@@ -37,6 +38,8 @@ extension Brain {
             }
             return strength
         }
+        
+        tiles[player.position].remove(at: tiles[player.position].index(of: "X") ?? 0)
         let blowOptions: (canBurn: Bool, canProceed: Bool, killedPlayers: [Int]) = blowFire(onPosition: player.position)
         for player in blowOptions.killedPlayers {
             killedPlayers.append(player)

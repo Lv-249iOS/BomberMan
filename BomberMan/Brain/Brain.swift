@@ -79,7 +79,7 @@ class Brain {
     func generateNewUpgrate(on position: Int) {
         let randomType = arc4random_uniform(2)
         guard let type = UpgradeType(rawValue: Int(randomType)) else { return }
-        let upgrade = Upgrade(health: 1, position: position, type: type)
+        let upgrade = Upgrade(position: position, type: type)
         upgrades.append(upgrade)
     }
     

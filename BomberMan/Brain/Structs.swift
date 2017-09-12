@@ -20,7 +20,6 @@ struct Scene {
 }
 
 struct Upgrade {
-    var health = 2
     var position: Int
     var type: UpgradeType = .anotherBomb
 }

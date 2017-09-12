@@ -19,6 +19,12 @@ struct Upgrade {
     var type: UpgradeType = .anotherBomb
 }
 
+struct Bomb {
+    var owner: Player
+    var power: Int
+    var timer: Timer
+}
+
 struct Player {
 //    var health = 1
     var name = ""

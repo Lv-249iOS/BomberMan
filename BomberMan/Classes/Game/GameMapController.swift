@@ -11,7 +11,7 @@ import UIKit
 class GameMapController: UIViewController {
     
     @IBOutlet weak var mapScroll: UIScrollView!
-    
+
     let brain = Brain.shared
     
     private var map: String!
@@ -40,14 +40,14 @@ class GameMapController: UIViewController {
         brain.redrawScene = { [weak self] in
             self?.drawMap()
         }
-        brain.killHero = { [weak self] player in
-            self?.killHero(player: player)
+        brain.killHero = { [weak self] player, inPlace in
+            self?.killHero(player: player, inPlace: inPlace)
         }
         brain.moveMob = { [weak self] direction, mob in
             self?.moveMob(in: direction, mob: mob)
         }
-        brain.killMob = { [weak self] mob in
-            self?.killMob(mob: mob)
+        brain.killMob = { [weak self] mob, inPlace in
+            self?.killMob(mob: mob, inPlace: inPlace)
         }
     }
     
@@ -170,8 +170,18 @@ class GameMapController: UIViewController {
         
     }
     
-    func kill(_ views: [UIImageView], pos: Int) {
-        let rect = CGRect(x: views[pos].frame.origin.x-25, y: views[pos].frame.origin.y-25, width: 100, height: 100)
+    func kill(_ views: [UIImageView], pos: Int, inPlace: Bool) {
+        let rect: CGRect!
+        if inPlace {
+            let layer = views[pos].layer.presentation()! as CALayer
+            let frame = layer.frame
+            rect = CGRect(x: frame.origin.x-25, y: frame.origin.y-25, width: 100, height: 100)
+        }else {
+        rect = CGRect(x: views[pos].frame.origin.x-25, y: views[pos].frame.origin.y-25, width: 100, height: 100)
+        }
+        //let layer = views[pos].layer.presentation()! as CALayer
+        //let frame = layer.frame
+        //let rect = CGRect(x: frame.origin.x-25, y: frame.origin.y-25, width: 100, height: 100) //CGRect(x: views[pos].frame.origin.x-25, y: views[pos].frame.origin.y-25, width: 100, height: 100)
         let death = UIImageView(frame: rect)
         mapScroll.addSubview(death)
         death.tag = 66
@@ -188,33 +198,33 @@ class GameMapController: UIViewController {
         }
     }
     
-    func killMob(mob:Int) {
-        kill(mobs, pos: mob)
+    func killMob(mob:Int, inPlace: Bool) {
+        kill(mobs, pos: mob, inPlace: inPlace)
     }
     
-    func killHero(player: Int) {
-        kill(players, pos: player)
+    func killHero(player: Int, inPlace: Bool) {
+        kill(players, pos: player, inPlace: inPlace)
     }
     
     func moveMob(in direction: Direction, mob: Int) {
         
         switch direction {
         case .top:
-            UIView.animate(withDuration: 1, animations: { [weak self] in
+            UIView.animate(withDuration: 1) { [weak self] in
                 self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: 0, y: -50))!
-            })
+            }
         case .bottom:
-            UIView.animate(withDuration: 1, animations: { [weak self] in
+            UIView.animate(withDuration: 1) { [weak self] in
                 self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: 0, y: 50))!
-            })
+            }
         case .right:
-            UIView.animate(withDuration: 1, animations: { [weak self] in
+            UIView.animate(withDuration: 1) { [weak self] in
                 self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: 50, y: 0))!
-            })
+            }
         case .left:
-            UIView.animate(withDuration: 1, animations: { [weak self] in
+            UIView.animate(withDuration: 1) { [weak self] in
                 self?.mobs[mob].transform = (self?.mobs[mob].transform.translatedBy(x: -50, y: 0))!
-            })
+            }
         }
         
     }
@@ -286,45 +296,49 @@ class GameMapController: UIViewController {
     }
     
     func explode(ranges: Explosion, center: Int) {
-        
-        //maby we do not need this func???
-        
-        //map = brain.shareScene().data
         drawMap()
-        //
-        //        let x = center % brain.shareScene().width * 50
-        //        let y = center / brain.shareScene().width * 50
-        //
-        //        var left = ranges.left
-        //        var right = ranges.right
-        //        var up = ranges.top
-        //        var down = ranges.bottom
         
-        //        if left > 0 {
-        //            while left > 0 {
-        //                addSubImageView(CGRect(x: x - left*50, y: y, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
-        //                left -= 1
-        //            }
-        //        }
-        //        if right > 0 {
-        //            while right > 0 {
-        //                addSubImageView(CGRect(x: x + right*50, y: y, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
-        //                right -= 1
-        //            }
-        //        }
-        //        if up > 0 {
-        //            while up > 0 {
-        //                addSubImageView(CGRect(x: x , y: y - up*50, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
-        //                up -= 1
-        //            }
-        //        }
-        //        if down > 0 {
-        //            while down > 0 {
-        //                addSubImageView(CGRect(x: x , y: y + down*50, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
-        //                down -= 1
-        //            }
-        //        }
+                let x = center % brain.width * 50
+                let y = center / brain.width * 50
         
+                let left = ranges.left
+                let right = ranges.right
+                let up = ranges.top
+                let down = ranges.bottom
+        
+        for mob in mobs {
+            for i in stride(from: x-left*50, through: x+right*50, by: 50) {
+                let rect = CGRect(x: i, y: y, width: 50, height: 50)
+                let layer = mob.layer.presentation()! as CALayer
+                let frame = layer.frame
+                if frame.intersects(rect){
+                    if let index = mobs.index(of: mob) {
+                        kill(mobs, pos: index, inPlace: true)
+                        for brainMob in brain.mobs {
+                            if let indexOfMobInBrain = brain.getMobIndexInPrivateArray(mob: brainMob) {
+                                if brainMob.identifier == index {brain.mobs.remove(at: indexOfMobInBrain)}
+                            }
+                        }
+                    }
+                }
+            }
+            for i in stride(from: y-up*50, through: y+down*50, by: 50) {
+                let rect = CGRect(x: x, y: i, width: 50, height: 50)
+                let layer = mob.layer.presentation()! as CALayer
+                let frame = layer.frame
+                if frame.intersects(rect){
+                    if let index = mobs.index(of: mob) {
+                        kill(mobs, pos: index, inPlace: true)
+                        for brainMob in brain.mobs {
+                            if let indexOfMobInBrain = brain.getMobIndexInPrivateArray(mob: brainMob) {
+                                if brainMob.identifier == index {brain.mobs.remove(at: indexOfMobInBrain)}
+                            }
+                        }
+                    }
+                }
+            }
+        
+    }
     }
     
     func animate(images:[UIImage], player: Int) {

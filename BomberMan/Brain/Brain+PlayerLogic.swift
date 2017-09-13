@@ -44,6 +44,7 @@ extension Brain {
                     case .strongerBomb:
                         player.explosionPower += 1
                     }
+                    tiles[directionPosition].removeFirst()
                     upgrades.remove(at: index)
                     score += 100
                     refreshScore?(score)

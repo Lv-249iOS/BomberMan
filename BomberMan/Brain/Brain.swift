@@ -91,6 +91,7 @@ class Brain {
     }
     
     func toTiles(scene: String) {
+        tiles.removeAll()
         for char in scene.characters {
             var tile: [Character] = []
             switch char {

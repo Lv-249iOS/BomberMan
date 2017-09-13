@@ -65,10 +65,8 @@ class GameMapController: UIViewController {
     }
     
     func updateContentSize() {
-        map = brain.shareScene().data
-        sceneWidth = brain.shareScene().width
-        
-        mapScroll.contentSize = CGSize(width: 50 * sceneWidth, height: 50 * (map.characters.count / sceneWidth))
+        sceneWidth = brain.width
+        mapScroll.contentSize = CGSize(width: 50 * sceneWidth, height: 50 * (brain.tiles.count / sceneWidth))
         firstTime = true
         mobs.removeAll()
         players.removeAll()
@@ -91,9 +89,6 @@ class GameMapController: UIViewController {
             }
             
         }
-        
-        let sceneWidth = brain.shareScene().width
-        //map = brain.shareScene().data
         
         var i = 0
         var j = 0
@@ -162,7 +157,7 @@ class GameMapController: UIViewController {
                 }
                 
             }
-            if i / 50 == sceneWidth-1 {
+            if i / 50 == sceneWidth - 1 {
                 j += 50
                 i = 0
             } else {

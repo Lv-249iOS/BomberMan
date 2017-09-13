@@ -15,10 +15,10 @@ extension Brain {
         var shouldRedraw = false
         
         switch direction {
-        case .bottom: directionPosition = player.position + scene.width
+        case .bottom: directionPosition = player.position + width
         case .left: directionPosition = player.position - 1
         case .right: directionPosition = player.position + 1
-        case .top: directionPosition = player.position - scene.width
+        case .top: directionPosition = player.position - width
         }
         if playerCanGo(to: directionPosition) {
             let last = tiles[directionPosition].last ?? " "
@@ -86,6 +86,10 @@ extension Brain {
     }
     
     func playerCanGo(to directionPosition: Int) -> Bool {
+        guard directionPosition >= 0 && directionPosition < tiles.count else {
+            fatalError("Invalid directionPosition position")
+        }
+        
         for char in tiles[directionPosition].reversed() {
             if cantGo.characters.contains(char) {
                 return false

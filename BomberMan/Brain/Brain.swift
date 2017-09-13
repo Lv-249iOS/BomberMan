@@ -46,8 +46,8 @@ class Brain {
     
     // Used at the beginning of the game
     func initializeGame(with lvlNumber: Int, completelyNew: Bool) {
-        setLevel(with: lvlNumber)
         resetScore(ifNeeded: completelyNew)
+        setLevel(with: lvlNumber)
         addMobsAndUpgrates()
         redrawScene?()
         startMobsMovement()

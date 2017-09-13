@@ -298,47 +298,41 @@ class GameMapController: UIViewController {
     func explode(ranges: Explosion, center: Int) {
         drawMap()
         
-                let x = center % brain.width * 50
-                let y = center / brain.width * 50
+        let x = center % brain.width * 50
+        let y = center / brain.width * 50
         
-                let left = ranges.left
-                let right = ranges.right
-                let up = ranges.top
-                let down = ranges.bottom
+        let left = ranges.left
+        let right = ranges.right
+        let up = ranges.top
+        let down = ranges.bottom
+        
+        func chackForIntersection(_ mob: UIImageView, x: CGFloat, y: CGFloat) {
+            
+            if let index = mobs.index(of: mob) {
+                let rect = CGRect(x: x, y: y, width: 50, height: 50)
+                let layer = mob.layer.presentation()! as CALayer
+                let frame = layer.frame
+                if frame.intersects(rect){
+                    kill(mobs, pos: index, inPlace: true)
+                    for brainMob in brain.mobs {
+                        if let indexOfMobInBrain = brain.getMobIndexInPrivateArray(mob: brainMob) {
+                            if brainMob.identifier == index {brain.mobs.remove(at: indexOfMobInBrain)}
+                        }
+                    }
+                }
+            }
+        }
         
         for mob in mobs {
             for i in stride(from: x-left*50, through: x+right*50, by: 50) {
-                let rect = CGRect(x: i, y: y, width: 50, height: 50)
-                let layer = mob.layer.presentation()! as CALayer
-                let frame = layer.frame
-                if frame.intersects(rect){
-                    if let index = mobs.index(of: mob) {
-                        kill(mobs, pos: index, inPlace: true)
-                        for brainMob in brain.mobs {
-                            if let indexOfMobInBrain = brain.getMobIndexInPrivateArray(mob: brainMob) {
-                                if brainMob.identifier == index {brain.mobs.remove(at: indexOfMobInBrain)}
-                            }
-                        }
-                    }
-                }
+                chackForIntersection(mob, x: CGFloat(i), y: CGFloat(y))
+                
             }
             for i in stride(from: y-up*50, through: y+down*50, by: 50) {
-                let rect = CGRect(x: x, y: i, width: 50, height: 50)
-                let layer = mob.layer.presentation()! as CALayer
-                let frame = layer.frame
-                if frame.intersects(rect){
-                    if let index = mobs.index(of: mob) {
-                        kill(mobs, pos: index, inPlace: true)
-                        for brainMob in brain.mobs {
-                            if let indexOfMobInBrain = brain.getMobIndexInPrivateArray(mob: brainMob) {
-                                if brainMob.identifier == index {brain.mobs.remove(at: indexOfMobInBrain)}
-                            }
-                        }
-                    }
-                }
+                chackForIntersection(mob, x: CGFloat(x), y: CGFloat(i))
             }
-        
-    }
+            
+        }
     }
     
     func animate(images:[UIImage], player: Int) {

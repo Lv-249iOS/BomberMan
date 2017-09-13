@@ -17,12 +17,14 @@ class Brain {
     var mobCantGo = "WBXQUD"
     var mobs: [Mob] = []
     var upgrades: [Upgrade] = []
+    var bombs: [Bomb] = []
     var player = Player(name: "Player",
                         markForScene: "0",
                         minesCount: 1,
                         explosionPower: 1,
                         position: 0,
-                        plantedMines: 0)
+                        plantedMines: 0,
+                        isAlive: true)
     var gameTimer: Timer!
     var mobsTimer: Timer!
     var score = 0
@@ -91,6 +93,7 @@ class Brain {
     }
     
     func toTiles(scene: String) {
+        tiles.removeAll()
         for char in scene.characters {
             var tile: [Character] = []
             switch char {
@@ -119,7 +122,8 @@ class Brain {
                             minesCount: 1,
                             explosionPower: 1,
                             position: 0,
-                            plantedMines: 0)
+                            plantedMines: 0,
+                            isAlive: true)
             refreshScore?(score)
         }
     }
@@ -131,6 +135,9 @@ class Brain {
         currentTime = timeLimit
         mobs.removeAll()
         upgrades.removeAll()
+        bombs.removeAll()
+        player.isAlive = true
+        player.plantedMines = 0
     }
     
     // create new scene

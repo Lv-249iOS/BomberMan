@@ -10,7 +10,7 @@ import Foundation
 
 extension Brain {
     
-    func explode(withOptionsOfPlayer player: Player) {
+    func explode(withOptionsOfPlayer player: Player, bomb: Bomb) {
         var killedPlayers: [Int] = []
         var explosion = Explosion.init()
         
@@ -39,7 +39,11 @@ extension Brain {
             return strength
         }
         
-        tiles[player.position].remove(at: tiles[player.position].index(of: "X") ?? 0)
+        tiles[bomb.position].remove(at: tiles[bomb.position].index(of: "X") ?? 0)
+        let index = getBombIndex(at: bomb.position)
+        if index >= 0 {
+            bombs.remove(at: index)
+        }
         let blowOptions: (canBurn: Bool, canProceed: Bool, killedPlayers: [Int]) = blowFire(onPosition: player.position)
         for player in blowOptions.killedPlayers {
             killedPlayers.append(player)
@@ -53,10 +57,22 @@ extension Brain {
         for player in killedPlayers {
             killHero?(player)
         }
-        startFireTimer(explosion: explosion, position: player.position)
+        startFireTimer(explosion: explosion, position: bomb.position)
     }
     
-    //sets fire on position in scene and returns true if nothing stops it
+    //returns -1 if no bomb found
+    func getBombIndex(at position: Int) -> Int {
+        var i = 0
+        for bomb in bombs {
+            if bomb.position == position {
+                return i
+            }
+            i += 1
+        }
+        return -1
+    }
+    
+    //sets fire on position in scene if canBurn is true and returns canProceed true if nothing stops it, also returns identifiers for killedPlayers
     func blowFire(onPosition index: Int) -> (Bool, Bool, [Int]) {
         var canProceed = true
         var canBurn = true
@@ -75,6 +91,7 @@ extension Brain {
                     canBurn = false
                 }
             case player.markForScene:
+                player.isAlive = false
                 gameEnd?(false)
                 score -= 1000
                 if score < 0 {
@@ -100,6 +117,8 @@ extension Brain {
                     }
                 }
                 tiles[index].removeLast()
+            case "X":
+                bombs[getBombIndex(at: index)].timer?.fire()
             default:
                 break
             }

@@ -11,6 +11,7 @@ import Foundation
 extension Brain {
     
     func move(to direction: Direction, player: inout Player) {
+        if !player.isAlive { return }
         var directionPosition: Int
         var shouldRedraw = false
         
@@ -27,6 +28,7 @@ extension Brain {
                 tiles[player.position].removeLast()
                 if let intValue = Int(player.markForScene.description) {
                     move?(direction, intValue)
+                    player.isAlive = false
                     killHero?(intValue)
                     gameEnd?(false)
                     score -= 1000
@@ -44,6 +46,7 @@ extension Brain {
                     case .strongerBomb:
                         player.explosionPower += 1
                     }
+                    tiles[directionPosition].removeFirst()
                     upgrades.remove(at: index)
                     score += 100
                     refreshScore?(score)
@@ -58,7 +61,10 @@ extension Brain {
                     return
                 }
             case "M":
-                tiles[player.position].removeLast()
+                if !tiles[player.position].isEmpty {
+                    tiles[player.position].removeLast()
+                }
+                player.isAlive = false
                 if let intValue = Int(player.markForScene.description) {
                     move?(direction, intValue)
                     killHero?(intValue)
@@ -73,9 +79,11 @@ extension Brain {
             default:
                 break
             }
-            tiles[player.position].removeLast()
-            tiles[directionPosition].append(player.markForScene)
+            if !tiles[player.position].isEmpty {
+                tiles[player.position].removeLast()
+            }
             player.position = directionPosition
+            tiles[directionPosition].append(player.markForScene)
             if let intValue = Int(player.markForScene.description) {
                 move?(direction, intValue)
             }
@@ -107,6 +115,7 @@ extension Brain {
     }
     
     func plantBomb(player: inout Player) {
+        if !player.isAlive { return }
         if player.minesCount > player.plantedMines, canFitBomb(at: player.position)  {
             tiles[player.position].insert("X", at: 0)
             player.plantedMines += 1

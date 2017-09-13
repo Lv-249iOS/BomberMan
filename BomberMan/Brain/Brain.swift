@@ -54,8 +54,6 @@ class Brain {
         redrawScene?()
         startMobsMovement()
         startGameTimer()
-        player.isAlive = true
-        player.plantedMines = 0
     }
     
     func addMobsAndUpgrates() {
@@ -137,6 +135,9 @@ class Brain {
         currentTime = timeLimit
         mobs.removeAll()
         upgrades.removeAll()
+        bombs.removeAll()
+        player.isAlive = true
+        player.plantedMines = 0
     }
     
     // create new scene

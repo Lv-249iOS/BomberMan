@@ -40,6 +40,10 @@ extension Brain {
         }
         
         tiles[bomb.position].remove(at: tiles[bomb.position].index(of: "X") ?? 0)
+        let index = getBombIndex(at: bomb.position)
+        if index >= 0 {
+            bombs.remove(at: index)
+        }
         let blowOptions: (canBurn: Bool, canProceed: Bool, killedPlayers: [Int]) = blowFire(onPosition: player.position)
         for player in blowOptions.killedPlayers {
             killedPlayers.append(player)
@@ -54,6 +58,18 @@ extension Brain {
             killHero?(player)
         }
         startFireTimer(explosion: explosion, position: bomb.position)
+    }
+    
+    //returns -1 if no bomb found
+    func getBombIndex(at position: Int) -> Int {
+        var i = 0
+        for bomb in bombs {
+            if bomb.position == position {
+                return i
+            }
+            i += 1
+        }
+        return -1
     }
     
     //sets fire on position in scene if canBurn is true and returns canProceed true if nothing stops it, also returns identifiers for killedPlayers
@@ -101,6 +117,8 @@ extension Brain {
                     }
                 }
                 tiles[index].removeLast()
+            case "X":
+                bombs[getBombIndex(at: index)].timer?.fire()
             default:
                 break
             }

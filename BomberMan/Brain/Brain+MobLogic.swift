@@ -46,6 +46,7 @@ extension Brain {
                 needToContinue = true
             case player.markForScene:
                 killHero?(0)
+                player.isAlive = false
                 moveMob?(mob.direction, mob.identifier)
                 gameEnd?(false)
             default: moveMob?(mob.direction, mob.identifier)

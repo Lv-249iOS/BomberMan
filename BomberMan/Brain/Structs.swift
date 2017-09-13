@@ -22,7 +22,8 @@ struct Upgrade {
 struct Bomb {
     var owner: Player
     var power: Int
-    var timer: Timer
+    var timer: Timer?
+    var position: Int
 }
 
 struct Player {
@@ -34,6 +35,7 @@ struct Player {
     var explosionPower = 1
     var position = 0
     var plantedMines = 0
+    var isAlive = true
 //    var speed = 1
 }
 

@@ -17,12 +17,14 @@ class Brain {
     var mobCantGo = "WBXQUD"
     var mobs: [Mob] = []
     var upgrades: [Upgrade] = []
+    var bombs: [Bomb] = []
     var player = Player(name: "Player",
                         markForScene: "0",
                         minesCount: 1,
                         explosionPower: 1,
                         position: 0,
-                        plantedMines: 0)
+                        plantedMines: 0,
+                        isAlive: true)
     var gameTimer: Timer!
     var mobsTimer: Timer!
     var score = 0
@@ -52,6 +54,8 @@ class Brain {
         redrawScene?()
         startMobsMovement()
         startGameTimer()
+        player.isAlive = true
+        player.plantedMines = 0
     }
     
     func addMobsAndUpgrates() {
@@ -120,7 +124,8 @@ class Brain {
                             minesCount: 1,
                             explosionPower: 1,
                             position: 0,
-                            plantedMines: 0)
+                            plantedMines: 0,
+                            isAlive: true)
             refreshScore?(score)
         }
     }

@@ -31,13 +31,16 @@ extension Brain {
     }
     
     func startBombTimer(withOptionsOfPlayer player: Player) {
+        var bomb = Bomb(owner: player, power: player.explosionPower, timer: nil, position: player.position)
         let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { [weak self] _ in
-            self?.explode(withOptionsOfPlayer: player)
+            self?.explode(withOptionsOfPlayer: player, bomb: bomb)
             
             //needs to be finished
             self?.player.plantedMines -= 1
         }
         
+        bomb.timer = timer
+        bombs.append(bomb)
         timers.append(timer)
     }
     

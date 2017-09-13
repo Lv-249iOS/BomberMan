@@ -39,13 +39,13 @@ extension Brain {
             switch last {
             case "F":
                 moveMob?(mob.direction, mob.identifier)
-                killMob?(mob.identifier)
+                killMob?(mob.identifier, false)
                 score += 200
                 refreshScore?(score)
                 mobs.remove(at: i)
                 needToContinue = true
             case player.markForScene:
-                killHero?(0)
+                killHero?(0, false)
                 player.isAlive = false
                 moveMob?(mob.direction, mob.identifier)
                 gameEnd?(false)

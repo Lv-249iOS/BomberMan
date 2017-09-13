@@ -39,8 +39,8 @@ class Brain {
     var plantBomb: ((Int)->())?
     var showImage: ((DoubleHealthThings, Int)->())?
     var redrawScene: (()->())?
-    var killHero: ((Int)->())?
-    var killMob: ((Int)->())?
+    var killHero: ((Int, Bool)->())?
+    var killMob: ((Int, Bool)->())?
     var moveMob: ((Direction, Int)->())?
     var gameEnd: ((Bool)->())?
     var presentTime: ((Double)->())?

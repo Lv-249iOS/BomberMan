@@ -29,7 +29,7 @@ extension Brain {
                 if let intValue = Int(player.markForScene.description) {
                     move?(direction, intValue)
                     player.isAlive = false
-                    killHero?(intValue)
+                    killHero?(intValue, false)
                     gameEnd?(false)
                     score -= 1000
                     if score < 0 {
@@ -67,7 +67,7 @@ extension Brain {
                 player.isAlive = false
                 if let intValue = Int(player.markForScene.description) {
                     move?(direction, intValue)
-                    killHero?(intValue)
+                    killHero?(intValue, false)
                     gameEnd?(false)
                     score -= 1000
                     if score < 0 {

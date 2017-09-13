@@ -55,7 +55,7 @@ extension Brain {
         showFire?(explosion, player.position)
         
         for player in killedPlayers {
-            killHero?(player)
+            killHero?(player, false)
         }
         startFireTimer(explosion: explosion, position: bomb.position)
     }
@@ -111,7 +111,7 @@ extension Brain {
                 if let mobAtCurrentPosition = getMobIndex(atPosition: index) {
                     if let indexInPrivateArray = getMobIndexInPrivateArray(mob: mobAtCurrentPosition[0]) {
                         mobs.remove(at: indexInPrivateArray)
-                        killMob?(mobAtCurrentPosition[0].identifier)
+                        killMob?(mobAtCurrentPosition[0].identifier, false)
                         score += 200
                         refreshScore?(score)
                     }

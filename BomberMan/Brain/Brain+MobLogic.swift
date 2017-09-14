@@ -34,7 +34,9 @@ extension Brain {
                 modifiedMobArray.append(modifiedMob)
                 continue
             }
-            tiles[mob.position].removeLast()
+            if !tiles[mob.position].isEmpty {
+                tiles[mob.position].removeLast()
+            }
             let last = tiles[directionPosition].last ?? " "
             switch last {
             case "F":
@@ -44,11 +46,18 @@ extension Brain {
                 refreshScore?(score)
                 mobs.remove(at: i)
                 needToContinue = true
-            case player.markForScene:
-                killHero?(0, false)
-                player.isAlive = false
-                moveMob?(mob.direction, mob.identifier)
-                gameEnd?(false)
+            case "0":
+                var j = 0
+                score -= 1000
+                for player in players {
+                    if player.position == directionPosition {
+                        killHero?(player.identifier, false)
+                        players[j].isAlive = false
+                        moveMob?(mob.direction, mob.identifier)
+                        gameEnd?(false)
+                    }
+                    j += 1
+                }
             default: moveMob?(mob.direction, mob.identifier)
             }
             if needToContinue {

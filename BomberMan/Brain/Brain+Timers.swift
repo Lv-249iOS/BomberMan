@@ -36,7 +36,14 @@ extension Brain {
             self?.explode(withOptionsOfPlayer: player, bomb: bomb)
             
             //needs to be finished
-            self?.player.plantedMines -= 1
+            var i = 0
+            for pl in (self?.players)! {
+                if pl.identifier == player.identifier {
+                    self?.players[i].plantedMines -= 1
+                }
+                i += 1
+            }
+//            self?.player.plantedMines -= 1
         }
         
         bomb.timer = timer

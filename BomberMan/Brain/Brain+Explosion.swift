@@ -90,18 +90,22 @@ extension Brain {
                 if !tiles[index].isEmpty {
                     canBurn = false
                 }
-            case player.markForScene:
-                player.isAlive = false
-                gameEnd?(false)
-                score -= 1000
-                if score < 0 {
-                    score = 0
+            case "0":
+                var i = 0
+                for player in players {
+                    if player.position == index {
+                        players[i].isAlive = false
+                        gameEnd?(false)
+                        score -= 1000
+                        if score < 0 {
+                            score = 0
+                        }
+                        refreshScore?(score)
+                        killedPlayers.append(player.identifier)
+                        tiles[index].removeLast()
+                    }
+                    i += 1
                 }
-                refreshScore?(score)
-                if let intValue = Int(player.markForScene.description) {
-                    killedPlayers.append(intValue)
-                }
-                tiles[index].removeLast()
             case "U":
                 tiles[index].removeLast()
             case "D":

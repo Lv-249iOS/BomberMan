@@ -25,6 +25,7 @@ class GameMapController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        brain.addPlayer(name: UIDevice.current.name)
         brain.initializeGame(with: 0, completelyNew: true)
         updateContentSize()
         
@@ -316,7 +317,13 @@ class GameMapController: UIViewController {
                     kill(mobs, pos: index, inPlace: true)
                     for brainMob in brain.mobs {
                         if let indexOfMobInBrain = brain.getMobIndexInPrivateArray(mob: brainMob) {
-                            if brainMob.identifier == index {brain.mobs.remove(at: indexOfMobInBrain)}
+                            if brainMob.identifier == index {
+                                if !brain.tiles[brain.mobs[indexOfMobInBrain].position].isEmpty,
+                                    brain.tiles[brain.mobs[indexOfMobInBrain].position].last == "M"{
+                                    brain.tiles[brain.mobs[indexOfMobInBrain].position].removeLast()
+                                }
+                                brain.mobs.remove(at: indexOfMobInBrain)
+                            }
                         }
                     }
                 }

@@ -19,13 +19,13 @@ class Brain {
     var upgrades: [Upgrade] = []
     var bombs: [Bomb] = []
     var players: [Player] = []
-    var player = Player(name: "Player",
-                        markForScene: "0",
-                        minesCount: 1,
-                        explosionPower: 1,
-                        position: 0,
-                        plantedMines: 0,
-                        isAlive: true)
+//    var player = Player(name: "Player",
+//                        markForScene: "0",
+//                        minesCount: 1,
+//                        explosionPower: 1,
+//                        position: 0,
+//                        plantedMines: 0,
+//                        isAlive: true)
     var gameTimer: Timer!
     var mobsTimer: Timer!
     var score = 0
@@ -57,11 +57,15 @@ class Brain {
         startGameTimer()
     }
     
+    func addPlayer(name: String) {
+        players.append(Player(name: name, identifier: 0, minesCount: 1, explosionPower: 1, position: 0, plantedMines: 0, isAlive: true))
+    }
+    
     func getPlayers(for map: inout String) {
         var i = 0
         var mapIndex = 0
         for char in map.characters {
-            if char == "P" {
+            if char == "0" {
                 if i >= players.count {
                     let index = map.characters.index(map.startIndex, offsetBy: mapIndex)
                     map.characters.remove(at: index)
@@ -127,22 +131,26 @@ class Brain {
         }
     }
     
-    func getPlayerPosition(from scene: String) {
-        player.position = scene.distance(from: scene.startIndex,
-                                              to: scene.characters.index(of: "0") ?? scene.startIndex)
-    }
+//    func getPlayerPosition(from scene: String) {
+//        player.position = scene.distance(from: scene.startIndex,
+//                                              to: scene.characters.index(of: "0") ?? scene.startIndex)
+//    }
     
     // if it's completely new game, reset score and create new player
     func resetScore(ifNeeded completelyNew: Bool) {
         if completelyNew {
             score = 0
-            player = Player(name: "Player",
-                            markForScene: "0",
-                            minesCount: 1,
-                            explosionPower: 1,
-                            position: 0,
-                            plantedMines: 0,
-                            isAlive: true)
+            if !players.isEmpty {
+                players[0].explosionPower = 1
+                players[0].minesCount = 1
+            }
+//            player = Player(name: "Player",
+//                            markForScene: "0",
+//                            minesCount: 1,
+//                            explosionPower: 1,
+//                            position: 0,
+//                            plantedMines: 0,
+//                            isAlive: true)
             refreshScore?(score)
         }
     }
@@ -155,16 +163,16 @@ class Brain {
         mobs.removeAll()
         upgrades.removeAll()
         bombs.removeAll()
-        player.isAlive = true
-        player.plantedMines = 0
+        players[0].isAlive = true
+        players[0].plantedMines = 0
     }
     
     // create new scene
     func setlevel(numberoflevel: Int) {
         width = numberoflevel == 0 ? 10 : 15
-        let currentlevel = Levels().level(with: numberoflevel)
+        var currentlevel = Levels().level(with: numberoflevel)
+        getPlayers(for: &currentlevel)
         toTiles(scene: currentlevel)
-        getPlayerPosition(from: currentlevel)
     }
     
     func entryPointsCount(for testStr: String, char: Character) -> Int {

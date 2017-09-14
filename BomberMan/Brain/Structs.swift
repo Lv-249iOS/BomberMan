@@ -29,7 +29,7 @@ struct Bomb {
 struct Player {
 //    var health = 1
     var name = ""
-    var markForScene: Character = "0"
+    var identifier = 0
 //    var canFly = false
     var minesCount = 1
     var explosionPower = 1

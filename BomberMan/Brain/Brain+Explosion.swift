@@ -40,6 +40,10 @@ extension Brain {
         }
         
         tiles[bomb.position].remove(at: tiles[bomb.position].index(of: "X") ?? 0)
+        let index = getBombIndex(at: bomb.position)
+        if index >= 0 {
+            bombs.remove(at: index)
+        }
         let blowOptions: (canBurn: Bool, canProceed: Bool, killedPlayers: [Int]) = blowFire(onPosition: player.position)
         for player in blowOptions.killedPlayers {
             killedPlayers.append(player)
@@ -51,9 +55,21 @@ extension Brain {
         showFire?(explosion, player.position)
         
         for player in killedPlayers {
-            killHero?(player)
+            killHero?(player, false)
         }
         startFireTimer(explosion: explosion, position: bomb.position)
+    }
+    
+    //returns -1 if no bomb found
+    func getBombIndex(at position: Int) -> Int {
+        var i = 0
+        for bomb in bombs {
+            if bomb.position == position {
+                return i
+            }
+            i += 1
+        }
+        return -1
     }
     
     //sets fire on position in scene if canBurn is true and returns canProceed true if nothing stops it, also returns identifiers for killedPlayers
@@ -74,18 +90,22 @@ extension Brain {
                 if !tiles[index].isEmpty {
                     canBurn = false
                 }
-            case player.markForScene:
-                player.isAlive = false
-                gameEnd?(false)
-                score -= 1000
-                if score < 0 {
-                    score = 0
+            case "0":
+                var i = 0
+                for player in players {
+                    if player.position == index {
+                        players[i].isAlive = false
+                        gameEnd?(false)
+                        score -= 1000
+                        if score < 0 {
+                            score = 0
+                        }
+                        refreshScore?(score)
+                        killedPlayers.append(player.identifier)
+                        tiles[index].removeLast()
+                    }
+                    i += 1
                 }
-                refreshScore?(score)
-                if let intValue = Int(player.markForScene.description) {
-                    killedPlayers.append(intValue)
-                }
-                tiles[index].removeLast()
             case "U":
                 tiles[index].removeLast()
             case "D":
@@ -95,12 +115,14 @@ extension Brain {
                 if let mobAtCurrentPosition = getMobIndex(atPosition: index) {
                     if let indexInPrivateArray = getMobIndexInPrivateArray(mob: mobAtCurrentPosition[0]) {
                         mobs.remove(at: indexInPrivateArray)
-                        killMob?(mobAtCurrentPosition[0].identifier)
+                        killMob?(mobAtCurrentPosition[0].identifier, false)
                         score += 200
                         refreshScore?(score)
                     }
                 }
                 tiles[index].removeLast()
+            case "X":
+                bombs[getBombIndex(at: index)].timer?.fire()
             default:
                 break
             }

@@ -49,6 +49,9 @@ extension Brain {
             case "0":
                 var j = 0
                 score -= 1000
+                if score < 0 {
+                    score = 0
+                }
                 for player in players {
                     if player.position == directionPosition {
                         killHero?(player.identifier, false)

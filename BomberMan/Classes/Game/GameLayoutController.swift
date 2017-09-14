@@ -103,6 +103,7 @@ class GameLayoutController: UIViewController {
         isGameOver ? gameOver.removeFromSuperview() : moveToNextLevel.removeFromSuperview()
         brain.initializeGame(with: brain.currentLvl, completelyNew: false)
         gameMapController.updateContentSize()
+        presentScore(score: brain.score)
     }
     
     // Catchs pause state from details

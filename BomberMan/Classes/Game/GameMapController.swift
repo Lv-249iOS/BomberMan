@@ -11,7 +11,7 @@ import UIKit
 class GameMapController: UIViewController {
     
     @IBOutlet weak var mapScroll: UIScrollView!
-
+    
     let brain = Brain.shared
     
     private var map: String!
@@ -178,7 +178,7 @@ class GameMapController: UIViewController {
             let frame = layer.frame
             rect = CGRect(x: frame.origin.x-25, y: frame.origin.y-25, width: 100, height: 100)
         }else {
-        rect = CGRect(x: views[pos].frame.origin.x-25, y: views[pos].frame.origin.y-25, width: 100, height: 100)
+            rect = CGRect(x: views[pos].frame.origin.x-25, y: views[pos].frame.origin.y-25, width: 100, height: 100)
         }
         //let layer = views[pos].layer.presentation()! as CALayer
         //let frame = layer.frame
@@ -314,18 +314,20 @@ class GameMapController: UIViewController {
                 let layer = mob.layer.presentation()! as CALayer
                 let frame = layer.frame
                 if frame.intersects(rect){
-                    kill(mobs, pos: index, inPlace: true)
                     for brainMob in brain.mobs {
                         if let indexOfMobInBrain = brain.getMobIndexInPrivateArray(mob: brainMob) {
                             if brainMob.identifier == index {
                                 if !brain.tiles[brain.mobs[indexOfMobInBrain].position].isEmpty,
-                                    brain.tiles[brain.mobs[indexOfMobInBrain].position].last == "M"{
+                                    brain.tiles[brain.mobs[indexOfMobInBrain].position].last == "M" {
                                     brain.tiles[brain.mobs[indexOfMobInBrain].position].removeLast()
+                                    kill(mobs, pos: index, inPlace: true)
+                                    brain.mobs.remove(at: indexOfMobInBrain)
                                 }
-                                brain.mobs.remove(at: indexOfMobInBrain)
+                                
                             }
                         }
                     }
+                    
                 }
             }
         }

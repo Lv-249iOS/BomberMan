@@ -18,6 +18,7 @@ class Brain {
     var mobs: [Mob] = []
     var upgrades: [Upgrade] = []
     var bombs: [Bomb] = []
+    var players: [Player] = []
     var player = Player(name: "Player",
                         markForScene: "0",
                         minesCount: 1,
@@ -54,6 +55,24 @@ class Brain {
         redrawScene?()
         startMobsMovement()
         startGameTimer()
+    }
+    
+    func getPlayers(for map: inout String) {
+        var i = 0
+        var mapIndex = 0
+        for char in map.characters {
+            if char == "P" {
+                if i >= players.count {
+                    let index = map.characters.index(map.startIndex, offsetBy: mapIndex)
+                    map.characters.remove(at: index)
+                    map.characters.insert(" ", at: index)
+                } else {
+                    players[i].position = mapIndex
+                    i += 1
+                }
+            }
+            mapIndex += 1
+        }
     }
     
     func addMobsAndUpgrates() {

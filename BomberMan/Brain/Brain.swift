@@ -11,6 +11,7 @@ import Foundation
 class Brain {
     static let shared = Brain()
     
+    var isSingleGame = true
     var tiles: [[Character]] = []
     var width = 0
     var cantGo = "WBXQ"
@@ -47,6 +48,7 @@ class Brain {
     var presentTime: ((Double)->())?
     var refreshScore: ((Int)->())?
     var boxExplode: ((Int)->())?
+    var multiplayerEnd: (()->())?
     
     // Used at the beginning of the game
     func initializeGame(with lvlNumber: Int, completelyNew: Bool) {
@@ -59,7 +61,7 @@ class Brain {
     }
     
     func addPlayer(name: String) {
-        players.append(Player(name: name, identifier: 0, minesCount: 1, explosionPower: 1, position: 0, plantedMines: 0, isAlive: true))
+        players.append(Player(name: name, identifier: players.count, minesCount: 1, explosionPower: 1, position: 0, plantedMines: 0, isAlive: true))
     }
     
     func getPlayers(for map: inout String) {

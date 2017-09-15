@@ -36,9 +36,9 @@ extension Brain {
             self?.explode(withOptionsOfPlayer: player, bomb: bomb)
             
             var i = 0
-            let pls = self?.players ?? []
-            for pl in pls {
-                if pl.identifier == player.identifier {
+            let players = self?.players ?? []
+            for guy in players {
+                if guy.identifier == player.identifier {
                     self?.players[i].plantedMines -= 1
                 }
                 i += 1
@@ -53,6 +53,12 @@ extension Brain {
     func startFireTimer(explosion: Explosion, position: Int) {
         let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
             self?.fadeFire(explosion: explosion, position: position)
+            
+            let isSingleGame = self?.isSingleGame ?? true
+            let alivePlayersCount = self?.alivePlayersCount() ?? 0
+            if !isSingleGame, alivePlayersCount <= 1 {
+                self?.multiplayerEnd?()
+            }
         }
         
         timers.append(timer)

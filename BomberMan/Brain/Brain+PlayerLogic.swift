@@ -36,7 +36,9 @@ extension Brain {
                 move?(direction, players[playerIndex].identifier)
                 players[playerIndex].isAlive = false
                 killHero?(players[playerIndex].identifier, false)
-                gameEnd?(false)
+                if isSingleGame {
+                    gameEnd?(false)
+                }
                 score -= 1000
                 if score < 0 {
                     score = 0
@@ -61,7 +63,9 @@ extension Brain {
                 score += 500
                 refreshScore?(score)
                 move?(direction, players[playerIndex].identifier)
-                gameEnd?(true)
+                if isSingleGame {
+                    gameEnd?(true)
+                }
                 return
             case "M":
                 if players[playerIndex].position < tiles.count, !tiles[players[playerIndex].position].isEmpty {
@@ -90,6 +94,16 @@ extension Brain {
                 redrawScene?()
             }
         }
+    }
+    
+    func alivePlayersCount() -> Int {
+        var count = 0
+        for player in players {
+            if player.isAlive {
+                count += 1
+            }
+        }
+        return count
     }
     
     func playerCanGo(to directionPosition: Int) -> Bool {

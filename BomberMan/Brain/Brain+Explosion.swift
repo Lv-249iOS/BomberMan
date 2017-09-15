@@ -93,7 +93,7 @@ extension Brain {
             case "0":
                 var i = 0
                 for player in players {
-                    if player.position == index {
+                    if players.count > i, player.position == index {
                         players[i].isAlive = false
                         gameEnd?(false)
                         score -= 1000
@@ -137,6 +137,7 @@ extension Brain {
     }
     
     func fadeFire(explosion: Explosion, position: Int) {
+        if tiles.count <= position || position < 0 { return }
         tiles[position].removeAll()
         for i in 0..<explosion.bottom  {
             let indexForFire = position + (i+1) * width

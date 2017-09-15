@@ -28,7 +28,7 @@ extension Brain {
         case .right: directionPosition = players[playerIndex].position + 1
         case .top: directionPosition = players[playerIndex].position - width
         }
-        if playerCanGo(to: directionPosition) {
+        if playerCanGo(to: directionPosition), directionPosition > 0, directionPosition < tiles.count {
             let last = tiles[directionPosition].last ?? " "
             switch last {
             case "F":
@@ -64,7 +64,7 @@ extension Brain {
                 gameEnd?(true)
                 return
             case "M":
-                if !tiles[players[playerIndex].position].isEmpty {
+                if players[playerIndex].position < tiles.count, !tiles[players[playerIndex].position].isEmpty {
                     tiles[players[playerIndex].position].removeLast()
                 }
                 players[playerIndex].isAlive = false
@@ -80,7 +80,7 @@ extension Brain {
             default:
                 break
             }
-            if !tiles[players[playerIndex].position].isEmpty {
+            if players[playerIndex].position < tiles.count, !tiles[players[playerIndex].position].isEmpty {
                 tiles[players[playerIndex].position].removeLast()
             }
             players[playerIndex].position = directionPosition

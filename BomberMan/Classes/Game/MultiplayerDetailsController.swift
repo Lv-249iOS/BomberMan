@@ -10,11 +10,11 @@ import UIKit
 
 class MultiplayerDetailsController: UIViewController {
     
-    // Closure for proccessing on home button taped event
+    /// Closure for proccessing on home button taped event
     var onHomeTap: (()->())?
     
-    // This field is used for filling details panel with players names
-    // if it's nil on UI will be presented names "None"
+    /// This field is used for filling details panel with players names
+    /// if it's nil on UI will be presented names "None"
     var playersNames: [String]?
     
     @IBOutlet var detailsView: MultiDetailsView!

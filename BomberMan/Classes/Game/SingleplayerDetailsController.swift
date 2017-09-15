@@ -19,12 +19,13 @@ protocol GameTimer {
 
 class SingleplayerDetailsController: UIViewController {
     
+    // Closures for proccessing pause, back to home and time over events
     var onPauseTap: ((Bool)->())?
     var onHomeTap: (()->())?
     var timeOver: (()->())?
     
+    fileprivate var gameTimer: Timer!
     var isPause: Bool = false
-    var timer: Timer!
     var isTimerRunning = false
     
     @IBOutlet var detailsView: SingleDetailsView!
@@ -70,7 +71,7 @@ class SingleplayerDetailsController: UIViewController {
 extension SingleplayerDetailsController: GameTimer {
     
     func runTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 1,
+        gameTimer = Timer.scheduledTimer(timeInterval: 1,
                                      target: self,
                                      selector: (#selector(presentTimer)),
                                      userInfo: nil,
@@ -79,7 +80,7 @@ extension SingleplayerDetailsController: GameTimer {
     }
     
     func stopTimer() {
-        timer.invalidate()
+        gameTimer.invalidate()
         isTimerRunning = false
     }
     
@@ -102,7 +103,7 @@ extension SingleplayerDetailsController: GameTimer {
     /// timeOver event will be sent
     func presentTimer() {
         if Brain.shared.currentTime < 1 {
-            timer.invalidate()
+            gameTimer.invalidate()
             timeOver?()
         } else {
             Brain.shared.currentTime -= 1

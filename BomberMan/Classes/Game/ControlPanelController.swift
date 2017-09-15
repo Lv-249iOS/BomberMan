@@ -10,15 +10,15 @@ import UIKit
 
 class ControlPanelController: UIViewController {
  
-    // Closures for proccessing move and set bomb events
+    /// Closures for proccessing move and set bomb events
     var moveTo: ((Direction)->())?
     var setBomb: (()->())?
     
     @IBOutlet var controlPanelView: ControlPanelView!
 
-    // Set button state (true - enabled; false - disable)
-    // Precondition: gets boolean value (state) of control panel
-    // Postcondition: sets buttons on control panel to this state
+    /// Set button state (true - enabled; false - disable)
+    /// Precondition: gets boolean value (state) of control panel
+    /// Postcondition: sets buttons on control panel to this state
     func setButtonState(isEnabled: Bool) {
         controlPanelView.setButtonState(isEnabled: isEnabled)
     }

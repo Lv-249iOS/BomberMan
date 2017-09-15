@@ -90,6 +90,7 @@ extension Brain {
                 if !tiles[index].isEmpty {
                     canBurn = false
                 }
+                boxExplode?(index)
             case "0":
                 var i = 0
                 for player in players {

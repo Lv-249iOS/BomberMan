@@ -46,6 +46,7 @@ class Brain {
     var gameEnd: ((Bool)->())?
     var presentTime: ((Double)->())?
     var refreshScore: ((Int)->())?
+    var boxExplode: ((Int)->())?
     
     // Used at the beginning of the game
     func initializeGame(with lvlNumber: Int, completelyNew: Bool) {

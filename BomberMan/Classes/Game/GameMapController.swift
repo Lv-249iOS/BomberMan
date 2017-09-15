@@ -50,6 +50,9 @@ class GameMapController: UIViewController {
         brain.killMob = { [weak self] mob, inPlace in
             self?.killMob(mob: mob, inPlace: inPlace)
         }
+        brain.boxExplode = { [weak self] position in
+            self?.boxExplosion(pos: position)
+        }
     }
     
     func addSubImageView(_ rect: CGRect, image: UIImage) {

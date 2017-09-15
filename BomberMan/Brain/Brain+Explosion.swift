@@ -92,19 +92,21 @@ extension Brain {
                 }
             case "0":
                 var i = 0
-                for player in players {
-                    if player.position == index {
-                        players[i].isAlive = false
-                        gameEnd?(false)
-                        score -= 1000
-                        if score < 0 {
-                            score = 0
+                if players.count > i {
+                    for player in players {
+                        if player.position == index {
+                            players[i].isAlive = false
+                            gameEnd?(false)
+                            score -= 1000
+                            if score < 0 {
+                                score = 0
+                            }
+                            refreshScore?(score)
+                            killedPlayers.append(player.identifier)
+                            tiles[index].removeLast()
                         }
-                        refreshScore?(score)
-                        killedPlayers.append(player.identifier)
-                        tiles[index].removeLast()
+                        i += 1
                     }
-                    i += 1
                 }
             case "U":
                 tiles[index].removeLast()
@@ -137,6 +139,7 @@ extension Brain {
     }
     
     func fadeFire(explosion: Explosion, position: Int) {
+        if tiles.count <= position || position < 0 { return }
         tiles[position].removeAll()
         for i in 0..<explosion.bottom  {
             let indexForFire = position + (i+1) * width

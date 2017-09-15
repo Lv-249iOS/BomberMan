@@ -48,8 +48,11 @@ class GameLayoutController: UIViewController {
         presentScore(score: brain.score)
     }
     
-    // Precondition:
-    // Postcondition:
+    // Precondition: calls when game over. It's possible in three cases:
+    // and due to it program present three diffenet runtime view:
+    // 1. game over view with opportunity to try again
+    // 2. move to next with opportunity try again this level or move to next
+    // 3. win view with opportunity to replay game, seek to rating and back to home
     func gameEnd(didWin: Bool) {
         singleplayerDetailsController?.resetTimer()
         brain.invalidateTimers()
@@ -62,7 +65,6 @@ class GameLayoutController: UIViewController {
             createGameWinView()
             gameContainer.addSubview(gameWin!)
             askUserAboutName()
-            // MARK: You must remove game win view if clicked on but
             
         } else {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
@@ -75,9 +77,10 @@ class GameLayoutController: UIViewController {
         presentScore(score: brain.score)
     }
     
-    // Precondition:
-    // Postcondition:
-    func replaylevel(isGameOver: Bool) {
+    // Precondition: Calls if you want to play level again
+    // gets isGameOver value that determines what addition view needs to be removed
+    // Postcondition: reset timers, score and redraw map
+    func replayLevel(isGameOver: Bool) {
         singleplayerDetailsController?.resetTimer()
         brain.invalidateTimers()
         singleplayerDetailsController?.runTimer()
@@ -88,8 +91,8 @@ class GameLayoutController: UIViewController {
         presentScore(score: brain.score)
     }
     
-    // Precondition:
-    // Postcondition:
+    // Precondition: Calls if you won game and want to play again
+    // Postcondition: reset timers, score and redraw map and set 0 level
     func replayGame() {
         singleplayerDetailsController?.resetTimer()
         brain.invalidateTimers()
@@ -102,9 +105,18 @@ class GameLayoutController: UIViewController {
         presentScore(score: brain.score)
     }
     
+    // Precondition: Calls if you won game and want to seek rating table
+    // Postcondition: Raises Rating scene 
+    // if clicks to close button you unwind to current position
+    func moveToRating() {
+        // MARK: go to rating scene
+        removeAdditionView(additionView: AdditionView.gameWin)
+    }
+    
     // Catchs pause state from details
-    // Precondition:
-    // Postcondition:
+    // Precondition: Calls if pause state was changed
+    // Postcondition: controls pause states and stops/runs timers,
+    // mobs, blocks control panel
     func changePause(state: Bool) {
         if state {
             createPauseView()
@@ -121,37 +133,29 @@ class GameLayoutController: UIViewController {
             removeAdditionView(additionView: AdditionView.pause)
         }
     }
-    
-    // Precondition:
-    // Postcondition:
+
     func turnToHome() {
         brain.invalidateTimers()
         dismiss(animated: true, completion: nil)
     }
-    
-    // Precondition:
-    // Postcondition:
+
     func presentScore(score:Int){
         singleplayerDetailsController?.present(score: Double(score))
     }
-    
-    // Precondition:
-    // Postcondition:
+
     func presentTimer(time: TimeInterval) {
         singleplayerDetailsController?.present(time: "\(time)")
     }
-    
-    // Precondition:
-    // Postcondition:
+
     func move(direction: Direction) {
         brain.move(to: direction, playerName: UIDevice.current.name)
     }
     
-    // Precondition:
-    // Postcondition:
     func setBomb() {
         brain.plantBomb(playerName: UIDevice.current.name)
     }
+    
+    // MARK: Prepare for segue block
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SingleplayerDetailsSegue",
@@ -170,7 +174,6 @@ class GameLayoutController: UIViewController {
         } else if segue.identifier == "ControlPanelControllerSegue",
             let controller = segue.destination as? ControlPanelController {
             prepareControlPanelController(controller: controller)
-            
         }
     }
     
@@ -196,7 +199,7 @@ class GameLayoutController: UIViewController {
         }
     }
     
-    // binds methods between details and game scene
+    // Binds methods between details and game scene
     func prepareDetailsController(_ controller: SingleplayerDetailsController) {
         singleplayerDetailsController = controller
         
@@ -209,7 +212,7 @@ class GameLayoutController: UIViewController {
         }
     }
     
-    // binds methods between details and game scene
+    // Binds methods between details and game scene
     func prepareMultiplayerDetailsController(_ controller: MultiplayerDetailsController) {
         multiplayerDetailsController = controller
         
@@ -218,12 +221,14 @@ class GameLayoutController: UIViewController {
         }
     }
     
+    // MARK: View did load block
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bindBrainClosures()
         
     }
-    
+
     func bindBrainClosures() {
         brain.gameEnd = { [weak self] didWin in
             self?.gameEnd(didWin: didWin)

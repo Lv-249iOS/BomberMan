@@ -8,6 +8,15 @@
 
 import UIKit
 
+protocol GameTimer {
+    
+    func runTimer()
+    func stopTimer()
+    func resetTimer()
+    func changeTimerState()
+    func presentTimer()
+}
+
 class SingleplayerDetailsController: UIViewController {
     
     var onPauseTap: ((Bool)->())?
@@ -20,70 +29,29 @@ class SingleplayerDetailsController: UIViewController {
     
     @IBOutlet var detailsView: SingleDetailsView!
     
-    // Shows current time usage in label
     func present(time: String) {
         detailsView.timeLabel.text = time
     }
     
-    // Shows current score in label
     func present(score: Double) {
         detailsView.scoreLabel.text = "\(score)"
     }
     
-    // Sends event that pause taped
-    func pauseTap() {
+    // Precondition: calls when on pause tap
+    // Postcondition: stop timer and send event that on pause taped
+    private func pauseTap() {
         isPause = isPause == false ? true : false
         stopTimer()
         onPauseTap?(isPause)
     }
     
-    // Sends event that home taped
-    func homeTap() {
+    // Precondition: calls when on home tap
+    // Postcondition: stop timer and send event that on back to home taped
+    private func homeTap() {
         stopTimer()
         onHomeTap?()
     }
-    
-    // Starting running timer
-    func runTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 1,
-                                     target: self,
-                                     selector: (#selector(presentTimer)),
-                                     userInfo: nil,
-                                     repeats: true)
-        isTimerRunning = true
-    }
-    
-    // Methods for timer invalidation
-    func stopTimer() {
-        timer.invalidate()
-        isTimerRunning = false
-    }
-    
-    func resetTimer() {
-        stopTimer()
-        detailsView.scoreLabel.text = "0.0"
-        detailsView.timeLabel.text = "00:00"
 
-        Brain.shared.currentTime = Brain.shared.timeLimit
-        
-    }
-    
-    // Stop timer if it's running now and pause's switched on
-    func changeTimerState() {
-        isTimerRunning && isPause ? stopTimer() : runTimer()
-    }
-    
-    // Updates timer and shows in label
-    func presentTimer() {
-        if Brain.shared.currentTime < 1 {
-            timer.invalidate()
-            timeOver?()
-        } else {
-            Brain.shared.currentTime -= 1
-            present(time: TimeInterval.toString(Brain.shared.currentTime))
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -98,3 +66,50 @@ class SingleplayerDetailsController: UIViewController {
         }
     }
 }
+
+extension SingleplayerDetailsController: GameTimer {
+    
+    func runTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 1,
+                                     target: self,
+                                     selector: (#selector(presentTimer)),
+                                     userInfo: nil,
+                                     repeats: true)
+        isTimerRunning = true
+    }
+    
+    func stopTimer() {
+        timer.invalidate()
+        isTimerRunning = false
+    }
+    
+    func resetTimer() {
+        stopTimer()
+        detailsView.scoreLabel.text = "0.0"
+        detailsView.timeLabel.text = "00:00"
+    }
+    
+    /// Changes stop or run timer accordingly to pause and timer state
+    /// Timer will be stoped if timer is running and pause is taped
+    /// In another case timer will be run
+    func changeTimerState() {
+        isTimerRunning && isPause ? stopTimer() : runTimer()
+    }
+    
+    /// Used by selector for scheduled game timer
+    /// Present time in label in format 00:00 
+    /// When time is going to be out of range timer will be stoped and
+    /// timeOver event will be sent
+    func presentTimer() {
+        if Brain.shared.currentTime < 1 {
+            timer.invalidate()
+            timeOver?()
+        } else {
+            Brain.shared.currentTime -= 1
+            present(time: TimeInterval.toString(Brain.shared.currentTime))
+        }
+    }
+    
+}
+
+

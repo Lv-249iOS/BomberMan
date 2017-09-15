@@ -15,7 +15,7 @@ class GameLayoutController: UIViewController {
     
     enum AdditionView: Int {
         case pause = 0
-        case moveToNextLevel = 1
+        case nextLevel = 1
         case gameOver = 2
         case gameWin = 3
     }
@@ -61,7 +61,7 @@ class GameLayoutController: UIViewController {
     func moveToNextLvl() {
         singleplayerDetailsController?.resetTimer()
         brain.invalidateTimers()
-        removeAdditionView(additionView: AdditionView.moveToNextLevel)
+        removeAdditionView(additionView: AdditionView.nextLevel)
         brain.initializeGame(with: brain.currentLvl + 1, completelyNew: false)
         gameMapController.updateContentSize()
         singleplayerDetailsController?.runTimer()
@@ -96,7 +96,7 @@ class GameLayoutController: UIViewController {
         singleplayerDetailsController?.resetTimer()
         brain.invalidateTimers()
         singleplayerDetailsController?.runTimer()
-        let additionViewName = isGameOver ? AdditionView.gameOver : AdditionView.moveToNextLevel
+        let additionViewName = isGameOver ? AdditionView.gameOver : AdditionView.nextLevel
         removeAdditionView(additionView: additionViewName)
         brain.initializeGame(with: brain.currentLvl, completelyNew: false)
         gameMapController.updateContentSize()
@@ -290,13 +290,16 @@ extension GameLayoutController {
         case .pause:
             pause?.removeFromSuperview()
             pause = nil
+            
         case .gameOver:
             gameOver?.removeFromSuperview()
             gameOver = nil
+            
         case .gameWin:
             gameWin?.removeFromSuperview()
             gameWin = nil
-        case .moveToNextLevel:
+            
+        case .nextLevel:
             moveToNextLevel?.removeFromSuperview()
             moveToNextLevel = nil
         }

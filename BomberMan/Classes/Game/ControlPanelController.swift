@@ -15,17 +15,19 @@ class ControlPanelController: UIViewController {
     
     @IBOutlet var controlPanelView: ControlPanelView!
     
-    // Send Arrow direction
-    func moveEvent(with direction: Direction) {
-        // send event
+    // Send event that on arrow taped and send arrow direction
+    private func moveEvent(with direction: Direction) {
         moveTo?(direction)
     }
     
-    func setBombEvent() {
-        // send event
+    // Send event that on bomb button taped
+    private func setBombEvent() {
         setBomb?()
     }
 
+    // Set button state (true - enabled; false - disable)
+    // Precondition: gets boolean value (state) of control panel
+    // Postcondition: sets buttons on control panel to this state
     func setButtonState(isEnabled: Bool) {
         controlPanelView.setButtonState(isEnabled: isEnabled)
     }

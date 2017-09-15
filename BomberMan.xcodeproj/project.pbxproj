@@ -65,6 +65,7 @@
 		A95FC5241F502C7500E1F926 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A95FC5231F502C7500E1F926 /* Assets.xcassets */; };
 		A95FC5271F502C7500E1F926 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95FC5251F502C7500E1F926 /* LaunchScreen.storyboard */; };
 		A98005201F6C1B970098636B /* GameLayoutController+RuntimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A980051F1F6C1B970098636B /* GameLayoutController+RuntimeView.swift */; };
+		A98005221F6C1DCC0098636B /* SingeDetailsController+GameTimerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98005211F6C1DCC0098636B /* SingeDetailsController+GameTimerProtocol.swift */; };
 		A99006E31F62C8180031248E /* Brain+Timers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99006E21F62C8180031248E /* Brain+Timers.swift */; };
 		A9E460401F5ADC040091266C /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E4603E1F5ADC040091266C /* GameOverView.swift */; };
 		A9E460411F5ADC040091266C /* GameOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9E4603F1F5ADC040091266C /* GameOverView.xib */; };
@@ -154,6 +155,7 @@
 		A95FC5261F502C7500E1F926 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A95FC5281F502C7500E1F926 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A980051F1F6C1B970098636B /* GameLayoutController+RuntimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GameLayoutController+RuntimeView.swift"; sourceTree = "<group>"; };
+		A98005211F6C1DCC0098636B /* SingeDetailsController+GameTimerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SingeDetailsController+GameTimerProtocol.swift"; sourceTree = "<group>"; };
 		A99006E21F62C8180031248E /* Brain+Timers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brain+Timers.swift"; sourceTree = "<group>"; };
 		A9E4603E1F5ADC040091266C /* GameOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		A9E4603F1F5ADC040091266C /* GameOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameOverView.xib; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				A94BDEAD1F5AFD450085E073 /* ControlPanelController.swift */,
 				A9381B901F6BD1BB007D5FE2 /* MultiplayerDetailsController.swift */,
 				A980051F1F6C1B970098636B /* GameLayoutController+RuntimeView.swift */,
+				A98005211F6C1DCC0098636B /* SingeDetailsController+GameTimerProtocol.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -643,6 +646,7 @@
 				A92AA43D1F5EE1080025EFB6 /* WinView.swift in Sources */,
 				616460711F61830E00402452 /* Brain+PlayerLogic.swift in Sources */,
 				A94BDEB21F5AFD450085E073 /* ControlPanelController.swift in Sources */,
+				A98005221F6C1DCC0098636B /* SingeDetailsController+GameTimerProtocol.swift in Sources */,
 				A99006E31F62C8180031248E /* Brain+Timers.swift in Sources */,
 				A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */,
 				6127F57F1F6BF27300108E45 /* EventParser.swift in Sources */,

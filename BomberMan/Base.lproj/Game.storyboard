@@ -122,10 +122,10 @@
             </objects>
             <point key="canvasLocation" x="1005.7971014492755" y="136.95652173913044"/>
         </scene>
-        <!--Details Controller-->
+        <!--Singleplayer Details Controller-->
         <scene sceneID="0GN-Vh-8kT">
             <objects>
-                <viewController id="bPZ-UK-hog" customClass="DetailsController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bPZ-UK-hog" customClass="SingleplayerDetailsController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jia-Xi-Xth"/>
                         <viewControllerLayoutGuide type="bottom" id="dFT-vA-39w"/>

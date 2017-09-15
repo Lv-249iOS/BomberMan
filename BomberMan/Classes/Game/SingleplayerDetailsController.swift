@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailsController: UIViewController {
+class SingleplayerDetailsController: UIViewController {
     
     var onPauseTap: ((Bool)->())?
     var onHomeTap: (()->())?

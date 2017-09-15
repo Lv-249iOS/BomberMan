@@ -13,7 +13,7 @@ class GameLayoutController: UIViewController {
     @IBOutlet weak var gameContainer: UIView!
     
     var topTenController: TopTenController?
-    var detailsController: DetailsController!
+    var detailsController: SingleplayerDetailsController!
     var gameMapController: GameMapController!
     var controlPanelController: ControlPanelController!
     let brain = Brain.shared
@@ -151,7 +151,7 @@ class GameLayoutController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailsControllerSegue",
-            let controller = segue.destination as? DetailsController {
+            let controller = segue.destination as? SingleplayerDetailsController {
             prepareDetailsController(controller: controller)
             
         } else if segue.identifier == "GameMapControllerSegue",
@@ -185,7 +185,7 @@ class GameLayoutController: UIViewController {
     }
     
     // binds methods between details and game scene
-    func prepareDetailsController(controller: DetailsController) {
+    func prepareDetailsController(controller: SingleplayerDetailsController) {
         detailsController = controller
         
         detailsController.onPauseTap = { [weak self] state in

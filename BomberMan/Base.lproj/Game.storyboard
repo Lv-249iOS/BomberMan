@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="bPZ-UK-hog" kind="embed" identifier="DetailsControllerSegue" id="5hB-aY-F9A"/>
+                                    <segue destination="bPZ-UK-hog" kind="embed" identifier="SingleplayerDetailsSegue" id="5hB-aY-F9A"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9n-yH-NtM">
@@ -46,7 +46,7 @@
                             <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IEC-if-Vgg">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                                 <connections>
-                                    <segue destination="arX-CY-i3U" kind="embed" id="P8q-Bm-BIY"/>
+                                    <segue destination="arX-CY-i3U" kind="embed" identifier="MultiplayerDetailsSegue" id="P8q-Bm-BIY"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -157,6 +157,10 @@
         <scene sceneID="RCE-8C-QmE">
             <objects>
                 <viewController id="arX-CY-i3U" customClass="MultiplayerDetailsController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1qb-Eo-TQn"/>
+                        <viewControllerLayoutGuide type="bottom" id="1QZ-eT-4wW"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bhf-Pp-NEz" customClass="MultiDetailsView" customModule="BomberMan" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

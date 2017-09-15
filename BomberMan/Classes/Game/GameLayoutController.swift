@@ -11,9 +11,11 @@ import UIKit
 class GameLayoutController: UIViewController {
     
     @IBOutlet weak var gameContainer: UIView!
+    var isSingleGame = false
     
     var topTenController: TopTenController?
-    var detailsController: SingleplayerDetailsController!
+    var singleplayerDetailsController: SingleplayerDetailsController?
+    var multiplayerDetailsController: MultiplayerDetailsController?
     var gameMapController: GameMapController!
     var controlPanelController: ControlPanelController!
     let brain = Brain.shared
@@ -57,24 +59,22 @@ class GameLayoutController: UIViewController {
         
         brain.refreshScore = { [weak self] score in
             self?.presentScore(score: score)
-        
+            
         }
     }
-    
-    
-    
+
     func moveToNextLvl() {
-        detailsController.resetTimer()
+        singleplayerDetailsController?.resetTimer()
         brain.invalidateTimers()
         moveToNextLevel.removeFromSuperview()
         brain.initializeGame(with: brain.currentLvl + 1, completelyNew: false)
         gameMapController.updateContentSize()
-        detailsController.runTimer()
+        singleplayerDetailsController?.runTimer()
         presentScore(score: brain.score)
     }
     
     func gameEnd(didWin: Bool) {
-        detailsController.resetTimer()
+        singleplayerDetailsController?.resetTimer()
         brain.invalidateTimers()
         if didWin && brain.currentLvl < 8 {
             moveToNextLevel.frame = gameMapController.mapScroll.frame
@@ -97,9 +97,9 @@ class GameLayoutController: UIViewController {
     }
     
     func replayGame(isGameOver: Bool) {
-        detailsController.resetTimer()
+        singleplayerDetailsController?.resetTimer()
         brain.invalidateTimers()
-        detailsController.runTimer()
+        singleplayerDetailsController?.runTimer()
         isGameOver ? gameOver.removeFromSuperview() : moveToNextLevel.removeFromSuperview()
         brain.initializeGame(with: brain.currentLvl, completelyNew: false)
         gameMapController.updateContentSize()
@@ -113,13 +113,13 @@ class GameLayoutController: UIViewController {
             controlPanelController.setButtonState(isEnabled: false)
             gameContainer.addSubview(pause)
             brain.stopMobsMovement()
-            detailsController.stopTimer()
+            singleplayerDetailsController?.stopTimer()
             
         } else {
-            detailsController.isPause = false
+            singleplayerDetailsController?.isPause = false
             controlPanelController.setButtonState(isEnabled: true)
             brain.startMobsMovement()
-            detailsController.runTimer()
+            singleplayerDetailsController?.runTimer()
             pause.removeFromSuperview()
         }
     }
@@ -131,12 +131,11 @@ class GameLayoutController: UIViewController {
     }
     
     func presentScore(score:Int){
-        detailsController.present(score: Double(score))
+        singleplayerDetailsController?.present(score: Double(score))
     }
     
-    
     func presentTimer(time: TimeInterval) {
-        detailsController.present(time: "\(time)")
+        singleplayerDetailsController?.present(time: "\(time)")
     }
     
     // Controls arrow's events
@@ -150,14 +149,20 @@ class GameLayoutController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailsControllerSegue",
+        if segue.identifier == "SingleplayerDetailsSegue", isSingleGame == true,
             let controller = segue.destination as? SingleplayerDetailsController {
-            prepareDetailsController(controller: controller)
+            prepareDetailsController(controller)
+            multiplayerDetailsController = nil
+            //segue.destination.
+            
+        } else if segue.identifier == "MultiplayerDetailsSegue", isSingleGame == false,
+            let controller = segue.destination as? MultiplayerDetailsController {
+            prepareMultiplayerDetailsController(controller)
+            singleplayerDetailsController = nil
             
         } else if segue.identifier == "GameMapControllerSegue",
             let controller = segue.destination as? GameMapController {
             prepareGameMapController(controller: controller)
-            
             
         } else if segue.identifier == "ControlPanelControllerSegue",
             let controller = segue.destination as? ControlPanelController {
@@ -185,14 +190,23 @@ class GameLayoutController: UIViewController {
     }
     
     // binds methods between details and game scene
-    func prepareDetailsController(controller: SingleplayerDetailsController) {
-        detailsController = controller
+    func prepareDetailsController(_ controller: SingleplayerDetailsController) {
+        singleplayerDetailsController = controller
         
-        detailsController.onPauseTap = { [weak self] state in
+        singleplayerDetailsController?.onPauseTap = { [weak self] state in
             self?.changePause(state: state)
         }
         
-        detailsController.onHomeTap = { [weak self] in
+        singleplayerDetailsController?.onHomeTap = { [weak self] in
+            self?.turnToHome()
+        }
+    }
+    
+    // binds methods between details and game scene
+    func prepareMultiplayerDetailsController(_ controller: MultiplayerDetailsController) {
+        multiplayerDetailsController = controller
+        
+        multiplayerDetailsController?.onHomeTap = { [weak self] in
             self?.turnToHome()
         }
     }

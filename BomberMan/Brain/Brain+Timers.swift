@@ -35,15 +35,14 @@ extension Brain {
         let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { [weak self] _ in
             self?.explode(withOptionsOfPlayer: player, bomb: bomb)
             
-            //needs to be finished
             var i = 0
-            for pl in (self?.players)! {
+            let pls = self?.players ?? []
+            for pl in pls {
                 if pl.identifier == player.identifier {
                     self?.players[i].plantedMines -= 1
                 }
                 i += 1
             }
-//            self?.player.plantedMines -= 1
         }
         
         bomb.timer = timer

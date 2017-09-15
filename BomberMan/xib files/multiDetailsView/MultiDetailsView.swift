@@ -13,7 +13,6 @@ class MultiDetailsView: UIView {
     @IBOutlet var contentView: UIView!
     
     @IBOutlet var playersNames: [UILabel]!
-    
     @IBOutlet weak var homeButton: UIButton!
     
     var onHomeButtTap: (()->())?
@@ -50,7 +49,7 @@ class MultiDetailsView: UIView {
     private func commonInit() {
         Bundle.main.loadNibNamed("MultiDetailsView", owner: self, options: nil)
         addSubview(contentView)
-        contentView.frame = self.bounds
+        contentView.frame = bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
 }

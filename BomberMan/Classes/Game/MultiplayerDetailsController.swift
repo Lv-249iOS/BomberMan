@@ -30,6 +30,7 @@ class MultiplayerDetailsController: UIViewController {
     }
     
     func setNames() {
+        playersNames = ["aaaaaaa", "vvvvvv", "ssssss", "dddddd"]
         if let names = playersNames {
             detailsView.setNames(names: names)
         }

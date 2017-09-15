@@ -10,12 +10,15 @@ import UIKit
 
 class GameLayoutController: UIViewController {
     
+    @IBOutlet weak var multiplayerContainerView: UIView!
     @IBOutlet weak var gameContainer: UIView!
+
     var isSingleGame = false
     
     var topTenController: TopTenController?
     var singleplayerDetailsController: SingleplayerDetailsController?
     var multiplayerDetailsController: MultiplayerDetailsController?
+    
     var gameMapController: GameMapController!
     var controlPanelController: ControlPanelController!
     let brain = Brain.shared
@@ -149,16 +152,14 @@ class GameLayoutController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SingleplayerDetailsSegue", isSingleGame == true,
+        if segue.identifier == "SingleplayerDetailsSegue",
             let controller = segue.destination as? SingleplayerDetailsController {
             prepareDetailsController(controller)
-            multiplayerDetailsController = nil
-            //segue.destination.
-            
-        } else if segue.identifier == "MultiplayerDetailsSegue", isSingleGame == false,
+            multiplayerContainerView.removeFromSuperview()
+
+        } else if segue.identifier == "MultiplayerDetailsSegue",
             let controller = segue.destination as? MultiplayerDetailsController {
             prepareMultiplayerDetailsController(controller)
-            singleplayerDetailsController = nil
             
         } else if segue.identifier == "GameMapControllerSegue",
             let controller = segue.destination as? GameMapController {
@@ -169,6 +170,15 @@ class GameLayoutController: UIViewController {
             prepareControlPanelController(controller: controller)
             
         }
+    }
+
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if (identifier == "MultiplayerDetailsSegue" && isSingleGame == true) ||
+            (identifier == "SingleplayerDetailsSegue" && isSingleGame == false) {
+            return false
+        }
+        
+        return true
     }
     
     // Binds methods between game map controller and  main game scene

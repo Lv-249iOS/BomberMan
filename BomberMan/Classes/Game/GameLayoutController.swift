@@ -12,39 +12,31 @@ class GameLayoutController: UIViewController {
     
     @IBOutlet weak var multiplayerContainerView: UIView!
     @IBOutlet weak var gameContainer: UIView!
-
-    var isSingleGame = false
     
-    var topTenController: TopTenController?
+    enum AdditionView: Int {
+        case pause = 0
+        case moveToNextLevel = 1
+        case gameOver = 2
+        case gameWin = 3
+    }
+    
+    var isSingleGame = true
+    let brain = Brain.shared
+    
+    /// Controllers that are on the game layout
     var singleplayerDetailsController: SingleplayerDetailsController?
     var multiplayerDetailsController: MultiplayerDetailsController?
-    
     var gameMapController: GameMapController!
     var controlPanelController: ControlPanelController!
-    let brain = Brain.shared
-    var pause = PauseView()
-    var gameOver = GameOverView()
-    var gameWin = WinView()
-    var moveToNextLevel = MoveToNextLevelView()
     
+    /// Addition view that will be shown in runtime
+    var pause: PauseView?
+    var gameOver: GameOverView?
+    var gameWin: WinView?
+    var moveToNextLevel: MoveToNextLevelView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        pause.onPauseButtTap = { [weak self] in
-            self?.changePause(state: false)
-        }
-        
-        gameOver.onRepeatButtTap = { [weak self] in
-            self?.replayGame(isGameOver: true)
-        }
-        
-        moveToNextLevel.onMoveOnButtTap = { [weak self] in
-            self?.moveToNextLvl()
-        }
-        
-        moveToNextLevel.onRepeatButtTap = { [weak self] in
-            self?.replayGame(isGameOver: false)
-        }
         
         brain.gameEnd = { [weak self] didWin in
             if !didWin {
@@ -65,11 +57,11 @@ class GameLayoutController: UIViewController {
             
         }
     }
-
+    
     func moveToNextLvl() {
         singleplayerDetailsController?.resetTimer()
         brain.invalidateTimers()
-        moveToNextLevel.removeFromSuperview()
+        removeAdditionView(additionView: AdditionView.moveToNextLevel)
         brain.initializeGame(with: brain.currentLvl + 1, completelyNew: false)
         gameMapController.updateContentSize()
         singleplayerDetailsController?.runTimer()
@@ -80,18 +72,19 @@ class GameLayoutController: UIViewController {
         singleplayerDetailsController?.resetTimer()
         brain.invalidateTimers()
         if didWin && brain.currentLvl < 8 {
-            moveToNextLevel.frame = gameMapController.mapScroll.frame
-            gameContainer.addSubview(moveToNextLevel)
+            createMoveToNextLevelView()
+            gameContainer.addSubview(moveToNextLevel!)
             
         } else if !didWin && brain.currentLvl == 8 {
-            gameWin.frame = gameMapController.mapScroll.frame
-            gameContainer.addSubview(gameWin)
+            createGameWinView()
+            gameContainer.addSubview(gameWin!)
             askUserAboutName()
             // MARK: You must remove game win view if clicked on but
             
         } else {
-            gameOver.frame = gameMapController.mapScroll.frame
-            gameContainer.addSubview(gameOver)
+            createGameOverView()
+            gameContainer.addSubview(gameOver!)
+            
             if brain.score > 0 {
                 askUserAboutName()
             }
@@ -103,7 +96,8 @@ class GameLayoutController: UIViewController {
         singleplayerDetailsController?.resetTimer()
         brain.invalidateTimers()
         singleplayerDetailsController?.runTimer()
-        isGameOver ? gameOver.removeFromSuperview() : moveToNextLevel.removeFromSuperview()
+        let additionViewName = isGameOver ? AdditionView.gameOver : AdditionView.moveToNextLevel
+        removeAdditionView(additionView: additionViewName)
         brain.initializeGame(with: brain.currentLvl, completelyNew: false)
         gameMapController.updateContentSize()
         presentScore(score: brain.score)
@@ -112,9 +106,9 @@ class GameLayoutController: UIViewController {
     // Catchs pause state from details
     func changePause(state: Bool) {
         if state {
-            pause.frame = gameMapController.mapScroll.frame
+            createPauseView()
             controlPanelController.setButtonState(isEnabled: false)
-            gameContainer.addSubview(pause)
+            gameContainer.addSubview(pause!)
             brain.stopMobsMovement()
             singleplayerDetailsController?.stopTimer()
             
@@ -123,7 +117,7 @@ class GameLayoutController: UIViewController {
             controlPanelController.setButtonState(isEnabled: true)
             brain.startMobsMovement()
             singleplayerDetailsController?.runTimer()
-            pause.removeFromSuperview()
+            removeAdditionView(additionView: AdditionView.pause)
         }
     }
     
@@ -156,7 +150,7 @@ class GameLayoutController: UIViewController {
             let controller = segue.destination as? SingleplayerDetailsController {
             prepareDetailsController(controller)
             multiplayerContainerView.removeFromSuperview()
-
+            
         } else if segue.identifier == "MultiplayerDetailsSegue",
             let controller = segue.destination as? MultiplayerDetailsController {
             prepareMultiplayerDetailsController(controller)
@@ -171,7 +165,7 @@ class GameLayoutController: UIViewController {
             
         }
     }
-
+    
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (identifier == "MultiplayerDetailsSegue" && isSingleGame == true) ||
             (identifier == "SingleplayerDetailsSegue" && isSingleGame == false) {
@@ -242,6 +236,69 @@ class GameLayoutController: UIViewController {
             alert.addAction(cancelAction)
             
             self.present(alert, animated: true, completion:  nil)
+        }
+    }
+}
+
+
+// Addition view creation
+extension GameLayoutController {
+    func createPauseView() {
+        pause = PauseView(frame: gameMapController.mapScroll.frame)
+        
+        pause?.onPauseButtTap = { [weak self] in
+            self?.changePause(state: false)
+        }
+    }
+    
+    func createGameWinView() {
+        gameWin = WinView(frame: gameMapController.mapScroll.frame)
+        
+        gameWin?.onBackToHomeTap = { [weak self] in
+            self?.turnToHome()
+        }
+        
+        gameWin?.onReplayGameTap = { [weak self] in
+            self?.replayGame(isGameOver: true)
+        }
+        
+        // gameWin?.onShowRatingTap --> present rating scene
+    }
+    
+    func createGameOverView() {
+        gameOver = GameOverView(frame: gameMapController.mapScroll.frame)
+        
+        gameOver?.onRepeatButtTap = { [weak self] in
+            self?.replayGame(isGameOver: true)
+        }
+    }
+    
+    func createMoveToNextLevelView() {
+        moveToNextLevel = MoveToNextLevelView(frame: gameMapController.mapScroll.frame)
+        
+        moveToNextLevel?.onMoveOnButtTap = { [weak self] in
+            self?.moveToNextLvl()
+        }
+        
+        moveToNextLevel?.onRepeatButtTap = { [weak self] in
+            self?.replayGame(isGameOver: false)
+        }
+    }
+    
+    func removeAdditionView(additionView: AdditionView) {
+        switch additionView {
+        case .pause:
+            pause?.removeFromSuperview()
+            pause = nil
+        case .gameOver:
+            gameOver?.removeFromSuperview()
+            gameOver = nil
+        case .gameWin:
+            gameWin?.removeFromSuperview()
+            gameWin = nil
+        case .moveToNextLevel:
+            moveToNextLevel?.removeFromSuperview()
+            moveToNextLevel = nil
         }
     }
 }

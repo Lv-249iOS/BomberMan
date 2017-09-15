@@ -9,21 +9,29 @@
 import UIKit
 
 class MultiplayerDetailsController: UIViewController {
-
+    var onHomeTap: (()->())?
+    var playersNames: [String]?
+    
+    @IBOutlet var detailsView: MultiDetailsView!
+    
+    // Sends event that home taped
+    func homeTap() {
+        // умертвити гравця
+        onHomeTap?()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        setNames()
+        detailsView.onHomeButtTap = { [weak self] in
+            self?.homeTap()
+        }
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func setNames() {
+        if let names = playersNames {
+            detailsView.setNames(names: names)
+        }
     }
-    */
 }

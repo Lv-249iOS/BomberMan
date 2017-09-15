@@ -26,7 +26,7 @@ extension GameLayoutController {
         }
         
         gameWin?.onReplayGameTap = { [weak self] in
-            self?.replayGame(isGameOver: true)
+            self?.replayGame()
         }
         
         // gameWin?.onShowRatingTap --> present rating scene
@@ -36,7 +36,7 @@ extension GameLayoutController {
         gameOver = GameOverView(frame: gameMapController.mapScroll.frame)
         
         gameOver?.onRepeatButtTap = { [weak self] in
-            self?.replayGame(isGameOver: true)
+            self?.replaylevel(isGameOver: true)
         }
     }
     
@@ -48,7 +48,7 @@ extension GameLayoutController {
         }
         
         moveToNextLevel?.onRepeatButtTap = { [weak self] in
-            self?.replayGame(isGameOver: false)
+            self?.replaylevel(isGameOver: false)
         }
     }
     

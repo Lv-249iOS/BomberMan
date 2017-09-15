@@ -34,30 +34,10 @@ class GameLayoutController: UIViewController {
     var gameOver: GameOverView?
     var gameWin: WinView?
     var moveToNextLevel: MoveToNextLevelView?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        brain.gameEnd = { [weak self] didWin in
-            if !didWin {
-                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    self?.gameEnd(didWin: didWin)
-                }
-            } else {
-                self?.gameEnd(didWin: didWin)
-            }
-        }
-        
-        brain.presentTime = { [weak self] time in
-            self?.presentTimer(time: time)
-        }
-        
-        brain.refreshScore = { [weak self] score in
-            self?.presentScore(score: score)
-            
-        }
-    }
     
+    // Precondition: calls if you successfully done previous level
+    // Postcondition: resets timer, presents score, shows addition view,
+    // init next level and updates content size of map
     func moveToNextLvl() {
         singleplayerDetailsController?.resetTimer()
         brain.invalidateTimers()
@@ -68,9 +48,12 @@ class GameLayoutController: UIViewController {
         presentScore(score: brain.score)
     }
     
+    // Precondition:
+    // Postcondition:
     func gameEnd(didWin: Bool) {
         singleplayerDetailsController?.resetTimer()
         brain.invalidateTimers()
+        
         if didWin && brain.currentLvl < 8 {
             createMoveToNextLevelView()
             gameContainer.addSubview(moveToNextLevel!)
@@ -82,17 +65,19 @@ class GameLayoutController: UIViewController {
             // MARK: You must remove game win view if clicked on but
             
         } else {
-            createGameOverView()
-            gameContainer.addSubview(gameOver!)
-            
-            if brain.score > 0 {
-                askUserAboutName()
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
+                self?.createGameOverView()
+                self?.gameContainer.addSubview((self?.gameOver)!)
+                if (self?.brain.score)! > 0 { self?.askUserAboutName() }
             }
         }
+        
         presentScore(score: brain.score)
     }
     
-    func replayGame(isGameOver: Bool) {
+    // Precondition:
+    // Postcondition:
+    func replaylevel(isGameOver: Bool) {
         singleplayerDetailsController?.resetTimer()
         brain.invalidateTimers()
         singleplayerDetailsController?.runTimer()
@@ -103,7 +88,23 @@ class GameLayoutController: UIViewController {
         presentScore(score: brain.score)
     }
     
+    // Precondition:
+    // Postcondition:
+    func replayGame() {
+        singleplayerDetailsController?.resetTimer()
+        brain.invalidateTimers()
+        singleplayerDetailsController?.runTimer()
+        removeAdditionView(additionView: AdditionView.gameWin)
+        brain.currentLvl = 0
+        brain.initializeGame(with: brain.currentLvl, completelyNew: false)
+        gameMapController.updateContentSize()
+        brain.score = 0
+        presentScore(score: brain.score)
+    }
+    
     // Catchs pause state from details
+    // Precondition:
+    // Postcondition:
     func changePause(state: Bool) {
         if state {
             createPauseView()
@@ -121,26 +122,33 @@ class GameLayoutController: UIViewController {
         }
     }
     
-    // Returns to menu page
+    // Precondition:
+    // Postcondition:
     func turnToHome() {
         brain.invalidateTimers()
         dismiss(animated: true, completion: nil)
     }
     
+    // Precondition:
+    // Postcondition:
     func presentScore(score:Int){
         singleplayerDetailsController?.present(score: Double(score))
     }
     
+    // Precondition:
+    // Postcondition:
     func presentTimer(time: TimeInterval) {
         singleplayerDetailsController?.present(time: "\(time)")
     }
     
-    // Controls arrow's events
+    // Precondition:
+    // Postcondition:
     func move(direction: Direction) {
         brain.move(to: direction, playerName: UIDevice.current.name)
     }
     
-    // Controls bomb setting
+    // Precondition:
+    // Postcondition:
     func setBomb() {
         brain.plantBomb(playerName: UIDevice.current.name)
     }
@@ -157,7 +165,7 @@ class GameLayoutController: UIViewController {
             
         } else if segue.identifier == "GameMapControllerSegue",
             let controller = segue.destination as? GameMapController {
-            prepareGameMapController(controller: controller)
+            gameMapController = controller
             
         } else if segue.identifier == "ControlPanelControllerSegue",
             let controller = segue.destination as? ControlPanelController {
@@ -173,11 +181,6 @@ class GameLayoutController: UIViewController {
         }
         
         return true
-    }
-    
-    // Binds methods between game map controller and  main game scene
-    func prepareGameMapController(controller: GameMapController) {
-        gameMapController = controller
     }
     
     // Binds methods between control panel and game scene
@@ -212,6 +215,27 @@ class GameLayoutController: UIViewController {
         
         multiplayerDetailsController?.onHomeTap = { [weak self] in
             self?.turnToHome()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        bindBrainClosures()
+        
+    }
+    
+    func bindBrainClosures() {
+        brain.gameEnd = { [weak self] didWin in
+            self?.gameEnd(didWin: didWin)
+        }
+        
+        brain.presentTime = { [weak self] time in
+            self?.presentTimer(time: time)
+        }
+        
+        brain.refreshScore = { [weak self] score in
+            self?.presentScore(score: score)
+            
         }
     }
     

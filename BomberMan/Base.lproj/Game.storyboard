@@ -29,6 +29,12 @@
                                     <segue destination="bPZ-UK-hog" kind="embed" identifier="SingleplayerDetailsSegue" id="5hB-aY-F9A"/>
                                 </connections>
                             </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IEC-if-Vgg">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                <connections>
+                                    <segue destination="arX-CY-i3U" kind="embed" identifier="MultiplayerDetailsSegue" id="P8q-Bm-BIY"/>
+                                </connections>
+                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9n-yH-NtM">
                                 <rect key="frame" x="0.0" y="426" width="320" height="142"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -41,12 +47,6 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="qzH-iy-0LW" kind="embed" identifier="GameMapControllerSegue" id="eRt-Sz-ew8"/>
-                                </connections>
-                            </containerView>
-                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IEC-if-Vgg">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
-                                <connections>
-                                    <segue destination="arX-CY-i3U" kind="embed" identifier="MultiplayerDetailsSegue" id="P8q-Bm-BIY"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -72,6 +72,7 @@
                     </view>
                     <connections>
                         <outlet property="gameContainer" destination="1o5-IG-azI" id="OOb-3z-CbT"/>
+                        <outlet property="multiplayerContainerView" destination="IEC-if-Vgg" id="z3h-oa-tiI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -164,7 +165,7 @@
                     <view key="view" contentMode="scaleToFill" id="bhf-Pp-NEz" customClass="MultiDetailsView" customModule="BomberMan" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="detailsView" destination="bhf-Pp-NEz" id="kaP-Oc-U9f"/>
@@ -172,7 +173,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="997-A5-5fo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="141" y="686"/>
+            <point key="canvasLocation" x="141" y="643"/>
         </scene>
     </scenes>
 </document>

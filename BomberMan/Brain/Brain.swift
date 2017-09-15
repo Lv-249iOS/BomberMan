@@ -163,8 +163,10 @@ class Brain {
         mobs.removeAll()
         upgrades.removeAll()
         bombs.removeAll()
-        players[0].isAlive = true
-        players[0].plantedMines = 0
+        if !players.isEmpty {
+            players[0].isAlive = true
+            players[0].plantedMines = 0
+        }
     }
     
     // create new scene

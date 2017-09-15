@@ -8,15 +8,6 @@
 
 import UIKit
 
-protocol GameTimer {
-    
-    func runTimer()
-    func stopTimer()
-    func resetTimer()
-    func changeTimerState()
-    func presentTimer()
-}
-
 class SingleplayerDetailsController: UIViewController {
     
     // Closures for proccessing pause, back to home and time over events

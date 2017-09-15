@@ -66,6 +66,7 @@
 		A95FC5271F502C7500E1F926 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95FC5251F502C7500E1F926 /* LaunchScreen.storyboard */; };
 		A98005201F6C1B970098636B /* GameLayoutController+RuntimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A980051F1F6C1B970098636B /* GameLayoutController+RuntimeView.swift */; };
 		A98005221F6C1DCC0098636B /* SingeDetailsController+GameTimerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98005211F6C1DCC0098636B /* SingeDetailsController+GameTimerProtocol.swift */; };
+		A98005241F6C1E3C0098636B /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98005231F6C1E3C0098636B /* Protocols.swift */; };
 		A99006E31F62C8180031248E /* Brain+Timers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99006E21F62C8180031248E /* Brain+Timers.swift */; };
 		A9E460401F5ADC040091266C /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E4603E1F5ADC040091266C /* GameOverView.swift */; };
 		A9E460411F5ADC040091266C /* GameOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9E4603F1F5ADC040091266C /* GameOverView.xib */; };
@@ -156,6 +157,7 @@
 		A95FC5281F502C7500E1F926 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A980051F1F6C1B970098636B /* GameLayoutController+RuntimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GameLayoutController+RuntimeView.swift"; sourceTree = "<group>"; };
 		A98005211F6C1DCC0098636B /* SingeDetailsController+GameTimerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SingeDetailsController+GameTimerProtocol.swift"; sourceTree = "<group>"; };
+		A98005231F6C1E3C0098636B /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		A99006E21F62C8180031248E /* Brain+Timers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brain+Timers.swift"; sourceTree = "<group>"; };
 		A9E4603E1F5ADC040091266C /* GameOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		A9E4603F1F5ADC040091266C /* GameOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameOverView.xib; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				A9381B901F6BD1BB007D5FE2 /* MultiplayerDetailsController.swift */,
 				A980051F1F6C1B970098636B /* GameLayoutController+RuntimeView.swift */,
 				A98005211F6C1DCC0098636B /* SingeDetailsController+GameTimerProtocol.swift */,
+				A98005231F6C1E3C0098636B /* Protocols.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -636,6 +639,7 @@
 				A94BDEB31F5AFD450085E073 /* SingleplayerDetailsController.swift in Sources */,
 				A94BDEAC1F5AFD150085E073 /* TopTenController.swift in Sources */,
 				A94BDED01F5B01CE0085E073 /* Date+SinceDate.swift in Sources */,
+				A98005241F6C1E3C0098636B /* Protocols.swift in Sources */,
 				A9E460531F5ADCE00091266C /* MultiDetailsView.swift in Sources */,
 				A94BDEA91F5AFD150085E073 /* RatingController.swift in Sources */,
 				A9E460581F5ADD0E0091266C /* ControlPanelView.swift in Sources */,

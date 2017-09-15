@@ -92,21 +92,19 @@ extension Brain {
                 }
             case "0":
                 var i = 0
-                if players.count > i {
-                    for player in players {
-                        if player.position == index {
-                            players[i].isAlive = false
-                            gameEnd?(false)
-                            score -= 1000
-                            if score < 0 {
-                                score = 0
-                            }
-                            refreshScore?(score)
-                            killedPlayers.append(player.identifier)
-                            tiles[index].removeLast()
+                for player in players {
+                    if players.count > i, player.position == index {
+                        players[i].isAlive = false
+                        gameEnd?(false)
+                        score -= 1000
+                        if score < 0 {
+                            score = 0
                         }
-                        i += 1
+                        refreshScore?(score)
+                        killedPlayers.append(player.identifier)
+                        tiles[index].removeLast()
                     }
+                    i += 1
                 }
             case "U":
                 tiles[index].removeLast()

@@ -347,6 +347,8 @@ class GameMapController: UIViewController {
                                     brain.tiles[brain.mobs[indexOfMobInBrain].position].removeLast()
                                     kill(mobs, pos: index, inPlace: true)
                                     brain.mobs.remove(at: indexOfMobInBrain)
+                                    brain.score += 200
+                                    brain.refreshScore?(brain.score)
                                 }
                                 
                             }

@@ -28,7 +28,7 @@ extension Brain {
         case .right: directionPosition = players[playerIndex].position + 1
         case .top: directionPosition = players[playerIndex].position - width
         }
-        if playerCanGo(to: directionPosition) {
+        if playerCanGo(to: directionPosition), directionPosition > 0, directionPosition < tiles.count {
             let last = tiles[directionPosition].last ?? " "
             switch last {
             case "F":
@@ -36,7 +36,9 @@ extension Brain {
                 move?(direction, players[playerIndex].identifier)
                 players[playerIndex].isAlive = false
                 killHero?(players[playerIndex].identifier, false)
-                gameEnd?(false)
+                if isSingleGame {
+                    gameEnd?(false)
+                }
                 score -= 1000
                 if score < 0 {
                     score = 0
@@ -61,10 +63,12 @@ extension Brain {
                 score += 500
                 refreshScore?(score)
                 move?(direction, players[playerIndex].identifier)
-                gameEnd?(true)
+                if isSingleGame {
+                    gameEnd?(true)
+                }
                 return
             case "M":
-                if !tiles[players[playerIndex].position].isEmpty {
+                if players[playerIndex].position < tiles.count, !tiles[players[playerIndex].position].isEmpty {
                     tiles[players[playerIndex].position].removeLast()
                 }
                 players[playerIndex].isAlive = false
@@ -80,7 +84,7 @@ extension Brain {
             default:
                 break
             }
-            if !tiles[players[playerIndex].position].isEmpty {
+            if players[playerIndex].position < tiles.count, !tiles[players[playerIndex].position].isEmpty {
                 tiles[players[playerIndex].position].removeLast()
             }
             players[playerIndex].position = directionPosition
@@ -90,6 +94,16 @@ extension Brain {
                 redrawScene?()
             }
         }
+    }
+    
+    func alivePlayersCount() -> Int {
+        var count = 0
+        for player in players {
+            if player.isAlive {
+                count += 1
+            }
+        }
+        return count
     }
     
     func playerCanGo(to directionPosition: Int) -> Bool {

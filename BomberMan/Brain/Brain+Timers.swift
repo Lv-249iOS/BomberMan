@@ -9,14 +9,14 @@
 import Foundation
 
 extension Brain {
-    
+  /*
     func startGameTimer() {
         gameTimer = Timer.scheduledTimer(withTimeInterval: 120, repeats: false) { [weak self] _ in
             self?.gameEnd?(false)
         }
-        
         timers.append(gameTimer)
     }
+   */
     
     func startMobsMovement() {
         mobsTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
@@ -35,15 +35,14 @@ extension Brain {
         let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { [weak self] _ in
             self?.explode(withOptionsOfPlayer: player, bomb: bomb)
             
-            //needs to be finished
             var i = 0
-            for pl in (self?.players)! {
-                if pl.identifier == player.identifier {
+            let players = self?.players ?? []
+            for guy in players {
+                if guy.identifier == player.identifier {
                     self?.players[i].plantedMines -= 1
                 }
                 i += 1
             }
-//            self?.player.plantedMines -= 1
         }
         
         bomb.timer = timer
@@ -54,6 +53,12 @@ extension Brain {
     func startFireTimer(explosion: Explosion, position: Int) {
         let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
             self?.fadeFire(explosion: explosion, position: position)
+            
+            let isSingleGame = self?.isSingleGame ?? true
+            let alivePlayersCount = self?.alivePlayersCount() ?? 0
+            if !isSingleGame, alivePlayersCount <= 1 {
+                self?.multiplayerEnd?()
+            }
         }
         
         timers.append(timer)

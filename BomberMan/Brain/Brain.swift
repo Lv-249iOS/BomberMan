@@ -11,6 +11,7 @@ import Foundation
 class Brain {
     static let shared = Brain()
     
+    var isSingleGame = true
     var tiles: [[Character]] = []
     var width = 0
     var cantGo = "WBXQ"
@@ -26,7 +27,7 @@ class Brain {
 //                        position: 0,
 //                        plantedMines: 0,
 //                        isAlive: true)
-    var gameTimer: Timer!
+//    var gameTimer: Timer!
     var mobsTimer: Timer!
     var score = 0
     var currentLvl = 0
@@ -46,6 +47,8 @@ class Brain {
     var gameEnd: ((Bool)->())?
     var presentTime: ((Double)->())?
     var refreshScore: ((Int)->())?
+    var boxExplode: ((Int)->())?
+    var multiplayerEnd: (()->())?
     
     // Used at the beginning of the game
     func initializeGame(with lvlNumber: Int, completelyNew: Bool) {
@@ -54,11 +57,11 @@ class Brain {
         addMobsAndUpgrates()
         redrawScene?()
         startMobsMovement()
-        startGameTimer()
+       // startGameTimer(with: currentTime)
     }
     
     func addPlayer(name: String) {
-        players.append(Player(name: name, identifier: 0, minesCount: 1, explosionPower: 1, position: 0, plantedMines: 0, isAlive: true))
+        players.append(Player(name: name, identifier: players.count, minesCount: 1, explosionPower: 1, position: 0, plantedMines: 0, isAlive: true))
     }
     
     func getPlayers(for map: inout String) {
@@ -163,8 +166,10 @@ class Brain {
         mobs.removeAll()
         upgrades.removeAll()
         bombs.removeAll()
-        players[0].isAlive = true
-        players[0].plantedMines = 0
+        if !players.isEmpty {
+            players[0].isAlive = true
+            players[0].plantedMines = 0
+        }
     }
     
     // create new scene

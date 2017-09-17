@@ -8,11 +8,11 @@
 
 import UIKit
 
-class DetailsController: UIViewController {
+class SingleplayerDetailsController: UIViewController {
     
     var onPauseTap: ((Bool)->())?
     var onHomeTap: (()->())?
-    var timeOver: (()->())?
+    var timeOver: ((Bool)->())?
     
     var isPause: Bool = false
     var timer: Timer!
@@ -77,7 +77,8 @@ class DetailsController: UIViewController {
     func presentTimer() {
         if Brain.shared.currentTime < 1 {
             timer.invalidate()
-            timeOver?()
+            timeOver?(true)
+            //Brain.shared.gameEnd?(true)
         } else {
             Brain.shared.currentTime -= 1
             present(time: TimeInterval.toString(Brain.shared.currentTime))

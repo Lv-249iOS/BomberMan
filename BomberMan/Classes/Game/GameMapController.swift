@@ -50,6 +50,9 @@ class GameMapController: UIViewController {
         brain.killMob = { [weak self] mob, inPlace in
             self?.killMob(mob: mob, inPlace: inPlace)
         }
+        brain.boxExplode = { [weak self] position in
+            self?.boxExplosion(pos: position)
+        }
     }
     
     func addSubImageView(_ rect: CGRect, image: UIImage) {
@@ -207,6 +210,28 @@ class GameMapController: UIViewController {
         kill(players, pos: player, inPlace: inPlace)
     }
     
+    func boxExplosion(pos: Int) {
+    
+        let x = pos % brain.width * 50
+        let y = pos / brain.width * 50
+        
+        let rect = CGRect(x: x-25, y: y-25, width: 100, height: 100)
+        
+        let explode = UIImageView(frame: rect)
+        mapScroll.addSubview(explode)
+        explode.tag = 66
+        
+        explode.animationImages = (1...6).map { UIImage(named: "boxExplosion\($0)") ?? #imageLiteral(resourceName: "noImage") }
+        explode.animationRepeatCount = 1
+        explode.animationDuration = 1
+        explode.startAnimating()
+        
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) {_ in
+            explode.removeFromSuperview()
+        }
+    
+    }
+    
     func moveMob(in direction: Direction, mob: Int) {
         
         switch direction {
@@ -322,6 +347,8 @@ class GameMapController: UIViewController {
                                     brain.tiles[brain.mobs[indexOfMobInBrain].position].removeLast()
                                     kill(mobs, pos: index, inPlace: true)
                                     brain.mobs.remove(at: indexOfMobInBrain)
+                                    brain.score += 200
+                                    brain.refreshScore?(brain.score)
                                 }
                                 
                             }

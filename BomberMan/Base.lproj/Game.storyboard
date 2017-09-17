@@ -26,7 +26,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="bPZ-UK-hog" kind="embed" identifier="DetailsControllerSegue" id="5hB-aY-F9A"/>
+                                    <segue destination="bPZ-UK-hog" kind="embed" identifier="SingleplayerDetailsSegue" id="5hB-aY-F9A"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IEC-if-Vgg">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                <connections>
+                                    <segue destination="arX-CY-i3U" kind="embed" identifier="MultiplayerDetailsSegue" id="P8q-Bm-BIY"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9n-yH-NtM">
@@ -47,26 +53,31 @@
                         <color key="backgroundColor" red="0.95927189089999998" green="0.95927189089999998" blue="0.95927189089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="i9n-yH-NtM" secondAttribute="trailing" id="42i-iq-ZuR"/>
+                            <constraint firstItem="IEC-if-Vgg" firstAttribute="height" secondItem="5R9-Xv-Hma" secondAttribute="height" id="7QT-DT-J21"/>
                             <constraint firstItem="1o5-IG-azI" firstAttribute="top" secondItem="5R9-Xv-Hma" secondAttribute="bottom" id="8IL-4N-FIq"/>
                             <constraint firstItem="5R9-Xv-Hma" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="D5X-MY-Kds"/>
                             <constraint firstItem="i9n-yH-NtM" firstAttribute="top" secondItem="1o5-IG-azI" secondAttribute="bottom" id="Ey2-9H-tAt"/>
                             <constraint firstItem="i9n-yH-NtM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="IrA-8a-Jq9"/>
+                            <constraint firstItem="IEC-if-Vgg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="PAR-KN-HqD"/>
                             <constraint firstAttribute="trailing" secondItem="1o5-IG-azI" secondAttribute="trailing" id="Q9h-Ap-SFb"/>
                             <constraint firstItem="1o5-IG-azI" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.6" id="dbS-EI-RUb"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="i9n-yH-NtM" secondAttribute="bottom" id="ddE-ev-8pF"/>
                             <constraint firstAttribute="trailing" secondItem="5R9-Xv-Hma" secondAttribute="trailing" id="e9O-Sp-xM8"/>
+                            <constraint firstItem="IEC-if-Vgg" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="izR-yX-30X"/>
                             <constraint firstItem="i9n-yH-NtM" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.25" id="l2X-Ge-zA9"/>
+                            <constraint firstItem="IEC-if-Vgg" firstAttribute="width" secondItem="5R9-Xv-Hma" secondAttribute="width" id="oJt-Jj-fkh"/>
                             <constraint firstItem="5R9-Xv-Hma" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="r0o-oz-v53"/>
                             <constraint firstItem="1o5-IG-azI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="y2w-mh-hc6"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="gameContainer" destination="1o5-IG-azI" id="OOb-3z-CbT"/>
+                        <outlet property="multiplayerContainerView" destination="IEC-if-Vgg" id="z3h-oa-tiI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="141.59999999999999" y="137.18140929535232"/>
+            <point key="canvasLocation" x="140.625" y="136.26760563380282"/>
         </scene>
         <!--Control Panel Controller-->
         <scene sceneID="vsz-WH-Dky">
@@ -87,7 +98,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ivF-kY-NvZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1004.3478260869566" y="439.4021739130435"/>
+            <point key="canvasLocation" x="966" y="453"/>
         </scene>
         <!--Game Map Controller-->
         <scene sceneID="zpo-gg-9dK">
@@ -120,12 +131,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8X5-tv-m33" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1005.7971014492755" y="136.95652173913044"/>
+            <point key="canvasLocation" x="966" y="137"/>
         </scene>
-        <!--Details Controller-->
+        <!--Singleplayer Details Controller-->
         <scene sceneID="0GN-Vh-8kT">
             <objects>
-                <viewController id="bPZ-UK-hog" customClass="DetailsController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bPZ-UK-hog" customClass="SingleplayerDetailsController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jia-Xi-Xth"/>
                         <viewControllerLayoutGuide type="bottom" id="dFT-vA-39w"/>
@@ -141,7 +152,28 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yP4-5v-bPV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1005.6" y="-131.78410794602701"/>
+            <point key="canvasLocation" x="966" y="-142"/>
+        </scene>
+        <!--Multiplayer Details Controller-->
+        <scene sceneID="RCE-8C-QmE">
+            <objects>
+                <viewController id="arX-CY-i3U" customClass="MultiplayerDetailsController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1qb-Eo-TQn"/>
+                        <viewControllerLayoutGuide type="bottom" id="1QZ-eT-4wW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bhf-Pp-NEz" customClass="MultiDetailsView" customModule="BomberMan" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="detailsView" destination="bhf-Pp-NEz" id="kaP-Oc-U9f"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="997-A5-5fo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="141" y="643"/>
         </scene>
     </scenes>
 </document>

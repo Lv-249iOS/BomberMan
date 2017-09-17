@@ -90,12 +90,15 @@ extension Brain {
                 if !tiles[index].isEmpty {
                     canBurn = false
                 }
+                boxExplode?(index)
             case "0":
                 var i = 0
                 for player in players {
-                    if player.position == index {
+                    if players.count > i, player.position == index {
                         players[i].isAlive = false
-                        gameEnd?(false)
+                        if isSingleGame {
+                            gameEnd?(false)
+                        }
                         score -= 1000
                         if score < 0 {
                             score = 0
@@ -106,6 +109,9 @@ extension Brain {
                     }
                     i += 1
                 }
+//                if alivePlayersCount() <= 1, !isSingleGame {
+//                    multiplayerEnd?()
+//                }
             case "U":
                 tiles[index].removeLast()
             case "D":
@@ -137,6 +143,7 @@ extension Brain {
     }
     
     func fadeFire(explosion: Explosion, position: Int) {
+        if tiles.count <= position || position < 0 { return }
         tiles[position].removeAll()
         for i in 0..<explosion.bottom  {
             let indexForFire = position + (i+1) * width

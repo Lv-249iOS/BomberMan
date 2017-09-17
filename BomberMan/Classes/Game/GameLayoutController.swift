@@ -34,7 +34,7 @@ class GameLayoutController: UIViewController {
     var gameOver: GameOverView?
     var gameWin: WinView?
     var moveToNextLevel: MoveToNextLevelView?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -139,6 +139,13 @@ class GameLayoutController: UIViewController {
     func move(direction: Direction) {
         brain.move(to: direction, playerName: UIDevice.current.name)
     }
+    func timeEnd(state :Bool) {
+        brain.score -= 1000
+        if brain.score < 0 {
+            brain.score = 0
+        }
+        gameEnd(didWin: !state)
+    }
     
     // Controls bomb setting
     func setBomb() {
@@ -200,7 +207,9 @@ class GameLayoutController: UIViewController {
         singleplayerDetailsController?.onPauseTap = { [weak self] state in
             self?.changePause(state: state)
         }
-        
+        singleplayerDetailsController?.timeOver = { [weak self]  state in
+            self?.timeEnd(state: state)
+        }
         singleplayerDetailsController?.onHomeTap = { [weak self] in
             self?.turnToHome()
         }

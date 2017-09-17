@@ -27,7 +27,7 @@ class Brain {
 //                        position: 0,
 //                        plantedMines: 0,
 //                        isAlive: true)
-    var gameTimer: Timer!
+//    var gameTimer: Timer!
     var mobsTimer: Timer!
     var score = 0
     var currentLvl = 0
@@ -57,7 +57,7 @@ class Brain {
         addMobsAndUpgrates()
         redrawScene?()
         startMobsMovement()
-        startGameTimer()
+       // startGameTimer(with: currentTime)
     }
     
     func addPlayer(name: String) {

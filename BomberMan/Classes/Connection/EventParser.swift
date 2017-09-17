@@ -10,7 +10,7 @@ import Foundation
 
 class EventParser {
     
-    func sendMoveEvent(name: String, direction: Direction) -> String {
+    func stringMoveEvent(name: String, direction: Direction) -> String {
         var str = name
         switch direction {
         case .bottom: str += " bottom"
@@ -21,7 +21,7 @@ class EventParser {
         return str
     }
     
-    func sendBombEvent(name: String) -> String {
+    func stringBombEvent(name: String) -> String {
         return name
     }
     

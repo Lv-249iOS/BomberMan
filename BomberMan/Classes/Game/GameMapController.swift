@@ -29,8 +29,9 @@ class GameMapController: UIViewController {
         if singleGame {
             brain.addPlayer(name: UIDevice.current.name)
             brain.initializeGame(with: 0, completelyNew: true)
-            updateContentSize()
-        }
+        } //else {addPlayers, initialize game differently}
+        
+        updateContentSize()
         
         brain.showFire = { [weak self] explosion, center in
             self?.explode(ranges: explosion, center: center)
@@ -297,7 +298,7 @@ class GameMapController: UIViewController {
         }
         
         clickСount += 1
-        
+        //if this player is me -> scroll
         let frame = CGRect(x: players[player].frame.origin.x-150, y: players[player].frame.origin.y-150, width: players[player].frame.width*6, height: players[player].frame.height*6)
         
         mapScroll.scrollRectToVisible(frame, animated: true)

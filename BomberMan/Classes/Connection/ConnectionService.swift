@@ -53,6 +53,7 @@ class ConnectionServiceManager: NSObject {
         serviceBrowser = MCBrowserViewController(serviceType: playerServiceType, session: session)
         session.delegate = self
         serviceAdvertiser?.delegate = self
+        delegate = self as? ConnectionServiceManagerDelegate
     }
     
     func startBrowser() {

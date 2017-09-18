@@ -19,6 +19,7 @@ class Brain {
     var mobs: [Mob] = []
     var upgrades: [Upgrade] = []
     var bombs: [Bomb] = []
+    var devices: [String] = []
     var players: [Player] = []
 //    var player = Player(name: "Player",
 //                        markForScene: "0",

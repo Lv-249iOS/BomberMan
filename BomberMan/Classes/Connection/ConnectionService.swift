@@ -66,8 +66,10 @@ class ConnectionServiceManager: NSObject {
         serviceBrowser?.dismiss(animated: true, completion: nil)
     }
     
-    func disconnect() {
+    func killConnection() {
         session.disconnect()
+        stopBrowser()
+        advertiseSelf(false)
     }
     
     func advertiseSelf(_ advertise: Bool) {

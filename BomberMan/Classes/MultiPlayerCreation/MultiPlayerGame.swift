@@ -15,8 +15,6 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
     
     @IBOutlet weak var phoneView: PhoneView?
     @IBOutlet weak var joinButton: UIButton!
-        
-    var players: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()

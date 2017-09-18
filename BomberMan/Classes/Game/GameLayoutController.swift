@@ -28,6 +28,7 @@ class GameLayoutController: UIViewController {
     var multiplayerDetailsController: MultiplayerDetailsController?
     var gameMapController: GameMapController!
     var controlPanelController: ControlPanelController!
+    var eventParser: EventParser? = EventParser()
     
     /// Addition view that will be shown in runtime
     var pause: PauseView?
@@ -149,10 +150,12 @@ class GameLayoutController: UIViewController {
 
     func move(direction: Direction) {
         brain.move(to: direction, playerName: UIDevice.current.name)
+        //if not single game send message
     }
     
     func setBomb() {
         brain.plantBomb(playerName: UIDevice.current.name)
+        //if not single game send message
     }
     
     // MARK: Prepare for segue block
@@ -267,5 +270,32 @@ class GameLayoutController: UIViewController {
             self.present(alert, animated: true, completion:  nil)
         }
     }
+}
+
+extension GameLayoutController: ConnectionServiceManagerDelegate {
+    func connectedDevicesChanged(manager: ConnectionServiceManager, connectedDevices: [String]) {
+        var i = 0
+        for player in brain.players {
+            if !connectedDevices.contains(player.name), player.isAlive {
+                brain.killHero?(player.identifier, false)
+                brain.tiles[player.position].removeLast()
+                brain.players[i].isAlive = false
+            }
+            i += 1
+        }
+    }
+    
+    func dataReceived(manager: ConnectionServiceManager, playerData: String) {
+        let eventData: (name: String?, direction: Direction?) = eventParser?.parseEvent(from: playerData) ?? (nil, nil)
+        if let direction = eventData.direction, let name = eventData.name {
+            brain.move(to: direction, playerName: name)
+            return
+        }
+        if let name = eventData.name {
+            brain.plantBomb(playerName: name)
+        }
+    }
+    
+    func connectionLost() { return }
 }
 

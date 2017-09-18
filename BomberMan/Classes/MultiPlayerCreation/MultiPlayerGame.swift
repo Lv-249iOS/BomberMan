@@ -15,7 +15,9 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
     
     @IBOutlet weak var phoneView: PhoneView?
     @IBOutlet weak var joinButton: UIButton!
-    
+        
+    var players: [String] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         manager.invitationDelegate = self
@@ -107,4 +109,17 @@ extension MultiPlayerGame: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }
+}
+
+extension MultiPlayerGame: ConnectionServiceManagerDelegate {
+    func connectedDevicesChanged(manager: ConnectionServiceManager, connectedDevices: [String]) {
+        players.removeAll()
+        for device in connectedDevices {
+            players.append(device)
+        }
+    }
+    
+    func dataReceived(manager: ConnectionServiceManager, playerData: String) { return }
+    
+    func connectionLost() { return }
 }

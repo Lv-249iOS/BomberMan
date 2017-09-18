@@ -21,7 +21,7 @@ class MultiplayerDetailsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        initPlayersName()
         setPlayersNames()
         detailsView.onHomeButtTap = { [weak self] in
             self?.homeTap()
@@ -34,5 +34,15 @@ class MultiplayerDetailsController: UIViewController {
     
     private func setPlayersNames() {
         detailsView.setNames(names: playersNames ?? [])
+    }
+    
+    private func initPlayersName() {
+        playersNames = [UIDevice.current.name]
+        let peers = ConnectionServiceManager.shared.session.connectedPeers
+        if peers.count > 0 {
+            for peer in peers {
+                playersNames?.append(peer.displayName)
+            }
+        }
     }
 }

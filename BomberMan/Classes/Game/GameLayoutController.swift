@@ -62,7 +62,7 @@ class GameLayoutController: UIViewController {
             createMoveToNextLevelView()
             gameContainer.addSubview(moveToNextLevel!)
             
-        } else if !didWin && brain.currentLvl == 8 {
+        } else if didWin && brain.currentLvl == 8 {
             createGameWinView()
             gameContainer.addSubview(gameWin!)
             askUserAboutName()

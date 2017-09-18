@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,27 +26,27 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="bPZ-UK-hog" kind="embed" identifier="SingleplayerDetailsSegue" id="5hB-aY-F9A"/>
+                                    <segue destination="bPZ-UK-hog" kind="embed" identifier="singleplayerDetailsSegue" id="5hB-aY-F9A"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IEC-if-Vgg">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                                 <connections>
-                                    <segue destination="arX-CY-i3U" kind="embed" identifier="MultiplayerDetailsSegue" id="P8q-Bm-BIY"/>
+                                    <segue destination="arX-CY-i3U" kind="embed" identifier="multiplayerDetailsSegue" id="P8q-Bm-BIY"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9n-yH-NtM">
                                 <rect key="frame" x="0.0" y="426" width="320" height="142"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="ERx-rV-w8n" kind="embed" identifier="ControlPanelControllerSegue" id="jKg-Nv-fbM"/>
+                                    <segue destination="ERx-rV-w8n" kind="embed" identifier="controlPanelSegue" id="jKg-Nv-fbM"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1o5-IG-azI">
                                 <rect key="frame" x="0.0" y="85" width="320" height="341"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="qzH-iy-0LW" kind="embed" identifier="GameMapControllerSegue" id="eRt-Sz-ew8"/>
+                                    <segue destination="qzH-iy-0LW" kind="embed" identifier="gameMapSegue" id="eRt-Sz-ew8"/>
                                 </connections>
                             </containerView>
                         </subviews>

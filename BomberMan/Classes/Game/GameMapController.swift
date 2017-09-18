@@ -223,7 +223,7 @@ class GameMapController: UIViewController {
         
         explode.animationImages = (1...6).map { UIImage(named: "boxExplosion\($0)") ?? #imageLiteral(resourceName: "noImage") }
         explode.animationRepeatCount = 1
-        explode.animationDuration = 1
+        explode.animationDuration = 0.7
         explode.startAnimating()
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) {_ in

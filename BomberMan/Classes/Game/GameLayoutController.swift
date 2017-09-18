@@ -172,6 +172,7 @@ class GameLayoutController: UIViewController {
             
         } else if segue.identifier == "gameMapSegue",
             let controller = segue.destination as? GameMapController {
+            controller.singleGame = isSingleGame
             gameMapController = controller
             
         } else if segue.identifier == "controlPanelSegue",

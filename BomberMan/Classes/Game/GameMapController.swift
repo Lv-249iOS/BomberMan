@@ -13,6 +13,7 @@ class GameMapController: UIViewController {
     @IBOutlet weak var mapScroll: UIScrollView!
     
     let brain = Brain.shared
+    var singleGame = true
     
     private var map: String!
     private var sceneWidth: Int!
@@ -25,8 +26,11 @@ class GameMapController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        brain.addPlayer(name: UIDevice.current.name)
-        brain.initializeGame(with: 0, completelyNew: true)
+        if singleGame {
+            brain.addPlayer(name: UIDevice.current.name)
+            brain.initializeGame(with: 0, completelyNew: true)
+        } //else {addPlayers, initialize game differently}
+        
         updateContentSize()
         
         brain.showFire = { [weak self] explosion, center in
@@ -226,7 +230,7 @@ class GameMapController: UIViewController {
         explode.animationDuration = 0.7
         explode.startAnimating()
         
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) {_ in
+        Timer.scheduledTimer(withTimeInterval: 0.7, repeats: false) {_ in
             explode.removeFromSuperview()
         }
     
@@ -294,7 +298,7 @@ class GameMapController: UIViewController {
         }
         
         clickСount += 1
-        
+        //if this player is me -> scroll
         let frame = CGRect(x: players[player].frame.origin.x-150, y: players[player].frame.origin.y-150, width: players[player].frame.width*6, height: players[player].frame.height*6)
         
         mapScroll.scrollRectToVisible(frame, animated: true)

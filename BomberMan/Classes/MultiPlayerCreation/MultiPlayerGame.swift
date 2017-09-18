@@ -35,7 +35,6 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
         self.present(browser, animated: true, completion: nil)
     }
     
-    
     var isWaiting = true
     @IBAction func joinToNewGame(_ sender: UIButton) {
         if isWaiting == false {
@@ -65,11 +64,21 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
     
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
         manager.stopBrowser()
-        //Check if someone connected and if it true create game, use manager.connectionActive()
+        //Check if someone connected and if it true create game, use manager.connectionActive
+        let multiplayerGame: UIStoryboard = UIStoryboard(name: "CreationGame", bundle: nil)
+        let nextViewController = multiplayerGame.instantiateViewController(withIdentifier: "gameLayoutIdentifier") as! GameLayoutController
+        nextViewController.isSingleGame = false
+        self.present(nextViewController, animated:true, completion:nil)
     }
     
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
+<<<<<<< HEAD
         manager.killConnection()
+=======
+        manager.stopBrowser()
+        
+        manager.disconnect()
+>>>>>>> origin/master
     }
     
     func invitationWasReceived(fromPeer: String) {
@@ -96,7 +105,7 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
 extension MultiPlayerGame: UIPopoverPresentationControllerDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "EventPopOverSegue",
+        if segue.identifier == "eventPopOverSegue",
             let controller = segue.destination as? EventPopOverController {
             
             controller.popoverPresentationController?.delegate = self

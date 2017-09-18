@@ -72,13 +72,7 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
     }
     
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
-<<<<<<< HEAD
         manager.killConnection()
-=======
-        manager.stopBrowser()
-        
-        manager.disconnect()
->>>>>>> origin/master
     }
     
     func invitationWasReceived(fromPeer: String) {

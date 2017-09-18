@@ -109,9 +109,9 @@ extension Brain {
                     }
                     i += 1
                 }
-//                if alivePlayersCount() <= 1, !isSingleGame {
-//                    multiplayerEnd?()
-//                }
+                if alivePlayersCount() <= 1, !isSingleGame {
+                    multiplayerEnd?()
+                }
             case "U":
                 tiles[index].removeLast()
             case "D":

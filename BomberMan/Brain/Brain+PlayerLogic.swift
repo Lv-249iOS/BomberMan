@@ -43,6 +43,9 @@ extension Brain {
                 if score < 0 {
                     score = 0
                 }
+                if alivePlayersCount() <= 1, !isSingleGame {
+                    multiplayerEnd?()
+                }
                 refreshScore?(score)
                 return
             case "U":

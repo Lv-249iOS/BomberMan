@@ -106,14 +106,16 @@ class GameLayoutController: UIViewController {
         presentScore(score: brain.score)
     }
     
-    // Precondition: Calls if you won game and want to seek rating table
+    // Precondition: Calls if you won game and want to see rating table
     // Postcondition: Raises Rating scene 
     // if clicks to close button you unwind to current position
     func moveToRating() {
         // MARK: go to rating scene
-        removeAdditionView(additionView: AdditionView.gameWin)
+        let ratingController: UIStoryboard = UIStoryboard(name: "Rating", bundle: nil)
+        let nextViewController = ratingController.instantiateViewController(withIdentifier: "ratingIdentifier") as! RatingController
+        self.present(nextViewController, animated:true, completion:nil)
     }
-    
+
     // Catchs pause state from details
     // Precondition: Calls if pause state was changed
     // Postcondition: controls pause states and stops/runs timers,

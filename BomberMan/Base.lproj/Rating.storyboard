@@ -13,7 +13,7 @@
         <!--Rating Controller-->
         <scene sceneID="muB-2j-aui">
             <objects>
-                <viewController id="2jd-XE-wBg" customClass="RatingController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ratingIdentifier" id="2jd-XE-wBg" customClass="RatingController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nv2-ol-UAC"/>
                         <viewControllerLayoutGuide type="bottom" id="oOU-ph-5NN"/>

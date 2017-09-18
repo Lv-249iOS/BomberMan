@@ -119,6 +119,9 @@ extension ConnectionServiceManager : MCSessionDelegate {
         NSLog("%@", "peer \(peerID) didChangeState: \(state)")
         self.delegate?.connectedDevicesChanged(manager: self, connectedDevices:
             session.connectedPeers.map{$0.displayName})
+        if session.connectedPeers.count == 0 {
+            self.delegate?.connectionLost()
+        }
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {

@@ -10,81 +10,40 @@ import UIKit
 
 class SingleplayerDetailsController: UIViewController {
     
+    // Closures for proccessing pause, back to home and time over events
     var onPauseTap: ((Bool)->())?
     var onHomeTap: (()->())?
-    var timeOver: ((Bool)->())?
+    var timeOver: (()->())?
     
+    var gameTimer: Timer!
     var isPause: Bool = false
-    var timer: Timer!
     var isTimerRunning = false
     
     @IBOutlet var detailsView: SingleDetailsView!
     
-    // Shows current time usage in label
     func present(time: String) {
         detailsView.timeLabel.text = time
     }
     
-    // Shows current score in label
     func present(score: Double) {
         detailsView.scoreLabel.text = "\(score)"
     }
     
-    // Sends event that pause taped
-    func pauseTap() {
+    // Precondition: calls when on pause tap
+    // Postcondition: stop timer and send event that on pause taped
+    private func pauseTap() {
         isPause = isPause == false ? true : false
         stopTimer()
         onPauseTap?(isPause)
     }
     
-    // Sends event that home taped
-    func homeTap() {
+    // Precondition: calls when on home tap
+    // Postcondition: stop timer and send event that on back to home taped
+    private func homeTap() {
         stopTimer()
         onHomeTap?()
     }
-    
-    // Starting running timer
-    func runTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 1,
-                                     target: self,
-                                     selector: (#selector(presentTimer)),
-                                     userInfo: nil,
-                                     repeats: true)
-        isTimerRunning = true
-    }
-    
-    // Methods for timer invalidation
-    func stopTimer() {
-        timer.invalidate()
-        isTimerRunning = false
-    }
-    
-    func resetTimer() {
-        stopTimer()
-        detailsView.scoreLabel.text = "0.0"
-        detailsView.timeLabel.text = "00:00"
 
-        Brain.shared.currentTime = Brain.shared.timeLimit
-        
-    }
-    
-    // Stop timer if it's running now and pause's switched on
-    func changeTimerState() {
-        isTimerRunning && isPause ? stopTimer() : runTimer()
-    }
-    
-    // Updates timer and shows in label
-    func presentTimer() {
-        if Brain.shared.currentTime < 1 {
-            timer.invalidate()
-            timeOver?(true)
-            //Brain.shared.gameEnd?(true)
-        } else {
-            Brain.shared.currentTime -= 1
-            present(time: TimeInterval.toString(Brain.shared.currentTime))
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

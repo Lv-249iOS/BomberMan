@@ -66,6 +66,7 @@ extension Brain {
     
     // Invalidates all timers in the game
     func invalidateTimers() {
+        currentTime = timeLimit
         for timer in timers {
             timer.invalidate()
         }

@@ -15,13 +15,11 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
     
     @IBOutlet weak var phoneView: PhoneView?
     @IBOutlet weak var joinButton: UIButton!
-        
-    var players: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         manager.invitationDelegate = self
-        
+        manager.delegate = self
     }
     
     @IBAction func close(_ sender: UIBarButtonItem) {
@@ -65,6 +63,8 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
         manager.stopBrowser()
         //Check if someone connected and if it true create game, use manager.connectionActive
+        ConnectionServiceManager.shared.sendData(playerData: "Connected")
+        
         let multiplayerGame: UIStoryboard = UIStoryboard(name: "CreationGame", bundle: nil)
         let nextViewController = multiplayerGame.instantiateViewController(withIdentifier: "gameLayoutIdentifier") as! GameLayoutController
         nextViewController.isSingleGame = false
@@ -81,6 +81,7 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
         let acceptAction: UIAlertAction = UIAlertAction(title: "To battle!", style: UIAlertActionStyle.default) { (alertAction) -> Void in
             self.manager.invitationHandler(true, self.manager.session)
             //Invitation was accepted you need to prepare user to game there ↓
+            
         }
         
         let declineAction = UIAlertAction(title: "No, I'm afraid", style: UIAlertActionStyle.cancel) { (alertAction) -> Void in
@@ -114,13 +115,18 @@ extension MultiPlayerGame: UIPopoverPresentationControllerDelegate {
 
 extension MultiPlayerGame: ConnectionServiceManagerDelegate {
     func connectedDevicesChanged(manager: ConnectionServiceManager, connectedDevices: [String]) {
-        players.removeAll()
-        for device in connectedDevices {
-            players.append(device)
+        if connectedDevices.count > 0 {
+            Brain.shared.devices.removeAll()
+            Brain.shared.devices = connectedDevices
+            Brain.shared.devices.append(UIDevice.current.name)
         }
     }
     
-    func dataReceived(manager: ConnectionServiceManager, playerData: String) { return }
+    func dataReceived(manager: ConnectionServiceManager, playerData: String) {
+        if playerData == "Connected" {
+            
+        }
+    }
     
     func connectionLost() { return }
 }

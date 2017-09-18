@@ -10,25 +10,29 @@ import Foundation
 
 extension Brain {
     
-    
-    func initializeMultiplayerGame(with lvlNumber: String,playerscount: Int, completelyNew: Bool) {
-        resetScore(ifNeeded: completelyNew)
-        setmultiplayerlevel(nameoflevel: lvlNumber, playersCount: playerscount)
+    func initializeMultiplayerGame() {
+        for name in devices {
+            addPlayer(name: name)
+        }
+        setmultiplayerlevel(playersCount: players.count)
         addMobsAndUpgrates()
         redrawScene?()
    
     }
 
-   
-
-    func setmultiplayerlevel(nameoflevel: String,playersCount: Int) {
-        if nameoflevel == "duel" { width = 11 }
-        else if nameoflevel == "battle" { width = 15 }
-        else { width = 21 }
-        var battlelevel = MultiplayerLevels().getlevel(name: nameoflevel)
+    func setmultiplayerlevel(playersCount: Int) {
+        var battlelevel = ""
+        if playersCount == 2 {
+            width = 11
+            battlelevel = MultiplayerLevels().getlevel(name: "duel")
+        } else if playersCount <= 4 {
+            width = 15
+            battlelevel = MultiplayerLevels().getlevel(name: "battle")
+        } else {
+            width = 21
+            battlelevel = MultiplayerLevels().getlevel(name: "mincingmachine")
+        }
         getPlayers(for: &battlelevel)
         toTiles(scene: battlelevel)
     }
-
-    
 }

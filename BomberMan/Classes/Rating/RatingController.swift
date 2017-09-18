@@ -42,7 +42,7 @@ class RatingController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "TopTenSegue",
+        if segue.identifier == "topTenSegue",
             let controller = segue.destination as? TopTenController {
             topTenController = controller
         }

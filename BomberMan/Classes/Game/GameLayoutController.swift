@@ -158,28 +158,28 @@ class GameLayoutController: UIViewController {
     // MARK: Prepare for segue block
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SingleplayerDetailsSegue",
+        if segue.identifier == "singleplayerDetailsSegue",
             let controller = segue.destination as? SingleplayerDetailsController {
             prepareDetailsController(controller)
             multiplayerContainerView.removeFromSuperview()
             
-        } else if segue.identifier == "MultiplayerDetailsSegue",
+        } else if segue.identifier == "multiplayerDetailsSegue",
             let controller = segue.destination as? MultiplayerDetailsController {
             prepareMultiplayerDetailsController(controller)
             
-        } else if segue.identifier == "GameMapControllerSegue",
+        } else if segue.identifier == "gameMapSegue",
             let controller = segue.destination as? GameMapController {
             gameMapController = controller
             
-        } else if segue.identifier == "ControlPanelControllerSegue",
+        } else if segue.identifier == "controlPanelSegue",
             let controller = segue.destination as? ControlPanelController {
             prepareControlPanelController(controller: controller)
         }
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if (identifier == "MultiplayerDetailsSegue" && isSingleGame == true) ||
-            (identifier == "SingleplayerDetailsSegue" && isSingleGame == false) {
+        if (identifier == "multiplayerDetailsSegue" && isSingleGame == true) ||
+            (identifier == "singleplayerDetailsSegue" && isSingleGame == false) {
             return false
         }
         

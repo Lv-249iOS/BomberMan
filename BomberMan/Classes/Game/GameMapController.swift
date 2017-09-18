@@ -13,6 +13,7 @@ class GameMapController: UIViewController {
     @IBOutlet weak var mapScroll: UIScrollView!
     
     let brain = Brain.shared
+    var singleGame = true
     
     private var map: String!
     private var sceneWidth: Int!
@@ -25,9 +26,11 @@ class GameMapController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        brain.addPlayer(name: UIDevice.current.name)
-        brain.initializeGame(with: 0, completelyNew: true)
-        updateContentSize()
+        if singleGame {
+            brain.addPlayer(name: UIDevice.current.name)
+            brain.initializeGame(with: 0, completelyNew: true)
+            updateContentSize()
+        }
         
         brain.showFire = { [weak self] explosion, center in
             self?.explode(ranges: explosion, center: center)
@@ -223,10 +226,10 @@ class GameMapController: UIViewController {
         
         explode.animationImages = (1...6).map { UIImage(named: "boxExplosion\($0)") ?? #imageLiteral(resourceName: "noImage") }
         explode.animationRepeatCount = 1
-        explode.animationDuration = 1
+        explode.animationDuration = 0.7
         explode.startAnimating()
         
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) {_ in
+        Timer.scheduledTimer(withTimeInterval: 0.7, repeats: false) {_ in
             explode.removeFromSuperview()
         }
     

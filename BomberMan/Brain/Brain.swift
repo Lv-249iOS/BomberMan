@@ -32,7 +32,7 @@ class Brain {
     var mobsTimer: Timer!
     var score = 0
     var currentLvl = 0
-    
+    var doorEnterCount = 0
     var timers: [Timer] = []
     var currentTime: TimeInterval = 120
     let timeLimit: TimeInterval = 120
@@ -58,6 +58,7 @@ class Brain {
         addMobsAndUpgrates()
         redrawScene?()
         startMobsMovement()
+        doorEnterCount = 0
        // startGameTimer(with: currentTime)
     }
     

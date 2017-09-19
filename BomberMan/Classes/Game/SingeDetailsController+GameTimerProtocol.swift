@@ -44,7 +44,7 @@ extension SingleplayerDetailsController: GameTimer {
     func presentTimer() {
         if Brain.shared.currentTime < 1 {
             gameTimer.invalidate()
-            timeOver?()
+            timeOver?(true)
         } else {
             Brain.shared.currentTime -= 1
             present(time: TimeInterval.toString(Brain.shared.currentTime))

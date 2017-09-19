@@ -13,7 +13,7 @@ class SingleplayerDetailsController: UIViewController {
     // Closures for proccessing pause, back to home and time over events
     var onPauseTap: ((Bool)->())?
     var onHomeTap: (()->())?
-    var timeOver: (()->())?
+    var timeOver: ((Bool)->())?
     
     var gameTimer: Timer!
     var isPause: Bool = false

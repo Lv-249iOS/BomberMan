@@ -107,7 +107,7 @@ class GameLayoutController: UIViewController {
     }
     
     // Precondition: Calls if you won game and want to see rating table
-    // Postcondition: Raises Rating scene 
+    // Postcondition: Raises Rating scene
     // if clicks to close button you unwind to current position
     func moveToRating() {
         // MARK: go to rating scene
@@ -115,7 +115,7 @@ class GameLayoutController: UIViewController {
         let nextViewController = ratingController.instantiateViewController(withIdentifier: "ratingIdentifier") as! RatingController
         self.present(nextViewController, animated:true, completion:nil)
     }
-
+    
     // Catchs pause state from details
     // Precondition: Calls if pause state was changed
     // Postcondition: controls pause states and stops/runs timers,
@@ -136,20 +136,20 @@ class GameLayoutController: UIViewController {
             removeAdditionView(additionView: AdditionView.pause)
         }
     }
-
+    
     func turnToHome() {
         brain.invalidateTimers()
         dismiss(animated: true, completion: nil)
     }
-
+    
     func presentScore(score:Int){
         singleplayerDetailsController?.present(score: Double(score))
     }
-
+    
     func presentTimer(time: TimeInterval) {
         singleplayerDetailsController?.present(time: "\(time)")
     }
-
+    
     func move(direction: Direction) {
         brain.move(to: direction, playerName: UIDevice.current.name)
         //if not single game send message
@@ -158,6 +158,15 @@ class GameLayoutController: UIViewController {
     func setBomb() {
         brain.plantBomb(playerName: UIDevice.current.name)
         //if not single game send message
+    }
+    
+    
+    func timeEnd(state :Bool) {
+        brain.score -= 1000
+        if brain.score < 0 {
+            brain.score = 0
+        }
+        gameEnd(didWin: !state)
     }
     
     // MARK: Prepare for segue block
@@ -215,6 +224,10 @@ class GameLayoutController: UIViewController {
         
         singleplayerDetailsController?.onHomeTap = { [weak self] in
             self?.turnToHome()
+            
+        }
+        singleplayerDetailsController?.timeOver = { [weak self]  state in
+            self?.timeEnd(state: state)
         }
     }
     
@@ -234,7 +247,7 @@ class GameLayoutController: UIViewController {
         bindBrainClosures()
         
     }
-
+    
     func bindBrainClosures() {
         brain.gameEnd = { [weak self] didWin in
             self?.gameEnd(didWin: didWin)

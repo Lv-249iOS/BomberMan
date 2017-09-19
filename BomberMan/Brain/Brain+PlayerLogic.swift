@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+
 extension Brain {
     
     func move(to direction: Direction, playerName: String) {
@@ -63,11 +65,14 @@ extension Brain {
                     shouldRedraw = true
                 }
             case "D":
+                if doorEnterCount == 0 {
                 score += 500
                 refreshScore?(score)
                 move?(direction, players[playerIndex].identifier)
                 if isSingleGame {
                     gameEnd?(true)
+                    }
+                doorEnterCount = 1
                 }
                 return
             case "M":

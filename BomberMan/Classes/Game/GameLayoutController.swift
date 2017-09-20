@@ -144,9 +144,32 @@ class GameLayoutController: UIViewController {
     }
     
     func turnToHome() {
-        brain.invalidateTimers()
-        ConnectionServiceManager.shared.killConnection()
-        dismiss(animated: true, completion: nil)
+        if isSingleGame {
+            brain.invalidateTimers()
+            dismiss(animated: true, completion: nil)
+        } else {
+            askUserIfNeedBackToHome()
+        }
+    }
+    
+    func askUserIfNeedBackToHome() {
+        let alert = UIAlertController(title: "Warning",
+                                      message: "Are you really want to leave game?",
+                                      preferredStyle: UIAlertControllerStyle.alert)
+        
+        let acceptAction: UIAlertAction = UIAlertAction(title: "OK",
+                                                        style: UIAlertActionStyle.default) { [weak self] (alertAction) -> Void in
+            self?.dismiss(animated: true, completion: nil)
+        }
+        
+        let declineAction = UIAlertAction(title: "Cancel",
+                                          style: UIAlertActionStyle.cancel) { (alertAction) -> Void in
+                ConnectionServiceManager.shared.killConnection()
+        }
+        
+        alert.addAction(acceptAction)
+        alert.addAction(declineAction)
+        
     }
     
     func presentScore(score:Int){

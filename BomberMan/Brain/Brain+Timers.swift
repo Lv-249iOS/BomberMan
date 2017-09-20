@@ -9,14 +9,14 @@
 import Foundation
 
 extension Brain {
-  /*
-    func startGameTimer() {
-        gameTimer = Timer.scheduledTimer(withTimeInterval: 120, repeats: false) { [weak self] _ in
-            self?.gameEnd?(false)
-        }
-        timers.append(gameTimer)
-    }
-   */
+    /*
+     func startGameTimer() {
+     gameTimer = Timer.scheduledTimer(withTimeInterval: 120, repeats: false) { [weak self] _ in
+     self?.gameEnd?(false)
+     }
+     timers.append(gameTimer)
+     }
+     */
     
     func startMobsMovement() {
         mobsTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
@@ -32,27 +32,31 @@ extension Brain {
     
     func startBombTimer(withOptionsOfPlayer player: Player) {
         var bomb = Bomb(owner: player, power: player.explosionPower, timer: nil, position: player.position)
-        let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { [weak self] _ in
-            self?.explode(withOptionsOfPlayer: player, bomb: bomb)
-            
-            var i = 0
-            let players = self?.players ?? []
-            for guy in players {
-                if guy.identifier == player.identifier {
-                    self?.players[i].plantedMines -= 1
+        DispatchQueue.main.async { [weak self] in
+            let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { [weak self] _ in
+                self?.explode(withOptionsOfPlayer: player, bomb: bomb)
+                
+                var i = 0
+                let players = self?.players ?? []
+                for guy in players {
+                    if guy.identifier == player.identifier {
+                        self?.players[i].plantedMines -= 1
+                    }
+                    i += 1
                 }
-                i += 1
             }
+            
+            bomb.timer = timer
+            self?.bombs.append(bomb)
+            self?.timers.append(timer)
         }
-        
-        bomb.timer = timer
-        bombs.append(bomb)
-        timers.append(timer)
     }
     
     func startFireTimer(explosion: Explosion, position: Int) {
         let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
-            self?.fadeFire(explosion: explosion, position: position)
+            DispatchQueue.main.async {
+                self?.fadeFire(explosion: explosion, position: position)
+            }
             
             let isSingleGame = self?.isSingleGame ?? true
             let alivePlayersCount = self?.alivePlayersCount() ?? 0

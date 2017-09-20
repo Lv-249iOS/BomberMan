@@ -26,9 +26,9 @@ class GameLayoutController: UIViewController {
     /// Controllers that are on the game layout
     var singleplayerDetailsController: SingleplayerDetailsController?
     var multiplayerDetailsController: MultiplayerDetailsController?
+    var eventParser: EventParser?
     var gameMapController: GameMapController!
     var controlPanelController: ControlPanelController!
-    var eventParser: EventParser? = EventParser()
     
     /// Addition view that will be shown in runtime
     var pause: PauseView?
@@ -137,6 +137,12 @@ class GameLayoutController: UIViewController {
         }
     }
     
+    func initEventParserIfNeeded() {
+        if !isSingleGame {
+            eventParser = EventParser()
+        }
+    }
+    
     func turnToHome() {
         brain.invalidateTimers()
         dismiss(animated: true, completion: nil)
@@ -153,11 +159,18 @@ class GameLayoutController: UIViewController {
     func move(direction: Direction) {
         brain.move(to: direction, playerName: UIDevice.current.name)
         //if not single game send message
+        if !isSingleGame, eventParser != nil,
+            let data = eventParser?.stringMoveEvent(name: UIDevice.current.name, direction: direction)  {
+            ConnectionServiceManager.shared.sendData(playerData: data)
+        }
     }
     
     func setBomb() {
         brain.plantBomb(playerName: UIDevice.current.name)
         //if not single game send message
+        if !isSingleGame, eventParser != nil {
+            ConnectionServiceManager.shared.sendData(playerData: UIDevice.current.name)
+        }
     }
     
     
@@ -245,7 +258,7 @@ class GameLayoutController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindBrainClosures()
-        
+        initEventParserIfNeeded()
     }
     
     func bindBrainClosures() {

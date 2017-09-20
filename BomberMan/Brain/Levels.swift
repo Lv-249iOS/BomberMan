@@ -63,15 +63,8 @@ class MultiplayerLevels {
         
         case mincingmachine = "WWWWWWWWWWWWWWWWWWWWWWWWWWWP  BBB  PWWWWWWWUBUBW  WBWBW  WBBUBWWUBUBB BUBBBUB WBUBBWWBBBUW  WUWUW  WBBBUWWWWWBW   BUB   WUWWWWWP    B WUWUW B    PWW  B B BUBBBUB B B  WW WUWUW W W W WUWUW WW  BUB  BUBUB  BUB  WWBWBWUW  B B  WUWUWBWW  BUB  BUBUB  BUB  WW WUWBW W W W WBWUW WW  B B BUBBBUB B B  WWP    B WUWUW B    PWWWWWBW0  BUB   WBWWWWWBUBBW  WUWUW  WBBUBWWBUBUB BUBBBUB BBUBBWWBBUBW  WBWBW  WBBBUWWWWWWWP  BBB  PWWWWWWWWWWWWWWWWWWWWWWWWWW"
     }
-    func getlevel(name: String) -> String {
-        
-        if let levelName = MultipLevels(rawValue: name) {
-            return levelName.rawValue
-        }
-        else{
-            return ""
-        }
-        
+    func getlevel(level: MultipLevels) -> String {
+        return level.rawValue
     }
 }
 /*

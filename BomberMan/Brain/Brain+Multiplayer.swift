@@ -24,13 +24,13 @@ extension Brain {
         var battlelevel = ""
         if playersCount == 2 {
             width = 11
-            battlelevel = MultiplayerLevels().getlevel(name: "duel")
+            battlelevel = MultiplayerLevels().getlevel(level: .duel)
         } else if playersCount <= 4 {
             width = 15
-            battlelevel = MultiplayerLevels().getlevel(name: "battle")
+            battlelevel = MultiplayerLevels().getlevel(level: .battle)
         } else {
             width = 21
-            battlelevel = MultiplayerLevels().getlevel(name: "mincingmachine")
+            battlelevel = MultiplayerLevels().getlevel(level: .mincingmachine)
         }
         getPlayers(for: &battlelevel)
         toTiles(scene: battlelevel)

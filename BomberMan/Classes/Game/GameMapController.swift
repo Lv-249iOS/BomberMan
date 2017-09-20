@@ -118,7 +118,7 @@ class GameMapController: UIViewController {
                     if firstTime {
                         let rect = CGRect(x: i, y: j, width: 50, height: 50)
                         let player = UIImageView(frame: rect)
-                        player.image = UIImage(named: "hero")
+                        player.image = UIImage(named: "bom1")
                         players.append(player)
                         if !players.isEmpty {
                             mapScroll.addSubview(players.last!)
@@ -265,7 +265,7 @@ class GameMapController: UIViewController {
         switch direction {
         case .bottom:
             
-            let downImageArray = (1...5).map { UIImage(named: "down\(player+1)\($0)") ?? #imageLiteral(resourceName: "noImage")  }
+            let downImageArray = (1...2).map { UIImage(named: "down\(player+1)\($0)") ?? #imageLiteral(resourceName: "noImage")  }
             if players[player].animationImages?.first != UIImage(named: "down\(player+1)1") && players[player].animationImages?.first != nil {
                 
                 animate(images: downImageArray, player: player)
@@ -274,7 +274,7 @@ class GameMapController: UIViewController {
             
         case .left:
             
-            let leftImageArray = (1...5).map { UIImage(named: "left\(player+1)\($0)") ?? #imageLiteral(resourceName: "noImage") }
+            let leftImageArray = (1...3).map { UIImage(named: "left\(player+1)\($0)") ?? #imageLiteral(resourceName: "noImage") }
             if players[player].animationImages?.first != UIImage(named: "left\(player+1)1") && players[player].animationImages?.first != nil {
                 animate(images: leftImageArray, player: player)
             }
@@ -282,7 +282,7 @@ class GameMapController: UIViewController {
             
         case .right:
             
-            let rightImageArray = (1...5).map { UIImage(named: "right\(player+1)\($0)") ?? #imageLiteral(resourceName: "noImage") }
+            let rightImageArray = (1...3).map { UIImage(named: "right\(player+1)\($0)") ?? #imageLiteral(resourceName: "noImage") }
             if players[player].animationImages?.first != UIImage(named: "right\(player+1)1") && players[player].animationImages?.first != nil {
                 
                 animate(images: rightImageArray, player: player)
@@ -291,7 +291,7 @@ class GameMapController: UIViewController {
             
         case .top:
             
-            let upImageArray = (1...5).map { UIImage(named: "up\(player+1)\($0)") ?? #imageLiteral(resourceName: "noImage") }
+            let upImageArray = (1...3).map { UIImage(named: "up\(player+1)\($0)") ?? #imageLiteral(resourceName: "noImage") }
             if players[player].animationImages?.first != UIImage(named: "up\(player+1)1") && players[player].animationImages?.first != nil {
                 
                 animate(images: upImageArray, player: player)

@@ -120,8 +120,8 @@ class GameMapController: UIViewController {
                     if firstTime {
                         let rect = CGRect(x: i, y: j, width: 50, height: 50)
                         let player = UIImageView(frame: rect)
-                        player.image = UIImage(named: "bom\(playersCount)")
-                        players.append(player)
+                        player.image = UIImage(named: "bom\(playersCount)") ?? 
+                        #imageLiteral(resourceName: "noImage")
                         if !players.isEmpty {
                             mapScroll.addSubview(players.last!)
                         }

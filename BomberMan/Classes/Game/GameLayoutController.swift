@@ -144,7 +144,7 @@ class GameLayoutController: UIViewController {
         }
     }
     
-    // Calls alert for approving home button event 
+    // Calls alert for approving home button event
     // and stop mobs and timers if it is single game
     func turnToHome() {
         if isSingleGame {
@@ -168,7 +168,7 @@ class GameLayoutController: UIViewController {
             } else {
                 ConnectionServiceManager.shared.killConnection()
             }
-
+            
             self?.dismiss(animated: true, completion: nil)
         }
         
@@ -338,14 +338,17 @@ class GameLayoutController: UIViewController {
 
 extension GameLayoutController: ConnectionServiceManagerDelegate {
     func connectedDevicesChanged(manager: ConnectionServiceManager, connectedDevices: [String]) {
-        var i = 0
-        for player in brain.players {
-            if !connectedDevices.contains(player.name), player.isAlive {
-                brain.killHero?(player.identifier, false)
-                brain.tiles[player.position].removeLast()
-                brain.players[i].isAlive = false
+        if connectedDevices.count == brain.players.count - 1 {
+            var i = 0
+            
+            for player in brain.players {
+                if !connectedDevices.contains(player.name), player.isAlive {
+                    brain.killHero?(player.identifier, false)
+                    brain.tiles[player.position].removeLast()
+                    brain.players[i].isAlive = false
+                }
+                i += 1
             }
-            i += 1
         }
     }
     

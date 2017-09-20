@@ -52,10 +52,14 @@ extension Brain {
         explosion.left = explode(inDirection: .left)
         explosion.right = explode(inDirection: .right)
         explosion.top = explode(inDirection: .top)
-        showFire?(explosion, player.position)
+        DispatchQueue.main.async { [weak self] in
+            self?.showFire?(explosion, player.position)
+        }
         
         for player in killedPlayers {
-            killHero?(player, false)
+            DispatchQueue.main.async { [weak self] in
+                self?.killHero?(player, false)
+            }
         }
         startFireTimer(explosion: explosion, position: bomb.position)
     }

@@ -35,9 +35,13 @@ extension Brain {
             switch last {
             case "F":
                 tiles[players[playerIndex].position].removeLast()
-                move?(direction, players[playerIndex].identifier)
                 players[playerIndex].isAlive = false
-                killHero?(players[playerIndex].identifier, false)
+                
+                DispatchQueue.main.async { [weak self] in
+                    self?.move?(direction, self!.players[playerIndex].identifier)
+                    self?.killHero?(self!.players[playerIndex].identifier, false)
+                }
+                
                 if isSingleGame {
                     gameEnd?(false)
                 }
@@ -66,13 +70,13 @@ extension Brain {
                 }
             case "D":
                 if doorEnterCount == 0 {
-                score += 500
-                refreshScore?(score)
-                move?(direction, players[playerIndex].identifier)
-                if isSingleGame {
-                    gameEnd?(true)
+                    score += 500
+                    refreshScore?(score)
+                    move?(direction, players[playerIndex].identifier)
+                    if isSingleGame {
+                        gameEnd?(true)
                     }
-                doorEnterCount = 1
+                    doorEnterCount = 1
                 }
                 return
             case "M":
@@ -95,12 +99,17 @@ extension Brain {
             if players[playerIndex].position < tiles.count, !tiles[players[playerIndex].position].isEmpty {
                 tiles[players[playerIndex].position].removeLast()
             }
+            
             players[playerIndex].position = directionPosition
             tiles[directionPosition].append("P")
-            move?(direction, players[playerIndex].identifier)
-            if shouldRedraw {
-                redrawScene?()
+            DispatchQueue.main.async { [weak self] in
+                self?.move!(direction, self!.players[playerIndex].identifier)
+                
+                if shouldRedraw {
+                    self?.redrawScene?()
+                }
             }
+            
         }
     }
     
@@ -149,7 +158,10 @@ extension Brain {
             players[playerIndex].plantedMines += 1
             startBombTimer(withOptionsOfPlayer: players[playerIndex])
             
-            plantBomb?(players[playerIndex].identifier)
+            DispatchQueue.main.async { [weak self] in
+                self?.plantBomb?(self!.players[playerIndex].identifier)
+            }
+            
         }
     }
 }

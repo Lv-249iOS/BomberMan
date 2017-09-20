@@ -168,7 +168,7 @@ class GameLayoutController: UIViewController {
                 ConnectionServiceManager.shared.killConnection()
             }
 
-            self?.navigationController?.popToRootViewController(animated: true)
+            self?.dismiss(animated: true, completion: nil)
         }
         
         let declineAction = UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in

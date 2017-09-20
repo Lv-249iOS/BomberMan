@@ -127,7 +127,9 @@ extension MultiPlayerGame: ConnectionServiceManagerDelegate {
             let multiplayerGame: UIStoryboard = UIStoryboard(name: "CreationGame", bundle: nil)
             let nextViewController = multiplayerGame.instantiateViewController(withIdentifier: "gameLayoutIdentifier") as! GameLayoutController
             nextViewController.isSingleGame = false
-            self.present(nextViewController, animated:true, completion:nil)
+            OperationQueue.main.addOperation {
+                 self.present(nextViewController, animated:true, completion:nil)
+            }
         }
     }
     

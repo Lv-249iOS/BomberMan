@@ -70,7 +70,7 @@ class Brain {
         var i = 0
         var mapIndex = 0
         for char in map.characters {
-            if char == "0" {
+            if char == "P" {
                 if i >= players.count {
                     let index = map.characters.index(map.startIndex, offsetBy: mapIndex)
                     map.characters.remove(at: index)

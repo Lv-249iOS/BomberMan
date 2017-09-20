@@ -23,7 +23,7 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
     }
     
     @IBAction func close(_ sender: UIBarButtonItem) {
-        navigationController?.popToRootViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func createNewGame(_ sender: UIButton) {

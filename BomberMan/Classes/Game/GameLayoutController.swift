@@ -139,6 +139,7 @@ class GameLayoutController: UIViewController {
 
     func turnToHome() {
         brain.invalidateTimers()
+        ConnectionServiceManager.shared.killConnection()
         dismiss(animated: true, completion: nil)
     }
 

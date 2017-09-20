@@ -137,9 +137,10 @@ class GameLayoutController: UIViewController {
         }
     }
     
-    func initEventParserIfNeeded() {
+    func prepareMultiplayergameIfNeeded() {
         if !isSingleGame {
             eventParser = EventParser()
+            ConnectionServiceManager.shared.delegate = self
         }
     }
     
@@ -291,7 +292,8 @@ class GameLayoutController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindBrainClosures()
-        initEventParserIfNeeded()
+        prepareMultiplayergameIfNeeded()
+        
     }
     
     func bindBrainClosures() {

@@ -63,12 +63,23 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
         manager.stopBrowser()
         //Check if someone connected and if it true create game, use manager.connectionActive
-        ConnectionServiceManager.shared.sendData(playerData: "Connected")
+        sendPlayers()
         
         let multiplayerGame: UIStoryboard = UIStoryboard(name: "CreationGame", bundle: nil)
         let nextViewController = multiplayerGame.instantiateViewController(withIdentifier: "gameLayoutIdentifier") as! GameLayoutController
         nextViewController.isSingleGame = false
         self.present(nextViewController, animated:true, completion:nil)
+    }
+    
+    func sendPlayers() {
+        let players = Brain.shared.devices
+        var data = "initial "
+        for name in players {
+            data += name + " "
+        }
+        data.characters.removeLast()
+        
+        ConnectionServiceManager.shared.sendData(playerData: data)
     }
     
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
@@ -123,7 +134,11 @@ extension MultiPlayerGame: ConnectionServiceManagerDelegate {
     }
     
     func dataReceived(manager: ConnectionServiceManager, playerData: String) {
-        if playerData == "Connected" {
+        var players = playerData.components(separatedBy: " ")
+        if players.first == "initial"//, players.last == Brain.shared.devices.last
+        {
+            players.removeFirst()
+            Brain.shared.devices = players
             let multiplayerGame: UIStoryboard = UIStoryboard(name: "CreationGame", bundle: nil)
             let nextViewController = multiplayerGame.instantiateViewController(withIdentifier: "gameLayoutIdentifier") as! GameLayoutController
             nextViewController.isSingleGame = false

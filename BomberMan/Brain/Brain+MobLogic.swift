@@ -46,7 +46,7 @@ extension Brain {
                 refreshScore?(score)
                 mobs.remove(at: i)
                 needToContinue = true
-            case "0":
+            case "P":
                 var j = 0
                 score -= 1000
                 if score < 0 {

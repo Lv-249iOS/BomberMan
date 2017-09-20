@@ -100,13 +100,14 @@
                             <constraint firstAttribute="trailing" secondItem="ou3-rV-RSk" secondAttribute="trailing" constant="20" symbolic="YES" id="x7z-Lh-7xO"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Xh9-au-iqJ"/>
                     <connections>
                         <outlet property="soundButton" destination="ou3-rV-RSk" id="hFY-Zg-dng"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R9c-dd-sZg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1120.8" y="148.87556221889056"/>
+            <point key="canvasLocation" x="-214.49275362318843" y="148.36956521739131"/>
         </scene>
         <!--Game-->
         <scene sceneID="14K-bf-UBl">
@@ -114,7 +115,7 @@
                 <viewControllerPlaceholder storyboardName="Game" id="ez9-aJ-wBp" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jQv-Yq-VZK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-443" y="-24"/>
+            <point key="canvasLocation" x="463.04347826086962" y="-24.456521739130437"/>
         </scene>
         <!--Rating-->
         <scene sceneID="0c2-qE-W1Q">
@@ -122,7 +123,7 @@
                 <viewControllerPlaceholder storyboardName="Rating" id="9aH-kW-XS3" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MpE-4T-CWX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-439" y="22"/>
+            <point key="canvasLocation" x="468.11594202898556" y="21.195652173913047"/>
         </scene>
         <!--CreationGame-->
         <scene sceneID="xOZ-rV-fwr">
@@ -130,7 +131,7 @@
                 <viewControllerPlaceholder storyboardName="CreationGame" id="zUi-LQ-dM0" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="59F-g8-TJR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-405" y="73"/>
+            <point key="canvasLocation" x="502.17391304347831" y="72.554347826086968"/>
         </scene>
     </scenes>
     <resources>

@@ -91,7 +91,7 @@ extension Brain {
                     canBurn = false
                 }
                 boxExplode?(index)
-            case "0":
+            case "P":
                 var i = 0
                 for player in players {
                     if players.count > i, player.position == index {

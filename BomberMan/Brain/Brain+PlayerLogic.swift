@@ -96,7 +96,7 @@ extension Brain {
                 tiles[players[playerIndex].position].removeLast()
             }
             players[playerIndex].position = directionPosition
-            tiles[directionPosition].append("0")
+            tiles[directionPosition].append("P")
             move?(direction, players[playerIndex].identifier)
             if shouldRedraw {
                 redrawScene?()

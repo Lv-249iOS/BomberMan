@@ -16,7 +16,7 @@ class RatingController: UIViewController {
     var scoresManager = ScoresManager.shared
     
     @IBAction func dismissButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cleanScores(_ sender: Any) {

@@ -11,6 +11,7 @@ import Foundation
 extension Brain {
     
     func initializeMultiplayerGame() {
+        players.removeAll()
         for name in devices {
             addPlayer(name: name)
         }

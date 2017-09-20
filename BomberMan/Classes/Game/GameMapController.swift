@@ -114,7 +114,7 @@ class GameMapController: UIViewController {
                     mapScroll.addSubview(wall)
                 case "B":
                     addSubBoxView(x: i, y: j)
-                case "0":
+                case "P":
                     if firstTime {
                         let rect = CGRect(x: i, y: j, width: 50, height: 50)
                         let player = UIImageView(frame: rect)

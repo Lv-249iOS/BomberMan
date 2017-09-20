@@ -143,13 +143,47 @@ class GameLayoutController: UIViewController {
         }
     }
     
+    // Calls alert for approving home button event 
+    // and stop mobs and timers if it is single game
     func turnToHome() {
-        brain.invalidateTimers()
-        ConnectionServiceManager.shared.killConnection()
-        dismiss(animated: true, completion: nil)
+        if isSingleGame {
+            brain.stopMobsMovement()
+            singleplayerDetailsController?.stopTimer()
+        }
+        askUserIfNeedBackToHome()
     }
     
-    func presentScore(score:Int){
+    // Creates alert for approving home button event
+    // Precondition: Calls if on home button taped
+    // Postcondition: if ok: invalidates timers in single game/ kills connection in multiplayer game
+    func askUserIfNeedBackToHome() {
+        let alert = UIAlertController(title: "Back to home",
+                                      message: "Do you want to leave game?",
+                                      preferredStyle: .alert)
+        
+        let acceptAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            if self?.isSingleGame ?? true {
+                self?.brain.invalidateTimers()
+            } else {
+                ConnectionServiceManager.shared.killConnection()
+            }
+
+            self?.dismiss(animated: true, completion: nil)
+        }
+        
+        let declineAction = UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
+            if self?.isSingleGame ?? true {
+                self?.changePause(state: false)
+            }
+        }
+        
+        alert.addAction(acceptAction)
+        alert.addAction(declineAction)
+        
+        self.present(alert, animated: true, completion:  nil)
+    }
+    
+    func presentScore(score:Int) {
         singleplayerDetailsController?.present(score: Double(score))
     }
     
@@ -159,7 +193,6 @@ class GameLayoutController: UIViewController {
     
     func move(direction: Direction) {
         brain.move(to: direction, playerName: UIDevice.current.name)
-        //if not single game send message
         if !isSingleGame, eventParser != nil,
             let data = eventParser?.stringMoveEvent(name: UIDevice.current.name, direction: direction)  {
             ConnectionServiceManager.shared.sendData(playerData: data)
@@ -168,7 +201,6 @@ class GameLayoutController: UIViewController {
     
     func setBomb() {
         brain.plantBomb(playerName: UIDevice.current.name)
-        //if not single game send message
         if !isSingleGame, eventParser != nil {
             ConnectionServiceManager.shared.sendData(playerData: UIDevice.current.name)
         }

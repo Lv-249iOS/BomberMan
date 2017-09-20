@@ -16,7 +16,7 @@ class RatingController: UIViewController {
     var scoresManager = ScoresManager.shared
     
     @IBAction func dismissButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func cleanScores(_ sender: Any) {

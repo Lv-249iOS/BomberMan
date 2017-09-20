@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Yqm-Zj-Hxm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="liT-Jn-2nJ">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -46,7 +46,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ou3-rV-RSk" userLabel="Settings">
-                                <rect key="frame" x="354" y="28" width="40" height="40"/>
+                                <rect key="frame" x="354" y="72" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="75S-mB-4wk"/>
                                     <constraint firstAttribute="height" constant="40" id="LC4-4y-75G"/>
@@ -57,14 +57,14 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boom" translatesAutoresizingMaskIntoConstraints="NO" id="zN1-nO-HYu">
-                                <rect key="frame" x="0.0" y="75.999999999999986" width="414" height="149.66666666666663"/>
+                                <rect key="frame" x="0.0" y="119.99999999999999" width="414" height="105.66666666666664"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bombermanK" translatesAutoresizingMaskIntoConstraints="NO" id="odE-KJ-0oN">
                                 <rect key="frame" x="20" y="233.66666666666663" width="374" height="368"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTn-Pv-y9L" userLabel="Rating">
-                                <rect key="frame" x="306" y="28" width="40" height="40"/>
+                                <rect key="frame" x="306" y="72" width="40" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="9Q1-6k-bL8"/>
@@ -100,13 +100,14 @@
                             <constraint firstAttribute="trailing" secondItem="ou3-rV-RSk" secondAttribute="trailing" constant="20" symbolic="YES" id="x7z-Lh-7xO"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Xh9-au-iqJ"/>
                     <connections>
                         <outlet property="soundButton" destination="ou3-rV-RSk" id="hFY-Zg-dng"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R9c-dd-sZg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1120.8" y="148.87556221889056"/>
+            <point key="canvasLocation" x="-214.49275362318843" y="148.36956521739131"/>
         </scene>
         <!--Game-->
         <scene sceneID="14K-bf-UBl">
@@ -114,7 +115,7 @@
                 <viewControllerPlaceholder storyboardName="Game" id="ez9-aJ-wBp" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jQv-Yq-VZK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-443" y="-24"/>
+            <point key="canvasLocation" x="463.04347826086962" y="-24.456521739130437"/>
         </scene>
         <!--Rating-->
         <scene sceneID="0c2-qE-W1Q">
@@ -122,7 +123,7 @@
                 <viewControllerPlaceholder storyboardName="Rating" id="9aH-kW-XS3" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MpE-4T-CWX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-439" y="22"/>
+            <point key="canvasLocation" x="468.11594202898556" y="21.195652173913047"/>
         </scene>
         <!--CreationGame-->
         <scene sceneID="xOZ-rV-fwr">
@@ -130,7 +131,25 @@
                 <viewControllerPlaceholder storyboardName="CreationGame" id="zUi-LQ-dM0" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="59F-g8-TJR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-405" y="73"/>
+            <point key="canvasLocation" x="502.17391304347831" y="72.554347826086968"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="a41-tX-edi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" navigationBarHidden="YES" id="liT-Jn-2nJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9zm-e0-Bb7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Yqm-Zj-Hxm" kind="relationship" relationship="rootViewController" id="AxN-96-OR9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E58-d8-szh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1121.7391304347827" y="148.36956521739131"/>
         </scene>
     </scenes>
     <resources>

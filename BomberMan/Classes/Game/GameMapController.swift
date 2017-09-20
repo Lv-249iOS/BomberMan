@@ -22,6 +22,7 @@ class GameMapController: UIViewController {
     private var clickСount = 0
     private var animationCount = 0
     private var firstTime = true
+    private var playersCount = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +79,7 @@ class GameMapController: UIViewController {
         sceneWidth = brain.width
         mapScroll.contentSize = CGSize(width: 50 * sceneWidth, height: 50 * (brain.tiles.count / sceneWidth))
         firstTime = true
+        playersCount = 1
         mobs.removeAll()
         players.removeAll()
         drawMap()
@@ -118,11 +120,12 @@ class GameMapController: UIViewController {
                     if firstTime {
                         let rect = CGRect(x: i, y: j, width: 50, height: 50)
                         let player = UIImageView(frame: rect)
-                        player.image = UIImage(named: "bom1")
+                        player.image = UIImage(named: "bom\(playersCount)")
                         players.append(player)
                         if !players.isEmpty {
                             mapScroll.addSubview(players.last!)
                         }
+                        playersCount += 1
                     }
                 case "F":
                     addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
@@ -301,9 +304,11 @@ class GameMapController: UIViewController {
         
         clickСount += 1
         //if this player is me -> scroll
+        if brain.players[player].name == UIDevice.current.name {
         let frame = CGRect(x: players[player].frame.origin.x-150, y: players[player].frame.origin.y-150, width: players[player].frame.width*6, height: players[player].frame.height*6)
         
         mapScroll.scrollRectToVisible(frame, animated: true)
+        }
     }
     
     func animateImagesForMove(images: [UIImage],x: CGFloat,y: CGFloat, player: Int){

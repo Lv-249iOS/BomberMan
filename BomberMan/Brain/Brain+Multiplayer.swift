@@ -16,7 +16,9 @@ extension Brain {
             addPlayer(name: name)
         }
         setmultiplayerlevel(playersCount: players.count)
-        setUpgradesIfNeeded?()
+        DispatchQueue.main.async { [weak self] in
+            self?.setUpgradesIfNeeded?()
+        }
         //addMobsAndUpgrates()
         redrawScene?()
    

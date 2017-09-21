@@ -220,16 +220,15 @@ class GameLayoutController: UIViewController {
     
     func move(direction: Direction) {
         brain.move(to: direction, playerName: UIDevice.current.name)
-        if !isSingleGame, eventParser != nil,
-            let data = eventParser?.stringMoveEvent(name: UIDevice.current.name, direction: direction)  {
+        if !isSingleGame, let data = eventParser?.stringMoveEvent(name: UIDevice.current.name, direction: direction)  {
             ConnectionServiceManager.shared.sendData(playerData: data)
         }
     }
     
     func setBomb() {
         brain.plantBomb(playerName: UIDevice.current.name)
-        if !isSingleGame, eventParser != nil {
-            ConnectionServiceManager.shared.sendData(playerData: UIDevice.current.name)
+        if !isSingleGame, let data = eventParser?.stringBombEvent(name: UIDevice.current.name) {
+            ConnectionServiceManager.shared.sendData(playerData: data)
         }
     }
     

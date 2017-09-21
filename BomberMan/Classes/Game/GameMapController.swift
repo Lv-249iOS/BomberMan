@@ -163,14 +163,16 @@ class GameMapController: UIViewController {
                     }
                 case "U":
                     let rect = CGRect(x: i, y: j, width: 50, height: 50)
-                    let upgrages = brain.upgrades
-                    switch upgrages[upgradeCounter].type {
+                    let upgrades = brain.upgrades
+                    if !upgrades.isEmpty, upgradeCounter < upgrades.count {
+                    switch upgrades[upgradeCounter].type {
                     case .anotherBomb:
                         addSubImageView(rect, image: #imageLiteral(resourceName: "bombupgrade"))
                     case .strongerBomb:
                         addSubImageView(rect, image: #imageLiteral(resourceName: "powerupgrade"))
                     }
                     upgradeCounter += 1
+                    }
                 case "D":
                     addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "door"))
                 default:

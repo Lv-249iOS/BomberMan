@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EAB50201F73A7B900A94F4B /* WinMultiplayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EAB501F1F73A7B900A94F4B /* WinMultiplayerView.xib */; };
+		0EAB50221F73A7C900A94F4B /* LoseMultiplayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EAB50211F73A7C900A94F4B /* LoseMultiplayerView.xib */; };
+		0EAB50241F73A7E100A94F4B /* WinMultiplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAB50231F73A7E100A94F4B /* WinMultiplayerView.swift */; };
+		0EAB50261F73A7F600A94F4B /* LoseMultiplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAB50251F73A7F600A94F4B /* LoseMultiplayerView.swift */; };
 		6127F57F1F6BF27300108E45 /* EventParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6127F57E1F6BF27300108E45 /* EventParser.swift */; };
 		6164606F1F6182F100402452 /* Brain+MobLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6164606E1F6182F100402452 /* Brain+MobLogic.swift */; };
 		616460711F61830E00402452 /* Brain+PlayerLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616460701F61830E00402452 /* Brain+PlayerLogic.swift */; };
@@ -105,6 +109,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0EAB501F1F73A7B900A94F4B /* WinMultiplayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WinMultiplayerView.xib; sourceTree = "<group>"; };
+		0EAB50211F73A7C900A94F4B /* LoseMultiplayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoseMultiplayerView.xib; sourceTree = "<group>"; };
+		0EAB50231F73A7E100A94F4B /* WinMultiplayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinMultiplayerView.swift; sourceTree = "<group>"; };
+		0EAB50251F73A7F600A94F4B /* LoseMultiplayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoseMultiplayerView.swift; sourceTree = "<group>"; };
 		6127F57E1F6BF27300108E45 /* EventParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventParser.swift; sourceTree = "<group>"; };
 		6164606E1F6182F100402452 /* Brain+MobLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brain+MobLogic.swift"; sourceTree = "<group>"; };
 		616460701F61830E00402452 /* Brain+PlayerLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brain+PlayerLogic.swift"; sourceTree = "<group>"; };
@@ -215,6 +223,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0EAB501E1F73A74300A94F4B /* multiplayer */ = {
+			isa = PBXGroup;
+			children = (
+				0EAB501F1F73A7B900A94F4B /* WinMultiplayerView.xib */,
+				0EAB50211F73A7C900A94F4B /* LoseMultiplayerView.xib */,
+				0EAB50231F73A7E100A94F4B /* WinMultiplayerView.swift */,
+				0EAB50251F73A7F600A94F4B /* LoseMultiplayerView.swift */,
+			);
+			path = multiplayer;
+			sourceTree = "<group>";
+		};
 		1546583C1F56C49400DB0184 /* MultiPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,6 +419,7 @@
 		A9E45FE21F596A230091266C /* Xib files */ = {
 			isa = PBXGroup;
 			children = (
+				0EAB501E1F73A74300A94F4B /* multiplayer */,
 				A92AA4391F5EDD0E0025EFB6 /* WinView */,
 				A92AA4301F5E89F90025EFB6 /* EventPopOverView */,
 				A93D442A1F5D38A0008B4A10 /* PhoneView */,
@@ -640,6 +660,7 @@
 				B273A6501F729CFA003CA8E7 /* left11.png in Resources */,
 				A9E4604F1F5ADC9E0091266C /* MoveToNextLevelView.xib in Resources */,
 				B273A64C1F729CFA003CA8E7 /* right11.png in Resources */,
+				0EAB50201F73A7B900A94F4B /* WinMultiplayerView.xib in Resources */,
 				B273A6671F729F1F003CA8E7 /* right23.png in Resources */,
 				E77C3CDD1F59889200DE1CE1 /* death4.png in Resources */,
 				A9E460541F5ADCE00091266C /* MultiDetailsView.xib in Resources */,
@@ -656,6 +677,7 @@
 				A95BCE7C1F5427CE0021B1E7 /* Rating.storyboard in Resources */,
 				B25B4DDF1F6FAB1200639F27 /* boxExplosion1.png in Resources */,
 				B25B4DE01F6FAB1200639F27 /* boxExplosion3.png in Resources */,
+				0EAB50221F73A7C900A94F4B /* LoseMultiplayerView.xib in Resources */,
 				B273A6691F729F1F003CA8E7 /* up22.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -691,8 +713,10 @@
 				A9E460401F5ADC040091266C /* GameOverView.swift in Sources */,
 				A94BDEB51F5AFD450085E073 /* GameLayoutController.swift in Sources */,
 				A92AA43D1F5EE1080025EFB6 /* WinView.swift in Sources */,
+				0EAB50241F73A7E100A94F4B /* WinMultiplayerView.swift in Sources */,
 				616460711F61830E00402452 /* Brain+PlayerLogic.swift in Sources */,
 				A94BDEB21F5AFD450085E073 /* ControlPanelController.swift in Sources */,
+				0EAB50261F73A7F600A94F4B /* LoseMultiplayerView.swift in Sources */,
 				A98005221F6C1DCC0098636B /* SingeDetailsController+GameTimerProtocol.swift in Sources */,
 				A99006E31F62C8180031248E /* Brain+Timers.swift in Sources */,
 				A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */,

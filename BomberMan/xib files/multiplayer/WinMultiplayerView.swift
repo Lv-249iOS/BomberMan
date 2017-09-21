@@ -1,34 +1,17 @@
 //
-//  WinView.swift
+//  WinMultiplayerView.swift
 //  BomberMan
 //
-//  Created by Kristina Del Rio Albrechet on 9/5/17.
+//  Created by Kristina Del Rio Albrechet on 9/21/17.
 //  Copyright © 2017 Lv-249 iOS. All rights reserved.
 //
 
 import UIKit
 
-class WinView: UIView {
-
+class WinMultiplayerView: UIView {
+    
     @IBOutlet var contentView: UIView!
-    
-    var onBackToHomeTap: (()->())?
-    var onReplayGameTap: (()->())?
-    var onShowRatingTap: (()->())?
-    
-    
-    @IBAction func replayGame(_ sender: UIButton) {
-        onReplayGameTap?()
-    }
-    
-    @IBAction func backToHome(_ sender: UIButton) {
-        onBackToHomeTap?()
-    }
-    
-    @IBAction func goToRatingScene(_ sender: UIButton) {
-        onShowRatingTap?()
-    }
-    
+
     // UIViews can be created two ways: interface builder or  directly in code
     // They have a initializer for each of these creation methods
     // and we need to override both of them with our own custom initializer.
@@ -44,7 +27,7 @@ class WinView: UIView {
     }
     
     private func commonInit() {
-        Bundle.main.loadNibNamed("WinView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("WinMultiplayerView", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,27 +23,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5R9-Xv-Hma">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="73.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="bPZ-UK-hog" kind="embed" identifier="singleplayerDetailsSegue" id="5hB-aY-F9A"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IEC-if-Vgg">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="73.5"/>
                                 <connections>
                                     <segue destination="arX-CY-i3U" kind="embed" identifier="multiplayerDetailsSegue" id="P8q-Bm-BIY"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9n-yH-NtM">
-                                <rect key="frame" x="0.0" y="426" width="320" height="142"/>
+                                <rect key="frame" x="0.0" y="414.5" width="320" height="153.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="ERx-rV-w8n" kind="embed" identifier="controlPanelSegue" id="jKg-Nv-fbM"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1o5-IG-azI">
-                                <rect key="frame" x="0.0" y="85" width="320" height="341"/>
+                                <rect key="frame" x="0.0" y="73.5" width="320" height="341"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="qzH-iy-0LW" kind="embed" identifier="gameMapSegue" id="eRt-Sz-ew8"/>
@@ -64,7 +64,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="i9n-yH-NtM" secondAttribute="bottom" id="ddE-ev-8pF"/>
                             <constraint firstAttribute="trailing" secondItem="5R9-Xv-Hma" secondAttribute="trailing" id="e9O-Sp-xM8"/>
                             <constraint firstItem="IEC-if-Vgg" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="izR-yX-30X"/>
-                            <constraint firstItem="i9n-yH-NtM" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.25" id="l2X-Ge-zA9"/>
+                            <constraint firstItem="i9n-yH-NtM" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.27" id="l2X-Ge-zA9"/>
                             <constraint firstItem="IEC-if-Vgg" firstAttribute="width" secondItem="5R9-Xv-Hma" secondAttribute="width" id="oJt-Jj-fkh"/>
                             <constraint firstItem="5R9-Xv-Hma" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="r0o-oz-v53"/>
                             <constraint firstItem="1o5-IG-azI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="y2w-mh-hc6"/>
@@ -88,7 +88,7 @@
                         <viewControllerLayoutGuide type="bottom" id="zWF-xy-lXt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LY2-74-vPK" customClass="ControlPanelView" customModule="BomberMan" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="142"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="153.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
@@ -113,14 +113,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Lh-E4-0fJ">
-                                <rect key="frame" x="20" y="8" width="280" height="325"/>
+                                <rect key="frame" x="20" y="0.0" width="280" height="341"/>
                                 <color key="backgroundColor" red="0.1951854593842508" green="0.17593720950982022" blue="0.31680227534562211" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="oPP-dy-rPt" firstAttribute="top" secondItem="9Lh-E4-0fJ" secondAttribute="bottom" constant="8" symbolic="YES" id="03p-0U-VAl"/>
-                            <constraint firstItem="9Lh-E4-0fJ" firstAttribute="top" secondItem="x3M-Xr-zWM" secondAttribute="bottom" constant="8" symbolic="YES" id="JZK-cs-3gV"/>
+                            <constraint firstItem="oPP-dy-rPt" firstAttribute="top" secondItem="9Lh-E4-0fJ" secondAttribute="bottom" id="03p-0U-VAl"/>
+                            <constraint firstItem="9Lh-E4-0fJ" firstAttribute="top" secondItem="x3M-Xr-zWM" secondAttribute="bottom" id="JZK-cs-3gV"/>
                             <constraint firstItem="9Lh-E4-0fJ" firstAttribute="leading" secondItem="Peo-uR-gXH" secondAttribute="leading" constant="20" symbolic="YES" id="Uy1-dl-oP3"/>
                             <constraint firstAttribute="trailing" secondItem="9Lh-E4-0fJ" secondAttribute="trailing" constant="20" symbolic="YES" id="xcB-ew-ihe"/>
                         </constraints>
@@ -142,7 +142,7 @@
                         <viewControllerLayoutGuide type="bottom" id="dFT-vA-39w"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DLi-4z-5KT" customClass="SingleDetailsView" customModule="BomberMan" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="73.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
@@ -163,7 +163,7 @@
                         <viewControllerLayoutGuide type="bottom" id="1QZ-eT-4wW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bhf-Pp-NEz" customClass="MultiDetailsView" customModule="BomberMan" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="73.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>

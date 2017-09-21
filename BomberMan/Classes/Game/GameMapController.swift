@@ -19,8 +19,8 @@ class GameMapController: UIViewController {
     private var sceneWidth: Int!
     private var players: [UIImageView] = []
     private var mobs: [UIImageView] = []
-    private var clickСount = 0
-    private var animationCount = 0
+    private var clickСount: [Int] = [0,0,0,0,0,0,0,0]
+    private var animationCount: [Int] = [0,0,0,0,0,0,0,0]
     private var firstTime = true
     private var playersCount = 1
     
@@ -193,9 +193,6 @@ class GameMapController: UIViewController {
         }else {
             rect = CGRect(x: views[pos].frame.origin.x-25, y: views[pos].frame.origin.y-25, width: 100, height: 100)
         }
-        //let layer = views[pos].layer.presentation()! as CALayer
-        //let frame = layer.frame
-        //let rect = CGRect(x: frame.origin.x-25, y: frame.origin.y-25, width: 100, height: 100) //CGRect(x: views[pos].frame.origin.x-25, y: views[pos].frame.origin.y-25, width: 100, height: 100)
         let death = UIImageView(frame: rect)
         mapScroll.addSubview(death)
         death.tag = 66
@@ -302,8 +299,8 @@ class GameMapController: UIViewController {
             }
             animateImagesForMove(images: upImageArray, x: 0, y: -50, player: player)
         }
-        
-        clickСount += 1
+        //HEARE
+        clickСount[player] += 1
         //if this player is me -> scroll
         if brain.players[player].name == UIDevice.current.name {
         let frame = CGRect(x: players[player].frame.origin.x-150, y: players[player].frame.origin.y-150, width: players[player].frame.width*6, height: players[player].frame.height*6)
@@ -323,11 +320,12 @@ class GameMapController: UIViewController {
             self?.players[player].transform = (self?.players[player].transform.translatedBy(x: x, y: y))!
         }) { [weak self] finished in
             if finished {
-                self?.animationCount += 1
-                if self?.clickСount == self?.animationCount {
+                self?.animationCount[player] += 1
+                ///HEARE
+                if self?.clickСount[player] == self?.animationCount[player] {
                     self?.players[player].stopAnimating()
-                    self?.animationCount = 0
-                    self?.clickСount = 0
+                    self?.animationCount[player] = 0
+                    self?.clickСount[player] = 0
                 }
             }
         }
@@ -384,8 +382,9 @@ class GameMapController: UIViewController {
     }
     
     func animate(images:[UIImage], player: Int) {
-        clickСount = 0
-        animationCount = 0
+        //HEARE
+        clickСount[player] = 0
+        animationCount[player] = 0
         players[player].layer.removeAllAnimations()
         players[player].stopAnimating()
         

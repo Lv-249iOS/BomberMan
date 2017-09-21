@@ -26,7 +26,8 @@ class MultiDetailsView: UIView {
         if playersNames.count >= names.count {
             var index: Int = 0
             for name in names {
-                playersNames[index].text = name
+                playersNames[index].isHidden = false
+                playersNames[index].text = " 🤷🏼‍♂️ " + name
                 index += 1
             }
         }

@@ -137,6 +137,8 @@ class GameLayoutController: UIViewController {
         }
     }
     
+    // Precondition: calls when multilayer game
+    // Postcondition: init event paeser and connection manager delegate for sharing data
     func prepareMultiplayergameIfNeeded() {
         if !isSingleGame {
             eventParser = EventParser()
@@ -206,7 +208,6 @@ class GameLayoutController: UIViewController {
             ConnectionServiceManager.shared.sendData(playerData: UIDevice.current.name)
         }
     }
-    
     
     func timeEnd(state :Bool) {
         brain.score -= 1000
@@ -337,6 +338,7 @@ class GameLayoutController: UIViewController {
 }
 
 extension GameLayoutController: ConnectionServiceManagerDelegate {
+    
     func connectedDevicesChanged(manager: ConnectionServiceManager, connectedDevices: [String]) {
         if connectedDevices.count == brain.players.count - 1 {
             var i = 0

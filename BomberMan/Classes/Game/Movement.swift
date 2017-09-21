@@ -91,23 +91,33 @@ extension GameMapController {
             }
             self?.players[player].transform = (self?.players[player].transform.translatedBy(x: x, y: y))!
         }) { [weak self] finished in
-            if finished {
-                self?.animationCount[player] += 1
+            //if !finished click count>animation Count
+            self?.animationCount[player] += 1
+
+            //if finished {
+                //self?.animationCount[player] += 1
                 ///HEARE
+//            if !finished {
+//                self?.animationCount[player] = 0
+//                self?.clickСount[player] = 0
+//            }
+            print("CLICK=\(self?.clickСount[player]).... ANIMATION\(self?.animationCount[player])")
+            if finished {
+                print("Finished")
                 if self?.clickСount[player] == self?.animationCount[player] {
-                    self?.players[player].stopAnimating()
+                    /*if finished {*/ self?.players[player].stopAnimating()
+                    print("Stop")//}
                     self?.animationCount[player] = 0
                     self?.clickСount[player] = 0
                 }
-            }
+            } else {print("not finished")}
+            //}
         }
     }
 
 
     func animate(images:[UIImage], player: Int) {
         //HEARE
-        clickСount[player] = 0
-        animationCount[player] = 0
         players[player].layer.removeAllAnimations()
         players[player].stopAnimating()
         

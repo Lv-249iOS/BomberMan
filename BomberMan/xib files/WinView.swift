@@ -16,6 +16,7 @@ class WinView: UIView {
     var onReplayGameTap: (()->())?
     var onShowRatingTap: (()->())?
     
+    @IBOutlet var buttons: [UIButton]!
     
     @IBAction func replayGame(_ sender: UIButton) {
         onReplayGameTap?()
@@ -27,6 +28,12 @@ class WinView: UIView {
     
     @IBAction func goToRatingScene(_ sender: UIButton) {
         onShowRatingTap?()
+    }
+    
+    func hideButtons() {
+        for but in buttons {
+            but.isHidden = true
+        }
     }
     
     // UIViews can be created two ways: interface builder or  directly in code

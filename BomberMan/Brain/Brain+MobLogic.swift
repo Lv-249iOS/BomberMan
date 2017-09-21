@@ -61,7 +61,8 @@ extension Brain {
                     }
                     j += 1
                 }
-            default: moveMob?(mob.direction, mob.identifier)
+            default:
+                moveMob?(mob.direction, mob.identifier)
             }
             if needToContinue {
                 continue

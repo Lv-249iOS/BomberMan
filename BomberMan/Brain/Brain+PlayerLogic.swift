@@ -50,6 +50,7 @@ extension Brain {
                     score = 0
                 }
                 if alivePlayersCount() <= 1, !isSingleGame {
+                    invalidateTimers()
                     multiplayerEnd?(getWinner())
                 }
                 refreshScore?(score)

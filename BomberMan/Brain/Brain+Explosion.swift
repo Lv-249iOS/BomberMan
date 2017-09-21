@@ -115,6 +115,7 @@ extension Brain {
                     i += 1
                 }
                 if alivePlayersCount() <= 1, !isSingleGame {
+                    invalidateTimers()
                     multiplayerEnd?(getWinner())
                 }
             case "U":

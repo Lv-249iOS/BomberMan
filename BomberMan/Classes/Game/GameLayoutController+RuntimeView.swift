@@ -9,40 +9,55 @@
 import UIKit
 
 extension GameLayoutController {
-
+    
     func createPauseView() {
+        controlPanelController.setButtonState(isEnabled: false)
         pause = PauseView(frame: gameMapController.mapScroll.frame)
         
         pause?.onPauseButtTap = { [weak self] in
             self?.changePause(state: false)
         }
     }
-
+    
     func createGameWinView() {
+        controlPanelController.setButtonState(isEnabled: false)
         gameWin = WinView(frame: gameMapController.mapScroll.frame)
         
-        gameWin?.onBackToHomeTap = { [weak self] in
-            self?.turnToHome()
-        }
-        
-        gameWin?.onReplayGameTap = { [weak self] in
-            self?.replayGame()
-        }
-        
-        gameWin?.onShowRatingTap = { [weak self] in
-            self?.moveToRating()
+        if !isSingleGame {
+            gameWin?.hideButtons()
+            
+        } else {
+            gameWin?.onBackToHomeTap = { [weak self] in
+                self?.turnToHome()
+            }
+            
+            gameWin?.onReplayGameTap = { [weak self] in
+                self?.replayGame()
+            }
+            
+            gameWin?.onShowRatingTap = { [weak self] in
+                self?.moveToRating()
+            }
         }
     }
     
     func createGameOverView() {
+        controlPanelController.setButtonState(isEnabled: false)
         gameOver = GameOverView(frame: gameMapController.mapScroll.frame)
         
-        gameOver?.onRepeatButtTap = { [weak self] in
-            self?.replayLevel(isGameOver: true)
+        if !isSingleGame {
+            gameOver?.hideRepeatButton()
+            gameOver?.setLabel(text: "You lose!")
+            
+        } else {
+            gameOver?.onRepeatButtTap = { [weak self] in
+                self?.replayLevel(isGameOver: true)
+            }
         }
     }
     
     func createMoveToNextLevelView() {
+        controlPanelController.setButtonState(isEnabled: false)
         moveToNextLevel = MoveToNextLevelView(frame: gameMapController.mapScroll.frame)
         
         moveToNextLevel?.onMoveOnButtTap = { [weak self] in
@@ -54,10 +69,11 @@ extension GameLayoutController {
         }
     }
     
-    /// Precondition: gets type of addition view 
+    /// Precondition: gets type of addition view
     /// Postcondition: remove it from superview
     /// sets this view to nil
     func removeAdditionView(additionView: AdditionView) {
+        controlPanelController.setButtonState(isEnabled: true)
         switch additionView {
         case .pause:
             pause?.removeFromSuperview()
@@ -75,5 +91,12 @@ extension GameLayoutController {
             moveToNextLevel?.removeFromSuperview()
             moveToNextLevel = nil
         }
+    }
+    
+    func removeAllAdditionView() {
+        pause?.removeFromSuperview()
+        gameOver?.removeFromSuperview()
+        gameWin?.removeFromSuperview()
+        moveToNextLevel?.removeFromSuperview()
     }
 }

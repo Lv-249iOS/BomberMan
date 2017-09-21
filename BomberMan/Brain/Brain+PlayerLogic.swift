@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+
 extension Brain {
     
     func move(to direction: Direction, playerName: String) {
@@ -33,9 +35,13 @@ extension Brain {
             switch last {
             case "F":
                 tiles[players[playerIndex].position].removeLast()
-                move?(direction, players[playerIndex].identifier)
                 players[playerIndex].isAlive = false
-                killHero?(players[playerIndex].identifier, false)
+                
+                DispatchQueue.main.async { [weak self] in
+                    self?.move?(direction, self!.players[playerIndex].identifier)
+                    self?.killHero?(self!.players[playerIndex].identifier, false)
+                }
+                
                 if isSingleGame {
                     gameEnd?(false)
                 }
@@ -44,7 +50,8 @@ extension Brain {
                     score = 0
                 }
                 if alivePlayersCount() <= 1, !isSingleGame {
-                    multiplayerEnd?()
+                    invalidateTimers()
+                    multiplayerEnd?(getWinner())
                 }
                 refreshScore?(score)
                 return
@@ -63,11 +70,14 @@ extension Brain {
                     shouldRedraw = true
                 }
             case "D":
-                score += 500
-                refreshScore?(score)
-                move?(direction, players[playerIndex].identifier)
-                if isSingleGame {
-                    gameEnd?(true)
+                if doorEnterCount == 0 {
+                    score += 500
+                    refreshScore?(score)
+                    move?(direction, players[playerIndex].identifier)
+                    if isSingleGame {
+                        gameEnd?(true)
+                    }
+                    doorEnterCount = 1
                 }
                 return
             case "M":
@@ -90,13 +100,26 @@ extension Brain {
             if players[playerIndex].position < tiles.count, !tiles[players[playerIndex].position].isEmpty {
                 tiles[players[playerIndex].position].removeLast()
             }
+            
             players[playerIndex].position = directionPosition
-            tiles[directionPosition].append("0")
-            move?(direction, players[playerIndex].identifier)
-            if shouldRedraw {
-                redrawScene?()
+            tiles[directionPosition].append("P")
+            DispatchQueue.main.async { [weak self] in
+                self?.move!(direction, self!.players[playerIndex].identifier)
+                
+                if shouldRedraw {
+                    self?.redrawScene?()
+                }
             }
         }
+    }
+    
+    func getWinner() -> String {
+        for player in players {
+            if player.isAlive {
+                return player.name
+            }
+        }
+        return ""
     }
     
     func alivePlayersCount() -> Int {
@@ -144,7 +167,10 @@ extension Brain {
             players[playerIndex].plantedMines += 1
             startBombTimer(withOptionsOfPlayer: players[playerIndex])
             
-            plantBomb?(players[playerIndex].identifier)
+            DispatchQueue.main.async { [weak self] in
+                self?.plantBomb?(self!.players[playerIndex].identifier)
+            }
+            
         }
     }
 }

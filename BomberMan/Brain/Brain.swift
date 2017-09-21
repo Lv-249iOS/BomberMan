@@ -12,6 +12,7 @@ class Brain {
     static let shared = Brain()
     
     var isSingleGame = true
+    var isHost = false
     var tiles: [[Character]] = []
     var width = 0
     var cantGo = "WBXQ"
@@ -21,18 +22,11 @@ class Brain {
     var bombs: [Bomb] = []
     var devices: [String] = []
     var players: [Player] = []
-//    var player = Player(name: "Player",
-//                        markForScene: "0",
-//                        minesCount: 1,
-//                        explosionPower: 1,
-//                        position: 0,
-//                        plantedMines: 0,
-//                        isAlive: true)
-//    var gameTimer: Timer!
+
     var mobsTimer: Timer!
     var score = 0
     var currentLvl = 0
-    
+    var doorEnterCount = 0
     var timers: [Timer] = []
     var currentTime: TimeInterval = 120
     let timeLimit: TimeInterval = 120
@@ -49,7 +43,8 @@ class Brain {
     var presentTime: ((Double)->())?
     var refreshScore: ((Int)->())?
     var boxExplode: ((Int)->())?
-    var multiplayerEnd: (()->())?
+    var multiplayerEnd: ((String)->())?
+    var setUpgradesIfNeeded: (()->())?
     
     // Used at the beginning of the game
     func initializeGame(with lvlNumber: Int, completelyNew: Bool) {
@@ -58,6 +53,7 @@ class Brain {
         addMobsAndUpgrates()
         redrawScene?()
         startMobsMovement()
+        doorEnterCount = 0
        // startGameTimer(with: currentTime)
     }
     
@@ -69,7 +65,7 @@ class Brain {
         var i = 0
         var mapIndex = 0
         for char in map.characters {
-            if char == "0" {
+            if char == "P" {
                 if i >= players.count {
                     let index = map.characters.index(map.startIndex, offsetBy: mapIndex)
                     map.characters.remove(at: index)
@@ -107,6 +103,31 @@ class Brain {
         guard let type = UpgradeType(rawValue: Int(randomType)) else { return }
         let upgrade = Upgrade(position: position, type: type)
         upgrades.append(upgrade)
+    }
+    
+    func getUpgrades(upgradeTypes: [String]) {
+        var i = 0, upgradeId = 0
+        for char in tiles {
+            if !char.isEmpty {
+                if char[0] == "U" {
+                    let upgradeType: UpgradeType
+                    if upgradeId < upgradeTypes.count {
+                        switch upgradeTypes[upgradeId] {
+                        case "bomb": upgradeType = .anotherBomb
+                        case "explosion": upgradeType = .strongerBomb
+                        default: upgradeType = .anotherBomb
+                        }
+                        generateUpgrade(on: i, type: upgradeType)
+                    }
+                    upgradeId += 1
+                }
+            }
+            i += 1
+        }
+    }
+    
+    func generateUpgrade(on position: Int, type: UpgradeType) {
+        upgrades.append(Upgrade(position: position, type: type))
     }
     
     // Adds mob in mobs_array

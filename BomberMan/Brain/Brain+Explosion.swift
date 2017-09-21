@@ -52,11 +52,16 @@ extension Brain {
         explosion.left = explode(inDirection: .left)
         explosion.right = explode(inDirection: .right)
         explosion.top = explode(inDirection: .top)
-        showFire?(explosion, player.position)
+        DispatchQueue.main.async { [weak self] in
+            self?.showFire?(explosion, player.position)
+        }
         
         for player in killedPlayers {
-            killHero?(player, false)
+            DispatchQueue.main.async { [weak self] in
+                self?.killHero?(player, false)
+            }
         }
+        
         startFireTimer(explosion: explosion, position: bomb.position)
     }
     
@@ -91,7 +96,7 @@ extension Brain {
                     canBurn = false
                 }
                 boxExplode?(index)
-            case "0":
+            case "P":
                 var i = 0
                 for player in players {
                     if players.count > i, player.position == index {
@@ -105,12 +110,15 @@ extension Brain {
                         }
                         refreshScore?(score)
                         killedPlayers.append(player.identifier)
+                        if !tiles[index].isEmpty{
                         tiles[index].removeLast()
+                        }
                     }
                     i += 1
                 }
                 if alivePlayersCount() <= 1, !isSingleGame {
-                    multiplayerEnd?()
+                    invalidateTimers()
+                    multiplayerEnd?(getWinner())
                 }
             case "U":
                 tiles[index].removeLast()
@@ -161,6 +169,7 @@ extension Brain {
             let indexForFire = position - (i+1)
             tiles[indexForFire].removeAll()
         }
+        
         redrawScene?()
     }
 }

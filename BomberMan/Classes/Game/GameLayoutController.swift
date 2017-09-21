@@ -26,9 +26,9 @@ class GameLayoutController: UIViewController {
     /// Controllers that are on the game layout
     var singleplayerDetailsController: SingleplayerDetailsController?
     var multiplayerDetailsController: MultiplayerDetailsController?
+    var eventParser: EventParser?
     var gameMapController: GameMapController!
     var controlPanelController: ControlPanelController!
-    var eventParser: EventParser? = EventParser()
     
     /// Addition view that will be shown in runtime
     var pause: PauseView?
@@ -107,7 +107,7 @@ class GameLayoutController: UIViewController {
     }
     
     // Precondition: Calls if you won game and want to see rating table
-    // Postcondition: Raises Rating scene 
+    // Postcondition: Raises Rating scene
     // if clicks to close button you unwind to current position
     func moveToRating() {
         // MARK: go to rating scene
@@ -115,7 +115,7 @@ class GameLayoutController: UIViewController {
         let nextViewController = ratingController.instantiateViewController(withIdentifier: "ratingIdentifier") as! RatingController
         self.present(nextViewController, animated:true, completion:nil)
     }
-
+    
     // Catchs pause state from details
     // Precondition: Calls if pause state was changed
     // Postcondition: controls pause states and stops/runs timers,
@@ -136,29 +136,108 @@ class GameLayoutController: UIViewController {
             removeAdditionView(additionView: AdditionView.pause)
         }
     }
-
-    func turnToHome() {
-        brain.invalidateTimers()
-        ConnectionServiceManager.shared.killConnection()
-        dismiss(animated: true, completion: nil)
+    
+    func multilayerEnd(player: String) {
+        if UIDevice.current.name == player {
+            createGameWinView()
+            gameContainer.addSubview(gameWin!)
+        } else {
+            createGameOverView()
+            gameContainer.addSubview(gameOver!)
+        }
     }
-
-    func presentScore(score:Int){
+    
+    // Precondition: calls when multilayer game
+    // Postcondition: init event paeser and connection manager delegate for sharing data
+    func prepareMultiplayergameIfNeeded() {
+        if !isSingleGame {
+            eventParser = EventParser()
+            ConnectionServiceManager.shared.delegate = self
+            
+            brain.setUpgradesIfNeeded = { [weak self] in
+                self?.setUpgradesIfNeeded()
+            }
+            brain.multiplayerEnd = { [weak self] player in
+                self?.multilayerEnd(player: player)
+            }
+        }
+    }
+    
+    func setUpgradesIfNeeded() {
+        brain.addMobsAndUpgrates()
+        if let data = eventParser?.stringUpgrades(upgrades: brain.upgrades) {
+            ConnectionServiceManager.shared.sendData(playerData: data)
+        }
+    }
+    
+    // Calls alert for approving home button event
+    // and stop mobs and timers if it is single game
+    func turnToHome() {
+        if isSingleGame {
+            brain.stopMobsMovement()
+            singleplayerDetailsController?.stopTimer()
+        }
+        askUserIfNeedBackToHome()
+    }
+    
+    // Creates alert for approving home button event
+    // Precondition: Calls if on home button taped
+    // Postcondition: if ok: invalidates timers in single game/ kills connection in multiplayer game
+    func askUserIfNeedBackToHome() {
+        let alert = UIAlertController(title: "Back to home",
+                                      message: "Do you want to leave game?",
+                                      preferredStyle: .alert)
+        
+        let acceptAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            if self?.isSingleGame ?? true {
+                self?.brain.invalidateTimers()
+            } else {
+                ConnectionServiceManager.shared.killConnection()
+            }
+            self?.removeAllAdditionView()
+            self?.dismiss(animated: true, completion: nil)
+        }
+        
+        let declineAction = UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
+            if self?.isSingleGame ?? true {
+                self?.changePause(state: false)
+            }
+        }
+        
+        alert.addAction(acceptAction)
+        alert.addAction(declineAction)
+        
+        self.present(alert, animated: true, completion:  nil)
+    }
+    
+    func presentScore(score:Int) {
         singleplayerDetailsController?.present(score: Double(score))
     }
-
+    
     func presentTimer(time: TimeInterval) {
         singleplayerDetailsController?.present(time: "\(time)")
     }
-
+    
     func move(direction: Direction) {
         brain.move(to: direction, playerName: UIDevice.current.name)
-        //if not single game send message
+        if !isSingleGame, let data = eventParser?.stringMoveEvent(name: UIDevice.current.name, direction: direction)  {
+            ConnectionServiceManager.shared.sendData(playerData: data)
+        }
     }
     
     func setBomb() {
         brain.plantBomb(playerName: UIDevice.current.name)
-        //if not single game send message
+        if !isSingleGame, let data = eventParser?.stringBombEvent(name: UIDevice.current.name) {
+            ConnectionServiceManager.shared.sendData(playerData: data)
+        }
+    }
+    
+    func timeEnd(state :Bool) {
+        brain.score -= 1000
+        if brain.score < 0 {
+            brain.score = 0
+        }
+        gameEnd(didWin: !state)
     }
     
     // MARK: Prepare for segue block
@@ -216,6 +295,10 @@ class GameLayoutController: UIViewController {
         
         singleplayerDetailsController?.onHomeTap = { [weak self] in
             self?.turnToHome()
+            
+        }
+        singleplayerDetailsController?.timeOver = { [weak self]  state in
+            self?.timeEnd(state: state)
         }
     }
     
@@ -233,9 +316,11 @@ class GameLayoutController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindBrainClosures()
+        brain.isSingleGame = isSingleGame
+        prepareMultiplayergameIfNeeded()
         
     }
-
+    
     func bindBrainClosures() {
         brain.gameEnd = { [weak self] didWin in
             self?.gameEnd(didWin: didWin)
@@ -277,20 +362,24 @@ class GameLayoutController: UIViewController {
 }
 
 extension GameLayoutController: ConnectionServiceManagerDelegate {
+    
     func connectedDevicesChanged(manager: ConnectionServiceManager, connectedDevices: [String]) {
-        var i = 0
-        for player in brain.players {
-            if !connectedDevices.contains(player.name), player.isAlive {
-                brain.killHero?(player.identifier, false)
-                brain.tiles[player.position].removeLast()
-                brain.players[i].isAlive = false
+        if connectedDevices.count == brain.players.count - 1 {
+            var i = 0
+            
+            for player in brain.players {
+                if !connectedDevices.contains(player.name), player.isAlive {
+                    brain.killHero?(player.identifier, false)
+                    brain.tiles[player.position].removeLast()
+                    brain.players[i].isAlive = false
+                }
+                i += 1
             }
-            i += 1
         }
     }
     
     func dataReceived(manager: ConnectionServiceManager, playerData: String) {
-        let eventData: (name: String?, direction: Direction?) = eventParser?.parseEvent(from: playerData) ?? (nil, nil)
+        let eventData: (name: String?, direction: Direction?, upgradeTypes: [String]?) = eventParser?.parseEvent(from: playerData) ?? (nil, nil, nil)
         if let direction = eventData.direction, let name = eventData.name {
             brain.move(to: direction, playerName: name)
             return
@@ -298,8 +387,13 @@ extension GameLayoutController: ConnectionServiceManagerDelegate {
         if let name = eventData.name {
             brain.plantBomb(playerName: name)
         }
+        if let upgradeTypes = eventData.upgradeTypes {
+            brain.getUpgrades(upgradeTypes: upgradeTypes)
+        }
     }
     
-    func connectionLost() { return }
+    func connectionLost() {
+        turnToHome()
+    }
 }
 

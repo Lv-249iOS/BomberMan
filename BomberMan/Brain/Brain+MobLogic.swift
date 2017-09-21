@@ -46,7 +46,7 @@ extension Brain {
                 refreshScore?(score)
                 mobs.remove(at: i)
                 needToContinue = true
-            case "0":
+            case "P":
                 var j = 0
                 score -= 1000
                 if score < 0 {
@@ -61,7 +61,8 @@ extension Brain {
                     }
                     j += 1
                 }
-            default: moveMob?(mob.direction, mob.identifier)
+            default:
+                moveMob?(mob.direction, mob.identifier)
             }
             if needToContinue {
                 continue

@@ -61,6 +61,7 @@ extension Brain {
                 self?.killHero?(player, false)
             }
         }
+        
         startFireTimer(explosion: explosion, position: bomb.position)
     }
     
@@ -165,6 +166,7 @@ extension Brain {
             let indexForFire = position - (i+1)
             tiles[indexForFire].removeAll()
         }
+        
         redrawScene?()
     }
 }

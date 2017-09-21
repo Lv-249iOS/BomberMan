@@ -215,6 +215,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0EAB50271F73AEC100A94F4B /* Single game */ = {
+			isa = PBXGroup;
+			children = (
+				A94BDEAE1F5AFD450085E073 /* SingleplayerDetailsController.swift */,
+				A98005211F6C1DCC0098636B /* SingeDetailsController+GameTimerProtocol.swift */,
+			);
+			name = "Single game";
+			sourceTree = "<group>";
+		};
 		1546583C1F56C49400DB0184 /* MultiPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,13 +331,12 @@
 		A95BCE801F54280E0021B1E7 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				A94BDEB01F5AFD450085E073 /* GameLayoutController.swift */,
-				A94BDEAE1F5AFD450085E073 /* SingleplayerDetailsController.swift */,
+				0EAB50271F73AEC100A94F4B /* Single game */,
 				A94BDEB11F5AFD450085E073 /* GameMapController.swift */,
+				A94BDEB01F5AFD450085E073 /* GameLayoutController.swift */,
 				A94BDEAD1F5AFD450085E073 /* ControlPanelController.swift */,
 				A9381B901F6BD1BB007D5FE2 /* MultiplayerDetailsController.swift */,
 				A980051F1F6C1B970098636B /* GameLayoutController+RuntimeView.swift */,
-				A98005211F6C1DCC0098636B /* SingeDetailsController+GameTimerProtocol.swift */,
 				A98005231F6C1E3C0098636B /* Protocols.swift */,
 			);
 			path = Game;

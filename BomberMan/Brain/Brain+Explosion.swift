@@ -110,7 +110,9 @@ extension Brain {
                         }
                         refreshScore?(score)
                         killedPlayers.append(player.identifier)
+                        if !tiles[index].isEmpty{
                         tiles[index].removeLast()
+                        }
                     }
                     i += 1
                 }

@@ -37,6 +37,7 @@ extension GameMapController {
     }
     
     func killMob(mob:Int, inPlace: Bool) {
+        brain.currentTime += 10
         kill(mobs, pos: mob, inPlace: inPlace)
     }
     
@@ -93,6 +94,7 @@ extension GameMapController {
                                     kill(mobs, pos: index, inPlace: true)
                                     brain.mobs.remove(at: indexOfMobInBrain)
                                     brain.score += 200
+                                    brain.currentTime += 10
                                     brain.refreshScore?(brain.score)
                                 }
                                 

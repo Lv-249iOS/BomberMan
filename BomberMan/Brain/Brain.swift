@@ -105,6 +105,31 @@ class Brain {
         upgrades.append(upgrade)
     }
     
+    func getUpgrades(upgradeTypes: [String]) {
+        var i = 0, upgradeId = 0
+        for char in tiles {
+            if !char.isEmpty {
+                if char[0] == "U" {
+                    let upgradeType: UpgradeType
+                    if upgradeId < upgradeTypes.count {
+                        switch upgradeTypes[upgradeId] {
+                        case "bomb": upgradeType = .anotherBomb
+                        case "explosion": upgradeType = .strongerBomb
+                        default: upgradeType = .anotherBomb
+                        }
+                        generateUpgrade(on: i, type: upgradeType)
+                    }
+                    upgradeId += 1
+                }
+            }
+            i += 1
+        }
+    }
+    
+    func generateUpgrade(on position: Int, type: UpgradeType) {
+        upgrades.append(Upgrade(position: position, type: type))
+    }
+    
     // Adds mob in mobs_array
     func generateNewMob(with identifier: Int, on position: Int) {
         let mob = Mob(identifier: identifier,

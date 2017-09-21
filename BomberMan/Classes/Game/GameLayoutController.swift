@@ -154,9 +154,19 @@ class GameLayoutController: UIViewController {
             eventParser = EventParser()
             ConnectionServiceManager.shared.delegate = self
             
+            brain.setUpgradesIfNeeded = { [weak self] in
+                self?.setUpgradesIfNeeded()
+            }
             brain.multiplayerEnd = { [weak self] player in
                 self?.multilayerEnd(player: player)
             }
+        }
+    }
+    
+    func setUpgradesIfNeeded() {
+        brain.addMobsAndUpgrates()
+        if let data = eventParser?.stringUpgrades(upgrades: brain.upgrades) {
+            ConnectionServiceManager.shared.sendData(playerData: data)
         }
     }
     
@@ -370,13 +380,16 @@ extension GameLayoutController: ConnectionServiceManagerDelegate {
     }
     
     func dataReceived(manager: ConnectionServiceManager, playerData: String) {
-        let eventData: (name: String?, direction: Direction?) = eventParser?.parseEvent(from: playerData) ?? (nil, nil)
+        let eventData: (name: String?, direction: Direction?, upgradeTypes: [String]?) = eventParser?.parseEvent(from: playerData) ?? (nil, nil, nil)
         if let direction = eventData.direction, let name = eventData.name {
             brain.move(to: direction, playerName: name)
             return
         }
         if let name = eventData.name {
             brain.plantBomb(playerName: name)
+        }
+        if let upgradeTypes = eventData.upgradeTypes {
+            brain.getUpgrades(upgradeTypes: upgradeTypes)
         }
     }
     

@@ -74,6 +74,8 @@
 		B252B0591F73CA21009339AE /* left33.png in Resources */ = {isa = PBXBuildFile; fileRef = B252B04E1F73CA21009339AE /* left33.png */; };
 		B252B05A1F73CA21009339AE /* down31.png in Resources */ = {isa = PBXBuildFile; fileRef = B252B04F1F73CA21009339AE /* down31.png */; };
 		B252B05B1F73CA21009339AE /* down32.png in Resources */ = {isa = PBXBuildFile; fileRef = B252B0501F73CA21009339AE /* down32.png */; };
+		B252B05D1F73D068009339AE /* Explosions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B252B05C1F73D068009339AE /* Explosions.swift */; };
+		B252B05F1F73D23E009339AE /* Movement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B252B05E1F73D23E009339AE /* Movement.swift */; };
 		B25B4DDD1F6FAB1200639F27 /* boxExplosion6.png in Resources */ = {isa = PBXBuildFile; fileRef = B25B4DD71F6FAB1200639F27 /* boxExplosion6.png */; };
 		B25B4DDE1F6FAB1200639F27 /* boxExplosion4.png in Resources */ = {isa = PBXBuildFile; fileRef = B25B4DD81F6FAB1200639F27 /* boxExplosion4.png */; };
 		B25B4DDF1F6FAB1200639F27 /* boxExplosion1.png in Resources */ = {isa = PBXBuildFile; fileRef = B25B4DD91F6FAB1200639F27 /* boxExplosion1.png */; };
@@ -185,6 +187,8 @@
 		B252B04E1F73CA21009339AE /* left33.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left33.png; sourceTree = "<group>"; };
 		B252B04F1F73CA21009339AE /* down31.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down31.png; sourceTree = "<group>"; };
 		B252B0501F73CA21009339AE /* down32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down32.png; sourceTree = "<group>"; };
+		B252B05C1F73D068009339AE /* Explosions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Explosions.swift; sourceTree = "<group>"; };
+		B252B05E1F73D23E009339AE /* Movement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movement.swift; sourceTree = "<group>"; };
 		B25B4DD71F6FAB1200639F27 /* boxExplosion6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boxExplosion6.png; sourceTree = "<group>"; };
 		B25B4DD81F6FAB1200639F27 /* boxExplosion4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boxExplosion4.png; sourceTree = "<group>"; };
 		B25B4DD91F6FAB1200639F27 /* boxExplosion1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boxExplosion1.png; sourceTree = "<group>"; };
@@ -355,6 +359,8 @@
 			children = (
 				0EAB50271F73AEC100A94F4B /* Single game */,
 				A94BDEB11F5AFD450085E073 /* GameMapController.swift */,
+				B252B05C1F73D068009339AE /* Explosions.swift */,
+				B252B05E1F73D23E009339AE /* Movement.swift */,
 				A94BDEB01F5AFD450085E073 /* GameLayoutController.swift */,
 				A980051F1F6C1B970098636B /* GameLayoutController+RuntimeView.swift */,
 				A94BDEAD1F5AFD450085E073 /* ControlPanelController.swift */,
@@ -746,10 +752,12 @@
 				616460711F61830E00402452 /* Brain+PlayerLogic.swift in Sources */,
 				A94BDEB21F5AFD450085E073 /* ControlPanelController.swift in Sources */,
 				A98005221F6C1DCC0098636B /* SingeDetailsController+GameTimerProtocol.swift in Sources */,
+				B252B05F1F73D23E009339AE /* Movement.swift in Sources */,
 				A99006E31F62C8180031248E /* Brain+Timers.swift in Sources */,
 				A95FC51A1F502C7500E1F926 /* AppDelegate.swift in Sources */,
 				6127F57F1F6BF27300108E45 /* EventParser.swift in Sources */,
 				616460731F61840400402452 /* Brain+Explosion.swift in Sources */,
+				B252B05D1F73D068009339AE /* Explosions.swift in Sources */,
 				A92AA4361F5E901D0025EFB6 /* EventPopOverController.swift in Sources */,
 				E7C5B82D1F6FDC4800EBB160 /* Brain+Multiplayer.swift in Sources */,
 				A9E460AF1F5AE32F0091266C /* BoxView.swift in Sources */,

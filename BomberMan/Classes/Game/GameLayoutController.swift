@@ -380,6 +380,8 @@ extension GameLayoutController: ConnectionServiceManagerDelegate {
         }
     }
     
-    func connectionLost() { return }
+    func connectionLost() {
+        turnToHome()
+    }
 }
 

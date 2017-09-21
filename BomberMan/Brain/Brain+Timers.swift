@@ -9,14 +9,6 @@
 import Foundation
 
 extension Brain {
-    /*
-     func startGameTimer() {
-     gameTimer = Timer.scheduledTimer(withTimeInterval: 120, repeats: false) { [weak self] _ in
-     self?.gameEnd?(false)
-     }
-     timers.append(gameTimer)
-     }
-     */
     
     func startMobsMovement() {
         mobsTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in

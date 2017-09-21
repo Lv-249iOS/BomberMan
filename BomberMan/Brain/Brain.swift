@@ -12,6 +12,7 @@ class Brain {
     static let shared = Brain()
     
     var isSingleGame = true
+    var isHost = false
     var tiles: [[Character]] = []
     var width = 0
     var cantGo = "WBXQ"
@@ -43,6 +44,7 @@ class Brain {
     var refreshScore: ((Int)->())?
     var boxExplode: ((Int)->())?
     var multiplayerEnd: ((String)->())?
+    var setUpgradesIfNeeded: (()->())?
     
     // Used at the beginning of the game
     func initializeGame(with lvlNumber: Int, completelyNew: Bool) {

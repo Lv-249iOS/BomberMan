@@ -16,7 +16,8 @@ extension Brain {
             addPlayer(name: name)
         }
         setmultiplayerlevel(playersCount: players.count)
-        addMobsAndUpgrates()
+        setUpgradesIfNeeded?()
+        //addMobsAndUpgrates()
         redrawScene?()
    
     }

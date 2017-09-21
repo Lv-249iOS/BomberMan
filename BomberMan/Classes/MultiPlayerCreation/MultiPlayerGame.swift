@@ -64,6 +64,7 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
         manager.stopBrowser()
         //Check if someone connected and if it true create game, use manager.connectionActive
         sendPlayers()
+        Brain.shared.isHost = true
         
         let multiplayerGame: UIStoryboard = UIStoryboard(name: "CreationGame", bundle: nil)
         let nextViewController = multiplayerGame.instantiateViewController(withIdentifier: "gameLayoutIdentifier") as! GameLayoutController
@@ -134,6 +135,7 @@ extension MultiPlayerGame: ConnectionServiceManagerDelegate {
     }
     
     func dataReceived(manager: ConnectionServiceManager, playerData: String) {
+        Brain.shared.isHost = false
         var players = playerData.components(separatedBy: " ")
         if players.first == "initial"//, players.last == Brain.shared.devices.last
         {

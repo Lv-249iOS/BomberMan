@@ -9,7 +9,7 @@
 import UIKit
 
 extension GameLayoutController {
-
+    
     func createPauseView() {
         pause = PauseView(frame: gameMapController.mapScroll.frame)
         
@@ -17,28 +17,39 @@ extension GameLayoutController {
             self?.changePause(state: false)
         }
     }
-
+    
     func createGameWinView() {
         gameWin = WinView(frame: gameMapController.mapScroll.frame)
         
-        gameWin?.onBackToHomeTap = { [weak self] in
-            self?.turnToHome()
-        }
-        
-        gameWin?.onReplayGameTap = { [weak self] in
-            self?.replayGame()
-        }
-        
-        gameWin?.onShowRatingTap = { [weak self] in
-            self?.moveToRating()
+        if !isSingleGame {
+            gameWin?.hideButtons()
+            
+        } else {
+            gameWin?.onBackToHomeTap = { [weak self] in
+                self?.turnToHome()
+            }
+            
+            gameWin?.onReplayGameTap = { [weak self] in
+                self?.replayGame()
+            }
+            
+            gameWin?.onShowRatingTap = { [weak self] in
+                self?.moveToRating()
+            }
         }
     }
     
     func createGameOverView() {
         gameOver = GameOverView(frame: gameMapController.mapScroll.frame)
         
-        gameOver?.onRepeatButtTap = { [weak self] in
-            self?.replayLevel(isGameOver: true)
+        if !isSingleGame {
+            gameOver?.hideRepeatButton()
+            gameOver?.setLabel(text: "You lose!")
+            
+        } else {
+            gameOver?.onRepeatButtTap = { [weak self] in
+                self?.replayLevel(isGameOver: true)
+            }
         }
     }
     
@@ -54,7 +65,7 @@ extension GameLayoutController {
         }
     }
     
-    /// Precondition: gets type of addition view 
+    /// Precondition: gets type of addition view
     /// Postcondition: remove it from superview
     /// sets this view to nil
     func removeAdditionView(additionView: AdditionView) {

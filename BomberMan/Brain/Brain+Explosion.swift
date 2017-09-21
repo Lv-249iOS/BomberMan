@@ -115,7 +115,7 @@ extension Brain {
                     i += 1
                 }
                 if alivePlayersCount() <= 1, !isSingleGame {
-                    multiplayerEnd?()
+                    multiplayerEnd?(getWinner())
                 }
             case "U":
                 tiles[index].removeLast()

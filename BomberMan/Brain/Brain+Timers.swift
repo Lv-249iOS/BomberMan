@@ -61,7 +61,7 @@ extension Brain {
             let isSingleGame = self?.isSingleGame ?? true
             let alivePlayersCount = self?.alivePlayersCount() ?? 0
             if !isSingleGame, alivePlayersCount <= 1 {
-                self?.multiplayerEnd?()
+                self?.multiplayerEnd?(self!.getWinner())
             }
         }
         

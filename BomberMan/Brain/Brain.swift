@@ -21,14 +21,7 @@ class Brain {
     var bombs: [Bomb] = []
     var devices: [String] = []
     var players: [Player] = []
-//    var player = Player(name: "Player",
-//                        markForScene: "0",
-//                        minesCount: 1,
-//                        explosionPower: 1,
-//                        position: 0,
-//                        plantedMines: 0,
-//                        isAlive: true)
-//    var gameTimer: Timer!
+
     var mobsTimer: Timer!
     var score = 0
     var currentLvl = 0
@@ -49,7 +42,7 @@ class Brain {
     var presentTime: ((Double)->())?
     var refreshScore: ((Int)->())?
     var boxExplode: ((Int)->())?
-    var multiplayerEnd: (()->())?
+    var multiplayerEnd: ((String)->())?
     
     // Used at the beginning of the game
     func initializeGame(with lvlNumber: Int, completelyNew: Bool) {

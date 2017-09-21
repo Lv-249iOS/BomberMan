@@ -50,7 +50,7 @@ extension Brain {
                     score = 0
                 }
                 if alivePlayersCount() <= 1, !isSingleGame {
-                    multiplayerEnd?()
+                    multiplayerEnd?(getWinner())
                 }
                 refreshScore?(score)
                 return
@@ -110,6 +110,15 @@ extension Brain {
                 }
             }
         }
+    }
+    
+    func getWinner() -> String {
+        for player in players {
+            if player.isAlive {
+                return player.name
+            }
+        }
+        return ""
     }
     
     func alivePlayersCount() -> Int {

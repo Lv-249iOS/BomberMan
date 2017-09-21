@@ -137,10 +137,14 @@ class GameLayoutController: UIViewController {
         }
     }
     
-    func multilayerEnd() {
-        createGameWinView()
-        gameContainer.addSubview(gameWin!)
-        
+    func multilayerEnd(player: String) {
+        if UIDevice.current.name == player {
+            createGameWinView()
+            gameContainer.addSubview(gameWin!)
+        } else {
+            createGameOverView()
+            gameContainer.addSubview(gameOver!)
+        }
     }
     
     // Precondition: calls when multilayer game
@@ -150,8 +154,8 @@ class GameLayoutController: UIViewController {
             eventParser = EventParser()
             ConnectionServiceManager.shared.delegate = self
             
-            brain.multiplayerEnd = { [weak self] in
-                self?.multilayerEnd()
+            brain.multiplayerEnd = { [weak self] player in
+                self?.multilayerEnd(player: player)
             }
         }
     }
@@ -303,6 +307,7 @@ class GameLayoutController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindBrainClosures()
+        brain.isSingleGame = isSingleGame
         prepareMultiplayergameIfNeeded()
         
     }

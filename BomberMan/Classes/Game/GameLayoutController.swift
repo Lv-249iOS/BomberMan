@@ -137,12 +137,22 @@ class GameLayoutController: UIViewController {
         }
     }
     
+    func multilayerEnd() {
+        createGameWinView()
+        gameContainer.addSubview(gameWin!)
+        
+    }
+    
     // Precondition: calls when multilayer game
     // Postcondition: init event paeser and connection manager delegate for sharing data
     func prepareMultiplayergameIfNeeded() {
         if !isSingleGame {
             eventParser = EventParser()
             ConnectionServiceManager.shared.delegate = self
+            
+            brain.multiplayerEnd = { [weak self] in
+                self?.multilayerEnd()
+            }
         }
     }
     
@@ -170,7 +180,7 @@ class GameLayoutController: UIViewController {
             } else {
                 ConnectionServiceManager.shared.killConnection()
             }
-            
+            self?.removeAllAdditionView()
             self?.dismiss(animated: true, completion: nil)
         }
         

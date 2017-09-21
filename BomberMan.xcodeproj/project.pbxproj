@@ -334,9 +334,9 @@
 				0EAB50271F73AEC100A94F4B /* Single game */,
 				A94BDEB11F5AFD450085E073 /* GameMapController.swift */,
 				A94BDEB01F5AFD450085E073 /* GameLayoutController.swift */,
+				A980051F1F6C1B970098636B /* GameLayoutController+RuntimeView.swift */,
 				A94BDEAD1F5AFD450085E073 /* ControlPanelController.swift */,
 				A9381B901F6BD1BB007D5FE2 /* MultiplayerDetailsController.swift */,
-				A980051F1F6C1B970098636B /* GameLayoutController+RuntimeView.swift */,
 				A98005231F6C1E3C0098636B /* Protocols.swift */,
 			);
 			path = Game;

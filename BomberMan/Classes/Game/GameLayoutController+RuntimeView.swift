@@ -11,6 +11,7 @@ import UIKit
 extension GameLayoutController {
     
     func createPauseView() {
+        controlPanelController.setButtonState(isEnabled: false)
         pause = PauseView(frame: gameMapController.mapScroll.frame)
         
         pause?.onPauseButtTap = { [weak self] in
@@ -19,6 +20,7 @@ extension GameLayoutController {
     }
     
     func createGameWinView() {
+        controlPanelController.setButtonState(isEnabled: false)
         gameWin = WinView(frame: gameMapController.mapScroll.frame)
         
         if !isSingleGame {
@@ -40,6 +42,7 @@ extension GameLayoutController {
     }
     
     func createGameOverView() {
+        controlPanelController.setButtonState(isEnabled: false)
         gameOver = GameOverView(frame: gameMapController.mapScroll.frame)
         
         if !isSingleGame {
@@ -54,6 +57,7 @@ extension GameLayoutController {
     }
     
     func createMoveToNextLevelView() {
+        controlPanelController.setButtonState(isEnabled: false)
         moveToNextLevel = MoveToNextLevelView(frame: gameMapController.mapScroll.frame)
         
         moveToNextLevel?.onMoveOnButtTap = { [weak self] in
@@ -69,6 +73,7 @@ extension GameLayoutController {
     /// Postcondition: remove it from superview
     /// sets this view to nil
     func removeAdditionView(additionView: AdditionView) {
+        controlPanelController.setButtonState(isEnabled: true)
         switch additionView {
         case .pause:
             pause?.removeFromSuperview()
@@ -86,5 +91,12 @@ extension GameLayoutController {
             moveToNextLevel?.removeFromSuperview()
             moveToNextLevel = nil
         }
+    }
+    
+    func removeAllAdditionView() {
+        pause?.removeFromSuperview()
+        gameOver?.removeFromSuperview()
+        gameWin?.removeFromSuperview()
+        moveToNextLevel?.removeFromSuperview()
     }
 }

@@ -109,7 +109,6 @@ extension Brain {
                     self?.redrawScene?()
                 }
             }
-            
         }
     }
     

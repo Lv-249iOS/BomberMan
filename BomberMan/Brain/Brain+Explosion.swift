@@ -109,7 +109,7 @@ extension Brain {
                     canBurn = false
                 }
                 explodedBoxes.append(index)
-//                boxExplode?(index)
+            ///
             case "P":
                 var i = 0
                 for player in players {
@@ -125,7 +125,7 @@ extension Brain {
                         refreshScore?(score)
                         killedPlayers.append(player.identifier)
                         if !tiles[index].isEmpty{
-                        tiles[index].removeLast()
+                            tiles[index].removeLast()
                         }
                     }
                     i += 1

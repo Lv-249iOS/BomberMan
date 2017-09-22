@@ -52,7 +52,9 @@ extension Brain {
                 }
                 if alivePlayersCount() <= 1, !isSingleGame {
                     invalidateTimers()
-                    multiplayerEnd?(getWinner())
+                    DispatchQueue.main.async { [weak self] in
+                        self?.multiplayerEnd?(self!.getWinner())
+                    }
                 }
                 refreshScore?(score)
                 return

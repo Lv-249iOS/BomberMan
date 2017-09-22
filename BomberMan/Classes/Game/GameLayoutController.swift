@@ -311,11 +311,7 @@ class GameLayoutController: UIViewController {
             self?.turnToHome()
         }
     }
-    
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-    
+        
     // MARK: View did load block
     
     override func viewDidLoad() {

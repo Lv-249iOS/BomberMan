@@ -164,9 +164,11 @@ class GameLayoutController: UIViewController {
     }
     
     func setUpgradesIfNeeded() {
-        brain.addMobsAndUpgrates()
-        if let data = eventParser?.stringUpgrades(upgrades: brain.upgrades) {
-            ConnectionServiceManager.shared.sendData(playerData: data)
+        if brain.isHost {
+            brain.addMobsAndUpgrates()
+            if let data = eventParser?.stringUpgrades(upgrades: brain.upgrades) {
+                ConnectionServiceManager.shared.sendData(playerData: data)
+            }
         }
     }
     

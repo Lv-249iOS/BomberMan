@@ -28,7 +28,7 @@ class GameMapController: UIViewController {
         super.viewDidLoad()
         
         if singleGame {
-            brain.addPlayer(name: UIDevice.current.name)
+            brain.setDevices(names: [UIDevice.current.name])
             brain.initializeGame(with: 0, completelyNew: true)
         } else {
             brain.initializeMultiplayerGame()

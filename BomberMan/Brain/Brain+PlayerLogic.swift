@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 extension Brain {
     
     func move(to direction: Direction, playerName: String) {
@@ -20,7 +18,7 @@ extension Brain {
             }
             playerIndex += 1
         }
-        if !players[playerIndex].isAlive, playerIndex == players.count { return }
+        if !players[playerIndex].isAlive || playerIndex == players.count { return }
         var directionPosition: Int
         var shouldRedraw = false
         

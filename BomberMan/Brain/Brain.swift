@@ -44,21 +44,34 @@ class Brain {
     var refreshScore: ((Int)->())?
     var boxExplode: ((Int)->())?
     var multiplayerEnd: ((String)->())?
+    var getPlayer: (()->(String))?
     var setUpgradesIfNeeded: (()->())?
     
     // Used at the beginning of the game
     func initializeGame(with lvlNumber: Int, completelyNew: Bool) {
+        players.removeAll()
+        initPlayers(names: devices)
         resetScore(ifNeeded: completelyNew)
         setLevel(with: lvlNumber)
         addMobsAndUpgrates()
         redrawScene?()
         startMobsMovement()
         doorEnterCount = 0
-       // startGameTimer(with: currentTime)
+    }
+    
+    func initPlayers(names: [String]) {
+        for name in names {
+            addPlayer(name: name)
+        }
     }
     
     func addPlayer(name: String) {
         players.append(Player(name: name, identifier: players.count, minesCount: 1, explosionPower: 1, position: 0, plantedMines: 0, isAlive: true))
+    }
+    
+    func setDevices(names: [String]) {
+        devices.removeAll()
+        devices = names
     }
     
     func getPlayers(for map: inout String) {
@@ -156,11 +169,6 @@ class Brain {
         }
     }
     
-//    func getPlayerPosition(from scene: String) {
-//        player.position = scene.distance(from: scene.startIndex,
-//                                              to: scene.characters.index(of: "0") ?? scene.startIndex)
-//    }
-    
     // if it's completely new game, reset score and create new player
     func resetScore(ifNeeded completelyNew: Bool) {
         if completelyNew {
@@ -169,13 +177,6 @@ class Brain {
                 players[0].explosionPower = 1
                 players[0].minesCount = 1
             }
-//            player = Player(name: "Player",
-//                            markForScene: "0",
-//                            minesCount: 1,
-//                            explosionPower: 1,
-//                            position: 0,
-//                            plantedMines: 0,
-//                            isAlive: true)
             refreshScore?(score)
         }
     }

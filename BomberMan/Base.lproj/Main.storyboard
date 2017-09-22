@@ -14,7 +14,7 @@
         <!--Menu Controller-->
         <scene sceneID="5g4-IT-E3K">
             <objects>
-                <viewController id="Yqm-Zj-Hxm" customClass="MenuController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainViewController" id="Yqm-Zj-Hxm" customClass="MenuController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vpG-Ya-wAj"/>
                         <viewControllerLayoutGuide type="bottom" id="IuD-hd-Urw"/>

@@ -16,12 +16,16 @@ class SettingsController: UIViewController {
     @IBOutlet weak var choosingPlayMode: UIScrollView!
     @IBOutlet weak var heroChoosingPickerView: UIPickerView!
     
+    @IBAction func backButton(_ sender: Any) {
+//        self.dismiss(animated: true, completion: nil)
+       backToMain()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        
+   
         // Do any additional setup after loading the view.
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
          fillchoosingPlayModeView()
@@ -36,8 +40,8 @@ class SettingsController: UIViewController {
                               height: choosingPlayMode.bounds.height)
             
             let imageView = UIImageView(frame: rect)
-            imageView.contentMode = .scaleAspectFill
-            imageView.clipsToBounds = true
+            imageView.contentMode = .scaleAspectFit
+//            imageView.clipsToBounds = true
             
             imageView.image = settingModel.gameModeArray[i]
             
@@ -50,11 +54,12 @@ class SettingsController: UIViewController {
         let pointOffset = CGPoint(x: width * CGFloat(currentPage ?? settingModel.currentPage), y: 0)
         choosingPlayMode.setContentOffset(pointOffset, animated: true)
     }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "topTenSegue",
-//            let controller = segue.destination as? TopTenController {
-//            topTenController = controller
-//        }
-//    }
     
+ private func backToMain() {
+        let mainController: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let nextViewController = mainController.instantiateViewController(withIdentifier: "mainViewController") as! MenuController
+        self.present(nextViewController, animated:true, completion:nil)
+//    self.navigationController?.pushViewController(nextViewController, animated: true)
+    }
+        
 }

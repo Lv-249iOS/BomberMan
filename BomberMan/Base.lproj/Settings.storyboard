@@ -32,116 +32,62 @@
                                     <constraint firstAttribute="width" constant="40" id="fy3-rJ-1o4"/>
                                 </constraints>
                                 <state key="normal" image="backButtonForSettings"/>
+                                <connections>
+                                    <action selector="backButton:" destination="5v1-fX-Sgy" eventType="touchUpInside" id="B3r-VY-AoB"/>
+                                </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i81-jV-Wdv">
-                                <rect key="frame" x="16" y="76" width="343" height="270"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <segue destination="eug-W5-nEf" kind="embed" id="BO1-oW-j8S"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wvL-13-61d">
-                                <rect key="frame" x="16" y="354" width="343" height="293"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <segue destination="JBz-nr-oFs" kind="embed" id="Oo0-8c-qbY"/>
-                                </connections>
-                            </containerView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="sgW-GD-l77">
+                                <rect key="frame" x="0.0" y="99" width="375" height="278"/>
+                            </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose control mode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSo-mn-Waw">
+                                <rect key="frame" x="0.0" y="412" width="375" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EBj-SJ-0Sr">
+                                <rect key="frame" x="0.0" y="451" width="375" height="216"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your hero" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6M1-KA-fuD">
+                                <rect key="frame" x="0.0" y="70" width="375" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="003-dN-nh1" firstAttribute="top" secondItem="JVI-Ny-Ivg" secondAttribute="bottom" constant="8" symbolic="YES" id="5xr-S2-MUc"/>
+                            <constraint firstItem="6M1-KA-fuD" firstAttribute="leading" secondItem="kYs-O3-qyG" secondAttribute="leading" id="9Ac-5m-Ybn"/>
+                            <constraint firstItem="EBj-SJ-0Sr" firstAttribute="leading" secondItem="kYs-O3-qyG" secondAttribute="leading" id="AVv-vo-Ydv"/>
+                            <constraint firstAttribute="bottom" secondItem="sgW-GD-l77" secondAttribute="bottom" constant="290" id="Fku-Hi-gg0"/>
+                            <constraint firstItem="ubD-cp-d2K" firstAttribute="top" secondItem="EBj-SJ-0Sr" secondAttribute="bottom" id="G88-62-cBo"/>
+                            <constraint firstAttribute="trailing" secondItem="6M1-KA-fuD" secondAttribute="trailing" id="Oey-6S-7Sx"/>
+                            <constraint firstItem="6M1-KA-fuD" firstAttribute="top" secondItem="003-dN-nh1" secondAttribute="bottom" constant="2" id="cdj-zV-X8n"/>
                             <constraint firstItem="x7A-sJ-Jpc" firstAttribute="top" secondItem="kYs-O3-qyG" secondAttribute="top" id="eY3-lV-PYf"/>
+                            <constraint firstAttribute="trailing" secondItem="EBj-SJ-0Sr" secondAttribute="trailing" id="fN4-F5-Koj"/>
+                            <constraint firstItem="sgW-GD-l77" firstAttribute="top" secondItem="6M1-KA-fuD" secondAttribute="bottom" constant="8" id="fqV-vy-aLj"/>
+                            <constraint firstAttribute="trailing" secondItem="sgW-GD-l77" secondAttribute="trailing" id="ht2-pP-oxc"/>
+                            <constraint firstItem="mSo-mn-Waw" firstAttribute="leading" secondItem="kYs-O3-qyG" secondAttribute="leading" id="kuF-cy-X6k"/>
+                            <constraint firstItem="sgW-GD-l77" firstAttribute="leading" secondItem="kYs-O3-qyG" secondAttribute="leading" id="mBU-SQ-YQH"/>
+                            <constraint firstItem="EBj-SJ-0Sr" firstAttribute="top" relation="greaterThanOrEqual" secondItem="mSo-mn-Waw" secondAttribute="bottom" constant="18" id="ntt-UN-inh"/>
                             <constraint firstItem="ubD-cp-d2K" firstAttribute="top" secondItem="x7A-sJ-Jpc" secondAttribute="bottom" id="rhN-ml-dIr"/>
                             <constraint firstItem="003-dN-nh1" firstAttribute="leading" secondItem="kYs-O3-qyG" secondAttribute="leadingMargin" id="u8B-6f-7tm"/>
+                            <constraint firstItem="x7A-sJ-Jpc" firstAttribute="top" secondItem="6M1-KA-fuD" secondAttribute="bottom" constant="-90.5" id="uBJ-jZ-YKB"/>
                             <constraint firstAttribute="trailing" secondItem="x7A-sJ-Jpc" secondAttribute="trailing" id="uBd-W6-7Fx"/>
+                            <constraint firstAttribute="trailing" secondItem="mSo-mn-Waw" secondAttribute="trailing" id="v4T-fI-l1u"/>
                             <constraint firstItem="x7A-sJ-Jpc" firstAttribute="leading" secondItem="kYs-O3-qyG" secondAttribute="leading" id="vsn-6h-hmH"/>
+                            <constraint firstItem="mSo-mn-Waw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="sgW-GD-l77" secondAttribute="bottom" constant="35" id="wQq-DY-Y3c"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="choosingPlayMode" destination="sgW-GD-l77" id="0HQ-gW-mO0"/>
+                        <outlet property="heroChoosingPickerView" destination="EBj-SJ-0Sr" id="ZWa-Vp-3SB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UNO-Gf-OOS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="528.79999999999995" y="-256.82158920539734"/>
-        </scene>
-        <!--Settings Controller-->
-        <scene sceneID="GZb-Jg-hhz">
-            <objects>
-                <viewController id="eug-W5-nEf" customClass="SettingsController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="T4z-w5-szg">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="270"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose control mode:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jzT-Gk-G3G">
-                                <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="gwj-Xi-Ksr"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9I-3p-3ha">
-                                <rect key="frame" x="0.0" y="38" width="343" height="232"/>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="jzT-Gk-G3G" firstAttribute="trailing" secondItem="g9I-3p-3ha" secondAttribute="trailing" id="4LW-yk-Nqs"/>
-                            <constraint firstAttribute="trailing" secondItem="g9I-3p-3ha" secondAttribute="trailing" id="CLB-sL-zOa"/>
-                            <constraint firstItem="jzT-Gk-G3G" firstAttribute="top" secondItem="T4z-w5-szg" secondAttribute="top" id="FJY-pV-BAT"/>
-                            <constraint firstItem="g9I-3p-3ha" firstAttribute="leading" secondItem="T4z-w5-szg" secondAttribute="leading" id="LYH-y1-chc"/>
-                            <constraint firstItem="jzT-Gk-G3G" firstAttribute="leading" secondItem="g9I-3p-3ha" secondAttribute="leading" id="QaQ-Iv-tWU"/>
-                            <constraint firstAttribute="bottom" secondItem="g9I-3p-3ha" secondAttribute="bottom" id="jlq-J7-xvd"/>
-                            <constraint firstItem="g9I-3p-3ha" firstAttribute="top" secondItem="jzT-Gk-G3G" secondAttribute="bottom" constant="8" id="nDd-qf-wHy"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="choosingPlayMode" destination="g9I-3p-3ha" id="eoe-af-mc9"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KYz-gq-JRT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1294" y="-447"/>
-        </scene>
-        <!--Settings Controller-->
-        <scene sceneID="1Gt-KP-3mN">
-            <objects>
-                <viewController id="JBz-nr-oFs" customClass="SettingsController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="BN2-3F-Qz4">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="293"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Choose your hero:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KLG-bD-8pW">
-                                <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="8gi-wv-jUt"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCU-5e-Uzq">
-                                <rect key="frame" x="0.0" y="40" width="343" height="162"/>
-                            </pickerView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="KLG-bD-8pW" secondAttribute="trailing" id="9It-HF-GY8"/>
-                            <constraint firstItem="KLG-bD-8pW" firstAttribute="top" secondItem="BN2-3F-Qz4" secondAttribute="top" id="C92-rH-srq"/>
-                            <constraint firstAttribute="trailing" secondItem="wCU-5e-Uzq" secondAttribute="trailing" id="PiP-9x-vs9"/>
-                            <constraint firstItem="wCU-5e-Uzq" firstAttribute="leading" secondItem="BN2-3F-Qz4" secondAttribute="leading" id="Tkg-yf-9y6"/>
-                            <constraint firstItem="wCU-5e-Uzq" firstAttribute="top" secondItem="KLG-bD-8pW" secondAttribute="bottom" constant="10" id="Uoh-aa-Xsn"/>
-                            <constraint firstItem="KLG-bD-8pW" firstAttribute="leading" secondItem="BN2-3F-Qz4" secondAttribute="leading" id="axa-xt-gvZ"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wCU-5e-Uzq" secondAttribute="bottom" constant="91" id="gwM-0N-VLX"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="heroChoosingPickerView" destination="wCU-5e-Uzq" id="iDn-Hs-ELf"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zSZ-D0-Hf7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1293.5999999999999" y="-82.3088455772114"/>
         </scene>
     </scenes>
     <resources>

@@ -18,8 +18,10 @@ class SettingsModel {
     }
     
     var gameModeArray = [ //Need add images for game play
-        #imageLiteral(resourceName: "settingsIconBomberMan"),
-        #imageLiteral(resourceName: "backButtonForSettings")
+        #imageLiteral(resourceName: "bom1"),
+        #imageLiteral(resourceName: "bom2"),
+        #imageLiteral(resourceName: "bom3"),
+        #imageLiteral(resourceName: "bom4")
         ]
     
     var currentPage: Int {

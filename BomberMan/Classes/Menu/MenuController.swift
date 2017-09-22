@@ -22,8 +22,11 @@ class MenuController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         set(soundState: soundManager.soundState)
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     // Switchs on/off music

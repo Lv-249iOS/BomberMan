@@ -12,6 +12,8 @@ class GameMapController: UIViewController {
     
     @IBOutlet weak var mapScroll: UIScrollView!
     
+    var onMapDoubleTap: (()->())?
+    var doubleTapGesture: UITapGestureRecognizer?
     let brain = Brain.shared
     var singleGame = true
     var players: [UIImageView] = []
@@ -24,9 +26,23 @@ class GameMapController: UIViewController {
     private var firstTime = true
     private var playersCount = 1
     
+    func respondToDoubleTapGesture(_ gesture: UIGestureRecognizer) {
+        onMapDoubleTap?()
+    }
+    
+    func initGestureRecognizerIfNeeded() {
+        // add some checking
+        doubleTapGesture = UITapGestureRecognizer()
+        doubleTapGesture?.numberOfTapsRequired = 2
+        doubleTapGesture?.addTarget(self, action: #selector(respondToDoubleTapGesture))
+        mapScroll.addGestureRecognizer(doubleTapGesture!)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+        // MARK: Uses everytime
+        initGestureRecognizerIfNeeded()
         if singleGame {
             brain.addPlayer(name: UIDevice.current.name)
             brain.initializeGame(with: 0, completelyNew: true)

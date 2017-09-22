@@ -257,6 +257,10 @@ class GameLayoutController: UIViewController {
         } else if segue.identifier == "gameMapSegue",
             let controller = segue.destination as? GameMapController {
             controller.singleGame = isSingleGame
+            controller.onMapDoubleTap = { [weak self] in
+                self?.setBomb()
+            }
+            
             gameMapController = controller
             
         } else if segue.identifier == "controlPanelSegue",
@@ -315,12 +319,15 @@ class GameLayoutController: UIViewController {
     
     // MARK: View did load block
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bindBrainClosures()
         brain.isSingleGame = isSingleGame
         prepareMultiplayergameIfNeeded()
-        
     }
     
     func bindBrainClosures() {

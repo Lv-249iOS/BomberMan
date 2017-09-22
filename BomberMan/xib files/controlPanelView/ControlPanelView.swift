@@ -12,7 +12,7 @@ class ControlPanelView: UIView {
 
     @IBOutlet var contentView: UIView!
     @IBOutlet var directionButton: [UIButton]!
-    @IBOutlet weak var bombButton: UIButton!
+    @IBOutlet weak var bombButton: UIButton?
     
     var onBombTap: (()->())?
     var onArrowTap: ((Direction)->())?
@@ -28,10 +28,14 @@ class ControlPanelView: UIView {
     }
     
     func setButtonState(isEnabled: Bool) {
-        bombButton.isEnabled = isEnabled
+        bombButton?.isEnabled = isEnabled
         for but in directionButton {
             but.isEnabled = isEnabled
         }
+    }
+    
+    func removeBombButton() {
+        bombButton?.removeFromSuperview()
     }
     
     // UIViews can be created two ways: interface builder or  directly in code
@@ -52,7 +56,7 @@ class ControlPanelView: UIView {
     
     private func commonInit() {
         Bundle.main.loadNibNamed("ControlPanelView", owner: self, options: nil)
-        bombButton.imageView?.contentMode = .scaleAspectFit
+        bombButton?.imageView?.contentMode = .scaleAspectFit
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]

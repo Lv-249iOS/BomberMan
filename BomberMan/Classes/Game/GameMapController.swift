@@ -30,7 +30,7 @@ class GameMapController: UIViewController {
         onMapDoubleTap?()
     }
     
-    func initGestureRecognizerIfNeeded() {
+    func initGestureRecognizer() {
         // add some checking
         doubleTapGesture = UITapGestureRecognizer()
         doubleTapGesture?.numberOfTapsRequired = 2
@@ -42,7 +42,8 @@ class GameMapController: UIViewController {
         super.viewDidLoad()
     
         // MARK: Uses everytime
-        initGestureRecognizerIfNeeded()
+        initGestureRecognizer()
+        
         if singleGame {
             brain.addPlayer(name: UIDevice.current.name)
             brain.initializeGame(with: 0, completelyNew: true)
@@ -106,9 +107,15 @@ class GameMapController: UIViewController {
         mobs.removeAll()
         players.removeAll()
         drawMap()
-        let frame = CGRect(x: ((players.first?.frame.origin.x) ?? 0) - 150, y: ((players.first?.frame.origin.y) ?? 0) - 150, width: 350, height: 350)
         
-        mapScroll.scrollRectToVisible(frame, animated: true)
+        for i in 0 ..< brain.players.count {
+        if brain.players[i].name == UIDevice.current.name {
+            
+            let frame = CGRect(x: ((players.first?.frame.origin.x) ?? 0) - 150, y: ((players.first?.frame.origin.y) ?? 0) - 150, width: 350, height: 350)
+            
+            mapScroll.scrollRectToVisible(frame, animated: true)
+            }
+        }
         
     }
     

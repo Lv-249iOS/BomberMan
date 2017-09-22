@@ -116,6 +116,7 @@ class Brain {
         upgrades.append(upgrade)
     }
     
+    //gets upgrades from connection
     func getUpgrades(upgradeTypes: [String]) {
         var i = 0, upgradeId = 0
         for char in tiles {
@@ -128,17 +129,13 @@ class Brain {
                         case "explosion": upgradeType = .strongerBomb
                         default: upgradeType = .anotherBomb
                         }
-                        generateUpgrade(on: i, type: upgradeType)
+                        upgrades.append(Upgrade(position: i, type: upgradeType))
                     }
                     upgradeId += 1
                 }
             }
             i += 1
         }
-    }
-    
-    func generateUpgrade(on position: Int, type: UpgradeType) {
-        upgrades.append(Upgrade(position: position, type: type))
     }
     
     // Adds mob in mobs_array
@@ -201,16 +198,6 @@ class Brain {
         var currentlevel = Levels().level(with: numberoflevel)
         getPlayers(for: &currentlevel)
         toTiles(scene: currentlevel)
-    }
-    
-    func entryPointsCount(for testStr: String, char: Character) -> Int {
-        var count = 0
-        for c in testStr.characters {
-            if c == char {
-                count += 1
-            }
-        }
-        return count
     }
     
     func getUpgradeIndex(atPosition position: Int) -> Int? {

@@ -10,6 +10,14 @@ import Foundation
 
 extension Brain {
     
+    func endMultiplayer(withTimeInterval time: Double) {
+        Timer.scheduledTimer(withTimeInterval: time, repeats: false) { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.multiplayerEnd?(self!.getWinner())
+            }
+        }
+    }
+    
     func startMobsMovement() {
         mobsTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             self?.moveMobs()

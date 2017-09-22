@@ -132,7 +132,7 @@ extension Brain {
                 }
                 if alivePlayersCount() <= 1, !isSingleGame {
                     invalidateTimers()
-                    multiplayerEnd?(getWinner())
+                    endMultiplayer(withTimeInterval: 4)
                 }
             case "U":
                 tiles[index].removeLast()

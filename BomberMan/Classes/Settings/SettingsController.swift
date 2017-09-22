@@ -9,11 +9,52 @@
 import UIKit
 
 class SettingsController: UIViewController {
-
+    
+    let settingModel = SettingsModel.shared
+    var currentPage: Int?
+    
+    @IBOutlet weak var choosingPlayMode: UIScrollView!
+    @IBOutlet weak var heroChoosingPickerView: UIPickerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       
+        
         // Do any additional setup after loading the view.
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+         fillchoosingPlayModeView()
+        setContentOffsetForImageScroll(with: view.frame.width)
+    }
+    func fillchoosingPlayModeView() {
+        //print(choosingPlayMode.subviews.count)
+        for i in 0 ..< settingModel.gameModeArray.count {
+            let rect = CGRect(x: view.bounds.width * CGFloat(i),
+                              y: 0,
+                              width: view.bounds.width,
+                              height: choosingPlayMode.bounds.height)
+            
+            let imageView = UIImageView(frame: rect)
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            
+            imageView.image = settingModel.gameModeArray[i]
+            
+            choosingPlayMode.contentSize.width = view.bounds.width * CGFloat(i + 1)
+            choosingPlayMode.addSubview(imageView)
+            
+        }
+    }
+    func setContentOffsetForImageScroll(with width: CGFloat) {
+        let pointOffset = CGPoint(x: width * CGFloat(currentPage ?? settingModel.currentPage), y: 0)
+        choosingPlayMode.setContentOffset(pointOffset, animated: true)
+    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "topTenSegue",
+//            let controller = segue.destination as? TopTenController {
+//            topTenController = controller
+//        }
+//    }
+    
 }

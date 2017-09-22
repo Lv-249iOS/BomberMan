@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15478A641F753243000C5314 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15478A631F753243000C5314 /* SettingsModel.swift */; };
 		6127F57F1F6BF27300108E45 /* EventParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6127F57E1F6BF27300108E45 /* EventParser.swift */; };
 		6164606F1F6182F100402452 /* Brain+MobLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6164606E1F6182F100402452 /* Brain+MobLogic.swift */; };
 		616460711F61830E00402452 /* Brain+PlayerLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616460701F61830E00402452 /* Brain+PlayerLogic.swift */; };
@@ -131,6 +132,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15478A631F753243000C5314 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		6127F57E1F6BF27300108E45 /* EventParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventParser.swift; sourceTree = "<group>"; };
 		6164606E1F6182F100402452 /* Brain+MobLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brain+MobLogic.swift"; sourceTree = "<group>"; };
 		616460701F61830E00402452 /* Brain+PlayerLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brain+PlayerLogic.swift"; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				A9443F321F7523C800B61826 /* SettingsController.swift */,
+				15478A631F753243000C5314 /* SettingsModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -820,6 +823,7 @@
 				B252B05D1F73D068009339AE /* Explosions.swift in Sources */,
 				A92AA4361F5E901D0025EFB6 /* EventPopOverController.swift in Sources */,
 				E7C5B82D1F6FDC4800EBB160 /* Brain+Multiplayer.swift in Sources */,
+				15478A641F753243000C5314 /* SettingsModel.swift in Sources */,
 				A9E460AF1F5AE32F0091266C /* BoxView.swift in Sources */,
 				A94BDECE1F5B013C0085E073 /* Structs.swift in Sources */,
 				A94BDEB61F5AFD450085E073 /* GameMapController.swift in Sources */,

@@ -93,6 +93,10 @@ extension GameLayoutController {
         }
     }
     
+    func isGameEnd() -> Bool {
+        return gameOver != nil || gameWin != nil
+    }
+    
     func removeAllAdditionView() {
         pause?.removeFromSuperview()
         gameOver?.removeFromSuperview()

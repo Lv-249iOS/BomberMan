@@ -58,11 +58,11 @@ class GameLayoutController: UIViewController {
         singleplayerDetailsController?.resetTimer()
         brain.invalidateTimers()
         
-        if didWin && brain.currentLvl < 8 {
+        if didWin && brain.currentLvl < Levels.kMaxLevelCount {
             createMoveToNextLevelView()
             gameContainer.addSubview(moveToNextLevel!)
             
-        } else if didWin && brain.currentLvl == 8 {
+        } else if didWin && brain.currentLvl == Levels.kMaxLevelCount {
             createGameWinView()
             gameContainer.addSubview(gameWin!)
             askUserAboutName()
@@ -85,8 +85,7 @@ class GameLayoutController: UIViewController {
         singleplayerDetailsController?.resetTimer()
         brain.invalidateTimers()
         singleplayerDetailsController?.runTimer()
-        let additionViewName = isGameOver ? AdditionView.gameOver : AdditionView.nextLevel
-        removeAdditionView(additionView: additionViewName)
+        removeAllAdditionView()
         brain.initializeGame(with: brain.currentLvl, completelyNew: false)
         gameMapController.updateContentSize()
         presentScore(score: brain.score)
@@ -110,10 +109,10 @@ class GameLayoutController: UIViewController {
     // Postcondition: Raises Rating scene
     // if clicks to close button you unwind to current position
     func moveToRating() {
-        // MARK: go to rating scene
-        let ratingController: UIStoryboard = UIStoryboard(name: "Rating", bundle: nil)
-        let nextViewController = ratingController.instantiateViewController(withIdentifier: "ratingIdentifier") as! RatingController
-        self.present(nextViewController, animated:true, completion:nil)
+        let ratingStoryboard = UIStoryboard(name: "Rating", bundle: nil)
+        if let nextViewController = ratingStoryboard.instantiateViewController(withIdentifier: "ratingIdentifier") as? RatingController {
+            self.present(nextViewController, animated:true, completion:nil)
+        }
     }
     
     // Catchs pause state from details
@@ -141,6 +140,7 @@ class GameLayoutController: UIViewController {
         if UIDevice.current.name == player {
             createGameWinView()
             gameContainer.addSubview(gameWin!)
+            
         } else {
             createGameOverView()
             gameContainer.addSubview(gameOver!)
@@ -157,6 +157,7 @@ class GameLayoutController: UIViewController {
             brain.setUpgradesIfNeeded = { [weak self] in
                 self?.setUpgradesIfNeeded()
             }
+            
             brain.multiplayerEnd = { [weak self] player in
                 self?.multilayerEnd(player: player)
             }
@@ -181,38 +182,22 @@ class GameLayoutController: UIViewController {
             brain.stopMobsMovement()
             singleplayerDetailsController?.stopTimer()
         }
-        askUserIfNeedBackToHome()
+        
+        isGameEnd() == false ? backToHomeCheckingAlert() : backToHomeAction()
     }
     
-    // Creates alert for approving home button event
-    // Precondition: Calls if on home button taped
-    // Postcondition: if ok: invalidates timers in single game/ kills connection in multiplayer game
-    func askUserIfNeedBackToHome() {
-        let alert = UIAlertController(title: "Back to home",
-                                      message: "Do you want to leave game?",
-                                      preferredStyle: .alert)
-        
-        let acceptAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-            if self?.isSingleGame ?? true {
-                self?.brain.invalidateTimers()
-            } else {
-                ConnectionServiceManager.shared.killConnection()
-            }
-            self?.removeAllAdditionView()
-            self?.dismiss(animated: true, completion: nil)
+    func backToHomeAction() {
+        if isSingleGame {
+            brain.invalidateTimers()
+        } else {
+            ConnectionServiceManager.shared.killConnection()
         }
         
-        let declineAction = UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
-            if self?.isSingleGame ?? true {
-                self?.changePause(state: false)
-            }
-        }
-        
-        alert.addAction(acceptAction)
-        alert.addAction(declineAction)
-        
-        self.present(alert, animated: true, completion:  nil)
+        removeAllAdditionView()
+        dismiss(animated: true, completion: nil)
     }
+    
+    // MARK: Comunication with details controller
     
     func presentScore(score:Int) {
         singleplayerDetailsController?.present(score: Double(score))
@@ -221,6 +206,16 @@ class GameLayoutController: UIViewController {
     func presentTimer(time: TimeInterval) {
         singleplayerDetailsController?.present(time: "\(time)")
     }
+    
+    func timeEnd(state :Bool) {
+        brain.score -= 1000
+        if brain.score < 0 {
+            brain.score = 0
+        }
+        gameEnd(didWin: !state)
+    }
+    
+    // MARK: Comunication controlPanel -> Brain -> mapScene
     
     func move(direction: Direction) {
         brain.move(to: direction, playerName: UIDevice.current.name)
@@ -234,14 +229,6 @@ class GameLayoutController: UIViewController {
         if !isSingleGame, let data = eventParser?.stringBombEvent(name: UIDevice.current.name) {
             ConnectionServiceManager.shared.sendData(playerData: data)
         }
-    }
-    
-    func timeEnd(state :Bool) {
-        brain.score -= 1000
-        if brain.score < 0 {
-            brain.score = 0
-        }
-        gameEnd(didWin: !state)
     }
     
     // MARK: Prepare for segue block
@@ -325,11 +312,11 @@ class GameLayoutController: UIViewController {
         }
     }
     
-    // MARK: View did load block
-    
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
+    // MARK: View did load block
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -350,30 +337,6 @@ class GameLayoutController: UIViewController {
         brain.refreshScore = { [weak self] score in
             self?.presentScore(score: score)
             
-        }
-    }
-    
-    // Alert to save yser's nickname to record score
-    func askUserAboutName() {
-        let alert = UIAlertController(title: "Save your score", message: "Input your name here", preferredStyle: .alert)
-        
-        let confirmAction = UIAlertAction(title: "Done", style: .default, handler: { (action) -> Void in
-            let nicknameField = alert.textFields![0]
-            let score = UserScore(username: nicknameField.text ?? "User", score: self.brain.score)
-            ScoresManager.shared.saveData(score: score)
-        })
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { (action) -> Void in })
-        alert.addTextField { (nicknameField: UITextField) in
-            nicknameField.placeholder = "your name is..."
-            nicknameField.clearButtonMode = .whileEditing
-            nicknameField.keyboardType = .default
-            nicknameField.keyboardAppearance = .dark
-            
-            alert.view.tintColor = UIColor.black
-            alert.addAction(confirmAction)
-            alert.addAction(cancelAction)
-            
-            self.present(alert, animated: true, completion:  nil)
         }
     }
 }

@@ -51,6 +51,7 @@
 		A98005221F6C1DCC0098636B /* SingeDetailsController+GameTimerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98005211F6C1DCC0098636B /* SingeDetailsController+GameTimerProtocol.swift */; };
 		A98005241F6C1E3C0098636B /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98005231F6C1E3C0098636B /* Protocols.swift */; };
 		A99006E31F62C8180031248E /* Brain+Timers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99006E21F62C8180031248E /* Brain+Timers.swift */; };
+		A9C763431F75835D00FC8442 /* GameLayoutGame+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C763421F75835D00FC8442 /* GameLayoutGame+Alerts.swift */; };
 		A9E460401F5ADC040091266C /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E4603E1F5ADC040091266C /* GameOverView.swift */; };
 		A9E460411F5ADC040091266C /* GameOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9E4603F1F5ADC040091266C /* GameOverView.xib */; };
 		A9E460441F5ADC1F0091266C /* PauseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E460421F5ADC1F0091266C /* PauseView.swift */; };
@@ -189,6 +190,7 @@
 		A98005211F6C1DCC0098636B /* SingeDetailsController+GameTimerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SingeDetailsController+GameTimerProtocol.swift"; sourceTree = "<group>"; };
 		A98005231F6C1E3C0098636B /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		A99006E21F62C8180031248E /* Brain+Timers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brain+Timers.swift"; sourceTree = "<group>"; };
+		A9C763421F75835D00FC8442 /* GameLayoutGame+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GameLayoutGame+Alerts.swift"; sourceTree = "<group>"; };
 		A9E4603E1F5ADC040091266C /* GameOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		A9E4603F1F5ADC040091266C /* GameOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameOverView.xib; sourceTree = "<group>"; };
 		A9E460421F5ADC1F0091266C /* PauseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseView.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 				A94BDEAD1F5AFD450085E073 /* ControlPanelController.swift */,
 				A9381B901F6BD1BB007D5FE2 /* MultiplayerDetailsController.swift */,
 				A98005231F6C1E3C0098636B /* Protocols.swift */,
+				A9C763421F75835D00FC8442 /* GameLayoutGame+Alerts.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -867,6 +870,7 @@
 				B252B05D1F73D068009339AE /* Explosions.swift in Sources */,
 				A92AA4361F5E901D0025EFB6 /* EventPopOverController.swift in Sources */,
 				E7C5B82D1F6FDC4800EBB160 /* Brain+Multiplayer.swift in Sources */,
+				A9C763431F75835D00FC8442 /* GameLayoutGame+Alerts.swift in Sources */,
 				15478A641F753243000C5314 /* SettingsModel.swift in Sources */,
 				A9E460AF1F5AE32F0091266C /* BoxView.swift in Sources */,
 				A94BDECE1F5B013C0085E073 /* Structs.swift in Sources */,

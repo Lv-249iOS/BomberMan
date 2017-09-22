@@ -10,6 +10,8 @@ import Foundation
 
 class Levels {
     
+    static let kMaxLevelCount = 8
+    
     enum Level: String {
         case one = "WWWWWWWWWWW  P     WW  W W W WW        WW  W BBW WW    B   WW  WBDBW WW    B   WWM WBBMW WWWWWWWWWWW"
         case two = "WWWWWWWWWWWWWWWW MWBW MBBBMWWWW             WW   BUBBB  WW WW  BBBBBBB    WW  BBDBBUB    WW   BBBBB     WW  M BBB      WW     BM   P  WW     BBB     WW            MWWWWWWWWWWWWWWWW"

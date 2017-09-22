@@ -102,5 +102,9 @@ extension GameLayoutController {
         gameOver?.removeFromSuperview()
         gameWin?.removeFromSuperview()
         moveToNextLevel?.removeFromSuperview()
+        pause = nil
+        gameOver = nil
+        gameWin = nil
+        moveToNextLevel = nil
     }
 }

@@ -101,7 +101,7 @@ extension GameMapController {
 //                self?.animationCount[player] = 0
 //                self?.clickСount[player] = 0
 //            }
-            print("CLICK=\(self?.clickСount[player]).... ANIMATION\(self?.animationCount[player])")
+            print("CLICK=\(String(describing: self?.clickСount[player])).... ANIMATION\(String(describing: self?.animationCount[player]))")
             if finished {
                 print("Finished")
                 if self?.clickСount[player] == self?.animationCount[player] {

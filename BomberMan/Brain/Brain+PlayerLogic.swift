@@ -162,7 +162,7 @@ extension Brain {
             }
             playerIndex += 1
         }
-        if !players[playerIndex].isAlive { return }
+        if !players[playerIndex].isAlive || playerIndex == players.count { return }
         if players[playerIndex].minesCount > players[playerIndex].plantedMines, canFitBomb(at: players[playerIndex].position)  {
             tiles[players[playerIndex].position].insert("X", at: 0)
             players[playerIndex].plantedMines += 1

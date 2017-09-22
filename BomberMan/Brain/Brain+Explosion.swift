@@ -12,6 +12,7 @@ extension Brain {
     
     func explode(withOptionsOfPlayer player: Player, bomb: Bomb) {
         var killedPlayers: [Int] = []
+        var explodedBoxes: [Int] = []
         var explosion = Explosion.init()
         
         //blows fire on tiles and returns how far goes the fire
@@ -25,15 +26,18 @@ extension Brain {
                 case .right: offset = i
                 case .top: offset = -i * width
                 }
-                let blowOptions: (canBurn: Bool, canProceed: Bool, killedPlayers: [Int]) = blowFire(onPosition: player.position + offset)
+                let blowOptions: (canBurn: Bool, canProceed: Bool, killedPlayers: [Int], explodedBoxes: [Int]) = blowFire(onPosition: player.position + offset)
                 if blowOptions.canBurn {
                     strength += 1
                 }
-                if blowOptions.canProceed == false {
-                    break
-                }
                 for player in blowOptions.killedPlayers {
                     killedPlayers.append(player)
+                }
+                for box in blowOptions.explodedBoxes {
+                    explodedBoxes.append(box)
+                }
+                if blowOptions.canProceed == false {
+                    break
                 }
             }
             return strength
@@ -44,9 +48,12 @@ extension Brain {
         if index >= 0 {
             bombs.remove(at: index)
         }
-        let blowOptions: (canBurn: Bool, canProceed: Bool, killedPlayers: [Int]) = blowFire(onPosition: player.position)
+        let blowOptions: (canBurn: Bool, canProceed: Bool, killedPlayers: [Int], explodedBoxes: [Int]) = blowFire(onPosition: player.position)
         for player in blowOptions.killedPlayers {
             killedPlayers.append(player)
+        }
+        for box in blowOptions.explodedBoxes {
+            explodedBoxes.append(box)
         }
         explosion.bottom = explode(inDirection: .bottom)
         explosion.left = explode(inDirection: .left)
@@ -59,6 +66,11 @@ extension Brain {
         for player in killedPlayers {
             DispatchQueue.main.async { [weak self] in
                 self?.killHero?(player, false)
+            }
+        }
+        for box in explodedBoxes {
+            DispatchQueue.main.async { [weak self] in
+                self?.boxExplode?(box)
             }
         }
         
@@ -78,16 +90,17 @@ extension Brain {
     }
     
     //sets fire on position in scene if canBurn is true and returns canProceed true if nothing stops it, also returns identifiers for killedPlayers
-    func blowFire(onPosition index: Int) -> (Bool, Bool, [Int]) {
+    func blowFire(onPosition index: Int) -> (Bool, Bool, [Int], [Int]) {
         var canProceed = true
         var canBurn = true
         var killedPlayers: [Int] = []
+        var explodedBoxes: [Int] = []
         
         for char in tiles[index].reversed() {
             var needToBreak = false
             
             switch char {
-            case "W": return (false, false, killedPlayers)
+            case "W": return (false, false, killedPlayers, explodedBoxes)
             case "B":
                 needToBreak = true
                 canProceed = false
@@ -95,7 +108,8 @@ extension Brain {
                 if !tiles[index].isEmpty {
                     canBurn = false
                 }
-                boxExplode?(index)
+                explodedBoxes.append(index)
+//                boxExplode?(index)
             case "P":
                 var i = 0
                 for player in players {
@@ -147,7 +161,7 @@ extension Brain {
         if canBurn {
             tiles[index].append("F")
         }
-        return (canBurn, canProceed, killedPlayers)
+        return (canBurn, canProceed, killedPlayers, explodedBoxes)
     }
     
     func fadeFire(explosion: Explosion, position: Int) {

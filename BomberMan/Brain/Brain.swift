@@ -49,8 +49,6 @@ class Brain {
     
     // Used at the beginning of the game
     func initializeGame(with lvlNumber: Int, completelyNew: Bool) {
-        players.removeAll()
-        initPlayers(names: devices)
         resetScore(ifNeeded: completelyNew)
         setLevel(with: lvlNumber)
         addMobsAndUpgrates()
@@ -172,6 +170,8 @@ class Brain {
     // if it's completely new game, reset score and create new player
     func resetScore(ifNeeded completelyNew: Bool) {
         if completelyNew {
+            players.removeAll()
+            initPlayers(names: devices)
             score = 0
             if !players.isEmpty {
                 players[0].explosionPower = 1

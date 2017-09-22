@@ -257,16 +257,22 @@ class GameLayoutController: UIViewController {
         } else if segue.identifier == "gameMapSegue",
             let controller = segue.destination as? GameMapController {
             controller.singleGame = isSingleGame
-            controller.onMapDoubleTap = { [weak self] in
-                self?.setBomb()
-            }
-            
             gameMapController = controller
             
         } else if segue.identifier == "controlPanelSegue",
             let controller = segue.destination as? ControlPanelController {
             prepareControlPanelController(controller: controller)
         }
+    }
+    
+    func forYevgen() {
+        // if something ------
+        controlPanelController.controlPanelView.removeBombButton()
+        // call!!!! ->> gameMapController.initGestureRecognizer
+        gameMapController.onMapDoubleTap = { [weak self] in
+            self?.setBomb()
+        }
+        // ----------------
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {

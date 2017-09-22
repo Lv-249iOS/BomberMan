@@ -57,12 +57,6 @@ extension Brain {
             DispatchQueue.main.async { [weak self] in
                 self?.fadeFire(explosion: explosion, position: position)
             }
-            
-            let isSingleGame = self?.isSingleGame ?? true
-            let alivePlayersCount = self?.alivePlayersCount() ?? 0
-            if !isSingleGame, alivePlayersCount <= 1 {
-                self?.multiplayerEnd?(self!.getWinner())
-            }
         }
         
         timers.append(timer)

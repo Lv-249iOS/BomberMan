@@ -62,7 +62,6 @@ extension Brain {
         DispatchQueue.main.async { [weak self] in
             self?.showFire?(explosion, player.position)
         }
-        
         for player in killedPlayers {
             DispatchQueue.main.async { [weak self] in
                 self?.killHero?(player, false)
@@ -117,12 +116,12 @@ extension Brain {
                         players[i].isAlive = false
                         if isSingleGame {
                             gameEnd?(false)
+                            score -= 1000
+                            if score < 0 {
+                                score = 0
+                            }
+                            refreshScore?(score)
                         }
-                        score -= 1000
-                        if score < 0 {
-                            score = 0
-                        }
-                        refreshScore?(score)
                         killedPlayers.append(player.identifier)
                         if !tiles[index].isEmpty{
                             tiles[index].removeLast()

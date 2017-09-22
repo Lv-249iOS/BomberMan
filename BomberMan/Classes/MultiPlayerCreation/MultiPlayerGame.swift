@@ -74,9 +74,9 @@ class MultiPlayerGame: UIViewController, MCBrowserViewControllerDelegate, Invita
     
     func sendPlayers() {
         let players = Brain.shared.devices
-        var data = "initial "
+        var data = "initial,"
         for name in players {
-            data += name + " "
+            data += name + ","
         }
         data.characters.removeLast()
         
@@ -136,7 +136,7 @@ extension MultiPlayerGame: ConnectionServiceManagerDelegate {
     
     func dataReceived(manager: ConnectionServiceManager, playerData: String) {
         Brain.shared.isHost = false
-        var players = playerData.components(separatedBy: " ")
+        var players = playerData.components(separatedBy: ",")
         if players.first == "initial"//, players.last == Brain.shared.devices.last
         {
             players.removeFirst()

@@ -34,7 +34,10 @@ extension Brain {
             let last = tiles[directionPosition].last ?? " "
             switch last {
             case "F":
-                tiles[players[playerIndex].position].removeLast()
+                let tile = tiles[players[playerIndex].position]
+                if !tile.isEmpty, tile.last == "P" {
+                    tiles[players[playerIndex].position].removeLast()
+                }
                 players[playerIndex].isAlive = false
                 
                 DispatchQueue.main.async { [weak self] in

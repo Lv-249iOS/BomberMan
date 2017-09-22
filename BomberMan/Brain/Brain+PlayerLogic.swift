@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 extension Brain {
     
     func move(to direction: Direction, playerName: String) {
@@ -20,7 +18,7 @@ extension Brain {
             }
             playerIndex += 1
         }
-        if !players[playerIndex].isAlive, playerIndex == players.count { return }
+        if !players[playerIndex].isAlive || playerIndex == players.count { return }
         var directionPosition: Int
         var shouldRedraw = false
         
@@ -54,7 +52,9 @@ extension Brain {
                 }
                 if alivePlayersCount() <= 1, !isSingleGame {
                     invalidateTimers()
-                    multiplayerEnd?(getWinner())
+                    DispatchQueue.main.async { [weak self] in
+                        self?.multiplayerEnd?(self!.getWinner())
+                    }
                 }
                 refreshScore?(score)
                 return
@@ -164,7 +164,7 @@ extension Brain {
             }
             playerIndex += 1
         }
-        if !players[playerIndex].isAlive { return }
+        if !players[playerIndex].isAlive || playerIndex == players.count { return }
         if players[playerIndex].minesCount > players[playerIndex].plantedMines, canFitBomb(at: players[playerIndex].position)  {
             tiles[players[playerIndex].position].insert("X", at: 0)
             players[playerIndex].plantedMines += 1

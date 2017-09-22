@@ -24,7 +24,6 @@ class GameMapController: UIViewController {
     private var map: String!
     private var sceneWidth: Int!
     private var firstTime = true
-    private var playersCount = 1
     
     func respondToDoubleTapGesture(_ gesture: UIGestureRecognizer) {
         onMapDoubleTap?()
@@ -45,7 +44,7 @@ class GameMapController: UIViewController {
         initGestureRecognizer()
         
         if singleGame {
-            brain.addPlayer(name: UIDevice.current.name)
+            brain.setDevices(names: [UIDevice.current.name])
             brain.initializeGame(with: 0, completelyNew: true)
         } else {
             brain.initializeMultiplayerGame()
@@ -103,17 +102,17 @@ class GameMapController: UIViewController {
         sceneWidth = brain.width
         mapScroll.contentSize = CGSize(width: 50 * sceneWidth, height: 50 * (brain.tiles.count / sceneWidth))
         firstTime = true
-        playersCount = 1
         mobs.removeAll()
         players.removeAll()
         drawMap()
         
         for i in 0 ..< brain.players.count {
-        if brain.players[i].name == UIDevice.current.name {
+            if brain.players[i].name == UIDevice.current.name {
             
-            let frame = CGRect(x: ((players.first?.frame.origin.x) ?? 0) - 150, y: ((players.first?.frame.origin.y) ?? 0) - 150, width: 350, height: 350)
+                let frame = CGRect(x: (players[i].frame.origin.x) - 150, y: (players[i].frame.origin.y) - 150, width: 350, height: 350)
             
-            mapScroll.scrollRectToVisible(frame, animated: true)
+                mapScroll.scrollRectToVisible(frame, animated: true)
+                break
             }
         }
         
@@ -150,13 +149,12 @@ class GameMapController: UIViewController {
                     if firstTime {
                         let rect = CGRect(x: i, y: j, width: 50, height: 50)
                         let player = UIImageView(frame: rect)
-                        player.image = UIImage(named: "bom\(playersCount)") ?? 
+                        player.image = UIImage(named: "bom\(players.count + 1)") ??
                         #imageLiteral(resourceName: "noImage")
                         players.append(player)
                         if !players.isEmpty {
                             mapScroll.addSubview(players.last!)
                         }
-                        playersCount += 1
                     }
                 case "F":
                     addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))

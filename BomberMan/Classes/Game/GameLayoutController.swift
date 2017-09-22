@@ -160,6 +160,8 @@ class GameLayoutController: UIViewController {
             brain.multiplayerEnd = { [weak self] player in
                 self?.multilayerEnd(player: player)
             }
+        } else {
+            brain.getPlayer = { UIDevice.current.name }
         }
     }
     

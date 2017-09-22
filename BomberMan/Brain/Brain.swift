@@ -44,6 +44,7 @@ class Brain {
     var refreshScore: ((Int)->())?
     var boxExplode: ((Int)->())?
     var multiplayerEnd: ((String)->())?
+    var getPlayer: (()->(String))?
     var setUpgradesIfNeeded: (()->())?
     
     // Used at the beginning of the game
@@ -54,11 +55,21 @@ class Brain {
         redrawScene?()
         startMobsMovement()
         doorEnterCount = 0
-       // startGameTimer(with: currentTime)
+    }
+    
+    func initPlayers(names: [String]) {
+        for name in names {
+            addPlayer(name: name)
+        }
     }
     
     func addPlayer(name: String) {
         players.append(Player(name: name, identifier: players.count, minesCount: 1, explosionPower: 1, position: 0, plantedMines: 0, isAlive: true))
+    }
+    
+    func setDevices(names: [String]) {
+        devices.removeAll()
+        devices = names
     }
     
     func getPlayers(for map: inout String) {
@@ -105,6 +116,7 @@ class Brain {
         upgrades.append(upgrade)
     }
     
+    //gets upgrades from connection
     func getUpgrades(upgradeTypes: [String]) {
         var i = 0, upgradeId = 0
         for char in tiles {
@@ -117,17 +129,13 @@ class Brain {
                         case "explosion": upgradeType = .strongerBomb
                         default: upgradeType = .anotherBomb
                         }
-                        generateUpgrade(on: i, type: upgradeType)
+                        upgrades.append(Upgrade(position: i, type: upgradeType))
                     }
                     upgradeId += 1
                 }
             }
             i += 1
         }
-    }
-    
-    func generateUpgrade(on position: Int, type: UpgradeType) {
-        upgrades.append(Upgrade(position: position, type: type))
     }
     
     // Adds mob in mobs_array
@@ -156,26 +164,16 @@ class Brain {
         }
     }
     
-//    func getPlayerPosition(from scene: String) {
-//        player.position = scene.distance(from: scene.startIndex,
-//                                              to: scene.characters.index(of: "0") ?? scene.startIndex)
-//    }
-    
     // if it's completely new game, reset score and create new player
     func resetScore(ifNeeded completelyNew: Bool) {
         if completelyNew {
+            players.removeAll()
+            initPlayers(names: devices)
             score = 0
             if !players.isEmpty {
                 players[0].explosionPower = 1
                 players[0].minesCount = 1
             }
-//            player = Player(name: "Player",
-//                            markForScene: "0",
-//                            minesCount: 1,
-//                            explosionPower: 1,
-//                            position: 0,
-//                            plantedMines: 0,
-//                            isAlive: true)
             refreshScore?(score)
         }
     }
@@ -200,16 +198,6 @@ class Brain {
         var currentlevel = Levels().level(with: numberoflevel)
         getPlayers(for: &currentlevel)
         toTiles(scene: currentlevel)
-    }
-    
-    func entryPointsCount(for testStr: String, char: Character) -> Int {
-        var count = 0
-        for c in testStr.characters {
-            if c == char {
-                count += 1
-            }
-        }
-        return count
     }
     
     func getUpgradeIndex(atPosition position: Int) -> Int? {

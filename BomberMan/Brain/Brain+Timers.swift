@@ -46,7 +46,7 @@ extension Brain {
     
     func startFireTimer(explosion: Explosion, position: Int) {
         let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
                 self?.fadeFire(explosion: explosion, position: position)
             }
             

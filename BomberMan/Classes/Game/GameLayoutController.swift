@@ -322,7 +322,6 @@ class GameLayoutController: UIViewController {
         bindBrainClosures()
         brain.isSingleGame = isSingleGame
         prepareMultiplayergameIfNeeded()
-        
     }
     
     func bindBrainClosures() {

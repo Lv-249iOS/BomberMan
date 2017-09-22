@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SH7-SH-thq">
-                                <rect key="frame" x="20" y="601.66666666666663" width="374" height="59"/>
+                                <rect key="frame" x="20" y="602" width="374" height="59"/>
                                 <color key="backgroundColor" red="0.4039215686" green="0.36470588240000001" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
                                 <state key="normal" title="Single player">
@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uvk-eg-AKq">
-                                <rect key="frame" x="20" y="668.66666666666652" width="374" height="59.333333333333371"/>
+                                <rect key="frame" x="20" y="669" width="374" height="59"/>
                                 <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
                                 <state key="normal" title="Multi player">
@@ -57,10 +57,10 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boom" translatesAutoresizingMaskIntoConstraints="NO" id="zN1-nO-HYu">
-                                <rect key="frame" x="0.0" y="75.999999999999986" width="414" height="149.66666666666663"/>
+                                <rect key="frame" x="0.0" y="76" width="414" height="150"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bombermanK" translatesAutoresizingMaskIntoConstraints="NO" id="odE-KJ-0oN">
-                                <rect key="frame" x="20" y="233.66666666666663" width="374" height="368"/>
+                                <rect key="frame" x="20" y="234" width="374" height="368"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTn-Pv-y9L" userLabel="Rating">
@@ -75,12 +75,25 @@
                                     <segue destination="9aH-kW-XS3" kind="show" id="utQ-zz-WPt"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geo-2n-0gS">
+                                <rect key="frame" x="20" y="28" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.87662076950000001" green="0.0027748325370000001" blue="0.1796540022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="85W-po-PPw"/>
+                                    <constraint firstAttribute="width" constant="40" id="YsA-7n-sKI"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="Xws-MM-ZEM" kind="show" identifier="settingsSegue" id="Vzo-ph-bVe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95927189086294418" green="0.95927189086294418" blue="0.95927189086294418" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="SH7-SH-thq" firstAttribute="top" secondItem="odE-KJ-0oN" secondAttribute="bottom" id="0sq-HY-Gyl"/>
                             <constraint firstItem="Uvk-eg-AKq" firstAttribute="trailing" secondItem="jCm-EY-IFe" secondAttribute="trailingMargin" id="3Qp-ox-fwj"/>
                             <constraint firstItem="zN1-nO-HYu" firstAttribute="leading" secondItem="jCm-EY-IFe" secondAttribute="leading" id="3n2-e0-Nqm"/>
+                            <constraint firstItem="geo-2n-0gS" firstAttribute="leading" secondItem="jCm-EY-IFe" secondAttribute="leadingMargin" id="44O-ZS-UoY"/>
+                            <constraint firstItem="geo-2n-0gS" firstAttribute="top" secondItem="vpG-Ya-wAj" secondAttribute="bottom" constant="8" symbolic="YES" id="5TV-VF-lKN"/>
                             <constraint firstItem="IuD-hd-Urw" firstAttribute="top" secondItem="Uvk-eg-AKq" secondAttribute="bottom" constant="8" symbolic="YES" id="6rM-MV-x5B"/>
                             <constraint firstItem="SH7-SH-thq" firstAttribute="height" secondItem="jCm-EY-IFe" secondAttribute="height" multiplier="0.08" id="GBI-tG-rRo"/>
                             <constraint firstItem="Uvk-eg-AKq" firstAttribute="leading" secondItem="jCm-EY-IFe" secondAttribute="leadingMargin" id="GEs-fL-sfO"/>
@@ -132,6 +145,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="59F-g8-TJR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="502.17391304347831" y="72.554347826086968"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="pVV-0a-7dV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="Xws-MM-ZEM" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k2u-O1-LdT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="530" y="-256"/>
         </scene>
     </scenes>
     <resources>

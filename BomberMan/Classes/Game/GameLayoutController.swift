@@ -267,6 +267,16 @@ class GameLayoutController: UIViewController {
         }
     }
     
+    func forYevgen() {
+        // if something ------
+        controlPanelController.controlPanelView.removeBombButton()
+        // call!!!! ->> gameMapController.initGestureRecognizer
+        gameMapController.onMapDoubleTap = { [weak self] in
+            self?.setBomb()
+        }
+        // ----------------
+    }
+    
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (identifier == "multiplayerDetailsSegue" && isSingleGame == true) ||
             (identifier == "singleplayerDetailsSegue" && isSingleGame == false) {
@@ -317,12 +327,15 @@ class GameLayoutController: UIViewController {
     
     // MARK: View did load block
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bindBrainClosures()
         brain.isSingleGame = isSingleGame
         prepareMultiplayergameIfNeeded()
-        
     }
     
     func bindBrainClosures() {

@@ -12,6 +12,8 @@ class GameMapController: UIViewController {
     
     @IBOutlet weak var mapScroll: UIScrollView!
     
+    var onMapDoubleTap: (()->())?
+    var doubleTapGesture: UITapGestureRecognizer?
     let brain = Brain.shared
     var singleGame = true
     var players: [UIImageView] = []
@@ -24,8 +26,23 @@ class GameMapController: UIViewController {
     private var firstTime = true
     private var playersCount = 1
     
+    func respondToDoubleTapGesture(_ gesture: UIGestureRecognizer) {
+        onMapDoubleTap?()
+    }
+    
+    func initGestureRecognizer() {
+        // add some checking
+        doubleTapGesture = UITapGestureRecognizer()
+        doubleTapGesture?.numberOfTapsRequired = 2
+        doubleTapGesture?.addTarget(self, action: #selector(respondToDoubleTapGesture))
+        mapScroll.addGestureRecognizer(doubleTapGesture!)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        // MARK: Uses everytime
+        initGestureRecognizer()
         
         if singleGame {
             brain.setDevices(names: [UIDevice.current.name])
@@ -90,9 +107,15 @@ class GameMapController: UIViewController {
         mobs.removeAll()
         players.removeAll()
         drawMap()
-        let frame = CGRect(x: ((players.first?.frame.origin.x) ?? 0) - 150, y: ((players.first?.frame.origin.y) ?? 0) - 150, width: 350, height: 350)
         
-        mapScroll.scrollRectToVisible(frame, animated: true)
+        for i in 0 ..< brain.players.count {
+        if brain.players[i].name == UIDevice.current.name {
+            
+            let frame = CGRect(x: ((players.first?.frame.origin.x) ?? 0) - 150, y: ((players.first?.frame.origin.y) ?? 0) - 150, width: 350, height: 350)
+            
+            mapScroll.scrollRectToVisible(frame, animated: true)
+            }
+        }
         
     }
     

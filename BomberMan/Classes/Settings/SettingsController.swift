@@ -12,19 +12,21 @@ class SettingsController: UIViewController {
     
     let settingModel = SettingsModel.shared
     var currentPage: Int?
+    var pickerModeArray = ["Buttons", "Buttons and gestures"]
     
     @IBOutlet weak var chooseHero: UIScrollView!
     @IBOutlet weak var choosePlayMode: UIPickerView!
     
+    @IBOutlet weak var controlModeLabel: UILabel!
     
     @IBAction func backButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        choosePlayMode.delegate = self
+        choosePlayMode.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,13 +64,18 @@ extension SettingsController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 2
+        return pickerModeArray.count
     }
     
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        return choosePlayMode[row]
-//    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        controlModeLabel.text = pickerModeArray[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerModeArray[row]
+    }
 }
 
 

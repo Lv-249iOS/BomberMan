@@ -83,7 +83,6 @@
                     <connections>
                         <outlet property="chooseHero" destination="sgW-GD-l77" id="JH5-Jp-9sn"/>
                         <outlet property="choosePlayMode" destination="EBj-SJ-0Sr" id="2jp-VF-nPi"/>
-                        <outlet property="heroChoosingPickerView" destination="EBj-SJ-0Sr" id="ZWa-Vp-3SB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UNO-Gf-OOS" userLabel="First Responder" sceneMemberID="firstResponder"/>

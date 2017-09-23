@@ -17,8 +17,8 @@ class SettingsController: UIViewController {
     @IBOutlet weak var heroChoosingPickerView: UIPickerView!
     
     @IBAction func backButton(_ sender: Any) {
-//        self.dismiss(animated: true, completion: nil)
-       backToMain()
+        self.dismiss(animated: true, completion: nil)
+      
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,11 +55,4 @@ class SettingsController: UIViewController {
         choosingPlayMode.setContentOffset(pointOffset, animated: true)
     }
     
- private func backToMain() {
-        let mainController: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let nextViewController = mainController.instantiateViewController(withIdentifier: "mainViewController") as! MenuController
-        self.present(nextViewController, animated:true, completion:nil)
-//    self.navigationController?.pushViewController(nextViewController, animated: true)
-    }
-        
 }

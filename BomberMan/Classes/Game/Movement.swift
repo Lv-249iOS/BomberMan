@@ -38,8 +38,8 @@ extension GameMapController {
         switch direction {
         case .bottom:
             
-            let downImageArray = (1...2).map { UIImage(named: "down\(player+1)\($0)") ?? #imageLiteral(resourceName: "noImage")  }
-            if players[player].animationImages?.first != UIImage(named: "down\(player+1)1") && players[player].animationImages?.first != nil {
+            let downImageArray = (1...2).map { UIImage(named: "down\(player+1+chosenSkin)\($0)") ?? #imageLiteral(resourceName: "noImage")  }
+            if players[player].animationImages?.first != UIImage(named: "down\(player+1+chosenSkin)1") && players[player].animationImages?.first != nil {
                 
                 animate(images: downImageArray, player: player)
             }
@@ -47,16 +47,16 @@ extension GameMapController {
             
         case .left:
             
-            let leftImageArray = (1...3).map { UIImage(named: "left\(player+1)\($0)") ?? #imageLiteral(resourceName: "noImage") }
-            if players[player].animationImages?.first != UIImage(named: "left\(player+1)1") && players[player].animationImages?.first != nil {
+            let leftImageArray = (1...3).map { UIImage(named: "left\(player+1+chosenSkin)\($0)") ?? #imageLiteral(resourceName: "noImage") }
+            if players[player].animationImages?.first != UIImage(named: "left\(player+1+chosenSkin)1") && players[player].animationImages?.first != nil {
                 animate(images: leftImageArray, player: player)
             }
             animateImagesForMove(images: leftImageArray, x: -50, y: 0, player: player)
             
         case .right:
             
-            let rightImageArray = (1...3).map { UIImage(named: "right\(player+1)\($0)") ?? #imageLiteral(resourceName: "noImage") }
-            if players[player].animationImages?.first != UIImage(named: "right\(player+1)1") && players[player].animationImages?.first != nil {
+            let rightImageArray = (1...3).map { UIImage(named: "right\(player+1+chosenSkin)\($0)") ?? #imageLiteral(resourceName: "noImage") }
+            if players[player].animationImages?.first != UIImage(named: "right\(player+1+chosenSkin)1") && players[player].animationImages?.first != nil {
                 
                 animate(images: rightImageArray, player: player)
             }
@@ -64,8 +64,8 @@ extension GameMapController {
             
         case .top:
             
-            let upImageArray = (1...3).map { UIImage(named: "up\(player+1)\($0)") ?? #imageLiteral(resourceName: "noImage") }
-            if players[player].animationImages?.first != UIImage(named: "up\(player+1)1") && players[player].animationImages?.first != nil {
+            let upImageArray = (1...3).map { UIImage(named: "up\(player+1+chosenSkin)\($0)") ?? #imageLiteral(resourceName: "noImage") }
+            if players[player].animationImages?.first != UIImage(named: "up\(player+1+chosenSkin)1") && players[player].animationImages?.first != nil {
                 
                 animate(images: upImageArray, player: player)
             }

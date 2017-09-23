@@ -12,7 +12,6 @@ class SettingsController: UIViewController {
     
     let settingModel = SettingsModel.shared
     var currentPage: Int?
-    var pickerModeArray = ["Buttons", "Buttons and gestures"]
     
     @IBOutlet weak var chooseHero: UIScrollView!
     @IBOutlet weak var choosePlayMode: UIPickerView!
@@ -33,7 +32,11 @@ class SettingsController: UIViewController {
         super.viewWillAppear(animated)
         fillchoosingHeroView()
         setContentOffsetForImageScroll(with: view.frame.width)
+        if let row = settingModel.pickerModeArray.index(of: settingModel.currentMode) {
+            choosePlayMode.selectRow(row, inComponent: 0, animated: true)
+        }
     }
+    
     func fillchoosingHeroView() {
         //print(choosingPlayMode.subviews.count)
         for i in 0 ..< settingModel.gameModeArray.count {
@@ -66,15 +69,15 @@ extension SettingsController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerModeArray.count
+        return settingModel.pickerModeArray.count
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        controlModeLabel.text = pickerModeArray[row]
+        settingModel.currentMode = settingModel.pickerModeArray[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerModeArray[row]
+        return settingModel.pickerModeArray[row]
     }
 }
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5v1-fX-Sgy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5v1-fX-Sgy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,47 +37,49 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="sgW-GD-l77">
-                                <rect key="frame" x="0.0" y="99" width="375" height="278"/>
+                                <rect key="frame" x="0.0" y="99" width="375" height="75"/>
                             </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose control mode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSo-mn-Waw">
-                                <rect key="frame" x="0.0" y="412" width="375" height="21"/>
+                                <rect key="frame" x="0.0" y="218" width="375" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EBj-SJ-0Sr">
-                                <rect key="frame" x="0.0" y="451" width="375" height="216"/>
-                            </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your hero" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6M1-KA-fuD">
                                 <rect key="frame" x="0.0" y="70" width="375" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EBj-SJ-0Sr">
+                                <rect key="frame" x="0.0" y="247" width="375" height="104"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="104" id="2JX-c1-fiu"/>
+                                </constraints>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="EBj-SJ-0Sr" firstAttribute="top" secondItem="mSo-mn-Waw" secondAttribute="bottom" constant="8" symbolic="YES" id="5Ha-eR-8yl"/>
                             <constraint firstItem="003-dN-nh1" firstAttribute="top" secondItem="JVI-Ny-Ivg" secondAttribute="bottom" constant="8" symbolic="YES" id="5xr-S2-MUc"/>
+                            <constraint firstAttribute="bottom" secondItem="sgW-GD-l77" secondAttribute="bottom" constant="493" id="6Qi-OZ-zGU"/>
                             <constraint firstItem="6M1-KA-fuD" firstAttribute="leading" secondItem="kYs-O3-qyG" secondAttribute="leading" id="9Ac-5m-Ybn"/>
-                            <constraint firstItem="EBj-SJ-0Sr" firstAttribute="leading" secondItem="kYs-O3-qyG" secondAttribute="leading" id="AVv-vo-Ydv"/>
-                            <constraint firstAttribute="bottom" secondItem="sgW-GD-l77" secondAttribute="bottom" constant="290" id="Fku-Hi-gg0"/>
-                            <constraint firstItem="ubD-cp-d2K" firstAttribute="top" secondItem="EBj-SJ-0Sr" secondAttribute="bottom" id="G88-62-cBo"/>
+                            <constraint firstItem="EBj-SJ-0Sr" firstAttribute="leading" secondItem="mSo-mn-Waw" secondAttribute="leading" id="FI7-V2-kna"/>
                             <constraint firstAttribute="trailing" secondItem="6M1-KA-fuD" secondAttribute="trailing" id="Oey-6S-7Sx"/>
                             <constraint firstItem="6M1-KA-fuD" firstAttribute="top" secondItem="003-dN-nh1" secondAttribute="bottom" constant="2" id="cdj-zV-X8n"/>
                             <constraint firstItem="x7A-sJ-Jpc" firstAttribute="top" secondItem="kYs-O3-qyG" secondAttribute="top" id="eY3-lV-PYf"/>
-                            <constraint firstAttribute="trailing" secondItem="EBj-SJ-0Sr" secondAttribute="trailing" id="fN4-F5-Koj"/>
                             <constraint firstItem="sgW-GD-l77" firstAttribute="top" secondItem="6M1-KA-fuD" secondAttribute="bottom" constant="8" id="fqV-vy-aLj"/>
                             <constraint firstAttribute="trailing" secondItem="sgW-GD-l77" secondAttribute="trailing" id="ht2-pP-oxc"/>
                             <constraint firstItem="mSo-mn-Waw" firstAttribute="leading" secondItem="kYs-O3-qyG" secondAttribute="leading" id="kuF-cy-X6k"/>
                             <constraint firstItem="sgW-GD-l77" firstAttribute="leading" secondItem="kYs-O3-qyG" secondAttribute="leading" id="mBU-SQ-YQH"/>
-                            <constraint firstItem="EBj-SJ-0Sr" firstAttribute="top" relation="greaterThanOrEqual" secondItem="mSo-mn-Waw" secondAttribute="bottom" constant="18" id="ntt-UN-inh"/>
+                            <constraint firstItem="mSo-mn-Waw" firstAttribute="top" secondItem="sgW-GD-l77" secondAttribute="bottom" constant="44" id="okm-Eh-xb5"/>
                             <constraint firstItem="ubD-cp-d2K" firstAttribute="top" secondItem="x7A-sJ-Jpc" secondAttribute="bottom" id="rhN-ml-dIr"/>
+                            <constraint firstItem="EBj-SJ-0Sr" firstAttribute="trailing" secondItem="mSo-mn-Waw" secondAttribute="trailing" id="srE-gR-FwK"/>
                             <constraint firstItem="003-dN-nh1" firstAttribute="leading" secondItem="kYs-O3-qyG" secondAttribute="leadingMargin" id="u8B-6f-7tm"/>
                             <constraint firstItem="x7A-sJ-Jpc" firstAttribute="top" secondItem="6M1-KA-fuD" secondAttribute="bottom" constant="-90.5" id="uBJ-jZ-YKB"/>
                             <constraint firstAttribute="trailing" secondItem="x7A-sJ-Jpc" secondAttribute="trailing" id="uBd-W6-7Fx"/>
                             <constraint firstAttribute="trailing" secondItem="mSo-mn-Waw" secondAttribute="trailing" id="v4T-fI-l1u"/>
                             <constraint firstItem="x7A-sJ-Jpc" firstAttribute="leading" secondItem="kYs-O3-qyG" secondAttribute="leading" id="vsn-6h-hmH"/>
-                            <constraint firstItem="mSo-mn-Waw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="sgW-GD-l77" secondAttribute="bottom" constant="35" id="wQq-DY-Y3c"/>
                         </constraints>
                     </view>
                     <connections>

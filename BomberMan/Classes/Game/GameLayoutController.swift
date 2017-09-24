@@ -254,14 +254,16 @@ class GameLayoutController: UIViewController {
         }
     }
     
-    func forYevgen() {
-        // if something ------
-        controlPanelController.controlPanelView.removeBombButton()
-        // call!!!! ->> gameMapController.initGestureRecognizer
-        gameMapController.onMapDoubleTap = { [weak self] in
-            self?.setBomb()
+    func playerMode() {
+        switch SettingsModel.shared.currentPlayerMode {
+        case 1:
+            controlPanelController.controlPanelView.removeBombButton()
+            gameMapController.initGestureRecognizer()
+            gameMapController.onMapDoubleTap = { [weak self] in
+                self?.setBomb()
+            }
+        default: break
         }
-        // ----------------
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -311,7 +313,7 @@ class GameLayoutController: UIViewController {
             self?.turnToHome()
         }
     }
-        
+    
     // MARK: View did load block
     
     override func viewDidLoad() {
@@ -319,6 +321,7 @@ class GameLayoutController: UIViewController {
         bindBrainClosures()
         brain.isSingleGame = isSingleGame
         prepareMultiplayergameIfNeeded()
+        playerMode()
     }
     
     func bindBrainClosures() {

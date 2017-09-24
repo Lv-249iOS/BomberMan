@@ -72,7 +72,7 @@ extension Brain {
                 }
             case "D":
                 if doorEnterCount == 0 {
-                    score += 500
+                    score += 500 + Int(currentTime) * 5
                     refreshScore?(score)
                     move?(direction, players[playerIndex].identifier)
                     if isSingleGame {

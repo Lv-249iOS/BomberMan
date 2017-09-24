@@ -15,15 +15,20 @@ class ControlPanelView: UIView {
     @IBOutlet weak var bombButton: UIButton?
     
     var onBombTap: (()->())?
-    var onArrowTap: ((Direction)->())?
+    var onArrowTouchUp: (()->())?
+    var onArrowTouchDown: ((Direction)->())?
     
     @IBAction func bombTaped(_ sender: UIButton) {
         onBombTap?()
     }
     
-    @IBAction func arrowTap(_ sender: UIButton) {
+    @IBAction func arrowTouchUp(_ sender: UIButton) {
+        onArrowTouchUp?()
+    }
+    
+    @IBAction func arrowTouchDown(_ sender: UIButton) {
         if let arrowTag = Direction(rawValue: sender.tag) {
-            onArrowTap?(arrowTag)
+            onArrowTouchDown?(arrowTag)
         }
     }
     

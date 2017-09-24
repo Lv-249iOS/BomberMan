@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,7 +33,9 @@
                         <color key="titleColor" red="0.96068006750000001" green="0.96084433790000001" blue="0.96066969629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
-                        <action selector="arrowTap:" destination="-1" eventType="touchUpInside" id="rJy-bz-w9R"/>
+                        <action selector="arrowTouchDown:" destination="-1" eventType="touchDown" id="CLm-Tz-YO2"/>
+                        <action selector="arrowTouchUp:" destination="-1" eventType="touchUpInside" id="1vt-70-AZw"/>
+                        <action selector="arrowTouchUp:" destination="-1" eventType="touchUpOutside" id="3Lk-Jb-TE3"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlQ-ZZ-dmC">
@@ -44,7 +46,9 @@
                         <color key="titleColor" red="0.96068006750000001" green="0.96084433790000001" blue="0.96066969629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
-                        <action selector="arrowTap:" destination="-1" eventType="touchUpInside" id="7Cc-tG-71u"/>
+                        <action selector="arrowTouchDown:" destination="-1" eventType="touchDown" id="fp5-V1-tDY"/>
+                        <action selector="arrowTouchUp:" destination="-1" eventType="touchUpInside" id="9IL-40-xsy"/>
+                        <action selector="arrowTouchUp:" destination="-1" eventType="touchUpOutside" id="oBn-wY-I1c"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjf-kf-XB9">
@@ -55,7 +59,9 @@
                         <color key="titleColor" red="0.96068006750000001" green="0.96084433790000001" blue="0.96066969629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
-                        <action selector="arrowTap:" destination="-1" eventType="touchUpInside" id="nDI-cA-QDZ"/>
+                        <action selector="arrowTouchDown:" destination="-1" eventType="touchDown" id="lLR-U0-UiR"/>
+                        <action selector="arrowTouchUp:" destination="-1" eventType="touchUpOutside" id="SVB-X0-FLX"/>
+                        <action selector="arrowTouchUp:" destination="-1" eventType="touchUpInside" id="yRz-3a-cTz"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dl6-Qb-2Yh">
@@ -66,7 +72,9 @@
                         <color key="titleColor" red="0.96068006750000001" green="0.96084433790000001" blue="0.96066969629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
-                        <action selector="arrowTap:" destination="-1" eventType="touchUpInside" id="6ya-Cg-WGF"/>
+                        <action selector="arrowTouchDown:" destination="-1" eventType="touchDown" id="tnE-D4-13s"/>
+                        <action selector="arrowTouchUp:" destination="-1" eventType="touchUpOutside" id="IU7-i1-Rdl"/>
+                        <action selector="arrowTouchUp:" destination="-1" eventType="touchUpInside" id="gj9-zL-Vxt"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lGn-AU-na4" userLabel="Bomb">

@@ -42,9 +42,6 @@ class SettingsController: UIViewController {
         super.viewWillAppear(animated)
         fillchoosingHeroView()
         setContentOffsetForImageScroll(with: view.frame.width)
-        if let row = settingModel.pickerModeArray.index(of: settingModel.currentMode) {
-            choosePlayMode.selectRow(row, inComponent: 0, animated: true)
-        }
     }
     
     func fillchoosingHeroView() {
@@ -85,17 +82,6 @@ extension SettingsController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-<<<<<<< HEAD
-        return settingModel.pickerModeArray.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        settingModel.currentMode = settingModel.pickerModeArray[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return settingModel.pickerModeArray[row]
-=======
         return settingModel.gameModeArray.count
     }
     
@@ -105,7 +91,6 @@ extension SettingsController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         settingModel.currentPlayerMode = row
         print(row)
->>>>>>> master
     }
 }
 

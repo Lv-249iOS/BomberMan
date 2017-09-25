@@ -19,7 +19,6 @@ extension Brain {
         DispatchQueue.main.async { [weak self] in
             self?.setUpgradesIfNeeded?()
         }
-        //addMobsAndUpgrates()
         redrawScene?()
    
     }

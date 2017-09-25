@@ -42,6 +42,10 @@ class ControlPanelController: UIViewController {
         setBomb?()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        stopMovement()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

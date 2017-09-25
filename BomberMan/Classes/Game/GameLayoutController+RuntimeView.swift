@@ -76,21 +76,29 @@ extension GameLayoutController {
         controlPanelController.setButtonState(isEnabled: true)
         switch additionView {
         case .pause:
-            pause?.removeFromSuperview()
-            pause = nil
+            DispatchQueue.main.async { [weak self] in
+                self?.pause?.removeFromSuperview()
+                self?.pause = nil
+            }
             
         case .gameOver:
-            gameOver?.removeFromSuperview()
-            controlPanelController.setButtonState(isEnabled: true)
-            gameOver = nil
+            DispatchQueue.main.async { [weak self] in
+                self?.gameOver?.removeFromSuperview()
+                self?.controlPanelController.setButtonState(isEnabled: true)
+                self?.gameOver = nil
+            }
             
         case .gameWin:
-            gameWin?.removeFromSuperview()
-            gameWin = nil
+            DispatchQueue.main.async { [weak self] in
+                self?.gameWin?.removeFromSuperview()
+                self?.gameWin = nil
+            }
             
         case .nextLevel:
-            moveToNextLevel?.removeFromSuperview()
-            moveToNextLevel = nil
+            DispatchQueue.main.async { [weak self] in
+                self?.moveToNextLevel?.removeFromSuperview()
+                self?.moveToNextLevel = nil
+            }
         }
     }
     
@@ -99,16 +107,14 @@ extension GameLayoutController {
     }
     
     func removeAllAdditionView() {
-        DispatchQueue.main.async { [weak self] in
-            self?.pause?.removeFromSuperview()
-            self?.gameOver?.removeFromSuperview()
-            self?.controlPanelController.setButtonState(isEnabled: true)
-            self?.gameWin?.removeFromSuperview()
-            self?.moveToNextLevel?.removeFromSuperview()
-            self?.pause = nil
-            self?.gameOver = nil
-            self?.gameWin = nil
-            self?.moveToNextLevel = nil
-        }
+        pause?.removeFromSuperview()
+        gameOver?.removeFromSuperview()
+        controlPanelController.setButtonState(isEnabled: true)
+        gameWin?.removeFromSuperview()
+        moveToNextLevel?.removeFromSuperview()
+        pause = nil
+        gameOver = nil
+        gameWin = nil
+        moveToNextLevel = nil
     }
 }

@@ -81,6 +81,7 @@ extension GameLayoutController {
             
         case .gameOver:
             gameOver?.removeFromSuperview()
+            controlPanelController.setButtonState(isEnabled: true)
             gameOver = nil
             
         case .gameWin:
@@ -100,6 +101,7 @@ extension GameLayoutController {
     func removeAllAdditionView() {
         pause?.removeFromSuperview()
         gameOver?.removeFromSuperview()
+        controlPanelController.setButtonState(isEnabled: true)
         gameWin?.removeFromSuperview()
         moveToNextLevel?.removeFromSuperview()
         pause = nil

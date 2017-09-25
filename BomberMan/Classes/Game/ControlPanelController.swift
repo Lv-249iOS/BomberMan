@@ -15,6 +15,8 @@ class ControlPanelController: UIViewController {
     var setBomb: (()->())?
     
     @IBOutlet var controlPanelView: ControlPanelView!
+    
+    var moveTimer: Timer?
 
     /// Set button state (true - enabled; false - disable)
     /// Precondition: gets boolean value (state) of control panel
@@ -26,6 +28,13 @@ class ControlPanelController: UIViewController {
     // Send event that on arrow taped and send arrow direction
     private func moveEvent(with direction: Direction) {
         moveTo?(direction)
+        moveTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { [weak self] _ in
+            self?.moveTo?(direction)
+        }
+    }
+    
+    private func stopMovement() {
+        moveTimer?.invalidate()
     }
     
     // Send event that on bomb button taped
@@ -36,8 +45,12 @@ class ControlPanelController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        controlPanelView.onArrowTap = { [weak self] direction in
+        controlPanelView.onArrowTouchDown = { [weak self] direction in
             self?.moveEvent(with: direction)
+        }
+        
+        controlPanelView.onArrowTouchUp = { [weak self] direction in
+            self?.stopMovement()
         }
         
         controlPanelView.onBombTap = { [weak self] in

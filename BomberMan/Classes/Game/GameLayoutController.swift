@@ -372,7 +372,9 @@ extension GameLayoutController: ConnectionServiceManagerDelegate {
     }
     
     func connectionLost() {
-        turnToHome()
+        DispatchQueue.main.async { [weak self] in
+            self?.turnToHome()
+        }
     }
 }
 

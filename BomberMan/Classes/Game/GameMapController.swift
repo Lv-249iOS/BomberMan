@@ -20,7 +20,7 @@ class GameMapController: UIViewController {
     var mobs: [UIImageView] = []
     var clickСount: [Int] = [0,0,0,0,0,0,0,0]
     var animationCount: [Int] = [0,0,0,0,0,0,0,0]
-    var chosenSkinIndex = 4
+    var chosenSkinIndex = SettingsModel.shared.currentCharacterImage
     var chosenSkin: Int!
     
     private var map: String!

@@ -8,11 +8,13 @@
 
 import UIKit
 
-class MenuController: UIViewController {
+class MenuController: UIViewController, UIViewControllerTransitioningDelegate {
     
     @IBOutlet weak var soundButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
     
     var soundManager = SoundManager()
+    var transition = CircularTransition()
     
     // Controls sound state
     @IBAction func onSoundTap(_ sender: UIButton) {
@@ -36,5 +38,25 @@ class MenuController: UIViewController {
             soundManager.stopMusic()
         }
     }
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.startingPoint = settingsButton.center
+        transition.transitionMode = .present
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.startingPoint = settingsButton.center
+        transition.transitionMode = .dismiss
+        return transition
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let settingsVC = segue.destination as! SettingsController
+        settingsVC.transitioningDelegate = self
+        settingsVC.modalPresentationStyle = .custom
+    }
+    
 }
 

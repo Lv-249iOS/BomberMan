@@ -53,9 +53,11 @@ class MenuController: UIViewController, UIViewControllerTransitioningDelegate {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "settingsSegue"{
         let settingsVC = segue.destination as! SettingsController
         settingsVC.transitioningDelegate = self
         settingsVC.modalPresentationStyle = .custom
+    }
     }
     
 }

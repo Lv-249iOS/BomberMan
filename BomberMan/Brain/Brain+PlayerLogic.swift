@@ -86,9 +86,11 @@ extension Brain {
                     tiles[players[playerIndex].position].removeLast()
                 }
                 players[playerIndex].isAlive = false
-                move?(direction, players[playerIndex].identifier)
-                killHero?(players[playerIndex].identifier, false)
-                gameEnd?(false)
+                DispatchQueue.main.async { [weak self] in
+                    self?.move?(direction, self?.players[playerIndex].identifier ?? 0)
+                    self?.killHero?(self?.players[playerIndex].identifier ?? 0, false)
+                    self?.gameEnd?(false)
+                }
                 score += ScoreBoosts.death.rawValue
                 if score < 0 {
                     score = 0

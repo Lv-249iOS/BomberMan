@@ -343,11 +343,13 @@ class GameLayoutController: UIViewController {
 extension GameLayoutController: ConnectionServiceManagerDelegate {
     
     func connectedDevicesChanged(manager: ConnectionServiceManager, connectedDevices: [String]) {
-        if connectedDevices.count == brain.players.count - 1 {
+        if connectedDevices.count != brain.players.count - 1 {
+            var devices = connectedDevices
+            devices.append(UIDevice.current.name)
             var i = 0
             
             for player in brain.players {
-                if !connectedDevices.contains(player.name), player.isAlive {
+                if !devices.contains(player.name), player.isAlive {
                     brain.killHero?(player.identifier, false)
                     brain.tiles[player.position].removeLast()
                     brain.players[i].isAlive = false

@@ -142,7 +142,9 @@ extension Brain {
                 if let mobAtCurrentPosition = getMobIndex(atPosition: index) {
                     if let indexInPrivateArray = getMobIndexInPrivateArray(mob: mobAtCurrentPosition[0]) {
                         mobs.remove(at: indexInPrivateArray)
-                        killMob?(mobAtCurrentPosition[0].identifier, false)
+                        DispatchQueue.main.async { [weak self] in
+                            self?.killMob?(mobAtCurrentPosition[0].identifier, false)
+                        }
                         score += ScoreBoosts.mobKill.rawValue
                         refreshScore?(score)
                     }

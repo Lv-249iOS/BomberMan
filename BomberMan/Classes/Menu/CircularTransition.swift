@@ -38,30 +38,32 @@ extension CircularTransition: UIViewControllerAnimatedTransitioning {
         let containerView = transitionContext.containerView
         
         if transitionMode == .present {
-            if let presentedView = transitionContext.view(forKey: .to) {
-            let viewCenter = presentedView.center
-                let viewSize = presentedView.frame.size
+            if let toView = transitionContext.view(forKey: .to) {
+            let viewCenter = toView.center
+                let viewSize = toView.frame.size
                 
                 circle = UIView()
                 
-                circle.frame = frameForCircle(withViewCenter: viewCenter, size: viewSize, startPoint: startingPoint)
+                //circle.frame = frameForCircle(withViewCenter: viewCenter, size: viewSize, startPoint: startingPoint)
+                circle.frame = frameForCircle(viewSize: viewSize)
+
                 
                 circle.layer.cornerRadius = circle.frame.size.height / 2
                 circle.center = startingPoint
                 circle.backgroundColor = circleColor
-                circle.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
+                circle.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
                 containerView.addSubview(circle)
                 
-                presentedView.center = startingPoint
-                presentedView.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
-                presentedView.alpha = 0
-                containerView.addSubview(presentedView)
+                toView.center = startingPoint
+                toView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+                toView.alpha = 0
+                containerView.addSubview(toView)
                 
                 UIView.animate(withDuration: duration, animations: {
                 self.circle.transform = CGAffineTransform.identity
-                    presentedView.transform = CGAffineTransform.identity
-                    presentedView.alpha = 1
-                    presentedView.center = viewCenter
+                    toView.transform = CGAffineTransform.identity
+                    toView.alpha = 1
+                    toView.center = viewCenter
                 }, completion: { success in
                     transitionContext.completeTransition(success)
                 })
@@ -74,13 +76,14 @@ extension CircularTransition: UIViewControllerAnimatedTransitioning {
             let viewCenter = fromView.center
                 let viewSize = fromView.frame.size
                 
-                circle.frame = frameForCircle(withViewCenter: viewCenter, size: viewSize, startPoint: startingPoint)
+                //circle.frame = frameForCircle(withViewCenter: viewCenter, size: viewSize, startPoint: startingPoint)
+                circle.frame = frameForCircle(viewSize: viewSize)
                 circle.layer.cornerRadius = circle.frame.size.height / 2
                 circle.center = startingPoint
 
                 UIView.animate(withDuration: duration, animations: {
-                self.circle.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
-                    fromView.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
+                self.circle.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+                    fromView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
                     fromView.center = self.startingPoint
                     fromView.alpha = 0
                 }, completion: { success in
@@ -99,12 +102,13 @@ extension CircularTransition: UIViewControllerAnimatedTransitioning {
 
 }
 
-func frameForCircle(withViewCenter viewCenter: CGPoint, size viewSize: CGSize, startPoint: CGPoint) -> CGRect {
-    let xLenght = fmax(startPoint.x,viewSize.width - startPoint.x)
-    let yLenght = fmax(startPoint.y,viewSize.height - startPoint.y)
-    
-    let offsetVector = sqrt(xLenght * xLenght + yLenght * yLenght) * 2
-    let size = CGSize(width: offsetVector, height: offsetVector)
+func frameForCircle(viewSize: CGSize)->CGRect{ //withViewCenter viewCenter: CGPoint, size viewSize: CGSize, startPoint: CGPoint) -> CGRect {
+//    let xLenght = fmax(startPoint.x,viewSize.width - startPoint.x)
+//    let yLenght = fmax(startPoint.y,viewSize.height - startPoint.y)
+//    
+//    let offsetVector = sqrt(xLenght * xLenght + yLenght * yLenght) * 2
+//    let size = CGSize(width: offsetVector, height: offsetVector)
+    let size = CGSize(width: viewSize.height*2, height: viewSize.height*2)
     
     return CGRect(origin: CGPoint.zero, size: size)
 }

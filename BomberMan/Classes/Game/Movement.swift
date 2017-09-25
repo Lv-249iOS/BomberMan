@@ -38,8 +38,8 @@ extension GameMapController {
         switch direction {
         case .bottom:
             
-            let downImageArray = (1...2).map { UIImage(named: "down\(player+1+chosenSkin)\($0)") ?? #imageLiteral(resourceName: "noImage")  }
-            if players[player].animationImages?.first != UIImage(named: "down\(player+1+chosenSkin)1") && players[player].animationImages?.first != nil {
+            let downImageArray = (1...2).map { UIImage(named: "down\(player+chosenSkin)\($0)") ?? #imageLiteral(resourceName: "noImage")  }
+            if players[player].animationImages?.first != UIImage(named: "down\(player+chosenSkin)1") && players[player].animationImages?.first != nil {
                 
                 animate(images: downImageArray, player: player)
             }
@@ -47,16 +47,16 @@ extension GameMapController {
             
         case .left:
             
-            let leftImageArray = (1...3).map { UIImage(named: "left\(player+1+chosenSkin)\($0)") ?? #imageLiteral(resourceName: "noImage") }
-            if players[player].animationImages?.first != UIImage(named: "left\(player+1+chosenSkin)1") && players[player].animationImages?.first != nil {
+            let leftImageArray = (1...3).map { UIImage(named: "left\(player+chosenSkin)\($0)") ?? #imageLiteral(resourceName: "noImage") }
+            if players[player].animationImages?.first != UIImage(named: "left\(player+chosenSkin)1") && players[player].animationImages?.first != nil {
                 animate(images: leftImageArray, player: player)
             }
             animateImagesForMove(images: leftImageArray, x: -50, y: 0, player: player)
             
         case .right:
             
-            let rightImageArray = (1...3).map { UIImage(named: "right\(player+1+chosenSkin)\($0)") ?? #imageLiteral(resourceName: "noImage") }
-            if players[player].animationImages?.first != UIImage(named: "right\(player+1+chosenSkin)1") && players[player].animationImages?.first != nil {
+            let rightImageArray = (1...3).map { UIImage(named: "right\(player+chosenSkin)\($0)") ?? #imageLiteral(resourceName: "noImage") }
+            if players[player].animationImages?.first != UIImage(named: "right\(player+chosenSkin)1") && players[player].animationImages?.first != nil {
                 
                 animate(images: rightImageArray, player: player)
             }
@@ -64,8 +64,8 @@ extension GameMapController {
             
         case .top:
             
-            let upImageArray = (1...3).map { UIImage(named: "up\(player+1+chosenSkin)\($0)") ?? #imageLiteral(resourceName: "noImage") }
-            if players[player].animationImages?.first != UIImage(named: "up\(player+1+chosenSkin)1") && players[player].animationImages?.first != nil {
+            let upImageArray = (1...3).map { UIImage(named: "up\(player+chosenSkin)\($0)") ?? #imageLiteral(resourceName: "noImage") }
+            if players[player].animationImages?.first != UIImage(named: "up\(player+chosenSkin)1") && players[player].animationImages?.first != nil {
                 
                 animate(images: upImageArray, player: player)
             }
@@ -73,7 +73,9 @@ extension GameMapController {
         }
         //HEARE
         clickСount[player] += 1
+        
         //if this player is me -> scroll
+        
         if brain.players[player].name == UIDevice.current.name {
             let frame = CGRect(x: players[player].frame.origin.x-150, y: players[player].frame.origin.y-150, width: players[player].frame.width*6, height: players[player].frame.height*6)
             
@@ -91,27 +93,19 @@ extension GameMapController {
             }
             self?.players[player].transform = (self?.players[player].transform.translatedBy(x: x, y: y))!
         }) { [weak self] finished in
-            //if !finished click count>animation Count
+            
             self?.animationCount[player] += 1
-
-            //if finished {
-                //self?.animationCount[player] += 1
-                ///HEARE
-//            if !finished {
-//                self?.animationCount[player] = 0
-//                self?.clickСount[player] = 0
-//            }
+            
             print("CLICK=\(String(describing: self?.clickСount[player])).... ANIMATION\(String(describing: self?.animationCount[player]))")
             if finished {
                 print("Finished")
                 if self?.clickСount[player] == self?.animationCount[player] {
-                    /*if finished {*/ self?.players[player].stopAnimating()
+                    self?.players[player].stopAnimating()
                     print("Stop")//}
                     self?.animationCount[player] = 0
                     self?.clickСount[player] = 0
                 }
             } else {print("not finished")}
-            //}
         }
     }
 

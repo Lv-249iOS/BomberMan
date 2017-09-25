@@ -17,7 +17,7 @@ class SettingsModel {
         case currentCharacterImage = "currentCharacterImage"
         case currentPlayMode = "currentPlayMode"
     }
-    var characterImagesArray = [ #imageLiteral(resourceName: "bom1"),#imageLiteral(resourceName: "bom2"),#imageLiteral(resourceName: "bom3"),#imageLiteral(resourceName: "bom4")]
+    var characterImagesArray = [ #imageLiteral(resourceName: "bom0"),#imageLiteral(resourceName: "bom1"),#imageLiteral(resourceName: "bom2"),#imageLiteral(resourceName: "bom3"),#imageLiteral(resourceName: "bom4")]
     var gameModeArray = ["Only buttons","Buttons and gestures"]
     
     var currentCharacterImage: Int {

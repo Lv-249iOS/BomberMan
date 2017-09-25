@@ -40,8 +40,10 @@ extension Brain {
             let last = tiles[directionPosition].last ?? " "
             switch last {
             case "F":
-                moveMob?(mob.direction, mob.identifier)
-                killMob?(mob.identifier, false)
+                DispatchQueue.main.async { [weak self] in
+                    self?.moveMob?(mob.direction, mob.identifier)
+                    self?.killMob?(mob.identifier, false)
+                }
                 score += ScoreBoosts.mobKill.rawValue
                 refreshScore?(score)
                 mobs.remove(at: i)
@@ -54,10 +56,12 @@ extension Brain {
                 }
                 for player in players {
                     if player.position == directionPosition {
-                        killHero?(player.identifier, false)
+                        DispatchQueue.main.async { [weak self] in
+                            self?.killHero?(player.identifier, false)
+                            self?.moveMob?(mob.direction, mob.identifier)
+                            self?.gameEnd?(false)
+                        }
                         players[j].isAlive = false
-                        moveMob?(mob.direction, mob.identifier)
-                        gameEnd?(false)
                     }
                     j += 1
                 }

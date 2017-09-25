@@ -34,7 +34,7 @@ class Brain {
     var showFire: ((Explosion, Int)->())?
     var move: ((Direction, Int)->())?
     var plantBomb: ((Int)->())?
-    var showImage: ((DoubleHealthThings, Int)->())?
+    var showImage: ((ItemsWithIcon, Int)->())?
     var redrawScene: (()->())?
     var killHero: ((Int, Bool)->())?
     var killMob: ((Int, Bool)->())?
@@ -141,7 +141,6 @@ class Brain {
     // Adds mob in mobs_array
     func generateNewMob(with identifier: Int, on position: Int) {
         let mob = Mob(identifier: identifier,
-                      animationSpeed: 1,
                       position: position,
                       direction: setMobDirection())
         

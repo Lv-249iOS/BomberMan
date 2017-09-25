@@ -116,7 +116,7 @@ extension Brain {
                         players[i].isAlive = false
                         if isSingleGame {
                             gameEnd?(false)
-                            score -= 1000
+                            score += ScoreBoosts.death.rawValue
                             if score < 0 {
                                 score = 0
                             }
@@ -143,7 +143,7 @@ extension Brain {
                     if let indexInPrivateArray = getMobIndexInPrivateArray(mob: mobAtCurrentPosition[0]) {
                         mobs.remove(at: indexInPrivateArray)
                         killMob?(mobAtCurrentPosition[0].identifier, false)
-                        score += 200
+                        score += ScoreBoosts.mobKill.rawValue
                         refreshScore?(score)
                     }
                 }

@@ -99,14 +99,16 @@ extension GameLayoutController {
     }
     
     func removeAllAdditionView() {
-        pause?.removeFromSuperview()
-        gameOver?.removeFromSuperview()
-        controlPanelController.setButtonState(isEnabled: true)
-        gameWin?.removeFromSuperview()
-        moveToNextLevel?.removeFromSuperview()
-        pause = nil
-        gameOver = nil
-        gameWin = nil
-        moveToNextLevel = nil
+        DispatchQueue.main.async { [weak self] in
+            self?.pause?.removeFromSuperview()
+            self?.gameOver?.removeFromSuperview()
+            self?.controlPanelController.setButtonState(isEnabled: true)
+            self?.gameWin?.removeFromSuperview()
+            self?.moveToNextLevel?.removeFromSuperview()
+            self?.pause = nil
+            self?.gameOver = nil
+            self?.gameWin = nil
+            self?.moveToNextLevel = nil
+        }
     }
 }

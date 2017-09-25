@@ -18,7 +18,7 @@ extension Brain {
             }
             playerIndex += 1
         }
-        if !players[playerIndex].isAlive || playerIndex == players.count { return }
+        if playerIndex == players.count || !players[playerIndex].isAlive { return }
         var directionPosition: Int
         var shouldRedraw = false
         
@@ -46,7 +46,7 @@ extension Brain {
                 if isSingleGame {
                     gameEnd?(false)
                 }
-                score -= 1000
+                score += ScoreBoosts.death.rawValue
                 if score < 0 {
                     score = 0
                 }
@@ -66,13 +66,13 @@ extension Brain {
                     }
                     tiles[directionPosition].removeFirst()
                     upgrades.remove(at: index)
-                    score += 100
+                    score += ScoreBoosts.upgrade.rawValue
                     refreshScore?(score)
                     shouldRedraw = true
                 }
             case "D":
                 if doorEnterCount == 0 {
-                    score += 500 + Int(currentTime) * 5
+                    score += ScoreBoosts.door.rawValue + Int(currentTime) * ScoreBoosts.timeScoreBooster.rawValue
                     refreshScore?(score)
                     move?(direction, players[playerIndex].identifier)
                     if isSingleGame {
@@ -89,7 +89,7 @@ extension Brain {
                 move?(direction, players[playerIndex].identifier)
                 killHero?(players[playerIndex].identifier, false)
                 gameEnd?(false)
-                score -= 1000
+                score += ScoreBoosts.death.rawValue
                 if score < 0 {
                     score = 0
                 }
@@ -162,7 +162,7 @@ extension Brain {
             }
             playerIndex += 1
         }
-        if !players[playerIndex].isAlive || playerIndex == players.count { return }
+        if playerIndex == players.count || !players[playerIndex].isAlive { return }
         if players[playerIndex].minesCount > players[playerIndex].plantedMines, canFitBomb(at: players[playerIndex].position)  {
             tiles[players[playerIndex].position].insert("X", at: 0)
             players[playerIndex].plantedMines += 1

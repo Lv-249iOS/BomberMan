@@ -30,7 +30,7 @@ extension Brain {
                 }
             }
             if needToContinue {
-                let modifiedMob = Mob(identifier: mob.identifier, animationSpeed: mob.animationSpeed, position: mob.position, direction: mob.direction)
+                let modifiedMob = Mob(identifier: mob.identifier, position: mob.position, direction: mob.direction)
                 modifiedMobArray.append(modifiedMob)
                 continue
             }
@@ -42,13 +42,13 @@ extension Brain {
             case "F":
                 moveMob?(mob.direction, mob.identifier)
                 killMob?(mob.identifier, false)
-                score += 200
+                score += ScoreBoosts.mobKill.rawValue
                 refreshScore?(score)
                 mobs.remove(at: i)
                 needToContinue = true
             case "P":
                 var j = 0
-                score -= 1000
+                score += ScoreBoosts.death.rawValue
                 if score < 0 {
                     score = 0
                 }
@@ -70,7 +70,7 @@ extension Brain {
             tiles[directionPosition].append("M")
             mob.position = directionPosition
             i += 1
-            let modifiedMob = Mob(identifier: mob.identifier, animationSpeed: mob.animationSpeed, position: mob.position, direction: mob.direction)
+            let modifiedMob = Mob(identifier: mob.identifier, position: mob.position, direction: mob.direction)
             modifiedMobArray.append(modifiedMob)
         }
         mobs.removeAll()

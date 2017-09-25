@@ -8,12 +8,6 @@
 
 import Foundation
 
-struct Block {
-    var explodable = false
-    var flyable = false
-    var walkable = false
-}
-
 struct Upgrade {
     var position: Int
     var type: UpgradeType = .anotherBomb
@@ -27,22 +21,17 @@ struct Bomb {
 }
 
 struct Player {
-//    var health = 1
     var name = ""
     var identifier = 0
-//    var canFly = false
     var minesCount = 1
     var explosionPower = 1
     var position = 0
     var plantedMines = 0
     var isAlive = true
-//    var speed = 1
 }
 
 struct Mob {
-//    var type =
     var identifier = 0
-    var animationSpeed = 1
     var position: Int
     var direction: Direction
 }
@@ -54,23 +43,12 @@ struct Explosion {
     var right = 0
 }
 
-struct Enemy {
-    var speed = 1
-    var canFly = false
-}
-
-//enum MobType: Image {
-//    case weird =
-//    case original =
-//    case sea =
-//}
-
 enum UpgradeType: Int {
     case anotherBomb
     case strongerBomb
 }
 
-enum DoubleHealthThings: Int {
+enum ItemsWithIcon: Int {
     case door
     case anotherBomb
     case strongerBomb
@@ -81,4 +59,12 @@ enum Direction: Int {
     case bottom = 4
     case left  = 2
     case right = 3
+}
+
+enum ScoreBoosts: Int {
+    case death = -1000
+    case mobKill = 200
+    case upgrade = 100
+    case door = 500
+    case timeScoreBooster = 5
 }

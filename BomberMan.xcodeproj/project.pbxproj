@@ -12,6 +12,7 @@
 		6164606F1F6182F100402452 /* Brain+MobLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6164606E1F6182F100402452 /* Brain+MobLogic.swift */; };
 		616460711F61830E00402452 /* Brain+PlayerLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616460701F61830E00402452 /* Brain+PlayerLogic.swift */; };
 		616460731F61840400402452 /* Brain+Explosion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616460721F61840400402452 /* Brain+Explosion.swift */; };
+		61EFD3CC1F78E75500C9ED2D /* ConnectionStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EFD3CB1F78E75500C9ED2D /* ConnectionStructs.swift */; };
 		A908D0901F56B1A40097CF51 /* CreationGame.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A908D08E1F56B1A40097CF51 /* CreationGame.storyboard */; };
 		A92AA4321F5E8A2C0025EFB6 /* EventPopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A92AA4311F5E8A2C0025EFB6 /* EventPopOverView.xib */; };
 		A92AA4341F5E8D250025EFB6 /* EventPopOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92AA4331F5E8D250025EFB6 /* EventPopOverView.swift */; };
@@ -149,6 +150,7 @@
 		6164606E1F6182F100402452 /* Brain+MobLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brain+MobLogic.swift"; sourceTree = "<group>"; };
 		616460701F61830E00402452 /* Brain+PlayerLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brain+PlayerLogic.swift"; sourceTree = "<group>"; };
 		616460721F61840400402452 /* Brain+Explosion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brain+Explosion.swift"; sourceTree = "<group>"; };
+		61EFD3CB1F78E75500C9ED2D /* ConnectionStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionStructs.swift; sourceTree = "<group>"; };
 		A908D08F1F56B1A40097CF51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CreationGame.storyboard; sourceTree = "<group>"; };
 		A92AA4311F5E8A2C0025EFB6 /* EventPopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventPopOverView.xib; sourceTree = "<group>"; };
 		A92AA4331F5E8D250025EFB6 /* EventPopOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventPopOverView.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				A94BDEA31F5AFCE80085E073 /* ConnectionService.swift */,
+				61EFD3CB1F78E75500C9ED2D /* ConnectionStructs.swift */,
 				6127F57E1F6BF27300108E45 /* EventParser.swift */,
 			);
 			path = Connection;
@@ -869,6 +872,7 @@
 				616460731F61840400402452 /* Brain+Explosion.swift in Sources */,
 				B252B05D1F73D068009339AE /* Explosions.swift in Sources */,
 				A92AA4361F5E901D0025EFB6 /* EventPopOverController.swift in Sources */,
+				61EFD3CC1F78E75500C9ED2D /* ConnectionStructs.swift in Sources */,
 				E7C5B82D1F6FDC4800EBB160 /* Brain+Multiplayer.swift in Sources */,
 				A9C763431F75835D00FC8442 /* GameLayoutGame+Alerts.swift in Sources */,
 				15478A641F753243000C5314 /* SettingsModel.swift in Sources */,

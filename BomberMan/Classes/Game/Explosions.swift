@@ -93,7 +93,7 @@ extension GameMapController {
                                     brain.tiles[brain.mobs[indexOfMobInBrain].position].removeLast()
                                     kill(mobs, pos: index, inPlace: true)
                                     brain.mobs.remove(at: indexOfMobInBrain)
-                                    brain.score += 200
+                                    brain.score += ScoreBoosts.mobKill.rawValue
                                     brain.currentTime += 10
                                     brain.refreshScore?(brain.score)
                                 }

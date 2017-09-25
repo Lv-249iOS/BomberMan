@@ -33,9 +33,11 @@ class ControlPanelView: UIView {
     }
     
     func setButtonState(isEnabled: Bool) {
-        bombButton?.isEnabled = isEnabled
-        for but in directionButton {
-            but.isEnabled = isEnabled
+        DispatchQueue.main.async { [weak self] in
+            self?.bombButton?.isEnabled = isEnabled
+            for but in self?.directionButton ?? [] {
+                but.isEnabled = isEnabled
+            }
         }
     }
     

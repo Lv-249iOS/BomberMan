@@ -208,7 +208,7 @@ class GameLayoutController: UIViewController {
     }
     
     func timeEnd(state :Bool) {
-        brain.score -= 1000
+        brain.score += ScoreBoosts.death.rawValue
         if brain.score < 0 {
             brain.score = 0
         }

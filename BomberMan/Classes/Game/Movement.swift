@@ -71,7 +71,6 @@ extension GameMapController {
             }
             animateImagesForMove(images: upImageArray, x: 0, y: -50, player: player)
         }
-        //HEARE
         clickСount[player] += 1
         
         //if this player is me -> scroll
@@ -96,22 +95,19 @@ extension GameMapController {
             
             self?.animationCount[player] += 1
             
-            print("CLICK=\(String(describing: self?.clickСount[player])).... ANIMATION\(String(describing: self?.animationCount[player]))")
             if finished {
-                print("Finished")
                 if self?.clickСount[player] == self?.animationCount[player] {
                     self?.players[player].stopAnimating()
-                    print("Stop")//}
                     self?.animationCount[player] = 0
                     self?.clickСount[player] = 0
                 }
-            } else {print("not finished")}
+            }
         }
     }
 
 
     func animate(images:[UIImage], player: Int) {
-        //HEARE
+        
         players[player].layer.removeAllAnimations()
         players[player].stopAnimating()
         

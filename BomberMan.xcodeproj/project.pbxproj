@@ -132,6 +132,7 @@
 		B273A6681F729F1F003CA8E7 /* up21.png in Resources */ = {isa = PBXBuildFile; fileRef = B273A65D1F729F1F003CA8E7 /* up21.png */; };
 		B273A6691F729F1F003CA8E7 /* up22.png in Resources */ = {isa = PBXBuildFile; fileRef = B273A65E1F729F1F003CA8E7 /* up22.png */; };
 		B273A66A1F729F1F003CA8E7 /* up23.png in Resources */ = {isa = PBXBuildFile; fileRef = B273A65F1F729F1F003CA8E7 /* up23.png */; };
+		B2AD98CA1F7A411C007C858A /* TilesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AD98C91F7A411C007C858A /* TilesFactory.swift */; };
 		E77C3CDA1F59889200DE1CE1 /* death1.png in Resources */ = {isa = PBXBuildFile; fileRef = E77C3CD21F59889200DE1CE1 /* death1.png */; };
 		E77C3CDB1F59889200DE1CE1 /* death2.png in Resources */ = {isa = PBXBuildFile; fileRef = E77C3CD31F59889200DE1CE1 /* death2.png */; };
 		E77C3CDC1F59889200DE1CE1 /* death3.png in Resources */ = {isa = PBXBuildFile; fileRef = E77C3CD41F59889200DE1CE1 /* death3.png */; };
@@ -273,6 +274,7 @@
 		B273A65D1F729F1F003CA8E7 /* up21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up21.png; sourceTree = "<group>"; };
 		B273A65E1F729F1F003CA8E7 /* up22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up22.png; sourceTree = "<group>"; };
 		B273A65F1F729F1F003CA8E7 /* up23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up23.png; sourceTree = "<group>"; };
+		B2AD98C91F7A411C007C858A /* TilesFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TilesFactory.swift; sourceTree = "<group>"; };
 		E77C3CD21F59889200DE1CE1 /* death1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = death1.png; sourceTree = "<group>"; };
 		E77C3CD31F59889200DE1CE1 /* death2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = death2.png; sourceTree = "<group>"; };
 		E77C3CD41F59889200DE1CE1 /* death3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = death3.png; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 			children = (
 				0EAB50271F73AEC100A94F4B /* Single game */,
 				A94BDEB11F5AFD450085E073 /* GameMapController.swift */,
+				B2AD98C91F7A411C007C858A /* TilesFactory.swift */,
 				B252B05C1F73D068009339AE /* Explosions.swift */,
 				B252B05E1F73D23E009339AE /* Movement.swift */,
 				A94BDEB01F5AFD450085E073 /* GameLayoutController.swift */,
@@ -876,6 +879,7 @@
 				616460731F61840400402452 /* Brain+Explosion.swift in Sources */,
 				B252B05D1F73D068009339AE /* Explosions.swift in Sources */,
 				A92AA4361F5E901D0025EFB6 /* EventPopOverController.swift in Sources */,
+				B2AD98CA1F7A411C007C858A /* TilesFactory.swift in Sources */,
 				61EFD3CC1F78E75500C9ED2D /* ConnectionStructs.swift in Sources */,
 				E7C5B82D1F6FDC4800EBB160 /* Brain+Multiplayer.swift in Sources */,
 				A9C763431F75835D00FC8442 /* GameLayoutGame+Alerts.swift in Sources */,

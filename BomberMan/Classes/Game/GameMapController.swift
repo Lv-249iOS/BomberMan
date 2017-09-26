@@ -141,62 +141,44 @@ class GameMapController: UIViewController {
         for tile in brain.tiles {
             for tileElement in tile {
                 let rect = CGRect(x: i, y: j, width: 50, height: 50)
-                switch tileElement {
-                case "W":
-                    let wall = WallView(frame: rect)
-                    wall.backgroundColor = UIColor.gray
-                    mapScroll.addSubview(wall)
-                case "B":
-                    addSubBoxView(x: i, y: j)
-                case "P":
-                    if firstTime {
-                        let player = UIImageView(frame: rect)
-                        player.image = UIImage(named: "bom\(players.count + chosenSkin)") ?? #imageLiteral(resourceName: "noImage")
-                        players.append(player)
-                        if !players.isEmpty {
-                            mapScroll.addSubview(players.last!)
+                
+                if let checkTile = TilesFactory.createTile(from: tileElement, rect: rect) {
+                mapScroll.addSubview(checkTile)
+                    
+                } else {
+                    switch tileElement {
+                    case "P":
+                        if firstTime {
+                            let player = UIImageView(frame: rect)
+                            player.image = UIImage(named: "bom\(players.count + chosenSkin)") ?? #imageLiteral(resourceName: "noImage")
+                            players.append(player)
+                            if !players.isEmpty {
+                                mapScroll.addSubview(players.last!)
+                            }
                         }
-                    }
-                case "F":
-                    addSubImageView(rect, image: #imageLiteral(resourceName: "fire"))
-                    
-                case "X":
-                    addSubImageView(rect, image: #imageLiteral(resourceName: "bomb"))
-                    
-                case "Q":
-                    addSubImageView(rect, image: #imageLiteral(resourceName: "bomb"))
-                    
-                    //has to look at this later
-                    let player = UIImageView(frame: rect)
-                    player.image = UIImage(named: "hero")
-                    players.last!.removeFromSuperview()
-                    players.removeLast()
-                    players.append(player)
-                    mapScroll.addSubview(players.last!)
-                case "M":
-                    if firstTime {
-                        let mob = UIImageView(frame: rect)
-                        mob.image = #imageLiteral(resourceName: "balloon1")
-                        mobs.append(mob)
-                        if !mobs.isEmpty {
-                            mapScroll.addSubview(mobs.last!)
+                    case "M":
+                        if firstTime {
+                            let mob = UIImageView(frame: rect)
+                            mob.image = #imageLiteral(resourceName: "balloon1")
+                            mobs.append(mob)
+                            if !mobs.isEmpty {
+                                mapScroll.addSubview(mobs.last!)
+                            }
                         }
+                    case "U":
+                        let upgrades = brain.upgrades
+                        if !upgrades.isEmpty, upgradeCounter < upgrades.count {
+                            switch upgrades[upgradeCounter].type {
+                            case .anotherBomb:
+                                addSubImageView(rect, image: #imageLiteral(resourceName: "bombupgrade"))
+                            case .strongerBomb:
+                                addSubImageView(rect, image: #imageLiteral(resourceName: "powerupgrade"))
+                            }
+                            upgradeCounter += 1
+                        }
+                    default:
+                        break
                     }
-                case "U":
-                    let upgrades = brain.upgrades
-                    if !upgrades.isEmpty, upgradeCounter < upgrades.count {
-                    switch upgrades[upgradeCounter].type {
-                    case .anotherBomb:
-                        addSubImageView(rect, image: #imageLiteral(resourceName: "bombupgrade"))
-                    case .strongerBomb:
-                        addSubImageView(rect, image: #imageLiteral(resourceName: "powerupgrade"))
-                    }
-                    upgradeCounter += 1
-                    }
-                case "D":
-                    addSubImageView(rect, image: #imageLiteral(resourceName: "door"))
-                default:
-                    break
                 }
                 
             }
@@ -206,7 +188,6 @@ class GameMapController: UIViewController {
             } else {
                 i += 50
             }
-            
         }
         
         firstTime = false

@@ -152,6 +152,18 @@
 /* Begin PBXFileReference section */
 		15478A631F753243000C5314 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		6127F57E1F6BF27300108E45 /* EventParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventParser.swift; sourceTree = "<group>"; };
+		6154D2DC1F7AA26100624824 /* win31.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = win31.png; sourceTree = "<group>"; };
+		6154D2DD1F7AA26100624824 /* win21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = win21.png; sourceTree = "<group>"; };
+		6154D2DE1F7AA26200624824 /* win01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = win01.png; sourceTree = "<group>"; };
+		6154D2DF1F7AA26200624824 /* win23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = win23.png; sourceTree = "<group>"; };
+		6154D2E01F7AA26200624824 /* win02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = win02.png; sourceTree = "<group>"; };
+		6154D2E11F7AA26200624824 /* win22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = win22.png; sourceTree = "<group>"; };
+		6154D2E21F7AA26300624824 /* win33.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = win33.png; sourceTree = "<group>"; };
+		6154D2E31F7AA26300624824 /* win42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = win42.png; sourceTree = "<group>"; };
+		6154D2E41F7AA26300624824 /* win41.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = win41.png; sourceTree = "<group>"; };
+		6154D2E51F7AA26300624824 /* win43.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = win43.png; sourceTree = "<group>"; };
+		6154D2E61F7AA26300624824 /* win32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = win32.png; sourceTree = "<group>"; };
+		6154D2E71F7AA26300624824 /* win03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = win03.png; sourceTree = "<group>"; };
 		6164606E1F6182F100402452 /* Brain+MobLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brain+MobLogic.swift"; sourceTree = "<group>"; };
 		616460701F61830E00402452 /* Brain+PlayerLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brain+PlayerLogic.swift"; sourceTree = "<group>"; };
 		616460721F61840400402452 /* Brain+Explosion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brain+Explosion.swift"; sourceTree = "<group>"; };
@@ -650,6 +662,18 @@
 				B2AD98CB1F7A8FF4007C858A /* win11.png */,
 				B2AD98CC1F7A8FF4007C858A /* win12.png */,
 				B2AD98CD1F7A8FF4007C858A /* win13.png */,
+				6154D2DE1F7AA26200624824 /* win01.png */,
+				6154D2E01F7AA26200624824 /* win02.png */,
+				6154D2E71F7AA26300624824 /* win03.png */,
+				6154D2DD1F7AA26100624824 /* win21.png */,
+				6154D2E11F7AA26200624824 /* win22.png */,
+				6154D2DF1F7AA26200624824 /* win23.png */,
+				6154D2DC1F7AA26100624824 /* win31.png */,
+				6154D2E61F7AA26300624824 /* win32.png */,
+				6154D2E21F7AA26300624824 /* win33.png */,
+				6154D2E41F7AA26300624824 /* win41.png */,
+				6154D2E31F7AA26300624824 /* win42.png */,
+				6154D2E51F7AA26300624824 /* win43.png */,
 			);
 			path = playerSprite;
 			sourceTree = "<group>";

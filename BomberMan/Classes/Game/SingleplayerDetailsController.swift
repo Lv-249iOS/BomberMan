@@ -26,7 +26,7 @@ class SingleplayerDetailsController: UIViewController {
     }
     
     func present(score: Double) {
-        detailsView.scoreLabel.text = "\(score)"
+        detailsView.scoreLabel.text = String(format: "%g", score)
     }
     
     // Precondition: calls when on pause tap

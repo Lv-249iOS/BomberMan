@@ -157,7 +157,9 @@ class GameLayoutController: UIViewController {
             brain.setUpgradesIfNeeded = { [weak self] in
                 self?.setUpgradesIfNeeded()
             }
-            
+            brain.stopControlls = { [weak self] in
+                self?.controlPanelController.setButtonState(isEnabled: false)
+            }
             brain.multiplayerEnd = { [weak self] player in
                 self?.multiplayerEnd(player: player)
             }

@@ -79,6 +79,9 @@ class GameMapController: UIViewController {
         brain.boxExplode = { [weak self] position in
             self?.boxExplosion(pos: position)
         }
+        brain.animateWinner = { [weak self] winnerId in
+            self?.win(player: winnerId)
+        }
     }
     
     func addSubImageView(_ rect: CGRect, image: UIImage) {

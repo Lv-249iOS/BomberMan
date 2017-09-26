@@ -20,8 +20,7 @@ class GameMapController: UIViewController {
     var mobs: [UIImageView] = []
     var clickСount: [Int] = [0,0,0,0,0,0,0,0]
     var animationCount: [Int] = [0,0,0,0,0,0,0,0]
-    var chosenSkinIndex = SettingsModel.shared.currentCharacterImage
-    var chosenSkin: Int!
+    var chosenSkin = SettingsModel.shared.currentCharacterImage
     
     private var map: String!
     private var sceneWidth: Int!
@@ -41,7 +40,7 @@ class GameMapController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        chosenSkin = chosenSkinIndex * (singleGame ? 1 : 0)
+        chosenSkin = chosenSkin * (singleGame ? 1 : 0)
     
         // Uses everytime
         initGestureRecognizer()

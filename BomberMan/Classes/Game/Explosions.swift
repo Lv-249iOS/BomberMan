@@ -13,8 +13,8 @@ extension GameMapController {
     
     func kill(_ views: [UIImageView], pos: Int, inPlace: Bool) {
         let rect: CGRect!
-        if inPlace {
-            let layer = views[pos].layer.presentation()! as CALayer
+        if inPlace, views[pos].layer.presentation() != nil {
+            let layer = views[pos].layer.presentation()!
             let frame = layer.frame
             rect = CGRect(x: frame.origin.x-25, y: frame.origin.y-25, width: 100, height: 100)
         }else {
@@ -87,17 +87,20 @@ extension GameMapController {
             
             if let index = mobs.index(of: mob) {
                 let rect = CGRect(x: x, y: y, width: 50, height: 50)
-                let layer = mob.layer.presentation()! as CALayer
+                let layer = mob.layer.presentation() ?? CALayer()
                 let frame = layer.frame
                 if frame.intersects(rect){
                     for brainMob in brain.mobs {
                         if let indexOfMobInBrain = brain.getMobIndexInPrivateArray(mob: brainMob) {
                             if brainMob.identifier == index {
+                                
                                 if !brain.tiles[brain.mobs[indexOfMobInBrain].position].isEmpty,
                                     brain.tiles[brain.mobs[indexOfMobInBrain].position].last == "M" {
+                                    
                                     brain.tiles[brain.mobs[indexOfMobInBrain].position].removeLast()
                                     kill(mobs, pos: index, inPlace: true)
                                     brain.mobs.remove(at: indexOfMobInBrain)
+                                    
                                     brain.score += ScoreBoosts.mobKill.rawValue
                                     brain.currentTime += 10
                                     brain.refreshScore?(brain.score)

@@ -46,6 +46,8 @@ class Brain {
     var multiplayerEnd: ((String)->())?
     var getPlayer: (()->(String))?
     var setUpgradesIfNeeded: (()->())?
+    var animateWinner: ((Int)->())?
+    var stopControlls: (()->())?
     
     // Used at the beginning of the game
     func initializeGame(with lvlNumber: Int, completelyNew: Bool) {

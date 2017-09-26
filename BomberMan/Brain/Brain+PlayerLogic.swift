@@ -116,6 +116,13 @@ extension Brain {
         }
     }
     
+    func getPlayerId(withName name: String) -> Int {
+        for player in players {
+            if player.name == name { return player.identifier }
+        }
+        return -1
+    }
+    
     func getWinner() -> String {
         for player in players {
             if player.isAlive {

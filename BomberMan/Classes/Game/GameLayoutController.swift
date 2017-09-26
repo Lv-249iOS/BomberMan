@@ -136,7 +136,7 @@ class GameLayoutController: UIViewController {
         }
     }
     
-    func multilayerEnd(player: String) {
+    func multiplayerEnd(player: String) {
         if UIDevice.current.name == player {
             createGameWinView()
             gameContainer.addSubview(gameWin!)
@@ -159,7 +159,7 @@ class GameLayoutController: UIViewController {
             }
             
             brain.multiplayerEnd = { [weak self] player in
-                self?.multilayerEnd(player: player)
+                self?.multiplayerEnd(player: player)
             }
         } else {
             brain.getPlayer = { UIDevice.current.name }

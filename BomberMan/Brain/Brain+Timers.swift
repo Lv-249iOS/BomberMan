@@ -11,9 +11,13 @@ import Foundation
 extension Brain {
     
     func endMultiplayer(withTimeInterval time: Double) {
+        let winner = getWinner()
+        animateWinner?(getPlayerId(withName: winner))
+        stopControlls?()
+        
         Timer.scheduledTimer(withTimeInterval: time, repeats: false) { [weak self] _ in
             DispatchQueue.main.async {
-                self?.multiplayerEnd?(self!.getWinner())
+                self?.multiplayerEnd?(winner)
             }
         }
     }

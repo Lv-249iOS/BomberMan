@@ -46,7 +46,7 @@ extension GameMapController {
     }
     
     func win(player: Int) {
-    let winArray = (1...3).map { UIImage(named: "win\(player+chosenSkin)\($0)") ?? #imageLiteral(resourceName: "noImage")  }
+    let winArray = (1...3).map { UIImage(named: "win\(player)\($0)") ?? #imageLiteral(resourceName: "noImage")  }
         animate(images: winArray, player: player)
     }
     

@@ -43,7 +43,7 @@ class GameMapController: UIViewController {
         super.viewDidLoad()
         chosenSkin = chosenSkinIndex * (singleGame ? 1 : 0)
     
-        // MARK: Uses everytime
+        // Uses everytime
         initGestureRecognizer()
         
         if singleGame {
@@ -140,9 +140,9 @@ class GameMapController: UIViewController {
         
         for tile in brain.tiles {
             for tileElement in tile {
+                let rect = CGRect(x: i, y: j, width: 50, height: 50)
                 switch tileElement {
                 case "W":
-                    let rect = CGRect(x: i, y: j, width: 50, height: 50)
                     let wall = WallView(frame: rect)
                     wall.backgroundColor = UIColor.gray
                     mapScroll.addSubview(wall)
@@ -150,7 +150,6 @@ class GameMapController: UIViewController {
                     addSubBoxView(x: i, y: j)
                 case "P":
                     if firstTime {
-                        let rect = CGRect(x: i, y: j, width: 50, height: 50)
                         let player = UIImageView(frame: rect)
                         player.image = UIImage(named: "bom\(players.count + chosenSkin)") ?? #imageLiteral(resourceName: "noImage")
                         players.append(player)
@@ -159,15 +158,15 @@ class GameMapController: UIViewController {
                         }
                     }
                 case "F":
-                    addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "fire"))
+                    addSubImageView(rect, image: #imageLiteral(resourceName: "fire"))
                     
                 case "X":
-                    addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "bomb"))
+                    addSubImageView(rect, image: #imageLiteral(resourceName: "bomb"))
                     
                 case "Q":
-                    addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "bomb"))
+                    addSubImageView(rect, image: #imageLiteral(resourceName: "bomb"))
                     
-                    let rect = CGRect(x: i, y: j, width: 50, height: 50)
+                    //has to look at this later
                     let player = UIImageView(frame: rect)
                     player.image = UIImage(named: "hero")
                     players.last!.removeFromSuperview()
@@ -176,7 +175,6 @@ class GameMapController: UIViewController {
                     mapScroll.addSubview(players.last!)
                 case "M":
                     if firstTime {
-                        let rect = CGRect(x: i, y: j, width: 50, height: 50)
                         let mob = UIImageView(frame: rect)
                         mob.image = #imageLiteral(resourceName: "balloon1")
                         mobs.append(mob)
@@ -185,7 +183,6 @@ class GameMapController: UIViewController {
                         }
                     }
                 case "U":
-                    let rect = CGRect(x: i, y: j, width: 50, height: 50)
                     let upgrades = brain.upgrades
                     if !upgrades.isEmpty, upgradeCounter < upgrades.count {
                     switch upgrades[upgradeCounter].type {
@@ -197,7 +194,7 @@ class GameMapController: UIViewController {
                     upgradeCounter += 1
                     }
                 case "D":
-                    addSubImageView(CGRect(x: i, y: j, width: 50, height: 50), image: #imageLiteral(resourceName: "door"))
+                    addSubImageView(rect, image: #imageLiteral(resourceName: "door"))
                 default:
                     break
                 }

@@ -45,6 +45,11 @@ extension GameMapController {
         kill(players, pos: player, inPlace: inPlace)
     }
     
+    func win(player: Int) {
+    let winArray = (1...3).map { UIImage(named: "win\(player+chosenSkin)\($0)") ?? #imageLiteral(resourceName: "noImage")  }
+        animate(images: winArray, player: player)
+    }
+    
     func boxExplosion(pos: Int) {
         
         let x = pos % brain.width * 50

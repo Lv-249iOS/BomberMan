@@ -133,6 +133,9 @@
 		B273A6691F729F1F003CA8E7 /* up22.png in Resources */ = {isa = PBXBuildFile; fileRef = B273A65E1F729F1F003CA8E7 /* up22.png */; };
 		B273A66A1F729F1F003CA8E7 /* up23.png in Resources */ = {isa = PBXBuildFile; fileRef = B273A65F1F729F1F003CA8E7 /* up23.png */; };
 		B2AD98CA1F7A411C007C858A /* TilesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AD98C91F7A411C007C858A /* TilesFactory.swift */; };
+		B2AD98CE1F7A8FF4007C858A /* win11.png in Resources */ = {isa = PBXBuildFile; fileRef = B2AD98CB1F7A8FF4007C858A /* win11.png */; };
+		B2AD98CF1F7A8FF4007C858A /* win12.png in Resources */ = {isa = PBXBuildFile; fileRef = B2AD98CC1F7A8FF4007C858A /* win12.png */; };
+		B2AD98D01F7A8FF4007C858A /* win13.png in Resources */ = {isa = PBXBuildFile; fileRef = B2AD98CD1F7A8FF4007C858A /* win13.png */; };
 		E77C3CDA1F59889200DE1CE1 /* death1.png in Resources */ = {isa = PBXBuildFile; fileRef = E77C3CD21F59889200DE1CE1 /* death1.png */; };
 		E77C3CDB1F59889200DE1CE1 /* death2.png in Resources */ = {isa = PBXBuildFile; fileRef = E77C3CD31F59889200DE1CE1 /* death2.png */; };
 		E77C3CDC1F59889200DE1CE1 /* death3.png in Resources */ = {isa = PBXBuildFile; fileRef = E77C3CD41F59889200DE1CE1 /* death3.png */; };
@@ -275,6 +278,9 @@
 		B273A65E1F729F1F003CA8E7 /* up22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up22.png; sourceTree = "<group>"; };
 		B273A65F1F729F1F003CA8E7 /* up23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up23.png; sourceTree = "<group>"; };
 		B2AD98C91F7A411C007C858A /* TilesFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TilesFactory.swift; sourceTree = "<group>"; };
+		B2AD98CB1F7A8FF4007C858A /* win11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = win11.png; sourceTree = "<group>"; };
+		B2AD98CC1F7A8FF4007C858A /* win12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = win12.png; sourceTree = "<group>"; };
+		B2AD98CD1F7A8FF4007C858A /* win13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = win13.png; sourceTree = "<group>"; };
 		E77C3CD21F59889200DE1CE1 /* death1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = death1.png; sourceTree = "<group>"; };
 		E77C3CD31F59889200DE1CE1 /* death2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = death2.png; sourceTree = "<group>"; };
 		E77C3CD41F59889200DE1CE1 /* death3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = death3.png; sourceTree = "<group>"; };
@@ -641,6 +647,9 @@
 				B241B41F1F792C7F00E9A12A /* right01.png */,
 				B241B4231F792C8600E9A12A /* down01.png */,
 				B241B4241F792C8600E9A12A /* down02.png */,
+				B2AD98CB1F7A8FF4007C858A /* win11.png */,
+				B2AD98CC1F7A8FF4007C858A /* win12.png */,
+				B2AD98CD1F7A8FF4007C858A /* win13.png */,
 			);
 			path = playerSprite;
 			sourceTree = "<group>";
@@ -760,6 +769,7 @@
 				B252B0581F73CA21009339AE /* left32.png in Resources */,
 				B273A6631F729F1F003CA8E7 /* left22.png in Resources */,
 				A9443F301F75238600B61826 /* Settings.storyboard in Resources */,
+				B2AD98CE1F7A8FF4007C858A /* win11.png in Resources */,
 				B273A6541F729CFA003CA8E7 /* down12.png in Resources */,
 				A95FC5271F502C7500E1F926 /* LaunchScreen.storyboard in Resources */,
 				B252B0721F73ED49009339AE /* up43.png in Resources */,
@@ -775,6 +785,7 @@
 				B252B05B1F73CA21009339AE /* down32.png in Resources */,
 				B273A64F1F729CFA003CA8E7 /* up11.png in Resources */,
 				E77C3CDA1F59889200DE1CE1 /* death1.png in Resources */,
+				B2AD98CF1F7A8FF4007C858A /* win12.png in Resources */,
 				B241B4141F792C6B00E9A12A /* up02.png in Resources */,
 				A9E4604A1F5ADC5F0091266C /* SingleDetailsView.xib in Resources */,
 				B25B4DDE1F6FAB1200639F27 /* boxExplosion4.png in Resources */,
@@ -816,6 +827,7 @@
 				A9E460541F5ADCE00091266C /* MultiDetailsView.xib in Resources */,
 				B252B0741F73ED49009339AE /* left42.png in Resources */,
 				B273A6601F729F1F003CA8E7 /* down21.png in Resources */,
+				B2AD98D01F7A8FF4007C858A /* win13.png in Resources */,
 				B273A6531F729CFA003CA8E7 /* down11.png in Resources */,
 				B273A64E1F729CFA003CA8E7 /* right13.png in Resources */,
 				B252B06E1F73ED49009339AE /* right42.png in Resources */,

@@ -14,8 +14,19 @@ protocol InvitationDelegate {
 }
 
 class ConnectionServiceManager: NSObject {
+   
+    private override init() {
+        super.init()
+        myPeerId = MCPeerID(displayName: UIDevice.current.name)
+        serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: playerServiceType)
+        serviceBrowser = MCBrowserViewController(serviceType: playerServiceType, session: session)
+        session.delegate = self as MCSessionDelegate
+        serviceAdvertiser?.delegate = self
+        delegate = self as? ConnectionServiceManagerDelegate
+    }
     
     static let shared = ConnectionServiceManager()
+    
     // Service type must be a unique string, at most 15 characters long
     // and can contain only ASCII lowercase letters, numbers and hyphens.
     private let playerServiceType = "multi-player"
@@ -26,6 +37,7 @@ class ConnectionServiceManager: NSObject {
     //maxCountOfPlayers can't be more than 7
     private var maxCountOfPlayers = 4
     
+    //Needed for accepting or declining invitation in Alert
     var invitationHandler: ((Bool, MCSession?) -> Swift.Void)!
     
     var serviceAdvertiser : MCNearbyServiceAdvertiser? = nil
@@ -40,15 +52,7 @@ class ConnectionServiceManager: NSObject {
         return session
     } ()
     
-    private override init() {
-        super.init()
-        myPeerId = MCPeerID(displayName: UIDevice.current.name)
-        serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: playerServiceType)
-        serviceBrowser = MCBrowserViewController(serviceType: playerServiceType, session: session)
-        session.delegate = self as MCSessionDelegate
-        serviceAdvertiser?.delegate = self
-        delegate = self as? ConnectionServiceManagerDelegate
-    }
+    
     
     func startBrowser() {
         browserDelegate = serviceBrowser?.delegate

@@ -34,8 +34,8 @@ class ConnectionServiceManager: NSObject {
     //This peerID's name can be changed to username
     private var myPeerId : MCPeerID!
     
-    //maxCountOfPlayers can't be more than 7
-    private var maxCountOfPlayers = 4
+    //maxCountOfPlayers can't be more than 8
+    private var maxCountOfPlayers = 8
     
     //Needed for accepting or declining invitation in Alert
     var invitationHandler: ((Bool, MCSession?) -> Swift.Void)!

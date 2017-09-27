@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		153638511F7B702E00BA6A13 /* ConnectionServiceManager+MCNearbyServiceAdvertiserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153638501F7B702E00BA6A13 /* ConnectionServiceManager+MCNearbyServiceAdvertiserDelegate.swift */; };
+		153638531F7B710900BA6A13 /* ConnectionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153638521F7B710900BA6A13 /* ConnectionServiceProtocol.swift */; };
+		153638551F7B713000BA6A13 /* ConnectionServiceManager+MCSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153638541F7B713000BA6A13 /* ConnectionServiceManager+MCSessionDelegate.swift */; };
 		15478A641F753243000C5314 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15478A631F753243000C5314 /* SettingsModel.swift */; };
 		6127F57F1F6BF27300108E45 /* EventParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6127F57E1F6BF27300108E45 /* EventParser.swift */; };
 		6164606F1F6182F100402452 /* Brain+MobLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6164606E1F6182F100402452 /* Brain+MobLogic.swift */; };
@@ -162,6 +165,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		153638501F7B702E00BA6A13 /* ConnectionServiceManager+MCNearbyServiceAdvertiserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConnectionServiceManager+MCNearbyServiceAdvertiserDelegate.swift"; sourceTree = "<group>"; };
+		153638521F7B710900BA6A13 /* ConnectionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionServiceProtocol.swift; sourceTree = "<group>"; };
+		153638541F7B713000BA6A13 /* ConnectionServiceManager+MCSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConnectionServiceManager+MCSessionDelegate.swift"; sourceTree = "<group>"; };
 		15478A631F753243000C5314 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		6127F57E1F6BF27300108E45 /* EventParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventParser.swift; sourceTree = "<group>"; };
 		6164606E1F6182F100402452 /* Brain+MobLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brain+MobLogic.swift"; sourceTree = "<group>"; };
@@ -352,6 +358,9 @@
 			isa = PBXGroup;
 			children = (
 				A94BDEA31F5AFCE80085E073 /* ConnectionService.swift */,
+				153638521F7B710900BA6A13 /* ConnectionServiceProtocol.swift */,
+				153638501F7B702E00BA6A13 /* ConnectionServiceManager+MCNearbyServiceAdvertiserDelegate.swift */,
+				153638541F7B713000BA6A13 /* ConnectionServiceManager+MCSessionDelegate.swift */,
 				61EFD3CB1F78E75500C9ED2D /* ConnectionStructs.swift */,
 				6127F57E1F6BF27300108E45 /* EventParser.swift */,
 			);
@@ -905,6 +914,7 @@
 			files = (
 				A94BDEBE1F5AFDA40085E073 /* UserScore.swift in Sources */,
 				A9E4604E1F5ADC9E0091266C /* MoveToNextLevelView.swift in Sources */,
+				153638511F7B702E00BA6A13 /* ConnectionServiceManager+MCNearbyServiceAdvertiserDelegate.swift in Sources */,
 				A94BDECC1F5B013C0085E073 /* Brain.swift in Sources */,
 				A9E460B01F5AE32F0091266C /* WallView.swift in Sources */,
 				A94BDED21F5B0F940085E073 /* SoundManager.swift in Sources */,
@@ -940,6 +950,7 @@
 				B252B05D1F73D068009339AE /* Explosions.swift in Sources */,
 				A92AA4361F5E901D0025EFB6 /* EventPopOverController.swift in Sources */,
 				B2AD98CA1F7A411C007C858A /* TilesFactory.swift in Sources */,
+				153638531F7B710900BA6A13 /* ConnectionServiceProtocol.swift in Sources */,
 				61EFD3CC1F78E75500C9ED2D /* ConnectionStructs.swift in Sources */,
 				E7C5B82D1F6FDC4800EBB160 /* Brain+Multiplayer.swift in Sources */,
 				A9C763431F75835D00FC8442 /* GameLayoutGame+Alerts.swift in Sources */,
@@ -950,6 +961,7 @@
 				A94BDEBB1F5AFD6C0085E073 /* MenuController.swift in Sources */,
 				A94BDEAB1F5AFD150085E073 /* TopTenCell.swift in Sources */,
 				A98005201F6C1B970098636B /* GameLayoutController+RuntimeView.swift in Sources */,
+				153638551F7B713000BA6A13 /* ConnectionServiceManager+MCSessionDelegate.swift in Sources */,
 				A92AA4381F5ED2530025EFB6 /* TimeInterval+ToString.swift in Sources */,
 				A9381B911F6BD1BB007D5FE2 /* MultiplayerDetailsController.swift in Sources */,
 			);

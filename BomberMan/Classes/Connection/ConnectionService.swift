@@ -9,12 +9,6 @@
 import Foundation
 import MultipeerConnectivity
 
-protocol ConnectionServiceManagerDelegate {
-    func connectedDevicesChanged(manager: ConnectionServiceManager, connectedDevices: [String])
-    func dataReceived(manager: ConnectionServiceManager, playerData: String)
-    func connectionLost()
-}
-
 protocol InvitationDelegate {
     func invitationWasReceived(fromPeer: String)
 }
@@ -51,7 +45,7 @@ class ConnectionServiceManager: NSObject {
         myPeerId = MCPeerID(displayName: UIDevice.current.name)
         serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: playerServiceType)
         serviceBrowser = MCBrowserViewController(serviceType: playerServiceType, session: session)
-        session.delegate = self
+        session.delegate = self as MCSessionDelegate
         serviceAdvertiser?.delegate = self
         delegate = self as? ConnectionServiceManagerDelegate
     }
@@ -100,52 +94,5 @@ class ConnectionServiceManager: NSObject {
                 NSLog("%@", "Error for sending: \(error)")
             }
         }
-    }
-}
-
-extension ConnectionServiceManager : MCNearbyServiceAdvertiserDelegate {
-    
-    public func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Swift.Void) {
-        NSLog("%@", "didReceiveInvitationFromPeer: \(peerID)")
-        self.invitationHandler = invitationHandler
-        invitationDelegate?.invitationWasReceived(fromPeer: peerID.displayName)
-    }
-    
-    public func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
-        NSLog("%@", "didNotStartAdvertisingPeer: \(error)")
-    }
-}
-
-extension ConnectionServiceManager : MCSessionDelegate {
-    
-    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        NSLog("%@", "peer \(peerID) didChangeState: \(state)")
-        self.delegate?.connectedDevicesChanged(manager: self, connectedDevices:
-            session.connectedPeers.map{$0.displayName})
-        if session.connectedPeers.count == 0 {
-            self.delegate?.connectionLost()
-        }
-    }
-    
-    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        NSLog("%@", "didReceiveData: \(data)")
-        let str = String(data: data, encoding: .utf8)!
-        self.delegate?.dataReceived(manager: self, playerData: str)
-    }
-    
-    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
-        NSLog("%@", "didReceiveStream")
-    }
-    
-    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
-        NSLog("%@", "didStartReceivingResourceWithName")
-    }
-    
-    func session(_
-        session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
-        NSLog("%@", "didFinishReceivingResourceWithName")
-    }
-    func session(_ session: MCSession, didReceiveCertificate certificate: [Any]?, fromPeer peerID: MCPeerID, certificateHandler: @escaping (Bool) -> Swift.Void) {
-        certificateHandler(true)
     }
 }

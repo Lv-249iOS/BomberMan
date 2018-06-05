@@ -771,7 +771,7 @@
 				TargetAttributes = {
 					A95FC5151F502C7500E1F926 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 2U8WSM4T5B;
+						DevelopmentTeam = 6FK98H867Z;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1132,9 +1132,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2U8WSM4T5B;
+				DEVELOPMENT_TEAM = 6FK98H867Z;
 				INFOPLIST_FILE = BomberMan/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "IT-Academy.BomberMan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1147,9 +1147,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2U8WSM4T5B;
+				DEVELOPMENT_TEAM = 6FK98H867Z;
 				INFOPLIST_FILE = BomberMan/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "IT-Academy.BomberMan";
 				PRODUCT_NAME = "$(TARGET_NAME)";

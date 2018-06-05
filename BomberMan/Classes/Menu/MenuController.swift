@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MenuController: UIViewController, UIViewControllerTransitioningDelegate {
+class MenuController: UIViewController {
     
     @IBOutlet weak var soundButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
@@ -39,19 +39,6 @@ class MenuController: UIViewController, UIViewControllerTransitioningDelegate {
         }
     }
     
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.startingPoint = settingsButton.center
-        transition.transitionMode = .present
-        return transition
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.startingPoint = settingsButton.center
-        transition.transitionMode = .dismiss
-        return transition
-    }
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "settingsSegue"{
             if let settingsVC = segue.destination as? SettingsController{
@@ -61,5 +48,20 @@ class MenuController: UIViewController, UIViewControllerTransitioningDelegate {
         }
     }
     
+}
+
+extension MenuController: UIViewControllerTransitioningDelegate {
+
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.startingPoint = settingsButton.center
+        transition.transitionMode = .present
+        return transition
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.startingPoint = settingsButton.center
+        transition.transitionMode = .dismiss
+        return transition
+    }
 }
 

@@ -13,7 +13,7 @@ class Levels {
     static let kMaxLevelCount = 8
     
     enum Level: String {
-        case one = "WWWWWWWWWWW  P     WW  W W W WW        WW  W BBW WW    B   WW  WBDBW WW    B   WWM WBBMW WWWWWWWWWWW"
+        case one = "WWWWWWWWWWW  P    MWW  W W W WW        WW  B BBB WW  B B   WW  BBDBB WW    B B WWM BBB B WWWWWWWWWWW"
         case two = "WWWWWWWWWWWWWWWW MWBW MBBBMWWWW             WW   BUBBB  WW WW  BBBBBBB    WW  BBDBBUB    WW   BBBBB     WW  M BBB      WW     BM   P  WW     BBB     WW            MWWWWWWWWWWWWWWWW"
         
         case three = "WWWWWWWWWWWWWWWW P          MWW    BBWBB    WW   BBBWBBB   WW   BBBWBDM   WW    BBBBB    WW M    B      WW     BUB     WW      BM     WW  BUB WWWWW BWWM         BWBWWWWWWWWWWWWWWWW"
@@ -35,17 +35,8 @@ class Levels {
         
     }
     
-    let levels = [
-        Level.one,
-        Level.two,
-        Level.three,
-        Level.four,
-        Level.five,
-        Level.six,
-        Level.seven,
-        Level.eight,
-        Level.nine
-    ]
+    let levels:[Level] = [.one, .two, .three, .four,
+                          .five, .six, .seven, .eight, .nine]
     
     func level(with index: Int) -> String {
         if index < levels.count {
